@@ -10,6 +10,10 @@ public class TradeCenter {
     int yLoc = 0;
     World world;
 
+    public TradeCenter(World world) {
+        this.world = world;
+    }
+
     public void setLocation(World world, int x, int y, int z) {
         this.xLoc = x;
         this.yLoc = y;
@@ -22,7 +26,6 @@ public class TradeCenter {
     }
 
     public Location getLocation() {
-        Location location = new Location(world, xLoc, yLoc, zLoc);
-        return location;
+        return new Location(world, xLoc, yLoc, zLoc);
     }
 }

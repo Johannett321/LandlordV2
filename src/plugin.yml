@@ -11,6 +11,7 @@ commands:
     description: turns off rain and turns night into day!
   bal:
     description: Get Balance of player
+    usage: /bal
   claimbonus:
     description: Claim your daily reward
   landlord:
@@ -19,3 +20,6 @@ commands:
   trade:
     description: Teleports to the trading area
     usage: /trade
+  home:
+    description: Teleports you home
+    usage: /home

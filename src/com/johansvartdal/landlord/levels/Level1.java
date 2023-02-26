@@ -2,9 +2,7 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Properties;
-import com.johansvartdal.landlord.Tools;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;

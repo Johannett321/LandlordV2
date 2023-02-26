@@ -15,6 +15,10 @@ public class Preparations implements LandlordEvent {
 
     @Override
     public void startEvent() {
+        if (Properties.DEBUG_MODE) {
+            countdown(5);
+            return;
+        }
         God.speak(Main.langDict.getString("welcomeMessage"));
         new BukkitRunnable() {
             public void run() {
@@ -123,7 +127,7 @@ public class Preparations implements LandlordEvent {
     }
 
     private void riseBorders() {
-        new GameJustStarted(mainWorld).doStart();
+        new GameJustStarted(plugin, mainWorld).doStart();
         God.speak("Welcome home");
     }
 }

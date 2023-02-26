@@ -11,11 +11,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TotalBal implements CommandExecutor {
+public class Bal implements CommandExecutor {
 	
 private Main plugin;
 	
-	public TotalBal(Main plugin) {
+	public Bal(Main plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("bal").setExecutor(this);
 	}
@@ -26,6 +26,9 @@ private Main plugin;
 			sender.sendMessage("This command can only be executed by players");
 			return true;
 		}
-		return false;
+
+		Player player = (Player) sender;
+		sender.sendMessage("You currently have " + Main.playerDataManager.getPlayerData(player).getBalance() + "kr");
+		return true;
 	}
 }

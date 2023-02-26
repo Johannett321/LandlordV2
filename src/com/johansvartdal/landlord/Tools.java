@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class Tools {
 
-    public static  Main plugin;
+    public static Main plugin;
     public static File pluginDir;
 
     public static void init(Main plugin) {
@@ -145,5 +146,15 @@ public class Tools {
 
     public static long secToTicks(int sec) {
         return sec* 20L;
+    }
+
+    public static Location highestStandingPoint(Location location) {
+        for (int y = 256; y > 0; y--) {
+            location.setY(y);
+            if (!location.getBlock().getType().isAir()) {
+                return location;
+            }
+        }
+        return location;
     }
 }

@@ -1,19 +1,20 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.PlayerData;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Trade implements CommandExecutor {
+public class Home implements CommandExecutor {
 
     private Main plugin;
 
-    public Trade(Main plugin) {
+    public Home(Main plugin) {
         this.plugin = plugin;
-        plugin.getCommand("trade").setExecutor(this);
+        plugin.getCommand("home").setExecutor(this);
     }
 
     @Override
@@ -30,9 +31,14 @@ public class Trade implements CommandExecutor {
             return true;
         }
 
-        Location location = Main.tradeCenter.getLocation();
+        System.out.println("TESS");
+
+        PlayerData pd = Main.playerDataManager.getPlayerData(player);
+        System.out.println(pd.toString());
+
+        Location location = pd.getHomeLocation();
         player.teleport(location);
-        sender.sendMessage("You have magically been teleported to the trading station");
+        sender.sendMessage("You have magically been teleported home!");
         return true;
     }
 }

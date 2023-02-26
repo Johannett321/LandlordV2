@@ -17,7 +17,6 @@ public class ChunkBuilder {
 
     public static void createChunk(Player player, Chunk chunk) {
         createChunk(player, player.getWorld(), chunk);
-        Main.playerDataManager.getPlayerData(player).addOwnedChunk(chunk.getX(), chunk.getZ());
     }
 
     public static void createChunk(World world, Chunk chunk) {
@@ -44,6 +43,10 @@ public class ChunkBuilder {
         buildSouthWall(world, centerX+8, centerZ-9, 18, Material.BARRIER);
 
         Tools.saveJsonToFile("ReplacedBlocks.json", replacedBlocks);
+
+        if (player != null) {
+            Main.playerDataManager.getPlayerData(player).addOwnedChunk(chunk.getX(), chunk.getZ());
+        }
     }
 
 

@@ -14,6 +14,7 @@ public class Properties implements Serializable {
     }
 
     private GameState currentGameState = GameState.NOT_STARTED;
+    public static final boolean DEBUG_MODE = true;
 
     public Properties() {
         if (!Tools.fileExists("Properties.json")) {
@@ -55,5 +56,12 @@ public class Properties implements Serializable {
         JSONObject properties = new JSONObject();
         properties.put("currentGameState", currentGameState.toString());
         Tools.saveJsonToFile("Properties.json", properties);
+    }
+
+    public void load() {
+        JSONObject properties = Tools.loadJson("Properties.json");
+        if (properties != null) {
+            currentGameState = GameState.valueOf((String) properties.get("currentGameState"));
+        }
     }
 }
