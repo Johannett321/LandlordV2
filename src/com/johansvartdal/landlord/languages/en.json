@@ -1,0 +1,11 @@
+{
+  "god": "[The Landlord]",
+  "welcomeMessage": "Welcome to Landlord citizens! You'll have 8 minutes left till you'll all be locked up in your chunks, spend the time wisely!",
+  "listOfHelpful": "Here is a list of some items you should consider collecting: Saplings, wood, seeds (for farming)",
+  "minutesRemaining": "minute(s) remaining before the borders will rise!",
+  "secondsRemaining": "seconds remaining before the borders will rise!",
+  "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
+  "risingBorders": "WARNING: Please stand still! Borders are rising!",
+  "newCitizen": "A new citizen has arrived! Please welcome "
+
+}

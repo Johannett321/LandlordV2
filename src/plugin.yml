@@ -1,0 +1,21 @@
+name: Landlord
+version: 2.0
+author: Johan Svartdal
+main: com.johansvartdal.landlord.Main
+description: Landlord plugin.
+
+commands:
+  buychunk:
+    description: Buy a chunk
+  day:
+    description: turns off rain and turns night into day!
+  bal:
+    description: Get Balance of player
+  claimbonus:
+    description: Claim your daily reward
+  landlord:
+    description: Start the game
+    usage: /landlord <start>
+  trade:
+    description: Teleports to the trading area
+    usage: /trade
