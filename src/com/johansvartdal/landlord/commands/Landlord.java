@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.ChunkBuilder;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.OnLandlordEventEndListener;
 import com.johansvartdal.landlord.Properties;
 import com.johansvartdal.landlord.events.Preparations;
 import org.bukkit.command.Command;
@@ -45,6 +46,9 @@ public class Landlord implements CommandExecutor {
                     player.getLocation().getBlockZ());
 
             Preparations preparationsEvent = new Preparations(plugin);
+            preparationsEvent.setOnEventEndListener(() -> {
+                Main.levelManager.startLevel1();
+            });
             preparationsEvent.setMainWorld(player.getWorld());
             preparationsEvent.startEvent();
         }

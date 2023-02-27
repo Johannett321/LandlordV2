@@ -4,7 +4,7 @@ import com.johansvartdal.landlord.*;
 import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class Preparations implements LandlordEvent {
+public class Preparations extends LandlordEvent {
 
     private final Main plugin;
     public int prepTime = 8;
@@ -129,5 +129,7 @@ public class Preparations implements LandlordEvent {
     private void riseBorders() {
         new GameJustStarted(plugin, mainWorld).doStart();
         God.speak("Welcome home");
+
+        eventEnded();
     }
 }

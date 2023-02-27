@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.PlayerData;
+import com.johansvartdal.landlord.Tools;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -37,6 +38,7 @@ public class Home implements CommandExecutor {
         System.out.println(pd.toString());
 
         Location location = pd.getHomeLocation();
+        location = Tools.highestStandingPoint(location);
         player.teleport(location);
         sender.sendMessage("You have magically been teleported home!");
         return true;

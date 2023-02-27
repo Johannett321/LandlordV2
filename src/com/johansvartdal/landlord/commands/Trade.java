@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.Tools;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,6 +32,7 @@ public class Trade implements CommandExecutor {
         }
 
         Location location = Main.tradeCenter.getLocation();
+        location = Tools.highestStandingPoint(location);
         player.teleport(location);
         sender.sendMessage("You have magically been teleported to the trading station");
         return true;

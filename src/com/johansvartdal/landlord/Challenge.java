@@ -1,6 +1,6 @@
 package com.johansvartdal.landlord;
 
-public abstract class LandlordEvent implements LandlordEventInterface{
+public abstract class Challenge implements LandlordEventInterface {
 
     OnLandlordEventEndListener onLandlordEventEndListener;
 
@@ -8,6 +8,7 @@ public abstract class LandlordEvent implements LandlordEventInterface{
         this.onLandlordEventEndListener = onEventEndListener;
     }
 
+    @Override
     public void eventEnded() {
         onLandlordEventEndListener.onEnd();
     }

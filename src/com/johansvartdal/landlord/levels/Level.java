@@ -1,9 +1,8 @@
 package com.johansvartdal.landlord.levels;
 
-import com.johansvartdal.landlord.LandlordEvent;
+import com.johansvartdal.landlord.LandlordEventInterface;
 import com.johansvartdal.landlord.Main;
-import org.bukkit.entity.Item;
-import org.w3c.dom.events.Event;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
@@ -13,41 +12,26 @@ public abstract class Level implements LevelInterface {
     private int levelNumber;
 
     public Level(Main plugin, int levelNumber) {
+        this.plugin = plugin;
         this.levelNumber = levelNumber;
     }
 
     @Override
     public int getLevelNumber() {
+        return levelNumber-1;
+    }
+
+    public int getDisplayLevelNumber() {
         return levelNumber;
     }
 
     @Override
-    public void beforeUpgradeChallengeEvent() {
-
-    }
-
-    @Override
-    public Event upgradeChallengeEvent() {
+    public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         return null;
     }
 
     @Override
-    public void afterUpgradeChallengeEvent() {
-
-    }
-
-    @Override
-    public void beforeUpgradeEvent() {
-
-    }
-
-    @Override
-    public LandlordEvent upgradeEvent() {
-        return null;
-    }
-
-    @Override
-    public void afterUpgradeEvent() {
+    public void load() {
 
     }
 }

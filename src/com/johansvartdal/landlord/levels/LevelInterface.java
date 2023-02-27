@@ -1,9 +1,8 @@
 package com.johansvartdal.landlord.levels;
 
+import com.johansvartdal.landlord.Challenge;
 import com.johansvartdal.landlord.LandlordEvent;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
-import org.w3c.dom.events.Event;
 
 import java.util.ArrayList;
 
@@ -11,12 +10,10 @@ public interface LevelInterface {
 
     public int getLevelNumber();
     public ArrayList<ItemStack> getRequiredItemsForNextLevel();
+    public void load();
 
-    public void beforeUpgradeChallengeEvent();
-    public Event upgradeChallengeEvent();
-    public void afterUpgradeChallengeEvent();
+    public void justUpgraded();
 
-    public void beforeUpgradeEvent();
-    public LandlordEvent upgradeEvent();
-    public void afterUpgradeEvent();
+    public Challenge getUpgradeChallenge();
+    public LandlordEvent getUpgradeEvent();
 }

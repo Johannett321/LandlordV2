@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.commands.*;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +15,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static LangDict langDict;
 	public static TradeCenter tradeCenter;
 	public static PlayerDataManager playerDataManager;
+	public static LevelManager levelManager;
 	
 	@Override
 	public void onEnable() {
@@ -23,6 +25,8 @@ public class Main extends JavaPlugin implements Listener {
 		configurator = new Configurator(this);
 		configurator.configure();
 		langDict = new LangDict();
+
+		levelManager = new LevelManager(this);
 		tradeCenter = new TradeCenter(Bukkit.getWorlds().get(0));
 		playerDataManager = new PlayerDataManager(Bukkit.getWorlds().get(0), this);
 		playerDataManager.loadData();

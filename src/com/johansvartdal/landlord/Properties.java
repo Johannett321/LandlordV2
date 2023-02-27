@@ -9,6 +9,7 @@ public class Properties implements Serializable {
 
     public enum GameState {
         NOT_STARTED,
+        EVENT_RUNNING,
         PREPARATIONS,
         NORMAL
     }
@@ -21,14 +22,7 @@ public class Properties implements Serializable {
             save();
             return;
         }
-        JSONObject loadedProps = Tools.loadJson("Properties.json");
-        if (loadedProps == null) {
-            System.out.println("ERROR! PROPERTIES JSON OBJECT IS NULL EVEN THOUGH THE JSON FILE EXISTS!");
-            return;
-        }
-
-        System.out.println("Loading properties");
-        currentGameState = GameState.valueOf((String) loadedProps.get("currentGameState"));
+        load();
     }
 
     public void setGameState(GameState gameState) {
