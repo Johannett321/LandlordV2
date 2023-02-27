@@ -100,7 +100,7 @@ public class PlayerData {
         for (int i = 0; i < arr.size(); i++) {
             JSONArray currentChunk = (JSONArray) arr.get(i);
 
-            int[] currentOwned = new int[]{(int) currentChunk.get(0), (int) currentChunk.get(1)};
+            int[] currentOwned = new int[]{(int)(long) currentChunk.get(0), (int)(long) currentChunk.get(1)};
             ownedChunks.add(currentOwned);
         }
         return ownedChunks;

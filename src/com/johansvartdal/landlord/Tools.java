@@ -2,7 +2,10 @@ package com.johansvartdal.landlord;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,6 +13,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Tools {
@@ -152,9 +156,33 @@ public class Tools {
         for (int y = 256; y > 0; y--) {
             location.setY(y);
             if (!location.getBlock().getType().isAir()) {
+                location.setY(location.getY()+2);
                 return location;
             }
         }
         return location;
+    }
+
+    public static boolean stateNotNormal(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage("This command can only be executed by players");
+            return true;
+        }
+        if (!Main.properties.gameStateIsNormal()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static String getDisplayNameOfItem(ItemStack stack) {
+        ItemMeta meta = stack.getItemMeta();
+        if (meta == null) {
+            return stack.getType().name().replace("_", " ").toLowerCase();
+        }
+        if (meta.hasDisplayName()) {
+            return meta.getDisplayName().toLowerCase();
+        }
+        return stack.getType().name().toLowerCase();
     }
 }

@@ -23,3 +23,9 @@ commands:
   home:
     description: Teleports you home
     usage: /home
+  donate:
+    description: Donates the current item in hand to the Landlord
+    usage: /donate
+  upgrade:
+    description: Progress to the next level
+    usage: /upgrade [ info | accept ]

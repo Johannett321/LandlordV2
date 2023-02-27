@@ -31,6 +31,7 @@ public class Main extends JavaPlugin implements Listener {
 		playerDataManager = new PlayerDataManager(Bukkit.getWorlds().get(0), this);
 		playerDataManager.loadData();
 
+		// COMMANDS
 		new Landlord(this);
 		new BuyChunk(this);
 		new Day(this);
@@ -38,6 +39,8 @@ public class Main extends JavaPlugin implements Listener {
 		new Bal(this);
 		new Home(this);
 		new Trade(this);
+		new Donate(this);
+		new Upgrade(this);
 
 		getServer().getPluginManager().registerEvents(this, this);
 	}
