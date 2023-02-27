@@ -21,10 +21,10 @@ public class Level1 extends Level {
     public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 
-        ItemStack cobble = new ItemStack(Material.COBBLESTONE, 64 * Main.properties.getNumberOfPlayers());
+        ItemStack cobble = new ItemStack(Material.COBBLESTONE, 16 * Main.properties.getNumberOfPlayers());
         requiredItems.add(cobble);
 
-        ItemStack wheat = new ItemStack(Material.LEGACY_CROPS, 128 * Main.properties.getNumberOfPlayers());
+        ItemStack wheat = new ItemStack(Material.LEGACY_CROPS, 64 * Main.properties.getNumberOfPlayers());
         requiredItems.add(wheat);
 
         return requiredItems;

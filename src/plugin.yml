@@ -23,6 +23,9 @@ commands:
   home:
     description: Teleports you home
     usage: /home
+  sethome:
+    description: Defines a new home
+    usage: /sethome
   donate:
     description: Donates the current item in hand to the Landlord
     usage: /donate

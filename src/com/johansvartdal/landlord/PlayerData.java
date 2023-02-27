@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -23,6 +24,7 @@ public class PlayerData {
         this.username = player.getName();
         this.mainWorld = mainWorld;
         God.speak(Main.langDict.getString("newCitizen") + player.getDisplayName());
+        save();
     }
 
     public PlayerData(World mainWorld, String username) {
@@ -64,6 +66,10 @@ public class PlayerData {
 
     public ArrayList<int[]> getOwnedChunks() {
         return ownedChunks;
+    }
+
+    public boolean ownsChunk(Chunk chunk) {
+        return ownsChunkAtLocation(chunk.getX(), chunk.getZ());
     }
 
     public boolean ownsChunkAtLocation(int chunkX, int chunkZ) {
@@ -133,9 +139,9 @@ public class PlayerData {
         currentBalance = (int) ((long) obj.get("Balance"));
         availableChunkPoints = (int) ((long)obj.get("AvailableChunkPoints"));
 
-        int homeX = (int) (double) ((JSONObject) obj.get("Home")).get("x");
-        int homeY = (int) (double) ((JSONObject) obj.get("Home")).get("y");
-        int homeZ = (int) (double) ((JSONObject) obj.get("Home")).get("z");
+        double homeX = (double) ((JSONObject) obj.get("Home")).get("x");
+        double homeY = (double) ((JSONObject) obj.get("Home")).get("y");
+        double homeZ = (double) ((JSONObject) obj.get("Home")).get("z");
         home = new Location(mainWorld, homeX, homeY, homeZ);
 
         ownedChunks = convertToOwnedChunks((JSONArray) obj.get("OwnedChunks"));

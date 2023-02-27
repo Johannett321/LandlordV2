@@ -6,9 +6,9 @@ import org.json.simple.JSONObject;
 
 public class TradeCenter {
 
-    int xLoc = 0;
-    int zLoc = 0;
-    int yLoc = 0;
+    double xLoc = 0;
+    double zLoc = 0;
+    double yLoc = 0;
     World world;
 
     public TradeCenter(World world) {
@@ -16,7 +16,7 @@ public class TradeCenter {
         load();
     }
 
-    public void setLocation(World world, int x, int y, int z) {
+    public void setLocation(World world, double x, double y, double z) {
         this.xLoc = x;
         this.yLoc = y;
         this.zLoc = z;
@@ -45,8 +45,8 @@ public class TradeCenter {
         if (tradeInfo == null) {
             return;
         }
-        xLoc = (int) (long) tradeInfo.get("xLoc");
-        xLoc = (int) (long) tradeInfo.get("yLoc");
-        xLoc = (int) (long) tradeInfo.get("zLoc");
+        xLoc = (double) tradeInfo.get("xLoc");
+        yLoc = (double) tradeInfo.get("yLoc");
+        zLoc = (double) tradeInfo.get("zLoc");
     }
 }

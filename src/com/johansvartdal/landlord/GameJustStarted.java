@@ -18,6 +18,7 @@ public class GameJustStarted {
     }
 
     public void doStart() {
+        Main.levelManager.populateLevels();
         Main.tradeCenter.build();
         Chunk centerChunk = Main.tradeCenter.getLocation().getChunk();
 
@@ -29,12 +30,11 @@ public class GameJustStarted {
             ChunkBuilder.createChunk((Player) players[i], mainWorld, playerChunk);
 
             Location location = new Location(mainWorld, playerChunk.getX()*16+8, 256, playerChunk.getZ()*16+8);
+            location = Tools.middlePointBlock(location);
             location = Tools.highestStandingPoint(location);
             ((Player) players[i]).teleport(location);
             Main.playerDataManager.getPlayerData((Player) players[i]).setHome(location);
         }
-        // Calculate position of chunk for each player
-        // Run ChunkBuilder.createChunk() to create a chunk there
     }
 
     private int[] getXZChunkPosition(int playerNumber, Chunk centerChunk) {

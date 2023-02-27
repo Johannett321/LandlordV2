@@ -41,9 +41,9 @@ public class Landlord implements CommandExecutor {
             }
 
             Main.tradeCenter.setLocation(player.getWorld(),
-                    player.getLocation().getBlockX(),
-                    player.getLocation().getBlockY(),
-                    player.getLocation().getBlockZ());
+                    player.getLocation().getChunk().getX()*16+8+0.5,
+                    player.getLocation().getY(),
+                    player.getLocation().getChunk().getZ()*16+8+0.5);
 
             Preparations preparationsEvent = new Preparations(plugin);
             preparationsEvent.setOnEventEndListener(() -> {
@@ -53,26 +53,5 @@ public class Landlord implements CommandExecutor {
             preparationsEvent.startEvent();
         }
         return true;
-    }
-
-    public String getPlayerFacingDirection(Player player) {
-        int yaw = (int) player.getLocation().getYaw();
-
-        // normalize the angle to be between 0 and 359
-        yaw = yaw % 360;
-        if (yaw < 0) {
-            yaw += 360;
-        }
-
-        // determine the direction based on the angle
-        if (yaw >= 45 && yaw < 135) {
-            return "west"; // west
-        } else if (yaw >= 135 && yaw < 225) {
-            return "north";  // north
-        } else if (yaw >= 225 && yaw < 315) {
-            return "east";  // east
-        } else {
-            return "south";  // south
-        }
     }
 }

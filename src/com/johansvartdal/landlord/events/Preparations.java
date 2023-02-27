@@ -128,8 +128,6 @@ public class Preparations extends LandlordEvent {
 
     private void riseBorders() {
         new GameJustStarted(plugin, mainWorld).doStart();
-        God.speak("Welcome home");
-
         eventEnded();
     }
 }

@@ -38,6 +38,7 @@ public class Main extends JavaPlugin implements Listener {
 		new DailyBonus(this);
 		new Bal(this);
 		new Home(this);
+		new SetHome(this);
 		new Trade(this);
 		new Donate(this);
 		new Upgrade(this);

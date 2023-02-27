@@ -157,6 +157,8 @@ public class Tools {
             location.setY(y);
             if (!location.getBlock().getType().isAir()) {
                 location.setY(location.getY()+2);
+                location.setX(location.getX());
+                location.setZ(location.getZ());
                 return location;
             }
         }
@@ -184,5 +186,11 @@ public class Tools {
             return meta.getDisplayName().toLowerCase();
         }
         return stack.getType().name().toLowerCase();
+    }
+
+    public static Location middlePointBlock(Location location) {
+        location.setX(location.getX() + 0.5);
+        location.setZ(location.getZ() + 0.5);
+        return location;
     }
 }

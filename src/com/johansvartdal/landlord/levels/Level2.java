@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Main;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -13,7 +14,15 @@ public class Level2 extends Level{
 
     @Override
     public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
-        return null;
+        ArrayList<ItemStack> requiredItems = new ArrayList<>();
+
+        ItemStack cobble = new ItemStack(Material.COBBLESTONE, 16 * Main.properties.getNumberOfPlayers());
+        requiredItems.add(cobble);
+
+        ItemStack wheat = new ItemStack(Material.LEGACY_CROPS, 64 * Main.properties.getNumberOfPlayers());
+        requiredItems.add(wheat);
+
+        return requiredItems;
     }
 
     @Override
