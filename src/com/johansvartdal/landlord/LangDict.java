@@ -8,10 +8,10 @@ import java.io.*;
 
 public class LangDict {
 
-    JSONObject english;
-    JSONObject currentLanguage;
+    private static JSONObject english;
+    private static JSONObject currentLanguage;
 
-    public LangDict() {
+    public static void loadLanguage() {
         JSONObject no = loadLanguage("no");
         JSONObject en = loadLanguage("en");
 
@@ -19,11 +19,11 @@ public class LangDict {
         english = en;
     }
 
-    private JSONObject loadLanguage(String languageName) {
+    private static JSONObject loadLanguage(String languageName) {
         JSONObject loadedLanguage = null;
 
         JSONParser jsonParser = new JSONParser();
-        try (InputStream in = getClass().getResourceAsStream("languages/" + languageName + ".json");
+        try (InputStream in = LangDict.class.getResourceAsStream("languages/" + languageName + ".json");
              BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
             loadedLanguage = (JSONObject) jsonParser.parse(reader);
         } catch (IOException | ParseException e) {
@@ -33,7 +33,7 @@ public class LangDict {
         return loadedLanguage;
     }
 
-    public String getString(String stringName) {
+    public static String getString(String stringName) {
         Object string = currentLanguage.get(stringName);
         if (string == null) {
             string = english.get(stringName);

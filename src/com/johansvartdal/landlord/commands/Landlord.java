@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.commands;
 
-import com.johansvartdal.landlord.ChunkBuilder;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.OnLandlordEventEndListener;
-import com.johansvartdal.landlord.Properties;
+import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.events.Preparations;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,9 +23,8 @@ public class Landlord implements CommandExecutor {
             if (!player.isOp()) {
                 commandSender.sendMessage("You are not allowed to use this command");
             }else {
-                commandSender.sendMessage("--- Commands ---");
-                commandSender.sendMessage("/landlord start");
-                commandSender.sendMessage("/landlord end");
+                Tools.printMenuHeader(player, "COMMANDS");
+                Tools.printMenuOption(player, "/landlord", "start");
             }
             return true;
         }

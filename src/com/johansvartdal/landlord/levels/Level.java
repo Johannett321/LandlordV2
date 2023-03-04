@@ -1,9 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
-import com.johansvartdal.landlord.God;
-import com.johansvartdal.landlord.LandlordEventInterface;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -48,11 +46,11 @@ public abstract class Level implements LevelInterface {
                     onHand = 0;
                 }
 
-                God.speak(player.getDisplayName() + Main.langDict.getString("justDonated") + Tools.getDisplayNameOfItem(itemStack) + Main.langDict.getString("toCommunity"));
-
                 if (required > 0) {
                     remainingItems.get(i).setAmount(required);
                 }else {
+                    God.speak(player.getDisplayName() + LangDict.getString("justDonated") + LangDict.getString("theLast") + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("toCommunity"));
+                    Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_GUITAR);
                     remainingItems.remove(i);
                 }
 

@@ -1,7 +1,9 @@
 package com.johansvartdal.landlord;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -15,6 +17,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Tools {
 
@@ -27,8 +30,19 @@ public class Tools {
         pluginDir = plugin.getDataFolder();
         System.out.println("DataFolder: " + pluginDir);
     }
+
+    public static String readInternal(String fileName) {
+        InputStream inputStream = Tools.class.getResourceAsStream(fileName);
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 	
-	public static String read (String fileName) {
+	public static String read(String fileName) {
 		String wholeText = null;
         String line = null;
 
@@ -192,5 +206,30 @@ public class Tools {
         location.setX(location.getX() + 0.5);
         location.setZ(location.getZ() + 0.5);
         return location;
+    }
+
+    public static void playSoundForEveryone(Sound sound) {
+        for(Player p : Bukkit.getOnlinePlayers()){
+            p.playSound(p.getLocation(), sound, 1, 0);
+        }
+    }
+
+    public static void tellPlayer(Player player, String message) {
+        tellPlayer(player, message, null);
+    }
+
+    public static void tellPlayer(Player player, String message, ChatColor chatColor) {
+        if (chatColor == null) {
+            chatColor = ChatColor.WHITE;
+        }
+        player.sendMessage(ChatColor.GREEN + "[INFO] " + chatColor + message);
+    }
+
+    public static void printMenuHeader(Player player, String title) {
+        player.sendMessage(ChatColor.YELLOW + "--- " + title +  " ---");
+    }
+
+    public static void printMenuOption(Player player, String title, String desc) {
+        player.sendMessage(ChatColor.YELLOW + title + " " + ChatColor.WHITE + desc);
     }
 }

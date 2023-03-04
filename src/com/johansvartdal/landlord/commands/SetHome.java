@@ -33,8 +33,8 @@ public class SetHome implements CommandExecutor {
             return true;
         }
 
-        currentLocation.setX(((int) currentLocation.getX()) + 0.5);
-        currentLocation.setZ(((int) currentLocation.getZ()) + 0.5);
+        currentLocation.setX(currentLocation.getX());
+        currentLocation.setZ(currentLocation.getZ());
         Main.playerDataManager.getPlayerData(player).setHome(currentLocation);
         sender.sendMessage("Your home was update");
         return true;

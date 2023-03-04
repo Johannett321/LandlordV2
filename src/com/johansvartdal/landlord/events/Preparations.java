@@ -19,10 +19,10 @@ public class Preparations extends LandlordEvent {
             countdown(5);
             return;
         }
-        God.speak(Main.langDict.getString("welcomeMessage"));
+        God.speak(LangDict.getString("welcomeMessage"));
         new BukkitRunnable() {
             public void run() {
-                God.speak(Main.langDict.getString("listOfHelpful"));
+                God.speak(LangDict.getString("listOfHelpful"));
             }
         }.runTaskLater(plugin, Tools.secToTicks(1));
 
@@ -39,7 +39,7 @@ public class Preparations extends LandlordEvent {
     }
 
     private void fiveMinutesLeft() {
-        God.speak("5 " + Main.langDict.getString("minutesRemaining"));
+        God.speak("5 " + LangDict.getString("minutesRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -49,8 +49,8 @@ public class Preparations extends LandlordEvent {
     }
 
     private void threeMinutesLeft() {
-        God.speak("3 " + Main.langDict.getString("minutesRemaining"));
-        God.speak(Main.langDict.getString("secondListOfHelpful"));
+        God.speak("3 " + LangDict.getString("minutesRemaining"));
+        God.speak(LangDict.getString("secondListOfHelpful"));
 
         new BukkitRunnable() {
             @Override
@@ -61,7 +61,7 @@ public class Preparations extends LandlordEvent {
     }
 
     private void twoMinutesLeft() {
-        God.speak("2 " + Main.langDict.getString("minutesRemaining"));
+        God.speak("2 " + LangDict.getString("minutesRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -71,7 +71,7 @@ public class Preparations extends LandlordEvent {
     }
 
     private void oneMinuteLeft() {
-        God.speak("1 " + Main.langDict.getString("minutesRemaining"));
+        God.speak("1 " + LangDict.getString("minutesRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -81,7 +81,7 @@ public class Preparations extends LandlordEvent {
     }
 
     private void thirtySecondsLeft() {
-        God.speak("30 " + Main.langDict.getString("secondsRemaining"));
+        God.speak("30 " + LangDict.getString("secondsRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -91,7 +91,7 @@ public class Preparations extends LandlordEvent {
     }
 
     private void fifteenSecondsLeft() {
-        God.speak("15 " + Main.langDict.getString("secondsRemaining"));
+        God.speak("15 " + LangDict.getString("secondsRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -101,7 +101,7 @@ public class Preparations extends LandlordEvent {
     }
 
     private void tenSecondsLeft() {
-        God.speak("10 " + Main.langDict.getString("secondsRemaining"));
+        God.speak("10 " + LangDict.getString("secondsRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -112,7 +112,7 @@ public class Preparations extends LandlordEvent {
 
     private void countdown(int count) {
         if (count <= 0) {
-            God.speak(Main.langDict.getString("risingBorders"));
+            God.speak(LangDict.getString("risingBorders"));
             riseBorders();
             return;
         }

@@ -1,6 +1,8 @@
 package com.johansvartdal.landlord.commands;
 
-import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,6 +12,7 @@ import org.bukkit.entity.Player;
 public class Day implements CommandExecutor {
 
 	private Main plugin;
+	private int commandPrice = 100;
 	
 	public Day(Main plugin) {
 		this.plugin = plugin;
@@ -21,13 +24,23 @@ public class Day implements CommandExecutor {
 		if (!(sender instanceof Player)) {
 			sender.sendMessage("This command can only be executed by players");
 			return true;
-		}else {
-			Player player = (Player) sender;
-			World world = player.getWorld();
-			world.setTime(0);
-			world.setStorm(false);
-			sender.sendMessage("Everything clear :)");
 		}
+
+		Player player = (Player) sender;
+
+		if (!Bank.playerCanAfford(player, commandPrice)) {
+			Tools.tellPlayer(player, "You cannot afford this command (" + commandPrice + LangDict.getString("currency") + " + tax)", ChatColor.RED);
+			return true;
+		}
+
+		Bank.withdrawPlayer(player, commandPrice);
+
+		World world = player.getWorld();
+		world.setTime(0);
+		world.setStorm(false);
+
+		God.speak(player.getDisplayName() + " has paid for a magic spell!");
+		Tools.playSoundForEveryone(Sound.ENTITY_LIGHTNING_BOLT_THUNDER);
 		return false;
 	}
 

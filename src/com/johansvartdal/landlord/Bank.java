@@ -1,18 +1,122 @@
 package com.johansvartdal.landlord;
 
 import org.bukkit.entity.Player;
+import org.json.simple.JSONObject;
 
 public class Bank {
 
+    private static int taxBank = 0;
+
     public static boolean playerCanAfford(Player player, int price) {
-        return Main.playerDataManager.getPlayerData(player).canAfford(price);
+        int tax = calculateWithdrawTaxAmount(price);
+        return Main.playerDataManager.getPlayerData(player).canAfford(price + tax);
     }
 
     public static void withdrawPlayer(Player player, int amount) {
+        int tax = calculateWithdrawTaxAmount(amount);
+        taxBank += tax;
+
+        Tools.tellPlayer(player, LangDict.getString("youJustPaid") + tax +
+                LangDict.getString("currency") +
+                " (" + getWithDrawTaxPercentDisplay() +
+                "%)"+
+                LangDict.getString("inTax"));
+        Main.playerDataManager.getPlayerData(player).withdrawBalance(amount + tax);
+        save();
+    }
+
+    public static void withdrawPlayerWithoutTax(Player player, int amount) {
         Main.playerDataManager.getPlayerData(player).withdrawBalance(amount);
     }
 
     public static void depositPlayer(Player player, int amount) {
+        int tax = calculateDepositTaxAmount(player, amount);
+        taxBank += tax;
+
+        if (amount - tax <= 0) {
+            tax = 0;
+        }else {
+            Tools.tellPlayer(player, LangDict.getString("youJustPaid") +
+                    tax +
+                    LangDict.getString("currency") +
+                    " (" + getDepositTaxPercentDisplayForPlayer(player) +
+                    "%)" + LangDict.getString("inTax"));
+        }
+        Main.playerDataManager.getPlayerData(player).depositBalance(amount - tax);
+        save();
+    }
+
+    public static void depositPlayerWithoutTax(Player player, int amount) {
         Main.playerDataManager.getPlayerData(player).depositBalance(amount);
+    }
+
+    public static int getPlayerBalance(Player player) {
+        if (Main.playerDataManager.getPlayerData(player) == null) {
+            return 0;
+        }
+        return Main.playerDataManager.getPlayerData(player).getBalance();
+    }
+
+    private static int calculateWithdrawTaxAmount(int price) {
+        return (int) (price*getWithdrawTaxPercent());
+    }
+
+    private static int calculateDepositTaxAmount(Player player, int price) {
+        return (int) (price*getDepositTaxPercentForPlayer(player));
+    }
+
+    private static double getWithdrawTaxPercent() {
+        return 0.13;
+    }
+
+    private static int getWithDrawTaxPercentDisplay() {
+        return (int) (getWithdrawTaxPercent()*100);
+    }
+
+    private static double getDepositTaxPercentForPlayer(Player player) {
+        int balance = Main.playerDataManager.getPlayerData(player).getBalance();
+        if (balance < 2000) {
+            return 0.16;
+        }else if (balance < 5000) {
+            return 0.17;
+        }else if (balance < 10000) {
+            return 0.18;
+        }else if (balance < 15000) {
+            return 0.19;
+        }else if (balance < 20000) {
+            return 0.20;
+        }else if (balance < 40000) {
+            return 0.22;
+        }else if (balance < 60000) {
+            return 0.25;
+        }else if (balance < 80000) {
+            return 0.30;
+        }else if (balance < 100000) {
+            return 0.32;
+        }else {
+            return 0.34;
+        }
+    }
+
+    public static int getDepositTaxPercentDisplayForPlayer(Player player) {
+        return (int) (getDepositTaxPercentForPlayer(player)*100);
+    }
+
+    public static void save() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("taxBank", taxBank);
+        Tools.saveJsonToFile("Bank.json", jsonObject);
+    }
+
+    public static void load() {
+        JSONObject jsonObject = Tools.loadJson("Bank.json");
+        if (jsonObject == null) {
+            return;
+        }
+        taxBank = (int) (long) jsonObject.get("taxBank");
+    }
+
+    public static int getBankBalance() {
+        return taxBank;
     }
 }

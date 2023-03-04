@@ -26,7 +26,10 @@ private Main plugin;
 		Player player = (Player) sender;
 
 		if (args.length == 0) {
-			return false;
+			sender.sendMessage("--- Commands ---");
+			sender.sendMessage("/upgrade info");
+			sender.sendMessage("/upgrade accept");
+			return true;
 		}
 
 		if (args[0].equals("info")) {

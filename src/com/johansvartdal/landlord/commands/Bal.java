@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 public class Bal implements CommandExecutor {
 	
-private Main plugin;
+	private Main plugin;
 	
 	public Bal(Main plugin) {
 		this.plugin = plugin;

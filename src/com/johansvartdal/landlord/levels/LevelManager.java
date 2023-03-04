@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -164,7 +165,14 @@ public class LevelManager {
         return itemStackArrayList;
     }
 
-    public int getCurrentDisplayLevelNum() {
+    public Integer getCurrentDisplayLevelNum() {
+        if (currentLevel == null) {
+            return null;
+        }
         return currentLevel.getDisplayLevelNumber();
+    }
+
+    public int getCurrentDisplaySeasonNum() {
+        return 1;
     }
 }

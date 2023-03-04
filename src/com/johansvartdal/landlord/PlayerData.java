@@ -23,7 +23,7 @@ public class PlayerData {
     public PlayerData(World mainWorld, Player player) {
         this.username = player.getName();
         this.mainWorld = mainWorld;
-        God.speak(Main.langDict.getString("newCitizen") + player.getDisplayName());
+        God.speak(LangDict.getString("newCitizen") + player.getDisplayName());
         save();
     }
 
@@ -124,6 +124,8 @@ public class PlayerData {
             homeJsonObj.put("x", home.getX());
             homeJsonObj.put("y", home.getY());
             homeJsonObj.put("z", home.getZ());
+            homeJsonObj.put("yaw", home.getYaw());
+            homeJsonObj.put("pitch", home.getPitch());
             jsonObject.put("Home", homeJsonObj);
         }
 
@@ -142,7 +144,14 @@ public class PlayerData {
         double homeX = (double) ((JSONObject) obj.get("Home")).get("x");
         double homeY = (double) ((JSONObject) obj.get("Home")).get("y");
         double homeZ = (double) ((JSONObject) obj.get("Home")).get("z");
+        double homeYawD = (double) ((JSONObject) obj.get("Home")).get("yaw");
+        double homePitchD = (double) ((JSONObject) obj.get("Home")).get("pitch");
+
+        float homeYaw = (float) homeYawD;
+        float homePitch = (float) homePitchD;
         home = new Location(mainWorld, homeX, homeY, homeZ);
+        home.setYaw(homeYaw);
+        home.setPitch(homePitch);
 
         ownedChunks = convertToOwnedChunks((JSONArray) obj.get("OwnedChunks"));
 
@@ -154,5 +163,13 @@ public class PlayerData {
 
     public int getBalance() {
         return currentBalance;
+    }
+
+    public int getChunkPoints() {
+        return availableChunkPoints;
+    }
+
+    public int getChunkPurchasePrice() {
+        return ownedChunks.size()*5000;
     }
 }

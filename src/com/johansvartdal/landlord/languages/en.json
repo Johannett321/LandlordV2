@@ -7,7 +7,11 @@
   "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
   "risingBorders": "WARNING: Please stand still! Borders are rising!",
   "newCitizen": "A new citizen has arrived! Please welcome ",
-  "justDonated": " just donated ",
-  "toCommunity": " to the community!"
+  "justDonated": " just donated the last ",
+  "toCommunity": " to the community!",
+  "youJustPaid": "You just paid ",
+  "inTax": " in tax",
+  "governmentBank": "The bank",
+  "currency": "USD"
 
 }

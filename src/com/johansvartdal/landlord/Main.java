@@ -10,28 +10,33 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
 
+	public static ScoreboardHelper scoreboardHelper;
 	public static Properties properties;
 	public static Configurator configurator;
-	public static LangDict langDict;
 	public static TradeCenter tradeCenter;
 	public static PlayerDataManager playerDataManager;
 	public static LevelManager levelManager;
 	
 	@Override
 	public void onEnable() {
+		SpecialEffects.setPlugin(this);
 		Tools.init(this);
 		properties = new Properties();
 		properties.load();
 		configurator = new Configurator(this);
 		configurator.configure();
-		langDict = new LangDict();
+		LangDict.loadLanguage();
+		Bank.load();
 
 		levelManager = new LevelManager(this);
 		tradeCenter = new TradeCenter(Bukkit.getWorlds().get(0));
 		playerDataManager = new PlayerDataManager(Bukkit.getWorlds().get(0), this);
 		playerDataManager.loadData();
+		scoreboardHelper = new ScoreboardHelper(this);
+
 
 		// COMMANDS
+		new Sell(this);
 		new Landlord(this);
 		new BuyChunk(this);
 		new Day(this);

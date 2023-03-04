@@ -3,6 +3,7 @@ version: 2.0
 author: Johan Svartdal
 main: com.johansvartdal.landlord.Main
 description: Landlord plugin.
+api-version: 1.19
 
 commands:
   buychunk:
@@ -16,7 +17,7 @@ commands:
     description: Claim your daily reward
   landlord:
     description: Start the game
-    usage: /landlord <start>
+    usage: /landlord [start]
   trade:
     description: Teleports to the trading area
     usage: /trade
@@ -32,3 +33,6 @@ commands:
   upgrade:
     description: Progress to the next level
     usage: /upgrade [ info | accept ]
+  sell:
+    description: Sells the item in your hand
+    usage: /sell [ all | info ]

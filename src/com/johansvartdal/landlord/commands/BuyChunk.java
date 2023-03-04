@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.commands;
 
-import com.johansvartdal.landlord.Bank;
-import com.johansvartdal.landlord.ChunkBuilder;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,7 +13,6 @@ public class BuyChunk implements CommandExecutor {
 
 
 	private final Main plugin;
-	int chunkPrice = 17000;
 
 	public BuyChunk(Main plugin) {
 		this.plugin = plugin;
@@ -32,6 +28,22 @@ public class BuyChunk implements CommandExecutor {
 		}
 		Player player = (Player) sender;
 
+		// Make sure we are not in an event
+		if (!Main.properties.gameStateIsNormal()) {
+			sender.sendMessage("You are not allowed to run this command at the moment");
+			return true;
+		}
+
+		int chunkPurchasePrice = Main.playerDataManager.getPlayerData(player).getChunkPurchasePrice();
+
+		// INFO ABOUT CHUNKS
+		if (args.length > 0 && args[0].equals("info")) {
+			Tools.printMenuHeader(player, "CHUNK INFO");
+			Tools.printMenuOption(player, "Chunks available:", String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
+			Tools.printMenuOption(player, "Price of chunk:", chunkPurchasePrice + LangDict.getString("currency") + " + tax");
+			return true;
+		}
+
 		// Make sure player can afford with ChunkPoints
 		if (!Main.playerDataManager.getPlayerData(player).hasChunkPoints()) {
 			sender.sendMessage("You don't have any chunk points left");
@@ -39,14 +51,8 @@ public class BuyChunk implements CommandExecutor {
 		}
 
 		// Make sure player can afford it
-		if (!Bank.playerCanAfford(player, chunkPrice)) {
-			sender.sendMessage("You need " + chunkPrice + "kr to purchase a new chunk");
-			return true;
-		}
-
-		// Make sure we are not in an event
-		if (Main.properties.gameStateIsNormal()) {
-			sender.sendMessage("You are not allowed to run this command at the moment");
+		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
+			sender.sendMessage("You need " + chunkPurchasePrice + "kr to purchase a new chunk");
 			return true;
 		}
 
@@ -61,7 +67,7 @@ public class BuyChunk implements CommandExecutor {
 		}
 
 		// Withdraw player
-		Bank.withdrawPlayer(player, chunkPrice);
+		Bank.withdrawPlayer(player, chunkPurchasePrice);
 
 		// Unlock chunk
 		ChunkBuilder.unlockDirection(player, direction);
