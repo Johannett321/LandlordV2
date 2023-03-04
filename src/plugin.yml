@@ -36,3 +36,6 @@ commands:
   sell:
     description: Sells the item in your hand
     usage: /sell [ all | info ]
+  stocks:
+    description: Buy or sell stocks
+    usage: /stocks [ buy | sell | info ]

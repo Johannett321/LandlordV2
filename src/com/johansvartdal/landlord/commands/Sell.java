@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Sell implements CommandExecutor {
 
@@ -52,6 +53,11 @@ public class Sell implements CommandExecutor {
     private void sellInfo(Player player) {
         ItemStack itemStack = player.getInventory().getItemInMainHand();
         StockMarket.AmountWorth currentWorth = StockMarket.getWorth(itemStack.getType());
+        if (currentWorth.getWorth() == 0) {
+            Tools.printMenuHeader(player, "INFO");
+            Tools.printMenuOption(player, "Error", "Item cannot be sold or purchased");
+            return;
+        }
 
         Tools.printMenuHeader(player, "INFO");
         Tools.printMenuOption(player, "Item:", itemStack.getType().name());
@@ -75,10 +81,18 @@ public class Sell implements CommandExecutor {
     private void sellHand(Player player) {
         ItemStack itemStack = player.getInventory().getItemInMainHand();
         Material itemType = itemStack.getType();
+
+        if (itemType == Material.PAPER) {
+            // STOCK!!!
+            Tools.tellPlayer(player, "You cannot sell this item. If it is a stock, use /stocks sell [itemname]", ChatColor.RED);
+            return;
+        }
+
         StockMarket.AmountWorth amountWorth = StockMarket.getWorth(itemType);
 
         if (amountWorth.getWorth() == 0) {
             Tools.tellPlayer(player, "You cannot sell the current item in your hand!", ChatColor.RED);
+            return;
         }
 
         if (itemStack.getAmount() < amountWorth.getAmountNeeded()) {

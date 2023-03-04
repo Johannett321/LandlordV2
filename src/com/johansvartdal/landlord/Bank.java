@@ -12,13 +12,17 @@ public class Bank {
         return Main.playerDataManager.getPlayerData(player).canAfford(price + tax);
     }
 
+    public static boolean playerCanAffordTaxFree(Player player, int price) {
+        return Main.playerDataManager.getPlayerData(player).canAfford(price);
+    }
+
     public static void withdrawPlayer(Player player, int amount) {
         int tax = calculateWithdrawTaxAmount(amount);
         taxBank += tax;
 
         Tools.tellPlayer(player, LangDict.getString("youJustPaid") + tax +
                 LangDict.getString("currency") +
-                " (" + getWithDrawTaxPercentDisplay() +
+                " (" + getWithdrawTaxPercentDisplay() +
                 "%)"+
                 LangDict.getString("inTax"));
         Main.playerDataManager.getPlayerData(player).withdrawBalance(amount + tax);
@@ -57,6 +61,10 @@ public class Bank {
         return Main.playerDataManager.getPlayerData(player).getBalance();
     }
 
+    private static int calculateStocksWithdrawTaxAmount(int price) {
+        return (int) (price*getWithdrawTaxPercent());
+    }
+
     private static int calculateWithdrawTaxAmount(int price) {
         return (int) (price*getWithdrawTaxPercent());
     }
@@ -69,7 +77,7 @@ public class Bank {
         return 0.13;
     }
 
-    private static int getWithDrawTaxPercentDisplay() {
+    private static int getWithdrawTaxPercentDisplay() {
         return (int) (getWithdrawTaxPercent()*100);
     }
 

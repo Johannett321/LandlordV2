@@ -96,6 +96,17 @@ public class StockMarket {
         return new AmountWorth(0, 0, 21);
     }
 
+    public static AmountWorth getStockWorth(String displayName) {
+        if (displayName.toLowerCase().contains("redstone_renegades")) {
+            return new AmountWorth(1, 43, 50);
+        }else if (displayName.toLowerCase().contains("iron_industries")) {
+            return new AmountWorth(1, 78, 49);
+        }else if (displayName.toLowerCase().contains("elcarts_inc")) {
+            return new AmountWorth(1, 190, 48);
+        }
+        return null;
+    }
+
     private static double getMarketValuePercent(int flowNumber) {
         return getMarketValuePercent(flowNumber, System.currentTimeMillis());
     }

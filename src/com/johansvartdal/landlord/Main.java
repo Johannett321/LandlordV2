@@ -47,6 +47,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Trade(this);
 		new Donate(this);
 		new Upgrade(this);
+		new Stocks(this);
 
 		getServer().getPluginManager().registerEvents(this, this);
 	}
