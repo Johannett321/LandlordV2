@@ -9,7 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class Sell implements CommandExecutor {
 
@@ -52,7 +51,7 @@ public class Sell implements CommandExecutor {
 
     private void sellInfo(Player player) {
         ItemStack itemStack = player.getInventory().getItemInMainHand();
-        StockMarket.AmountWorth currentWorth = StockMarket.getWorth(itemStack.getType());
+        BuySellManager.AmountWorth currentWorth = BuySellManager.getWorth(itemStack.getType());
         if (currentWorth.getWorth() == 0) {
             Tools.printMenuHeader(player, "INFO");
             Tools.printMenuOption(player, "Error", "Item cannot be sold or purchased");
@@ -88,7 +87,7 @@ public class Sell implements CommandExecutor {
             return;
         }
 
-        StockMarket.AmountWorth amountWorth = StockMarket.getWorth(itemType);
+        BuySellManager.AmountWorth amountWorth = BuySellManager.getWorth(itemType);
 
         if (amountWorth.getWorth() == 0) {
             Tools.tellPlayer(player, "You cannot sell the current item in your hand!", ChatColor.RED);
@@ -113,7 +112,7 @@ public class Sell implements CommandExecutor {
         ItemStack mainHandItem = player.getInventory().getItemInMainHand();
         Material itemType = mainHandItem.getType();
 
-        StockMarket.AmountWorth amountWorth = StockMarket.getWorth(itemType);
+        BuySellManager.AmountWorth amountWorth = BuySellManager.getWorth(itemType);
 
         int amountToDeposit = 0;
         for (int i = 0; i < 9; i++) { //loop through hotbar to see if user got more to sell

@@ -2,9 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import java.util.ArrayList;
 
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.PlayerMoneyClass;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,7 +26,11 @@ public class Bal implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
-		sender.sendMessage("You currently have " + Main.playerDataManager.getPlayerData(player).getBalance() + "kr");
+		Tools.printMenuHeader(player, "Balance");
+		Tools.printMenuOption(player, "Current income tax:", Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
+		Tools.printMenuOption(player, "Current VAT:", Bank.getWithdrawTaxPercentDisplay() + "%");
+		Tools.printMenuOption(player, "Current wealth tax:", Bank.getWealthTaxPercentDisplayForPlayer(player) + "%");
+		Tools.printMenuOption(player, "Current balance:", Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString("currency"));
 		return true;
 	}
 }

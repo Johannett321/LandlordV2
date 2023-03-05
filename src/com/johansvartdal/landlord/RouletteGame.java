@@ -93,7 +93,7 @@ public class RouletteGame {
             Tools.playSoundForEveryone(Sound.ENTITY_PLAYER_LEVELUP);
             rouletteGamePlayers.get(randomInt).getInventory().addItem(itemStack);
         }else {
-            Tools.broadcastMessage(ChatColor.RED + "No one won the roulette game!" + randomInt);
+            Tools.broadcastMessage(ChatColor.RED + "No one won the roulette game!");
         }
         rouletteGamePlayers.clear();
     }

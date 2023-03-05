@@ -2,10 +2,23 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.commands.*;
 import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.stocks.Stock;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.*;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
@@ -27,6 +40,7 @@ public class Main extends JavaPlugin implements Listener {
 		configurator.configure();
 		LangDict.loadLanguage();
 		Bank.load();
+		StockManager.loadStocks();
 
 		levelManager = new LevelManager(this);
 		tradeCenter = new TradeCenter(Bukkit.getWorlds().get(0));
@@ -48,7 +62,12 @@ public class Main extends JavaPlugin implements Listener {
 		new Upgrade(this);
 		new Stocks(this);
 		new JoinRoulette(this);
+		new Capture(this);
+		new Wilderness(this);
 
+		Bank.startTaxCollector(this);
+
+		getServer().getPluginManager().registerEvents(new NoNetherPortal(this), this);
 		getServer().getPluginManager().registerEvents(this, this);
 	}
 
@@ -64,5 +83,4 @@ public class Main extends JavaPlugin implements Listener {
 			playerDataManager.addNewPlayer(playerData);
 		}
 	}
-
 }

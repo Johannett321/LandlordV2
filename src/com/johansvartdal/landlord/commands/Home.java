@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.PlayerData;
+import com.johansvartdal.landlord.PlayerEventManager;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -32,15 +33,16 @@ public class Home implements CommandExecutor {
             return true;
         }
 
-        System.out.println("TESS");
-
         PlayerData pd = Main.playerDataManager.getPlayerData(player);
-        System.out.println(pd.toString());
+
+        if (PlayerEventManager.playerIsInEvent(player)) {
+            PlayerEventManager.forceEndPlayerEvent(player);
+        }
 
         Location location = pd.getHomeLocation();
         location = Tools.highestStandingPoint(location);
         player.teleport(location);
-        sender.sendMessage("You have magically been teleported home!");
+        Tools.tellPlayer(player, "You have magically been teleported home!");
         return true;
     }
 }

@@ -3,7 +3,6 @@ package com.johansvartdal.landlord;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomTip {
@@ -36,7 +35,7 @@ public class RandomTip {
             int randomTip = random.nextInt(12);
 
             switch (randomTip) {
-                case 0: return "You can sell the following items " + StockMarket.getSellableItemsString();
+                case 0: return "You can sell the following items " + BuySellManager.getSellableItemsString();
                 case 1: return "The most needed items in upgrades are Cobblestone and Sugar canes";
                 case 2: return "By typing /wilderness time, you can see how much time you got left of your wilderness adventure";
                 case 3: return "By typing /joinroulette, you can see how much time is left before the next round of roulette";
@@ -53,7 +52,7 @@ public class RandomTip {
             int randomTip = random.nextInt(11);
 
             switch (randomTip) {
-                case 0: return "You can sell the following items " + StockMarket.getSellableItemsString();
+                case 0: return "You can sell the following items " + BuySellManager.getSellableItemsString();
                 case 1: return "By typing /chunkbalance, you can see how many chunks you can claim";
                 case 2: return "By typing /richness, you can see how rich you are";
                 case 3: return "Before claiming a new chunk, make sure you clear all blocks next to the barrier you want to claim. Then you don't have to worry about large stone walls!";

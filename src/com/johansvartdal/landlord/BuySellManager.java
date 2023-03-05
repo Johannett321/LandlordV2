@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Enumeration;
 
-public class StockMarket {
+public class BuySellManager {
 
     public static String getSellableItemsString() {
         return "Cobblestone, Diamond, Sugar_cane, Kelp, Bamboo, Cactus, Wheat, Dirt, Logs, Leaves, Seeds, Pumpkin, MelonSlice";

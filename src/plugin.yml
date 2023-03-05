@@ -42,3 +42,9 @@ commands:
   joinroulette:
     description: Joins the roulette
     usage: /joinroulette
+  capture:
+    description: Capture an animal close to you
+    usage: /capture
+  wilderness:
+    description: Teleport to wilderness
+    usage: /wilderness

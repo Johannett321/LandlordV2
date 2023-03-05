@@ -34,7 +34,7 @@ public class Trade implements CommandExecutor {
         Location location = Main.tradeCenter.getLocation();
         location = Tools.highestStandingPoint(location);
         player.teleport(location);
-        sender.sendMessage("You have magically been teleported to the trading station");
+        Tools.tellPlayer(player, "You have magically been teleported to the trading station");
         return true;
     }
 }

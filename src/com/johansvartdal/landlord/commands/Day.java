@@ -39,6 +39,7 @@ public class Day implements CommandExecutor {
 		world.setTime(0);
 		world.setStorm(false);
 
+		Tools.tellPlayer(player, "You paid " + commandPrice + LangDict.getString("currency") + " for this magic spell");
 		God.speak(player.getDisplayName() + " has paid for a magic spell!");
 		Tools.playSoundForEveryone(Sound.ENTITY_LIGHTNING_BOLT_THUNDER);
 		return false;

@@ -1,6 +1,8 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -167,7 +169,7 @@ public class LevelManager {
 
     public Integer getCurrentDisplayLevelNum() {
         if (currentLevel == null) {
-            return null;
+            return 0;
         }
         return currentLevel.getDisplayLevelNumber();
     }
@@ -178,5 +180,46 @@ public class LevelManager {
 
     public int getRouletteGamePrice() {
         return currentLevel.getRouletteGamePrice();
+    }
+
+    public Location getWildernessLocation() {
+        Location location = new Location(Bukkit.getWorld("world"), 15000,0,15000);
+        switch (getCurrentDisplaySeasonNum()) {
+            case 1:
+                break;
+            case 2:
+                location = new Location(Bukkit.getWorld("world"), 30000,0,30000);
+                break;
+            case 3:
+                location = new Location(Bukkit.getWorld("world"), 60000,0,60000);
+                break;
+        }
+
+        Tools.highestStandingPoint(location);
+        return location;
+    }
+
+    public int getWildernessPrice() {
+        switch (getCurrentDisplaySeasonNum()) {
+            case 1:
+                return 100;
+            case 2:
+                return 200;
+            case 3:
+                return 300;
+        }
+        return 0;
+    }
+
+    public int getNetherWildernessPrice() {
+        switch (getCurrentDisplaySeasonNum()) {
+            case 1:
+                return 200;
+            case 2:
+                return 300;
+            case 3:
+                return 400;
+        }
+        return 0;
     }
 }

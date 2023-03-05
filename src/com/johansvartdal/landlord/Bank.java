@@ -1,7 +1,12 @@
 package com.johansvartdal.landlord;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.json.simple.JSONObject;
+
+import java.util.Calendar;
+import java.util.Random;
 
 public class Bank {
 
@@ -77,7 +82,7 @@ public class Bank {
         return 0.13;
     }
 
-    private static int getWithdrawTaxPercentDisplay() {
+    public static int getWithdrawTaxPercentDisplay() {
         return (int) (getWithdrawTaxPercent()*100);
     }
 
@@ -106,8 +111,37 @@ public class Bank {
         }
     }
 
+    private static double getWealthTaxPercentForPlayer(Player player) {
+        int balance = Main.playerDataManager.getPlayerData(player).getBalance();
+        if (balance < 2000) {
+            return 0;
+        }else if (balance < 5000) {
+            return 0;
+        }else if (balance < 10000) {
+            return 0.02;
+        }else if (balance < 15000) {
+            return 0.022;
+        }else if (balance < 20000) {
+            return 0.023;
+        }else if (balance < 40000) {
+            return 0.025;
+        }else if (balance < 60000) {
+            return 0.026;
+        }else if (balance < 80000) {
+            return 0.03;
+        }else if (balance < 100000) {
+            return 0.035;
+        }else {
+            return 0.04;
+        }
+    }
+
     public static int getDepositTaxPercentDisplayForPlayer(Player player) {
         return (int) (getDepositTaxPercentForPlayer(player)*100);
+    }
+
+    public static double getWealthTaxPercentDisplayForPlayer(Player player) {
+        return getWealthTaxPercentForPlayer(player)*100;
     }
 
     public static void save() {
@@ -126,5 +160,27 @@ public class Bank {
 
     public static int getBankBalance() {
         return taxBank;
+    }
+
+    public static void startTaxCollector(Plugin plugin) {
+        Random random = new Random();
+        int minute = random.nextInt(30) + 30;
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            // collect tax
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                int balance = getPlayerBalance(player);
+                int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
+
+                if (tax == 0) {
+                    continue;
+                }
+
+                Tools.tellPlayer(player, "You just paid " + tax + LangDict.getString("currency") + " in wealth tax");
+                withdrawPlayerWithoutTax(player, tax);
+            }
+
+            startTaxCollector(plugin);
+        }, Tools.secToTicks(60*minute));
     }
 }
