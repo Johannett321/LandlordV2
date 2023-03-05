@@ -26,8 +26,6 @@ public class NoNetherPortal implements Listener {
 
     @EventHandler
     public void onPlayerPortal(PlayerPortalEvent event) {
-        System.out.println("NEEEEETHEEEER");
-
         Player player = event.getPlayer();
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
             event.setCancelled(true);
@@ -39,7 +37,7 @@ public class NoNetherPortal implements Listener {
     public void onBlockIgnite(BlockIgniteEvent event) {
         Block block = event.getBlock();
         Location loc = block.getLocation();
-        int radius = 2;
+        int radius = 1;
 
         // Cancel the event if there are any nearby obsidian blocks (the block that creates portal frames)
         for (int x = loc.getBlockX() - radius; x <= loc.getBlockX() + radius; x++) {
