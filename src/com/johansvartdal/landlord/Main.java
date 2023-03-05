@@ -34,7 +34,6 @@ public class Main extends JavaPlugin implements Listener {
 		playerDataManager.loadData();
 		scoreboardHelper = new ScoreboardHelper(this);
 
-
 		// COMMANDS
 		new Sell(this);
 		new Landlord(this);
@@ -48,6 +47,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Donate(this);
 		new Upgrade(this);
 		new Stocks(this);
+		new JoinRoulette(this);
 
 		getServer().getPluginManager().registerEvents(this, this);
 	}

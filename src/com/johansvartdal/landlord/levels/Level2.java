@@ -29,4 +29,9 @@ public class Level2 extends Level{
     public void justUpgraded() {
 
     }
+
+    @Override
+    public int getRouletteGamePrice() {
+        return 800;
+    }
 }

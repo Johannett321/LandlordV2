@@ -39,3 +39,6 @@ commands:
   stocks:
     description: Buy or sell stocks
     usage: /stocks [ buy | sell | info ]
+  joinroulette:
+    description: Joins the roulette
+    usage: /joinroulette

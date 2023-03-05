@@ -18,6 +18,11 @@ public class Level1 extends Level {
     }
 
     @Override
+    public int getRouletteGamePrice() {
+        return 300;
+    }
+
+    @Override
     public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 

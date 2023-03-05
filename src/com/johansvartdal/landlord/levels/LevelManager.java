@@ -175,4 +175,8 @@ public class LevelManager {
     public int getCurrentDisplaySeasonNum() {
         return 1;
     }
+
+    public int getRouletteGamePrice() {
+        return currentLevel.getRouletteGamePrice();
+    }
 }

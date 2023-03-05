@@ -17,4 +17,6 @@ public interface LevelInterface {
     public void justUpgraded();
 
     public void donateItem(Player player, ItemStack itemStack);
+
+    int getRouletteGamePrice();
 }
