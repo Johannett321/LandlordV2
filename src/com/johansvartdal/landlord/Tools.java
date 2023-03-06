@@ -157,8 +157,12 @@ public class Tools {
     }
 
     public static void broadcastMessage(String message) {
+        broadcastMessage(message, ChatColor.WHITE);
+    }
+
+    public static void broadcastMessage(String message, ChatColor chatColor) {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.sendMessage(message);
+            Tools.tellPlayer(player, message, chatColor);
         }
     }
 

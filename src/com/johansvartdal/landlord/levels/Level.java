@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -50,17 +51,18 @@ public abstract class Level implements LevelInterface {
                 if (required > 0) {
                     remainingItems.get(i).setAmount(required);
                 }else {
-                    God.speak(player.getDisplayName() + LangDict.getString("justDonated") + LangDict.getString("theLast") + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("toCommunity"));
                     Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_GUITAR);
                     remainingItems.remove(i);
+
+                    if (remainingItems.size() == 0) {
+                        God.speak("Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level");
+                    }else {
+                        God.speak(player.getDisplayName() + LangDict.getString("justDonated") + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("toCommunity"));
+                    }
                 }
 
                 player.getInventory().getItemInMainHand().setAmount(onHand);
                 Main.levelManager.save();
-
-                if (remainingItems.size() == 0) {
-                    God.speak("That was actually the last item required! Are you ready to upgrade?");
-                }
                 break;
             }
         }

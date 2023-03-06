@@ -1,11 +1,15 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.levels.Level;
 import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.*;
+
+import java.util.ArrayList;
 
 public class ScoreboardHelper {
 
@@ -34,10 +38,11 @@ public class ScoreboardHelper {
         objective = board.registerNewObjective("test", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        if (Main.levelManager.getCurrentDisplayLevelNum() == null) {
+        if (Main.levelManager.getCurrentDisplayLevelNum() == 0) {
+            setTitle("Preparations");
             objective.setDisplayName("Preparations");
         }else {
-            objective.setDisplayName("Season " + Main.levelManager.getCurrentDisplaySeasonNum() + " level " + (Main.levelManager.getCurrentDisplayLevelNum()));
+            setTitle("Season " + Main.levelManager.getCurrentDisplaySeasonNum() + " level " + (Main.levelManager.getCurrentDisplayLevelNum()));
         }
 
         scheduleNewRefresh(objective);
@@ -65,33 +70,38 @@ public class ScoreboardHelper {
     }
 
     public void getCurrentReqScores(Objective objective) {
-        /*
-        UpgradeRequirement[] currentReq = Upgrade.requirements;
+        ArrayList<ItemStack> requiredItems = Main.levelManager.getRequiredItemsForNextLevel();
 
-        for (int i = 0; i < currentReq.length; i++) {
+        for (int i = 0; i < requiredItems.size(); i++) {
+            ItemStack remaining = Main.levelManager.getRemainingItem(requiredItems.get(i).getType());
+
             Score score;
-            if (currentReq[i].getAmountNeeded() == currentReq[i].getCurrentAmount()) {
-                score = objective.getScore(ChatColor.GREEN + currentReq[i].getMaterial().name().toLowerCase() + "(" + currentReq[i].getAmountNeeded() + ")");
-                objective.getScoreboard().resetScores(ChatColor.RED + currentReq[i].getMaterial().name().toLowerCase() + "(" + currentReq[i].getAmountNeeded() + ")");
-            }else {
-                score = objective.getScore(ChatColor.RED + currentReq[i].getMaterial().name().toLowerCase() + "(" + currentReq[i].getAmountNeeded() + ")");
+
+            // item is fulfilled
+            if (remaining == null) {
+                board.resetScores(ChatColor.RED + requiredItems.get(i).getType().name().toLowerCase());
+                continue;
             }
 
-            score.setScore(currentReq[i].getCurrentAmount()); //Integer only!
+            score = objective.getScore(ChatColor.RED + remaining.getType().name().toLowerCase());
+            score.setScore(remaining.getAmount()); //Integer only!
         }
-         */
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.setScoreboard(board);
         }
     }
 
-    /*
-    public void warnNewUpgrade(int newSeason, int newLevel, UpgradeRequirement[] oldUpgrades) {
-        objective.setDisplayName("Season " + newSeason + " level " + (newLevel - Upgrade.getCurrentSeasonSubtraction()));
-        for (int i = 0; i < oldUpgrades.length; i++) {
-            board.resetScores(ChatColor.GREEN + oldUpgrades[i].getMaterial().name().toLowerCase() + "(" + oldUpgrades[i].getAmountNeeded() + ")");
+    public void warnNewLevel(int newSeason, int newLevel) {
+        setTitle("Season " + newSeason + " level " + newLevel);
+        ArrayList<ItemStack> requiredItems = Main.levelManager.getRequiredItemsForNextLevel();
+
+        for (int i = 0; i < requiredItems.size(); i++) {
+            board.resetScores(ChatColor.RED + requiredItems.get(i).getType().name().toLowerCase());
         }
     }
-     */
+
+    public void setTitle(String title) {
+        objective.setDisplayName(title);
+    }
 }

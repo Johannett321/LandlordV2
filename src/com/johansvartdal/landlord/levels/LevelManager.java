@@ -1,10 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -42,15 +39,21 @@ public class LevelManager {
         currentLevel.justUpgraded();
         Main.properties.setGameState(Properties.GameState.NORMAL);
         save();
+
+        // update scoreboard
+        Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
     }
 
     public void proceedToNextLevel() {
         currentLevel = getLevel(currentLevel.getLevelNumber()+1);
         acceptedPlayers.clear();
 
-        God.speak("The town was just upgraded to level " + currentLevel.getDisplayLevelNumber() + "!");
+        Tools.broadcastMessage("The town was just upgraded to level " + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
         currentLevel.justUpgraded();
         save();
+
+        // update scoreboard
+        Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
     }
 
     public boolean itemRequiredForUpgrade(ItemStack itemInMainHand) {
@@ -221,5 +224,26 @@ public class LevelManager {
                 return 400;
         }
         return 0;
+    }
+
+    public ArrayList<ItemStack> getListOfRemainingItems() {
+        return currentLevel.getRemainingItemsForNextLevel();
+    }
+
+    public Level getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
+        return currentLevel.getRequiredItemsForNextLevel();
+    }
+
+    public ItemStack getRemainingItem(Material type) {
+        for (ItemStack itemStack : currentLevel.getRemainingItemsForNextLevel()) {
+            if (itemStack.getType().equals(type)) {
+                return itemStack;
+            }
+        }
+        return null;
     }
 }
