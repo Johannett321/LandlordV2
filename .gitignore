@@ -1,3 +1,4 @@
 # Project exclude paths
 /target/
+Landlord.iml
 LandlordV2.iml
