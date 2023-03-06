@@ -31,6 +31,7 @@ public class Visit implements CommandExecutor {
             return true;
         }
 
+        // display commands
         if (args.length < 1) {
             Tools.printMenuHeader(player, "VISIT");
             Tools.printMenuOption(player, "/visit", "accept");
@@ -39,11 +40,13 @@ public class Visit implements CommandExecutor {
             return true;
         }
 
+        // accept
         if (args[0].equals("accept")) {
             acceptVisit(player);
             return true;
         }
 
+        // reject
         if (args[0].equals("reject")) {
             rejectVisit(player);
             return true;
@@ -52,11 +55,13 @@ public class Visit implements CommandExecutor {
         String teleportToString = args[0];
         Player teleportTo = Bukkit.getPlayer(teleportToString);
 
+        // make sure player exists
         if (teleportTo == null) {
             Tools.tellPlayer(player, "Could not find player: " + teleportToString, ChatColor.RED);
             return true;
         }
 
+        // dont visit yourself
         if (teleportTo == player) {
             Tools.tellPlayer(player, "You cannot visit yourself", ChatColor.RED);
             return true;
