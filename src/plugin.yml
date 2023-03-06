@@ -48,3 +48,6 @@ commands:
   wilderness:
     description: Teleport to wilderness
     usage: /wilderness
+  visit:
+    description: Visit another player
+    usage: /visit [ accept | reject | [username] ]

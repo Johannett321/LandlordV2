@@ -64,6 +64,7 @@ public class Main extends JavaPlugin implements Listener {
 		new JoinRoulette(this);
 		new Capture(this);
 		new Wilderness(this);
+		new Visit(this);
 
 		Bank.startTaxCollector(this);
 
