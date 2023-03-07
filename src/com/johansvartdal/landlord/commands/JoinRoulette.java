@@ -23,13 +23,14 @@ public class JoinRoulette implements CommandExecutor {
     }
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        Player player = (Player) commandSender;
-
-        if (!Main.properties.gameStateIsNormal()) {
-            Tools.tellPlayer(player, "You cannot execute this command at the moment", ChatColor.RED);
+        if (!(commandSender instanceof Player)) {
+            commandSender.sendMessage("This command can only be executed by players");
             return true;
         }
 
+        Player player = (Player) commandSender;
+
+        // make sure the command has been unlocked
         if (Main.levelManager.getCurrentDisplayLevelNum() > 3) {
             Tools.tellPlayer(player, "This command is not unlocked yet", ChatColor.RED);
             return true;

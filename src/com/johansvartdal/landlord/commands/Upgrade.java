@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.commands;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.ChatColor;
@@ -20,26 +21,27 @@ private Main plugin;
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (Tools.stateNotNormal(sender)) {
+			Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
 			return true;
 		}
 
 		Player player = (Player) sender;
 
 		if (args.length == 0) {
-			sender.sendMessage("--- Commands ---");
-			sender.sendMessage("/upgrade info");
-			sender.sendMessage("/upgrade accept");
+			Tools.printMenuHeader(player, "COMMANDS");
+			Tools.printMenuOption(player, "/upgrade", "info");
+			Tools.printMenuOption(player, "/upgrade", "accept");
 			return true;
 		}
 
 		if (args[0].equals("info")) {
-			sender.sendMessage(ChatColor.DARK_GRAY + "UPGRADE INFO:");
-			sender.sendMessage(ChatColor.DARK_GRAY + "Current level: " + ChatColor.GRAY + Main.levelManager.getCurrentDisplayLevelNum());
-			sender.sendMessage(ChatColor.DARK_GRAY + "Donations remaining: " + ChatColor.GRAY + Main.levelManager.getRemainingItemsText());
-			sender.sendMessage(ChatColor.DARK_GRAY + "Players accepted: " + ChatColor.GRAY + Main.levelManager.getAcceptedPlayersText());
+			Tools.printMenuHeader(player, "UPGRADE INFO");
+			Tools.printMenuOption(player, "Current level: ", String.valueOf(Main.levelManager.getCurrentDisplayLevelNum()));
+			Tools.printMenuOption(player, "Donations remaining: ", Main.levelManager.getRemainingItemsText());
+			Tools.printMenuOption(player, "Players accepted: ", Main.levelManager.getAcceptedPlayersText());
 		}else if (args[0].equals("accept")) {
 			if (Main.levelManager.playerHasAccepted(player)) {
-				sender.sendMessage("You have already accepted");
+				Tools.tellPlayer(player, "You have already accepted");
 				return true;
 			}
 			Main.levelManager.playerAcceptsUpgrade(player);

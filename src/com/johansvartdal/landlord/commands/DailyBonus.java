@@ -28,6 +28,9 @@ private Main plugin;
 			sender.sendMessage("This command can only be executed by players");
 			return true;
 		}
+
+		//TODO REVIEW THIS FILE
+
 		Player player = (Player) sender;
 		
 		Calendar nowCal = Calendar.getInstance();

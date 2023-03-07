@@ -23,12 +23,12 @@ public class Stocks implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player player = (Player) sender;
-
-        if (!Main.properties.gameStateIsNormal()) {
-            Tools.tellPlayer(player, "You cannot run this command at the moment", ChatColor.RED);
+        if (Tools.stateNotNormal(sender)) {
+            Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return true;
         }
+
+        Player player = (Player) sender;
 
         if (args.length == 0) {
             Tools.printMenuHeader(player, "Commands");

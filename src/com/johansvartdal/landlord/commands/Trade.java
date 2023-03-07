@@ -1,7 +1,9 @@
 package com.johansvartdal.landlord.commands;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,17 +21,12 @@ public class Trade implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("This command can only be executed by players");
+        if (Tools.stateNotNormal(sender)) {
+            Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return true;
         }
 
         Player player = (Player) sender;
-
-        if (!Main.properties.gameStateIsNormal()) {
-            sender.sendMessage("You cannot execute this command at the moment");
-            return true;
-        }
 
         Location location = Main.tradeCenter.getLocation();
         location = Tools.highestStandingPoint(location);

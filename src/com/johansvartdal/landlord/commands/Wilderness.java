@@ -14,10 +14,6 @@ public class Wilderness implements CommandExecutor {
 
     private final Main plugin;
 
-    private static final int BLOCK_ADVENTURE = 0;
-    private static final int EXTEND_ADVENTURE = 1;
-    private static final int NEW_ADVENTURE = 2;
-
     public Wilderness(Main plugin) {
         this.plugin = plugin;
 
@@ -26,6 +22,11 @@ public class Wilderness implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+        if (Tools.stateNotNormal(commandSender)) {
+            Tools.tellPlayer(commandSender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            return true;
+        }
+
         Player player = (Player) commandSender;
 
         if (Main.levelManager.getCurrentDisplayLevelNum() < 4 && !Properties.DEBUG_MODE) {

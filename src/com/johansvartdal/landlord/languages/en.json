@@ -12,6 +12,7 @@
   "youJustPaid": "You just paid ",
   "inTax": " in tax",
   "governmentBank": "The bank",
+  "cmdNotNow": "You cannot execute this command at the moment",
   "currency": "USD"
 
 }

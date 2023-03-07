@@ -218,6 +218,17 @@ public class Tools {
         }
     }
 
+    public static void tellPlayer(CommandSender player, String message, ChatColor chatColor) {
+        if (player instanceof Player) {
+            tellPlayer((Player) player, message, chatColor);
+        }
+    }
+
+    public static void tellPlayer(CommandSender player, String message) {
+        if (player instanceof Player) {
+            tellPlayer((Player) player, message, null);
+        }
+    }
     public static void tellPlayer(Player player, String message) {
         tellPlayer(player, message, null);
     }

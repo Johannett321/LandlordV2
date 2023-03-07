@@ -21,8 +21,8 @@ public class Day implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if (!(sender instanceof Player)) {
-			sender.sendMessage("This command can only be executed by players");
+		if (Tools.stateNotNormal(sender)) {
+			Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
 			return true;
 		}
 

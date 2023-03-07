@@ -24,6 +24,11 @@ public class Visit implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+        if (Tools.stateNotNormal(commandSender)) {
+            Tools.tellPlayer(commandSender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            return true;
+        }
+
         Player player = (Player) commandSender;
 
         if (Main.levelManager.getCurrentDisplayLevelNum() < 11 && !Properties.DEBUG_MODE) {

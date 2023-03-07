@@ -27,13 +27,20 @@ public class Capture implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (Tools.stateNotNormal(commandSender)) {
+            Tools.tellPlayer(commandSender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            return true;
+        }
+
         Player player = (Player) commandSender;
 
+        // Make sure the command has been unlocked
         if (Main.levelManager.getCurrentDisplayLevelNum() < 6 && !Properties.DEBUG_MODE) {
             Tools.tellPlayer(player, "This command has not been unlocked yet", ChatColor.RED);
             return true;
         }
 
+        // Make sure player has enough bal
         int priceToWithdraw = StaticValues.CAPTURE_PRICE;
         if (!Bank.playerCanAfford(player, StaticValues.CAPTURE_PRICE)) {
             Tools.tellPlayer(player, "You need " + StaticValues.CAPTURE_PRICE + LangDict.getString("currency") + " to capture an animal", ChatColor.RED);

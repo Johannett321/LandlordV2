@@ -11,6 +11,8 @@ public class LangDict {
     private static JSONObject english;
     private static JSONObject currentLanguage;
 
+    public static final String CMD_NOT_NOW= "cmdNotNow";
+
     public static void loadLanguage() {
         JSONObject no = loadLanguage("no");
         JSONObject en = loadLanguage("en");

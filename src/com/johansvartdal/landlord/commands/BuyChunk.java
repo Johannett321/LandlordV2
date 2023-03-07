@@ -21,16 +21,16 @@ public class BuyChunk implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		// Make sure command can only be executed from a player in a game
-		if (!(sender instanceof Player)) {
-			sender.sendMessage("Only players can execute this command");
+		if (Tools.stateNotNormal(sender)) {
+			Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
 			return true;
 		}
+
 		Player player = (Player) sender;
 
-		// Make sure we are not in an event and that the player actually owns the chunk
-		if (!Main.properties.gameStateIsNormal() || !Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
-			Tools.tellPlayer(player, "You are not allowed to run this command at the moment", ChatColor.RED);
+		// Make sure the player actually owns the chunk we are currently in
+		if (!Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
+			Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
 			return true;
 		}
 
@@ -46,13 +46,13 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure player can afford with ChunkPoints
 		if (!Main.playerDataManager.getPlayerData(player).hasChunkPoints()) {
-			sender.sendMessage("You don't have any chunk points left");
+			Tools.tellPlayer(player, "You don't have any chunk points left", ChatColor.RED);
 			return true;
 		}
 
 		// Make sure player can afford it
 		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
-			sender.sendMessage("You need " + chunkPurchasePrice + "kr to purchase a new chunk");
+			Tools.tellPlayer(player, "You need " + chunkPurchasePrice + LangDict.getString("currency") + " + tax to purchase a new chunk");
 			return true;
 		}
 
