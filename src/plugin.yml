@@ -51,3 +51,6 @@ commands:
   visit:
     description: Visit another player
     usage: /visit [ accept | reject | [username] ]
+  sendhome:
+    description: Send a player home from your chunk
+    usage: /sendhome [username]

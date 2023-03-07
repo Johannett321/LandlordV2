@@ -62,6 +62,7 @@ public class Sell implements CommandExecutor {
         Tools.printMenuOption(player, "Item:", itemStack.getType().name());
         Tools.printMenuOption(player, "Current value:", String.valueOf(currentWorth.getWorth()));
 
+        /*
         int worthAt1 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60));
         int worthAt2 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*2));
         int worthAt3 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*3));
@@ -73,6 +74,8 @@ public class Sell implements CommandExecutor {
         int worthAt45 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*45));
         int worthAt60 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*60));
         Tools.printMenuOption(player, "Values (15, 30, 45, 60) mins:", worthAt15 + ", " + worthAt30 + ", " + worthAt45 + ", " + worthAt60);
+
+         */
 
         Tools.printMenuOption(player, "Tax percentage:", Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
     }
