@@ -4,8 +4,10 @@ import java.io.File;
 import java.util.Calendar;
 
 import com.johansvartdal.landlord.Bank;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,13 +16,15 @@ import org.bukkit.entity.Player;
 public class DailyBonus implements CommandExecutor {
 	
 private Main plugin;
+
+	private int dailyBonus = 650;
 	
 	public DailyBonus(Main plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("claimbonus").setExecutor(this);;
 	}
 	
-	//claiming daily bonus will not work when the year changes
+	// claiming daily bonus will not work when the year changes
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -29,57 +33,55 @@ private Main plugin;
 			return true;
 		}
 
-		//TODO REVIEW THIS FILE
-
 		Player player = (Player) sender;
-		
-		Calendar nowCal = Calendar.getInstance();
-		long nowDay = nowCal.get(Calendar.DAY_OF_YEAR);
-		
-		long startDayMillis;
-		long lastDayMillis;
-		
-		File startDayFile = new File(player.getUniqueId() + "/startDayStreak.txt");
-		if (startDayFile.exists()) {
-			startDayMillis = Long.parseLong(Tools.read(player.getUniqueId() + "/startDayStreak.txt"));
-			lastDayMillis = Long.parseLong(Tools.read(player.getUniqueId() + "/endDayStreak.txt"));;
-		}else {
-			Tools.write(player.getUniqueId() + "/startDayStreak.txt", String.valueOf(nowCal.getTimeInMillis()));
-			startDayMillis = nowCal.getTimeInMillis();
-			lastDayMillis = nowCal.getTimeInMillis();
-		}
-		
-		
-		Calendar startCal = Calendar.getInstance();
-		startCal.setTimeInMillis(startDayMillis);
-		
-		Calendar endCal = Calendar.getInstance();
-		endCal.setTimeInMillis(lastDayMillis);
-		
-		int dayStreak;
-		
-		if (endCal.get(Calendar.DAY_OF_YEAR) < nowDay) {
-			dayStreak = nowCal.get(Calendar.DAY_OF_YEAR)-startCal.get(Calendar.DAY_OF_YEAR);	
-		}else {
-			sender.sendMessage("You have already claimed your daily reward for today!");
+
+		// Load info about streaks
+		long currentTime = System.currentTimeMillis();
+		int multiplier = Main.playerDataManager.getPlayerData(player).getStreakMultiplier();
+		long streakCollectOpens = Main.playerDataManager.getPlayerData(player).getStreakCollectOpens();
+		long deadline = Main.playerDataManager.getPlayerData(player).getStreakCollectDeadline();
+
+		// Check if player has  already collected today
+		if (currentTime < streakCollectOpens) {
+			Tools.tellPlayer(player, "You have already collected your bonus today", ChatColor.RED);
 			return true;
 		}
-		
-		if (nowDay - endCal.get(Calendar.DAY_OF_YEAR) > 1) {
-			sender.sendMessage("You just lost your daily streak of " + String.valueOf(dayStreak) + " days!");
-			dayStreak = 0;
-			Tools.write(player.getUniqueId() + "/startDayStreak.txt", String.valueOf(startCal.getTimeInMillis()));
+
+		// Check if player was too late
+		if (currentTime > deadline && deadline != 0) {
+			Tools.tellPlayer(player, "Oh no! You've just lost your bonus of " + multiplier + "X!", ChatColor.RED);
 		}
-		
-		
-		int dailyBonus = dayStreak*650;
-		if (dailyBonus > 7500) {
-			dailyBonus = 7500;
+
+		// start new streak if we should
+		if (deadline == 0 || currentTime > deadline) {
+			startNewStreak(player);
+			return true;
 		}
-		
-		sender.sendMessage("You just claimed your daily bonus of $" + String.valueOf(dailyBonus));
-		Tools.write(player.getUniqueId() + "/endDayStreak.txt", String.valueOf(nowCal.getTimeInMillis()));
-		Bank.depositPlayer(player, dailyBonus);
+
+		updateStreak(player, multiplier);
 		return false;
+	}
+
+	private void startNewStreak(Player player) {
+		updateStreak(player, 0);
+	}
+
+	private void updateStreak (Player player, int yesterdaysMultiplier) {
+		long currentTime = System.currentTimeMillis();
+
+		// increase multiplayer for each day before we deposit
+		yesterdaysMultiplier++;
+
+		// Get dates of deadline and open
+		long deadline = currentTime + (1000*60*60*24)*2; // two days
+		long streakCollectOpens = currentTime + (1000 * 60 * 60 * 24); // one day
+
+		// Calculate bonus
+		int todaysBonus = dailyBonus*yesterdaysMultiplier;
+
+		// Deposit and tell player about it
+		Bank.depositPlayer(player, dailyBonus*yesterdaysMultiplier);
+		Tools.tellPlayer(player, "You just collected you daily bonus of " + todaysBonus + LangDict.getString(LangDict.CURRENCY));
+		Main.playerDataManager.getPlayerData(player).updateStreak(streakCollectOpens, deadline, yesterdaysMultiplier);
 	}
 }

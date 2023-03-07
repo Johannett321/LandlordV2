@@ -8,6 +8,7 @@ import java.io.*;
 
 public class LangDict {
 
+    public static final String CURRENCY = "currency";
     private static JSONObject english;
     private static JSONObject currentLanguage;
 

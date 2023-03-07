@@ -13,10 +13,12 @@ public class PlayerData {
 
     private int currentBalance = 17000;
     private int availableChunkPoints = 1;
+    private int streakMultiplier = 0;
+    private long streakCollectDeadline = 0;
+    private long streakCollectOpens = 0;
     private final String username;
     private Location home;
     private ArrayList<int[]> ownedChunks = new ArrayList<>();
-
 
     private final World mainWorld;
 
@@ -118,6 +120,9 @@ public class PlayerData {
         jsonObject.put("Balance", currentBalance);
         jsonObject.put("AvailableChunkPoints", availableChunkPoints);
         jsonObject.put("OwnedChunks", ownedChunksAsJSONArray());
+        jsonObject.put("streakMultiplier", streakMultiplier);
+        jsonObject.put("streakCollectDeadline", streakCollectDeadline);
+        jsonObject.put("streakCollectOpens", streakCollectOpens);
 
         if (home != null) {
             JSONObject homeJsonObj = new JSONObject();
@@ -138,23 +143,30 @@ public class PlayerData {
         if (obj == null) {
             System.out.println("CRITICAL ERRORR!!!!! MAYDAY");
         }
+
+        // Balance
         currentBalance = (int) ((long) obj.get("Balance"));
         availableChunkPoints = (int) ((long)obj.get("AvailableChunkPoints"));
 
+        // Home location
         double homeX = (double) ((JSONObject) obj.get("Home")).get("x");
         double homeY = (double) ((JSONObject) obj.get("Home")).get("y");
         double homeZ = (double) ((JSONObject) obj.get("Home")).get("z");
         double homeYawD = (double) ((JSONObject) obj.get("Home")).get("yaw");
         double homePitchD = (double) ((JSONObject) obj.get("Home")).get("pitch");
-
         float homeYaw = (float) homeYawD;
         float homePitch = (float) homePitchD;
         home = new Location(mainWorld, homeX, homeY, homeZ);
         home.setYaw(homeYaw);
         home.setPitch(homePitch);
 
-        ownedChunks = convertToOwnedChunks((JSONArray) obj.get("OwnedChunks"));
+        // Day streak
+        streakMultiplier = (int) ((long) obj.get("streakMultiplier"));
+        streakCollectDeadline = (long) obj.get("streakCollectDeadline");
+        streakCollectOpens = (long) obj.get("streakCollectOpens");
 
+        // Chunks owned
+        ownedChunks = convertToOwnedChunks((JSONArray) obj.get("OwnedChunks"));
     }
 
     public Location getHomeLocation() {
@@ -171,5 +183,24 @@ public class PlayerData {
 
     public int getChunkPurchasePrice() {
         return ownedChunks.size()*5000;
+    }
+
+    public int getStreakMultiplier() {
+        return streakMultiplier;
+    }
+
+    public long getStreakCollectDeadline() {
+        return streakCollectDeadline;
+    }
+
+    public long getStreakCollectOpens() {
+        return streakCollectOpens;
+    }
+
+    public void updateStreak(long streakCollectOpens, long deadline, int multiplier) {
+        this.streakMultiplier = multiplier;
+        this.streakCollectDeadline = deadline;
+        this.streakCollectOpens = streakCollectOpens;
+        save();
     }
 }
