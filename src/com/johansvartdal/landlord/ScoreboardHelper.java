@@ -55,6 +55,10 @@ public class ScoreboardHelper {
                 refreshMoney(objective);
                 getCurrentReqScores(objective);
                 scheduleNewRefresh(objective);
+
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.setScoreboard(board);
+                }
             }
         }, 20*5);
     }
@@ -70,6 +74,11 @@ public class ScoreboardHelper {
     }
 
     public void getCurrentReqScores(Objective objective) {
+        // Make sure we actually have a level
+        if (Main.levelManager.getCurrentLevel() == null) {
+            return;
+        }
+
         ArrayList<ItemStack> requiredItems = Main.levelManager.getRequiredItemsForNextLevel();
 
         for (int i = 0; i < requiredItems.size(); i++) {
@@ -85,10 +94,6 @@ public class ScoreboardHelper {
 
             score = objective.getScore(ChatColor.RED + remaining.getType().name().toLowerCase());
             score.setScore(remaining.getAmount()); //Integer only!
-        }
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            player.setScoreboard(board);
         }
     }
 
