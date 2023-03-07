@@ -28,9 +28,9 @@ public class BuyChunk implements CommandExecutor {
 		}
 		Player player = (Player) sender;
 
-		// Make sure we are not in an event
-		if (!Main.properties.gameStateIsNormal()) {
-			sender.sendMessage("You are not allowed to run this command at the moment");
+		// Make sure we are not in an event and that the player actually owns the chunk
+		if (!Main.properties.gameStateIsNormal() || !Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
+			Tools.tellPlayer(player, "You are not allowed to run this command at the moment", ChatColor.RED);
 			return true;
 		}
 
@@ -62,7 +62,7 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure the chunk is available for purchase
 		if (!ChunkBuilder.chunkIsAvailableForPurchaseBy(player, chunkAtDirection)) {
-			sender.sendMessage("You cannot purchase this chunk");
+			Tools.tellPlayer(player, "You cannot purchase this chunk", ChatColor.RED);
 			return true;
 		}
 

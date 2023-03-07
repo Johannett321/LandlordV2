@@ -41,6 +41,7 @@ public class Main extends JavaPlugin implements Listener {
 		LangDict.loadLanguage();
 		Bank.load();
 		StockManager.loadStocks();
+		ChunkBuilder.load();
 
 		levelManager = new LevelManager(this);
 		tradeCenter = new TradeCenter(Bukkit.getWorlds().get(0));

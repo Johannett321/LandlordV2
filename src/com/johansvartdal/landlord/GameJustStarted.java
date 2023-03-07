@@ -32,7 +32,10 @@ public class GameJustStarted {
             Location location = new Location(mainWorld, playerChunk.getX()*16+8, 256, playerChunk.getZ()*16+8);
             location = Tools.middlePointBlock(location);
             location = Tools.highestStandingPoint(location);
+
             ((Player) players[i]).teleport(location);
+            ((Player) players[i]).setBedSpawnLocation(location);
+
             Main.playerDataManager.getPlayerData((Player) players[i]).setHome(location);
         }
     }

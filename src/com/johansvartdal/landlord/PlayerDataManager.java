@@ -16,7 +16,6 @@ public class PlayerDataManager {
         this.playerDataList = new ArrayList<>();
         this.plugin = plugin;
         this.mainWorld = mainWorld;
-
     }
 
     public void loadData() {

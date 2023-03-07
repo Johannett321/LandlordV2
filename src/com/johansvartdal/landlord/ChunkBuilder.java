@@ -12,8 +12,15 @@ import java.util.ArrayList;
 
 public class ChunkBuilder {
 
-    public static JSONObject replacedBlocks = new JSONObject();
-    public static JSONArray reservedChunks = new JSONArray();
+    private static JSONObject replacedBlocks = new JSONObject();
+
+    public static void load() {
+        JSONObject loadedReplacedBlocks = Tools.loadJson("ReplacedBlocks.json");
+        if (loadedReplacedBlocks != null) {
+            replacedBlocks = loadedReplacedBlocks;
+        }
+    }
+
 
     public static void createChunk(Player player, Chunk chunk) {
         createChunk(player, player.getWorld(), chunk);
@@ -21,15 +28,6 @@ public class ChunkBuilder {
 
     public static void createChunk(World world, Chunk chunk) {
         createChunk(null, world, chunk);
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("X", chunk.getX());
-        jsonObject.put("Z", chunk.getZ());
-        reservedChunks.add(jsonObject);
-
-        JSONObject saveObj = new JSONObject();
-        saveObj.put("ReservedChunks", reservedChunks);
-        Tools.saveJsonToFile("reservedChunks.json", saveObj);
     }
 
     public static void createChunk(Player player, World world, Chunk chunk) {
@@ -230,8 +228,24 @@ public class ChunkBuilder {
                     playerData.ownsChunkAtLocation(chunkX-1, chunkZ)) {
                 return false;
             }
-
         }
+
+        // Make sure player cannot buy chunk next to trade center
+        Chunk tradeCenterChunk = Main.tradeCenter.getLocation().getChunk();
+        int tradeCenterChunkX =  tradeCenterChunk.getX();
+        int tradeCenterChunkZ =  tradeCenterChunk.getZ();
+        if (chunkX == tradeCenterChunkX && chunkZ == tradeCenterChunkZ) {
+            return false;
+        }else if (chunkX == tradeCenterChunkX+1 && chunkZ == tradeCenterChunkZ) {
+            return false;
+        }else if (chunkX == tradeCenterChunkX-1 && chunkZ == tradeCenterChunkZ) {
+            return false;
+        }else if (chunkX == tradeCenterChunkX && chunkZ == tradeCenterChunkZ+1) {
+            return false;
+        }else if (chunkX == tradeCenterChunkX && chunkZ == tradeCenterChunkZ-1) {
+            return false;
+        }
+
         return true;
     }
 }
