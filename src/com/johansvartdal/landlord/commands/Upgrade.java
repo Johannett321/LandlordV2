@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class Upgrade implements CommandExecutor {
 
-private Main plugin;
+	private Main plugin;
 
 	public Upgrade(Main plugin) {
 		this.plugin = plugin;
@@ -31,6 +31,9 @@ private Main plugin;
 			Tools.printMenuHeader(player, "COMMANDS");
 			Tools.printMenuOption(player, "/upgrade", "info");
 			Tools.printMenuOption(player, "/upgrade", "accept");
+			if (player.isOp()) {
+				Tools.printMenuOption(player, "/upgrade", "force");
+			}
 			return true;
 		}
 
@@ -45,7 +48,13 @@ private Main plugin;
 				return true;
 			}
 			Main.levelManager.playerAcceptsUpgrade(player);
-		}else {
+		}else if (args[0].equals("force")) {
+			if (!player.isOp()) {
+				Tools.tellPlayer(player, "You don't have access to this command", ChatColor.RED);
+				return true;
+			}
+			Main.levelManager.forceUpgrade(player);
+		} else {
 			return false;
 		}
 		return true;

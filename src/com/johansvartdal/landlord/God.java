@@ -8,7 +8,7 @@ public class God {
 
     public static void speak(String message) {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.sendMessage(ChatColor.GREEN + LangDict.getString("god") + ChatColor.WHITE + " " + message);
+            player.sendMessage(ChatColor.DARK_PURPLE + LangDict.getString("god") + ChatColor.WHITE + " " + message);
         }
     }
 }

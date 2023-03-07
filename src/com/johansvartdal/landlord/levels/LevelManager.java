@@ -68,7 +68,7 @@ public class LevelManager {
 
     public void donateItem(Player player, ItemStack itemStack) {
         currentLevel.donateItem(player, itemStack);
-        checkIfUpgradeShouldBeScheduled();
+        checkIfUpgradeShouldBeScheduled(false);
         save();
     }
 
@@ -98,11 +98,19 @@ public class LevelManager {
         return acceptedPlayers.toString();
     }
 
+    public void forceUpgrade(Player player) {
+        if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
+            Tools.tellPlayer(player, "You cannot force upgrade without all items being collected", ChatColor.RED);
+            return;
+        }
+        checkIfUpgradeShouldBeScheduled(true);
+    }
+
     public void playerAcceptsUpgrade(Player player) {
         God.speak("Citizens, " + player.getDisplayName() + " just accepted the upgrade!");
         acceptedPlayers.add(player.getDisplayName());
 
-        checkIfUpgradeShouldBeScheduled();
+        checkIfUpgradeShouldBeScheduled(false);
     }
 
     public boolean playerHasAccepted(Player player) {
@@ -112,11 +120,14 @@ public class LevelManager {
         return false;
     }
 
-    private void checkIfUpgradeShouldBeScheduled() {
+    private void checkIfUpgradeShouldBeScheduled(boolean force) {
+        // make sure no items remain
         if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
             return;
         }
-        if (acceptedPlayers.size() >= Main.playerDataManager.getPlayerDataList().size()) {
+
+        // proceed if everyone accepted or force is true
+        if (acceptedPlayers.size() >= Main.playerDataManager.getPlayerDataList().size() ||  force) {
             proceedToNextLevel();
         }
     }
