@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.commands.*;
+import com.johansvartdal.landlord.lan.LanController;
 import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.stocks.Stock;
 import org.bukkit.Bukkit;
@@ -67,11 +68,15 @@ public class Main extends JavaPlugin implements Listener {
 		new Wilderness(this);
 		new Visit(this);
 		new SendHome(this);
+		new Adm(this);
 
 		Bank.startTaxCollector(this);
 
 		getServer().getPluginManager().registerEvents(new NoNetherPortal(this), this);
 		getServer().getPluginManager().registerEvents(this, this);
+
+		// Only for LAN
+		LanController.initiate();
 	}
 
 	@EventHandler
@@ -84,6 +89,12 @@ public class Main extends JavaPlugin implements Listener {
 
 			PlayerData playerData = new PlayerData(event.getPlayer().getWorld(), event.getPlayer());
 			playerDataManager.addNewPlayer(playerData);
+
+			event.getPlayer().teleport(StaticValues.GAME_START_LOCATION);
+
+			if (event.getPlayer().isOp()) {
+				Tools.tellPlayer(event.getPlayer(), "When everyone has joined, run the command '/landlord config' to find a suitable location to start the game");
+			}
 		}
 	}
 }

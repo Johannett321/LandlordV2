@@ -54,3 +54,6 @@ commands:
   sendhome:
     description: Send a player home from your chunk
     usage: /sendhome [username]
+  adm:
+    description: Admin commands
+    usage: /adm

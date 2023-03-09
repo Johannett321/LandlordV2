@@ -2,6 +2,10 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.events.Preparations;
+import com.johansvartdal.landlord.lan.AudioLayer;
+import com.johansvartdal.landlord.lan.LanAudioController;
+import com.johansvartdal.landlord.lan.LanController;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,13 +23,15 @@ public class Landlord implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
+        if (!player.isOp()) {
+            commandSender.sendMessage("You are not allowed to use this command");
+            return true;
+        }
+
         if (strings.length < 1) {
-            if (!player.isOp()) {
-                commandSender.sendMessage("You are not allowed to use this command");
-            }else {
-                Tools.printMenuHeader(player, "COMMANDS");
-                Tools.printMenuOption(player, "/landlord", "start");
-            }
+            Tools.printMenuHeader(player, "COMMANDS");
+            Tools.printMenuOption(player, "/landlord", "init");
+            Tools.printMenuOption(player, "/landlord", "start");
             return true;
         }
 
@@ -36,18 +42,56 @@ public class Landlord implements CommandExecutor {
                 return true;
             }
 
-            Main.tradeCenter.setLocation(player.getWorld(),
-                    player.getLocation().getChunk().getX()*16+8+0.5,
-                    player.getLocation().getY(),
-                    player.getLocation().getChunk().getZ()*16+8+0.5);
+            if (player.getWorld().equals(Bukkit.getWorld("lladv"))) {
+                Tools.tellPlayer(player, "You must run '/landlord config' before you can run this command", ChatColor.RED);
+                return true;
+            }
 
-            Preparations preparationsEvent = new Preparations(plugin);
-            preparationsEvent.setOnEventEndListener(() -> {
-                Main.levelManager.startLevel1();
-            });
-            preparationsEvent.setMainWorld(player.getWorld());
-            preparationsEvent.startEvent();
+            startGame(player);
+        }else if (strings[0].equals("config")) {
+            configure(player);
         }
         return true;
+    }
+
+    private void configure(Player opPlayer) {
+        // get location of the highest standing point
+        Location location = Tools.highestStandingPoint(new Location(Bukkit.getWorld("world"), 0,0,0));
+        opPlayer.teleport(location);
+
+        // fix weather and time
+        World world = Bukkit.getWorld("world");
+        world.setTime(0);
+        world.setStorm(false);
+
+        // transform player to spectator
+        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            @Override
+            public void run() {
+                God.speak(opPlayer.getDisplayName() + " is now looking for a suitable location for the game. Please be patient!");
+
+                Tools.tellPlayer(opPlayer, "You are now in spectator mode. Please find a location you would like to start the game");
+                Tools.tellPlayer(opPlayer, "When you are ready, run '/landlord start'");
+                opPlayer.setGameMode(GameMode.SPECTATOR);
+            }
+        }, Tools.secToTicks(2));
+    }
+
+    public void startGame(Player player) {
+        Location location = player.getLocation();
+        location.setX(player.getLocation().getChunk().getX()*16+8+0.5);
+        location.setY(0);
+        location.setZ(player.getLocation().getChunk().getZ()*16+8+0.5);
+        location = Tools.highestStandingPoint(location);
+
+        Main.tradeCenter.setLocation(location);
+
+        Preparations preparationsEvent = new Preparations(plugin);
+        preparationsEvent.setOnEventEndListener(() -> {
+            Main.levelManager.startLevel1();
+        });
+
+        preparationsEvent.setMainWorld(player.getWorld());
+        preparationsEvent.startEvent();
     }
 }

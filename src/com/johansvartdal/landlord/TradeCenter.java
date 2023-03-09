@@ -16,11 +16,11 @@ public class TradeCenter {
         load();
     }
 
-    public void setLocation(World world, double x, double y, double z) {
-        this.xLoc = x;
-        this.yLoc = y;
-        this.zLoc = z;
-        this.world = world;
+    public void setLocation(Location location) {
+        this.xLoc = location.getX();
+        this.yLoc = location.getY();
+        this.zLoc = location.getZ();
+        this.world = location.getWorld();
         save();
     }
 

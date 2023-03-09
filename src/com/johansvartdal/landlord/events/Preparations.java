@@ -1,17 +1,24 @@
 package com.johansvartdal.landlord.events;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.lan.AudioLayer;
+import com.johansvartdal.landlord.lan.LanController;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class Preparations extends LandlordEvent {
 
     private final Main plugin;
     public int prepTime = 8;
+    private World mainWorld;
+
     public Preparations(Main plugin) {
         this.plugin = plugin;
     }
-    private World mainWorld;
+
 
     @Override
     public void startEvent() {
@@ -19,6 +26,26 @@ public class Preparations extends LandlordEvent {
             countdown(5);
             return;
         }
+
+        // play welcome audio
+        LanController.getLanMusicController().playAudioFile("countdown.wav", AudioLayer.BACKGROUND);
+
+        God.speak("Preparations will start in 5 seconds. Get ready!");
+        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            @Override
+            public void run() {
+                startPrep();
+            }
+        }, Tools.secToTicks(5));
+    }
+
+    public void startPrep() {
+        //teleport everyone to world
+        teleportEveryoneToWorld();
+
+        //change the weather and make sure the time is day
+        changeWeatherGood();
+
         God.speak(LangDict.getString("welcomeMessage"));
         new BukkitRunnable() {
             public void run() {
@@ -32,6 +59,19 @@ public class Preparations extends LandlordEvent {
                 fiveMinutesLeft();
             }
         }.runTaskLater(plugin, Tools.secToTicks((prepTime-5)*60));
+    }
+
+    private void changeWeatherGood() {
+        World world = Bukkit.getWorld("world");
+        world.setTime(0);
+        world.setStorm(false);
+    }
+
+    private void teleportEveryoneToWorld() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.teleport(Main.tradeCenter.getLocation());
+            player.setGameMode(GameMode.SURVIVAL);
+        }
     }
 
     public void setMainWorld(World mainWorld) {
