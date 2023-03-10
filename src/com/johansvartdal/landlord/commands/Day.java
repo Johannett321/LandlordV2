@@ -30,7 +30,7 @@ public class Day implements CommandExecutor {
 		Player player = (Player) sender;
 
 		if (!LevelManager.featureUnlocked("day")) {
-			Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+			Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
 			return true;
 		}
 

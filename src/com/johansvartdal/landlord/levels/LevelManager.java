@@ -17,7 +17,7 @@ public class LevelManager {
     private static Level currentLevel;
     private Level[] allLevels;
     private ArrayList<String> acceptedPlayers = new ArrayList<>();
-    private static HashMap<String, LvlSeasonRelation> featureLevels;
+    private static final HashMap<String, LvlSeasonRelation> featureLevels = new HashMap<>();
 
     public LevelManager(Main plugin) {
         this.plugin = plugin;

@@ -33,7 +33,7 @@ public class Visit implements CommandExecutor {
         Player player = (Player) commandSender;
 
         if (!LevelManager.featureUnlocked("visit")) {
-            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return true;
         }
 

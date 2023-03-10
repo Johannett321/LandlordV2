@@ -34,7 +34,7 @@ public class JoinRoulette implements CommandExecutor {
 
         // make sure the command has been unlocked
         if (!LevelManager.featureUnlocked("roulette")) {
-            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return true;
         }
 

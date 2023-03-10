@@ -37,7 +37,7 @@ public class Capture implements CommandExecutor {
 
         // Make sure the command has been unlocked
         if (!LevelManager.featureUnlocked("capture")) {
-            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return true;
         }
 
