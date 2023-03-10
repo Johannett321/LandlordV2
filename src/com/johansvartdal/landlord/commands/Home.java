@@ -1,7 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
-import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -26,11 +26,6 @@ public class Home implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-
-        if (!LevelManager.featureUnlocked("home")) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
-            return true;
-        }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
             if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {

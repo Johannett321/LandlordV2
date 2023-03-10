@@ -1,7 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
-import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.LevelManager;
 import com.johansvartdal.landlord.playerevents.MiningEvent;
 import com.johansvartdal.landlord.playerevents.NetherWildernessEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
@@ -61,7 +61,7 @@ public class Wilderness implements CommandExecutor {
     }
 
     public void attemptWorldWilderness(Player player) {
-        int wildernessPrice = Main.levelManager.getWildernessPrice();
+        int wildernessPrice = LevelManager.getWildernessPrice();
 
         if (!LevelManager.featureUnlocked("wildworld")) {
             Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
@@ -109,7 +109,7 @@ public class Wilderness implements CommandExecutor {
     }
 
     private void attemptNetherWilderness(Player player) {
-        int wildernessPrice = Main.levelManager.getNetherWildernessPrice();
+        int wildernessPrice = LevelManager.getNetherWildernessPrice();
 
         if (!LevelManager.featureUnlocked("wildnether")) {
             Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);

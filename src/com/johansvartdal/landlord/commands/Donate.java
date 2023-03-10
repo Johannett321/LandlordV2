@@ -3,7 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
-import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,12 +30,12 @@ private Main plugin;
 		Player player = (Player) sender;
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
-		if (!Main.levelManager.itemRequiredForUpgrade(itemInMainHand)) {
+		if (!LevelManager.itemRequiredForUpgrade(itemInMainHand)) {
 			Tools.tellPlayer(player, "This item is not required for upgrade", ChatColor.RED);
 			return true;
 		}
 
-		Main.levelManager.donateItem(player, itemInMainHand);
+		LevelManager.donateItem(player, itemInMainHand);
 		return true;
 	}
 }

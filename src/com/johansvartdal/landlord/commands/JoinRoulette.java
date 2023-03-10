@@ -4,7 +4,7 @@ import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.RouletteGame;
 import com.johansvartdal.landlord.Tools;
-import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,7 +19,7 @@ public class JoinRoulette implements CommandExecutor {
         this.plugin = plugin;
         plugin.getCommand("joinroulette").setExecutor(this);
 
-        if (Main.levelManager.getCurrentDisplayLevelNum() <= 3) {
+        if (LevelManager.getCurrentDisplayLevelNum() <= 3) {
             new RouletteGame(plugin);
         }
     }

@@ -31,7 +31,7 @@ public class RandomTip {
     private String getRandomTip() {
         //TODO SKRIV TIPS FOR LEVELER SOM IKKE
         Random random = new Random();
-        if (Main.levelManager.getCurrentDisplaySeasonNum() == 1) {
+        if (LevelManager.getCurrentDisplaySeasonNum() == 1) {
             int randomTip = random.nextInt(12);
 
             switch (randomTip) {
@@ -48,7 +48,7 @@ public class RandomTip {
                 case 10: return "Every full hour there is a roulette game where you can win lots of items. Do /joinroulette to take part";
                 case 11: return "You can capture the following animals: ";// + Capture.getCaptureAnimalsString();
             }
-        }else if (Main.levelManager.getCurrentDisplaySeasonNum() == 2) {
+        }else if (LevelManager.getCurrentDisplaySeasonNum() == 2) {
             int randomTip = random.nextInt(11);
 
             switch (randomTip) {
@@ -65,7 +65,7 @@ public class RandomTip {
                 case 9: return "Sometime by the end of season 2, you will all get together like never before";
                 case 10: return "New season means new location for wilderness, both in nether and world. Make sure to put your most valuable items in a chest before visiting wilderness for the first time this season.";
             }
-        }else if (Main.levelManager.getCurrentDisplaySeasonNum() == 3) {
+        }else if (LevelManager.getCurrentDisplaySeasonNum() == 3) {
             int randomTip = random.nextInt(7);
 
             switch (randomTip) {

@@ -5,7 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.generator.ChunkGenerator;
 
 public class GameJustStarted {
 
@@ -18,7 +17,7 @@ public class GameJustStarted {
     }
 
     public void doStart() {
-        Main.levelManager.populateLevels();
+        LevelManager.populateLevels();
         Main.tradeCenter.build();
         Chunk centerChunk = Main.tradeCenter.getLocation().getChunk();
 

@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.playerevents;
 
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -78,7 +79,7 @@ public class NetherWildernessEvent extends PlayerEvent{
 
     @Override
     public int getExtensionPrice() {
-        return Main.levelManager.getNetherWildernessPrice();
+        return LevelManager.getNetherWildernessPrice();
     }
 
     @Override

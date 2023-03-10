@@ -2,9 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.events.Preparations;
-import com.johansvartdal.landlord.lan.AudioLayer;
-import com.johansvartdal.landlord.lan.LanAudioController;
-import com.johansvartdal.landlord.lan.LanController;
+import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -87,9 +85,7 @@ public class Landlord implements CommandExecutor {
         Main.tradeCenter.setLocation(location);
 
         Preparations preparationsEvent = new Preparations(plugin);
-        preparationsEvent.setOnEventEndListener(() -> {
-            Main.levelManager.startLevel1();
-        });
+        preparationsEvent.setOnEventEndListener(LevelManager::startLevel1);
 
         preparationsEvent.setMainWorld(player.getWorld());
         preparationsEvent.startEvent();

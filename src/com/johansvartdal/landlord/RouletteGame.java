@@ -106,8 +106,8 @@ public class RouletteGame {
             }
         }
         if (openForJoin) {
-            if (Bank.playerCanAfford(player, Main.levelManager.getRouletteGamePrice())) {
-                Bank.withdrawPlayer(player, Main.levelManager.getRouletteGamePrice());
+            if (Bank.playerCanAfford(player, LevelManager.getRouletteGamePrice())) {
+                Bank.withdrawPlayer(player, LevelManager.getRouletteGamePrice());
                 RouletteGame.rouletteGamePlayers.add(player);
                 Tools.broadcastMessage(player.getDisplayName() + " just joined the roulette!");
                 Tools.tellPlayer(player,"You are now added to the game!", ChatColor.GREEN);

@@ -2,24 +2,10 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.commands.*;
 import com.johansvartdal.landlord.lan.LanController;
-import com.johansvartdal.landlord.levels.LevelManager;
-import com.johansvartdal.landlord.stocks.Stock;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.*;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerPortalEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin implements Listener {
@@ -29,7 +15,6 @@ public class Main extends JavaPlugin implements Listener {
 	public static Configurator configurator;
 	public static TradeCenter tradeCenter;
 	public static PlayerDataManager playerDataManager;
-	public static LevelManager levelManager;
 	
 	@Override
 	public void onEnable() {
@@ -43,8 +28,9 @@ public class Main extends JavaPlugin implements Listener {
 		Bank.load();
 		StockManager.loadStocks();
 		ChunkBuilder.load();
+		LevelManager.init(this);
 
-		levelManager = new LevelManager(this);
+
 		tradeCenter = new TradeCenter(Bukkit.getWorlds().get(0));
 		playerDataManager = new PlayerDataManager(Bukkit.getWorlds().get(0), this);
 		playerDataManager.loadData();

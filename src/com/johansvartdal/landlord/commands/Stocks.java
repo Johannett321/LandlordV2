@@ -1,7 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
-import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.LevelManager;
 import com.johansvartdal.landlord.stocks.Stock;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

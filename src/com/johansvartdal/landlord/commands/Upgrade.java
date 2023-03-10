@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -39,21 +40,21 @@ public class Upgrade implements CommandExecutor {
 
 		if (args[0].equals("info")) {
 			Tools.printMenuHeader(player, "UPGRADE INFO");
-			Tools.printMenuOption(player, "Current level: ", String.valueOf(Main.levelManager.getCurrentDisplayLevelNum()));
-			Tools.printMenuOption(player, "Donations remaining: ", Main.levelManager.getRemainingItemsText());
-			Tools.printMenuOption(player, "Players accepted: ", Main.levelManager.getAcceptedPlayersText());
+			Tools.printMenuOption(player, "Current level: ", String.valueOf(LevelManager.getCurrentDisplayLevelNum()));
+			Tools.printMenuOption(player, "Donations remaining: ", LevelManager.getRemainingItemsText());
+			Tools.printMenuOption(player, "Players accepted: ", LevelManager.getAcceptedPlayersText());
 		}else if (args[0].equals("accept")) {
-			if (Main.levelManager.playerHasAccepted(player)) {
+			if (LevelManager.playerHasAccepted(player)) {
 				Tools.tellPlayer(player, "You have already accepted");
 				return true;
 			}
-			Main.levelManager.playerAcceptsUpgrade(player);
+			LevelManager.playerAcceptsUpgrade(player);
 		}else if (args[0].equals("force")) {
 			if (!player.isOp()) {
 				Tools.tellPlayer(player, "You don't have access to this command", ChatColor.RED);
 				return true;
 			}
-			Main.levelManager.forceUpgrade(player);
+			LevelManager.forceUpgrade(player);
 		} else {
 			return false;
 		}

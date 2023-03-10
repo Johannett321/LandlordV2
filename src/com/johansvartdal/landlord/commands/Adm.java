@@ -1,10 +1,8 @@
 package com.johansvartdal.landlord.commands;
 
-import com.johansvartdal.landlord.LangDict;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Properties;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -33,6 +31,9 @@ public class Adm implements CommandExecutor {
             player.teleport(new Location(Bukkit.getWorld("lladv"), 194, 81, -112));
             Tools.tellPlayer(player, "Welcome to lladv");
             player.setGameMode(GameMode.CREATIVE);
+        }else if (strings[0].equals("motherload")) {
+            Bank.depositPlayerWithoutTax(player, 20000);
+            Tools.tellPlayer(player, "Money reloaded!", ChatColor.GREEN);
         }else {
             Tools.printMenuHeader(player, "COMMANDS");
             Tools.printMenuOption(player, "/adm", "lladv");

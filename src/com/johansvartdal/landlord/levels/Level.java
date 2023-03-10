@@ -1,8 +1,6 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -62,7 +60,7 @@ public abstract class Level implements LevelInterface {
                 }
 
                 player.getInventory().getItemInMainHand().setAmount(onHand);
-                Main.levelManager.save();
+                LevelManager.save();
                 break;
             }
         }

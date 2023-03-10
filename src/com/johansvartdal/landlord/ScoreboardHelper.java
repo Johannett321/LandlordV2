@@ -1,7 +1,5 @@
 package com.johansvartdal.landlord;
 
-import com.johansvartdal.landlord.levels.Level;
-import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -38,11 +36,11 @@ public class ScoreboardHelper {
         objective = board.registerNewObjective("test", "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        if (Main.levelManager.getCurrentDisplayLevelNum() == 0) {
+        if (LevelManager.getCurrentDisplayLevelNum() == 0) {
             setTitle("Preparations");
             objective.setDisplayName("Preparations");
         }else {
-            setTitle("Season " + Main.levelManager.getCurrentDisplaySeasonNum() + " level " + (Main.levelManager.getCurrentDisplayLevelNum()));
+            setTitle("Season " + LevelManager.getCurrentDisplaySeasonNum() + " level " + (LevelManager.getCurrentDisplayLevelNum()));
         }
 
         scheduleNewRefresh(objective);
@@ -75,14 +73,14 @@ public class ScoreboardHelper {
 
     public void getCurrentReqScores(Objective objective) {
         // Make sure we actually have a level
-        if (Main.levelManager.getCurrentLevel() == null) {
+        if (LevelManager.getCurrentLevel() == null) {
             return;
         }
 
-        ArrayList<ItemStack> requiredItems = Main.levelManager.getRequiredItemsForNextLevel();
+        ArrayList<ItemStack> requiredItems = LevelManager.getRequiredItemsForNextLevel();
 
         for (int i = 0; i < requiredItems.size(); i++) {
-            ItemStack remaining = Main.levelManager.getRemainingItem(requiredItems.get(i).getType());
+            ItemStack remaining = LevelManager.getRemainingItem(requiredItems.get(i).getType());
 
             Score score;
 
@@ -99,7 +97,7 @@ public class ScoreboardHelper {
 
     public void warnNewLevel(int newSeason, int newLevel) {
         setTitle("Season " + newSeason + " level " + newLevel);
-        ArrayList<ItemStack> requiredItems = Main.levelManager.getRequiredItemsForNextLevel();
+        ArrayList<ItemStack> requiredItems = LevelManager.getRequiredItemsForNextLevel();
 
         for (int i = 0; i < requiredItems.size(); i++) {
             board.resetScores(ChatColor.RED + requiredItems.get(i).getType().name().toLowerCase());

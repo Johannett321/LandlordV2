@@ -1,6 +1,8 @@
-package com.johansvartdal.landlord.levels;
+package com.johansvartdal.landlord;
 
-import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.levels.Level;
+import com.johansvartdal.landlord.levels.Level1;
+import com.johansvartdal.landlord.levels.Level2;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -12,31 +14,31 @@ import java.util.HashMap;
 
 public class LevelManager {
 
-    private Main plugin;
+    private static Main plugin;
 
     private static Level currentLevel;
-    private Level[] allLevels;
-    private ArrayList<String> acceptedPlayers = new ArrayList<>();
+    private static Level[] allLevels;
+    private static ArrayList<String> acceptedPlayers = new ArrayList<>();
     private static final HashMap<String, LvlSeasonRelation> featureLevels = new HashMap<>();
 
-    public LevelManager(Main plugin) {
-        this.plugin = plugin;
+    public static void init(Main plugin) {
+        LevelManager.plugin = plugin;
         load();
         populateCommandLevels();
     }
 
-    public Level getLevel(int levelNum) {
+    public static Level getLevel(int levelNum) {
         return allLevels[levelNum];
     }
 
-    public void populateLevels() {
+    public static void populateLevels() {
         allLevels = new Level[] {
                 new Level1(plugin),
                 new Level2(plugin)
         };
     }
 
-    public void startLevel1() {
+    public static void startLevel1() {
         currentLevel = getLevel(0);
         currentLevel.justUpgraded();
         Main.properties.setGameState(Properties.GameState.NORMAL);
@@ -46,7 +48,7 @@ public class LevelManager {
         Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
     }
 
-    public void proceedToNextLevel() {
+    private static void proceedToNextLevel() {
         currentLevel = getLevel(currentLevel.getLevelNumber()+1);
         acceptedPlayers.clear();
 
@@ -58,7 +60,7 @@ public class LevelManager {
         Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
     }
 
-    public boolean itemRequiredForUpgrade(ItemStack itemInMainHand) {
+    public static boolean itemRequiredForUpgrade(ItemStack itemInMainHand) {
         ArrayList<ItemStack> requiredForUpgrade = currentLevel.getRemainingItemsForNextLevel();
         for (int i = 0; i < requiredForUpgrade.size(); i++) {
             if (requiredForUpgrade.get(i).getType() == itemInMainHand.getType()) {
@@ -68,13 +70,13 @@ public class LevelManager {
         return false;
     }
 
-    public void donateItem(Player player, ItemStack itemStack) {
+    public static void donateItem(Player player, ItemStack itemStack) {
         currentLevel.donateItem(player, itemStack);
         checkIfUpgradeShouldBeScheduled(false);
         save();
     }
 
-    public String getRemainingItemsText() {
+    public static String getRemainingItemsText() {
         StringBuilder remainingText = new StringBuilder();
 
         ArrayList<ItemStack> remaining = currentLevel.getRemainingItemsForNextLevel();
@@ -96,11 +98,11 @@ public class LevelManager {
         return remainingText.toString();
     }
 
-    public String getAcceptedPlayersText() {
+    public static String getAcceptedPlayersText() {
         return acceptedPlayers.toString();
     }
 
-    public void forceUpgrade(Player player) {
+    public static void forceUpgrade(Player player) {
         if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
             Tools.tellPlayer(player, "You cannot force upgrade without all items being collected", ChatColor.RED);
             return;
@@ -108,21 +110,21 @@ public class LevelManager {
         checkIfUpgradeShouldBeScheduled(true);
     }
 
-    public void playerAcceptsUpgrade(Player player) {
+    public static void playerAcceptsUpgrade(Player player) {
         God.speak("Citizens, " + player.getDisplayName() + " just accepted the upgrade!");
         acceptedPlayers.add(player.getDisplayName());
 
         checkIfUpgradeShouldBeScheduled(false);
     }
 
-    public boolean playerHasAccepted(Player player) {
+    public static boolean playerHasAccepted(Player player) {
         if (acceptedPlayers.contains(player.getDisplayName())) {
             return true;
         }
         return false;
     }
 
-    private void checkIfUpgradeShouldBeScheduled(boolean force) {
+    private static void checkIfUpgradeShouldBeScheduled(boolean force) {
         // make sure no items remain
         if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
             return;
@@ -134,26 +136,26 @@ public class LevelManager {
         }
     }
 
-    public void load() {
+    public static void load() {
         JSONObject lvlInfo = Tools.loadJson("Level.json");
         if (lvlInfo != null) {
             populateLevels();
             currentLevel = getLevel((int) (long) lvlInfo.get("currentLevel"));
             currentLevel.load();
             if (lvlInfo.containsKey("remainingItems")) {
-                this.currentLevel.setRemainingItems(itemsFromJSONArr((JSONArray) lvlInfo.get("remainingItems")));
+                currentLevel.setRemainingItems(itemsFromJSONArr((JSONArray) lvlInfo.get("remainingItems")));
             }
         }
     }
 
-    public void save() {
+    public static void save() {
         JSONObject lvlInfo = new JSONObject();
         lvlInfo.put("currentLevel", currentLevel.getLevelNumber());
         lvlInfo.put("remainingItems", remainingItemsToJsonArr());
         Tools.saveJsonToFile("Level.json", lvlInfo);
     }
 
-    public JSONArray remainingItemsToJsonArr() {
+    public static JSONArray remainingItemsToJsonArr() {
         ArrayList<ItemStack> currentRemaining = currentLevel.getRemainingItemsForNextLevel();
         JSONArray jsonArray = new JSONArray();
 
@@ -168,7 +170,7 @@ public class LevelManager {
         return jsonArray;
     }
 
-    public ArrayList<ItemStack> itemsFromJSONArr(JSONArray jsonArray) {
+    public static ArrayList<ItemStack> itemsFromJSONArr(JSONArray jsonArray) {
         ArrayList<ItemStack> itemStackArrayList = new ArrayList<>();
         for (Object obj : jsonArray) {
             JSONObject jsonObject = (JSONObject) obj;
@@ -194,11 +196,11 @@ public class LevelManager {
         return 1;
     }
 
-    public int getRouletteGamePrice() {
+    public static int getRouletteGamePrice() {
         return currentLevel.getRouletteGamePrice();
     }
 
-    public Location getWildernessLocation() {
+    public static Location getWildernessLocation() {
         Location location = new Location(Bukkit.getWorld("world"), 15000,0,15000);
         switch (getCurrentDisplaySeasonNum()) {
             case 1:
@@ -215,7 +217,7 @@ public class LevelManager {
         return location;
     }
 
-    public int getWildernessPrice() {
+    public static int getWildernessPrice() {
         switch (getCurrentDisplaySeasonNum()) {
             case 1:
                 return 100;
@@ -227,7 +229,7 @@ public class LevelManager {
         return 0;
     }
 
-    public int getNetherWildernessPrice() {
+    public static int getNetherWildernessPrice() {
         switch (getCurrentDisplaySeasonNum()) {
             case 1:
                 return 200;
@@ -239,19 +241,19 @@ public class LevelManager {
         return 0;
     }
 
-    public ArrayList<ItemStack> getListOfRemainingItems() {
+    public static ArrayList<ItemStack> getListOfRemainingItems() {
         return currentLevel.getRemainingItemsForNextLevel();
     }
 
-    public Level getCurrentLevel() {
+    public static Level getCurrentLevel() {
         return currentLevel;
     }
 
-    public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
+    public static ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         return currentLevel.getRequiredItemsForNextLevel();
     }
 
-    public ItemStack getRemainingItem(Material type) {
+    public static ItemStack getRemainingItem(Material type) {
         for (ItemStack itemStack : currentLevel.getRemainingItemsForNextLevel()) {
             if (itemStack.getType().equals(type)) {
                 return itemStack;
