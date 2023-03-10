@@ -8,8 +8,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import java.util.Random;
-
 public class NetherWildernessEvent extends PlayerEvent{
 
     public NetherWildernessEvent(Main plugin, Player player) {
@@ -56,8 +54,8 @@ public class NetherWildernessEvent extends PlayerEvent{
     }
 
     @Override
-    public int getLengthSecondsBeforeWarn() {
-        return 20;
+    public int getLengthOfEventInSeconds() {
+        return 60*7;
     }
 
     @Override
@@ -66,15 +64,25 @@ public class NetherWildernessEvent extends PlayerEvent{
     }
 
     @Override
-    public void onEndCalled() {
+    public void onWarningEventShouldCancel() {
         Tools.tellPlayer(player, "Nether wilderness ending in 10 seconds", ChatColor.YELLOW);
 
-        autoEndEvent = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
                 Tools.tellPlayer(player, "Welcome back home!");
                 endEvent();
             }
         }, Tools.secToTicks(10));
+    }
+
+    @Override
+    public int getExtensionPrice() {
+        return Main.levelManager.getNetherWildernessPrice();
+    }
+
+    @Override
+    public String getTitle() {
+        return "nether wilderness";
     }
 }

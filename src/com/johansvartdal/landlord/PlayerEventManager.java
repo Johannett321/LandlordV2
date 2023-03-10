@@ -44,4 +44,8 @@ public class PlayerEventManager {
     public static boolean playerIsInEvent(Player player) {
         return getEventForPlayer(player) != null;
     }
+
+    public static void notifyEventEnd(PlayerEvent playerEvent) {
+        playerEvents.remove(playerEvent);
+    }
 }

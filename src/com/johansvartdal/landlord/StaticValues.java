@@ -9,4 +9,6 @@ public class StaticValues {
     public static final int VISIT_PRICE = 1000;
     public static final Location GAME_START_LOCATION = new Location(Bukkit.getWorld("lladv"), 171.5, 66, -182.5);
     public static final int CHUNK_TAX = 300;
+    //TODO CHANGE MINING PRICE:
+    public static final int MINING_PRICE = 1000;
 }

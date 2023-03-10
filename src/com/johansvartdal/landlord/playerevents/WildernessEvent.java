@@ -28,8 +28,8 @@ public class WildernessEvent extends PlayerEvent{
     }
 
     @Override
-    public int getLengthSecondsBeforeWarn() {
-        return 20;
+    public int getLengthOfEventInSeconds() {
+        return 60*7;
     }
 
     @Override
@@ -38,15 +38,25 @@ public class WildernessEvent extends PlayerEvent{
     }
 
     @Override
-    public void onEndCalled() {
+    public void onWarningEventShouldCancel() {
         Tools.tellPlayer(player, "Wilderness ending in 10 seconds", ChatColor.YELLOW);
 
-        autoEndEvent = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
                 Tools.tellPlayer(player, "Welcome back home!");
                 endEvent();
             }
         }, Tools.secToTicks(10));
+    }
+
+    @Override
+    public int getExtensionPrice() {
+        return Main.levelManager.getWildernessPrice();
+    }
+
+    @Override
+    public String getTitle() {
+        return "wilderness";
     }
 }

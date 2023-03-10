@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.playerevents.MiningEvent;
 import com.johansvartdal.landlord.playerevents.NetherWildernessEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import com.johansvartdal.landlord.playerevents.WildernessEvent;
@@ -39,6 +40,7 @@ public class Wilderness implements CommandExecutor {
             Tools.printMenuHeader(player, "WILDERNESS");
             Tools.printMenuOption(player, "/wilderness", "world");
             Tools.printMenuOption(player, "/wilderness", "nether");
+            Tools.printMenuOption(player, "/wilderness", "mine");
             Tools.printMenuOption(player, "/wilderness", "time");
             Tools.printMenuOption(player, "/wilderness", "extend");
             return true;
@@ -48,6 +50,8 @@ public class Wilderness implements CommandExecutor {
             attemptWorldWilderness(player);
         }else if (args[0].equals("nether")) {
             attemptNetherWilderness(player);
+        }else if (args[0].equals("mine")) {
+            attemptMineWilderness(player);
         }else if (args[0].equals("extend")) {
             extendWilderness(player);
         }else if (args[0].equals("time")) {
@@ -60,7 +64,7 @@ public class Wilderness implements CommandExecutor {
         int wildernessPrice = Main.levelManager.getWildernessPrice();
 
         if (!LevelManager.featureUnlocked("wildworld")) {
-            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return;
         }
 
@@ -68,14 +72,39 @@ public class Wilderness implements CommandExecutor {
             Tools.tellPlayer(player, "You are already in an event", ChatColor.RED);
             return;
         }
+
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
             Tools.tellPlayer(player, "You cannot afford the wilderness price of " + wildernessPrice + LangDict.getString("currency"), ChatColor.RED);
             return;
         }
 
         Bank.withdrawPlayer(player, wildernessPrice);
-        Tools.tellPlayer(player, "Welcome to the wilderness. You have 5 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
+        Tools.tellPlayer(player, "Welcome to the wilderness. You have 7 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
         WildernessEvent event = new WildernessEvent(plugin, player);
+        PlayerEventManager.startPlayerEvent(event);
+    }
+
+    private void attemptMineWilderness(Player player) {
+        int minePrice = StaticValues.MINING_PRICE;
+
+        if (!LevelManager.featureUnlocked("wildmining")) {
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            return;
+        }
+
+        if (PlayerEventManager.playerIsInEvent(player)) {
+            Tools.tellPlayer(player, "You are already in an event", ChatColor.RED);
+            return;
+        }
+
+        if (!Bank.playerCanAfford(player, minePrice)) {
+            Tools.tellPlayer(player, "You cannot afford the wilderness price of " + minePrice + LangDict.getString("currency"), ChatColor.RED);
+            return;
+        }
+
+        Bank.withdrawPlayer(player, minePrice);
+        Tools.tellPlayer(player, "Welcome to the mine. You have 45 minutes before your " + minePrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
+        MiningEvent event = new MiningEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
 
@@ -83,7 +112,7 @@ public class Wilderness implements CommandExecutor {
         int wildernessPrice = Main.levelManager.getNetherWildernessPrice();
 
         if (!LevelManager.featureUnlocked("wildnether")) {
-            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return;
         }
 
@@ -97,27 +126,31 @@ public class Wilderness implements CommandExecutor {
         }
 
         Bank.withdrawPlayer(player, wildernessPrice);
-        Tools.tellPlayer(player, "Welcome to nether. You have 5 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
+        Tools.tellPlayer(player, "Welcome to nether. You have 7 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
         NetherWildernessEvent event = new NetherWildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
 
     private void extendWilderness(Player player) {
-        int wildernessPrice = Main.levelManager.getWildernessPrice();
         PlayerEvent event = PlayerEventManager.getEventForPlayer(player);
+
+        // make sure event is not null
         if (event == null) {
             Tools.tellPlayer(player, "This command can only be used while in wilderness", ChatColor.RED);
             return;
         }
 
-        if (!Bank.playerCanAfford(player, wildernessPrice)) {
+        // get wilderness price, and make sure player can afford
+        int extensionPrice = event.getExtensionPrice();
+        if (!Bank.playerCanAfford(player, extensionPrice)) {
             Tools.tellPlayer(player, "You cannot afford to extend your wilderness journey", ChatColor.RED);
             return;
         }
 
-        Bank.withdrawPlayer(player, wildernessPrice);
-        Tools.tellPlayer(player, "Extending wilderness with 5 minutes for " + wildernessPrice + LangDict.getString("currency"), ChatColor.GREEN);
+        // perform purchase
+        Bank.withdrawPlayer(player, extensionPrice);
         event.extend();
+        Tools.tellPlayer(player, "Extended " + event.getTitle() + " with " + event.getTextTimeLeft() + " for " + extensionPrice + LangDict.getString("currency"), ChatColor.GREEN);
     }
 
     private void time(Player player) {

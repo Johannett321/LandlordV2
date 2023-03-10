@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.playerevents;
 
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.PlayerEventManager;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -12,7 +13,7 @@ public abstract class PlayerEvent {
     protected Player player;
     protected Location locationBeforeEvent;
     protected Main plugin;
-    protected BukkitTask autoEndEvent;
+    protected BukkitTask eventTimerWithAction;
     protected long scheduledEndTime;
 
     public PlayerEvent(Main plugin, Player player) {
@@ -23,36 +24,43 @@ public abstract class PlayerEvent {
 
     public abstract void start();
     public void endEvent() {
-        if (autoEndEvent != null) {
-            autoEndEvent.cancel();
+        if (eventTimerWithAction != null) {
+            eventTimerWithAction.cancel();
         }
+
+        PlayerEventManager.notifyEventEnd(this);
     }
-    public abstract int getLengthSecondsBeforeWarn();
+    public abstract int getLengthOfEventInSeconds();
     public abstract boolean playerTPAwayAllowed();
-    public abstract void onEndCalled();
+    public abstract void onWarningEventShouldCancel();
 
     public Player getPlayer() {
         return player;
     }
 
     public void extend() {
-        autoEndEvent.cancel();
+        eventTimerWithAction.cancel();
         scheduleAutoEnd();
     }
 
     public void scheduleAutoEnd() {
         long current = System.currentTimeMillis();
-        scheduledEndTime = current + (1000L *getLengthSecondsBeforeWarn());
-        autoEndEvent = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+        scheduledEndTime = current + (1000L * getLengthOfEventInSeconds());
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-                onEndCalled();
+                onWarningEventShouldCancel();
             }
-        }, Tools.secToTicks(getLengthSecondsBeforeWarn()));
+        }, Tools.secToTicks(getLengthOfEventInSeconds()));
     }
 
     public String getTextTimeLeft() {
         long current = System.currentTimeMillis();
+
+        if (scheduledEndTime <= current) {
+            return "about 0 seconds";
+        }
+
         long timeLeftSeconds = (scheduledEndTime-current)/1000;
         if (timeLeftSeconds > 60) {
             return timeLeftSeconds/60 + " minute(s)";
@@ -60,4 +68,8 @@ public abstract class PlayerEvent {
             return timeLeftSeconds + " second(s)";
         }
     }
+
+    public abstract int getExtensionPrice();
+
+    public abstract String getTitle();
 }
