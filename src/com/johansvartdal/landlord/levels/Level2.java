@@ -19,7 +19,7 @@ public class Level2 extends Level{
         ItemStack cobble = new ItemStack(Material.COBBLESTONE, 16 * Main.properties.getNumberOfPlayers());
         requiredItems.add(cobble);
 
-        ItemStack wheat = new ItemStack(Material.LEGACY_CROPS, 64 * Main.properties.getNumberOfPlayers());
+        ItemStack wheat = new ItemStack(Material.WHEAT, 64 * Main.properties.getNumberOfPlayers());
         requiredItems.add(wheat);
 
         return requiredItems;
