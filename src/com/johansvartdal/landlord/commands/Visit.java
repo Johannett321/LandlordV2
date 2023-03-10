@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -31,8 +32,8 @@ public class Visit implements CommandExecutor {
 
         Player player = (Player) commandSender;
 
-        if (Main.levelManager.getCurrentDisplayLevelNum() < 11 && !Properties.DEBUG_MODE) {
-            Tools.tellPlayer(player, "This command has not been unlocked yet!", ChatColor.RED);
+        if (!LevelManager.featureUnlocked("visit")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
             return true;
         }
 

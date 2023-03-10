@@ -61,7 +61,12 @@ public class NetherWildernessEvent extends PlayerEvent{
     }
 
     @Override
-    public void scheduleEnd() {
+    public boolean playerTPAwayAllowed() {
+        return true;
+    }
+
+    @Override
+    public void onEndCalled() {
         Tools.tellPlayer(player, "Nether wilderness ending in 10 seconds", ChatColor.YELLOW);
 
         autoEndEvent = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {

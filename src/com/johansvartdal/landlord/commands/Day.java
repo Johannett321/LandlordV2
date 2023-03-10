@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -27,6 +28,11 @@ public class Day implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
+
+		if (!LevelManager.featureUnlocked("day")) {
+			Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+			return true;
+		}
 
 		if (!Bank.playerCanAfford(player, commandPrice)) {
 			Tools.tellPlayer(player, "You cannot afford this command (" + commandPrice + LangDict.getString("currency") + " + tax)", ChatColor.RED);

@@ -1,8 +1,6 @@
 package com.johansvartdal.landlord.commands;
 
-import com.johansvartdal.landlord.LangDict;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -27,6 +25,15 @@ public class Trade implements CommandExecutor {
         }
 
         Player player = (Player) sender;
+
+        // check if player is allowed to teleport
+        if (PlayerEventManager.playerIsInEvent(player)) {
+            if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {
+                Tools.tellPlayer(player, "You cannot teleport at the moment", ChatColor.RED);
+                return true;
+            }
+            PlayerEventManager.forceEndPlayerEvent(player);
+        }
 
         Location location = Main.tradeCenter.getLocation();
         location = Tools.highestStandingPoint(location);

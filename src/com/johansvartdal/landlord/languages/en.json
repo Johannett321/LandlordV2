@@ -13,6 +13,7 @@
   "inTax": " in tax",
   "governmentBank": "The bank",
   "cmdNotNow": "You cannot execute this command at the moment",
+  "cmdNotUnlocked": "This command has not been unlocked yet",
   "currency": "USD"
 
 }

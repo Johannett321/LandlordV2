@@ -1,8 +1,10 @@
 package com.johansvartdal.landlord.commands;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.RouletteGame;
 import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,8 +33,8 @@ public class JoinRoulette implements CommandExecutor {
         Player player = (Player) commandSender;
 
         // make sure the command has been unlocked
-        if (Main.levelManager.getCurrentDisplayLevelNum() > 3) {
-            Tools.tellPlayer(player, "This command is not unlocked yet", ChatColor.RED);
+        if (!LevelManager.featureUnlocked("roulette")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
             return true;
         }
 

@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -35,8 +36,8 @@ public class Capture implements CommandExecutor {
         Player player = (Player) commandSender;
 
         // Make sure the command has been unlocked
-        if (Main.levelManager.getCurrentDisplayLevelNum() < 6 && !Properties.DEBUG_MODE) {
-            Tools.tellPlayer(player, "This command has not been unlocked yet", ChatColor.RED);
+        if (!LevelManager.featureUnlocked("capture")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
             return true;
         }
 

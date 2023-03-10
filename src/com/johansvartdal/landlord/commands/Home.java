@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -26,12 +27,20 @@ public class Home implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        PlayerData pd = Main.playerDataManager.getPlayerData(player);
+        if (!LevelManager.featureUnlocked("home")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            return true;
+        }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
+            if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {
+                Tools.tellPlayer(player, "You cannot teleport at the moment", ChatColor.RED);
+                return true;
+            }
             PlayerEventManager.forceEndPlayerEvent(player);
         }
 
+        PlayerData pd = Main.playerDataManager.getPlayerData(player);
         Location location = pd.getHomeLocation();
         location = Tools.highestStandingPoint(location);
         player.teleport(location);

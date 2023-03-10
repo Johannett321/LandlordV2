@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.playerevents.NetherWildernessEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import com.johansvartdal.landlord.playerevents.WildernessEvent;
@@ -29,8 +30,8 @@ public class Wilderness implements CommandExecutor {
 
         Player player = (Player) commandSender;
 
-        if (Main.levelManager.getCurrentDisplayLevelNum() < 4 && !Properties.DEBUG_MODE) {
-            Tools.tellPlayer(player, "This command has not been unlocked yet", ChatColor.RED);
+        if (!LevelManager.featureUnlocked("wildworld")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
             return true;
         }
 
@@ -57,6 +58,12 @@ public class Wilderness implements CommandExecutor {
 
     public void attemptWorldWilderness(Player player) {
         int wildernessPrice = Main.levelManager.getWildernessPrice();
+
+        if (!LevelManager.featureUnlocked("wildworld")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            return;
+        }
+
         if (PlayerEventManager.playerIsInEvent(player)) {
             Tools.tellPlayer(player, "You are already in an event", ChatColor.RED);
             return;
@@ -74,6 +81,12 @@ public class Wilderness implements CommandExecutor {
 
     private void attemptNetherWilderness(Player player) {
         int wildernessPrice = Main.levelManager.getNetherWildernessPrice();
+
+        if (!LevelManager.featureUnlocked("wildnether")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            return;
+        }
+
         if (PlayerEventManager.playerIsInEvent(player)) {
             Tools.tellPlayer(player, "You are already in an event", ChatColor.RED);
             return;

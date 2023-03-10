@@ -2,25 +2,27 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
 import org.bukkit.*;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LevelManager {
 
     private Main plugin;
 
-    private Level currentLevel;
+    private static Level currentLevel;
     private Level[] allLevels;
     private ArrayList<String> acceptedPlayers = new ArrayList<>();
+    private static HashMap<String, LvlSeasonRelation> featureLevels;
 
     public LevelManager(Main plugin) {
         this.plugin = plugin;
         load();
+        populateCommandLevels();
     }
 
     public Level getLevel(int levelNum) {
@@ -181,14 +183,14 @@ public class LevelManager {
         return itemStackArrayList;
     }
 
-    public Integer getCurrentDisplayLevelNum() {
+    public static Integer getCurrentDisplayLevelNum() {
         if (currentLevel == null) {
             return 0;
         }
         return currentLevel.getDisplayLevelNumber();
     }
 
-    public int getCurrentDisplaySeasonNum() {
+    public static int getCurrentDisplaySeasonNum() {
         return 1;
     }
 
@@ -256,5 +258,54 @@ public class LevelManager {
             }
         }
         return null;
+    }
+
+    private static class LvlSeasonRelation {
+        int seasonNum;
+        int levelNum;
+        public LvlSeasonRelation(int seasonNum, int levelNum) {
+            this.seasonNum = seasonNum;
+            this.levelNum = levelNum;
+        }
+    }
+
+    private static void populateCommandLevels() {
+        // season 1
+        featureLevels.put("roulette", new LvlSeasonRelation(1,2));
+        featureLevels.put("home", new LvlSeasonRelation(1,3));
+        featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
+        featureLevels.put("capture", new LvlSeasonRelation(1,5));
+        featureLevels.put("visit", new LvlSeasonRelation(1,7));
+
+        // season 2
+        featureLevels.put("stocks", new LvlSeasonRelation(2,1));
+        featureLevels.put("wildnether", new LvlSeasonRelation(2,2));
+        featureLevels.put("wildmining", new LvlSeasonRelation(2,3));
+        featureLevels.put("day", new LvlSeasonRelation(2,4));
+    }
+
+    public static boolean featureUnlocked(String command) {
+        // always allow while in DEBUG MODE
+        if (Properties.DEBUG_MODE) {
+            return true;
+        }
+
+        // make sure the command requires a level
+        if (!featureLevels.containsKey(command.toLowerCase())) {
+            return true;
+        }
+
+        // check season
+        LvlSeasonRelation lvlSeasonRelation = featureLevels.get(command);
+        if (lvlSeasonRelation.seasonNum < getCurrentDisplaySeasonNum()) {
+            // season already completed
+            return true;
+        }else if (lvlSeasonRelation.seasonNum > getCurrentDisplaySeasonNum()) {
+            // season not even started
+            return false;
+        }
+
+        // is the level of the command lower or equals than the current display level num?
+        return lvlSeasonRelation.levelNum <= getCurrentDisplayLevelNum();
     }
 }

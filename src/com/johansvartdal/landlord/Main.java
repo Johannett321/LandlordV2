@@ -69,10 +69,11 @@ public class Main extends JavaPlugin implements Listener {
 		new Visit(this);
 		new SendHome(this);
 		new Adm(this);
+		new CheatProtection(this);
 
 		Bank.startTaxCollector(this);
 
-		getServer().getPluginManager().registerEvents(new NoNetherPortal(this), this);
+
 		getServer().getPluginManager().registerEvents(this, this);
 
 		// Only for LAN

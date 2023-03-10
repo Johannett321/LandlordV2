@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.stocks.Stock;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -29,6 +30,11 @@ public class Stocks implements CommandExecutor {
         }
 
         Player player = (Player) sender;
+
+        if (!LevelManager.featureUnlocked("stocks")) {
+            Tools.tellPlayer(player, LangDict.CMD_NOT_UNLOCKED, ChatColor.RED);
+            return true;
+        }
 
         if (args.length == 0) {
             Tools.printMenuHeader(player, "Commands");

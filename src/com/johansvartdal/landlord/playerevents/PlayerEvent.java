@@ -23,10 +23,13 @@ public abstract class PlayerEvent {
 
     public abstract void start();
     public void endEvent() {
-        autoEndEvent.cancel();
+        if (autoEndEvent != null) {
+            autoEndEvent.cancel();
+        }
     }
     public abstract int getLengthSecondsBeforeWarn();
-    public abstract void scheduleEnd();
+    public abstract boolean playerTPAwayAllowed();
+    public abstract void onEndCalled();
 
     public Player getPlayer() {
         return player;
@@ -43,7 +46,7 @@ public abstract class PlayerEvent {
         autoEndEvent = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-                scheduleEnd();
+                onEndCalled();
             }
         }, Tools.secToTicks(getLengthSecondsBeforeWarn()));
     }

@@ -9,10 +9,10 @@ import java.io.*;
 public class LangDict {
 
     public static final String CURRENCY = "currency";
+    public static final String CMD_NOT_NOW= "cmdNotNow";
+    public static final String CMD_NOT_UNLOCKED = "cmdNotUnlocked";
     private static JSONObject english;
     private static JSONObject currentLanguage;
-
-    public static final String CMD_NOT_NOW= "cmdNotNow";
 
     public static void loadLanguage() {
         JSONObject no = loadLanguage("no");

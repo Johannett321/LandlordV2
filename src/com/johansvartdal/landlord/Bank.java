@@ -1,11 +1,11 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.playerevents.JailEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.json.simple.JSONObject;
 
-import java.util.Calendar;
 import java.util.Random;
 
 public class Bank {
@@ -162,25 +162,60 @@ public class Bank {
         return taxBank;
     }
 
-    public static void startTaxCollector(Plugin plugin) {
+    public static void startTaxCollector(Main plugin) {
         Random random = new Random();
-        int minute = random.nextInt(30) + 30;
+        int minute = random.nextInt(30) + 45;
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             // collect tax
             for (Player player : Bukkit.getOnlinePlayers()) {
-                int balance = getPlayerBalance(player);
-                int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
-
-                if (tax == 0) {
-                    continue;
-                }
-
-                Tools.tellPlayer(player, "You just paid " + tax + LangDict.getString("currency") + " in wealth tax");
-                withdrawPlayerWithoutTax(player, tax);
+                payWealthTaxForPlayer(plugin, player);
+                payPropertyTaxForPlayer(plugin, player);
             }
+
+            save();
 
             startTaxCollector(plugin);
         }, Tools.secToTicks(60*minute));
+    }
+
+    private static void payWealthTaxForPlayer(Main plugin, Player player) {
+        // calculate wealth tax
+        int balance = getPlayerBalance(player);
+        int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
+
+        if (payTax(plugin, player, tax)) {
+            Tools.tellPlayer(player, "You just paid " + tax + LangDict.getString("currency") + " in wealth tax");
+        }
+    }
+
+    private static void payPropertyTaxForPlayer(Main plugin, Player player) {
+        // calculate property tax
+        int chunkPoints = Main.playerDataManager.getPlayerData(player).getOwnedChunks().size();
+        int tax = chunkPoints*StaticValues.CHUNK_TAX;
+
+        if (payTax(plugin, player, tax)) {
+            Tools.tellPlayer(player, "You just paid " + tax + LangDict.getString("currency") + " in property tax (number of owned chunks * " + StaticValues.CHUNK_TAX +")");
+        }
+    }
+
+    public static boolean payTax(Main plugin, Player player, int tax) {
+        if (tax == 0) {
+            return false;
+        }
+
+        // send player to jail if it cannot afford tax
+        if (!playerCanAffordTaxFree(player, tax)) {
+            int bal = getPlayerBalance(player);
+            withdrawPlayerWithoutTax(player, bal);
+            taxBank += bal;
+
+            JailManager.sendToJail(plugin, player, "you could not afford to pay your bills!", "You're out! Make sure to have enough money next time!", 60*7);
+            return false;
+        }
+
+        taxBank += tax;
+        withdrawPlayerWithoutTax(player, tax);
+        return true;
     }
 }
