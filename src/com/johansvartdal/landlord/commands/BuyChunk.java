@@ -71,6 +71,8 @@ public class BuyChunk implements CommandExecutor {
 
 		// Unlock chunk
 		ChunkBuilder.unlockDirection(player, direction);
+
+		Tools.broadcastMessage(player.getDisplayName() + " just bought a new chunk!");
 		return true;
 	}
 

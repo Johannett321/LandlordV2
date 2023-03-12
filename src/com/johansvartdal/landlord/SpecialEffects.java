@@ -18,16 +18,16 @@ public class SpecialEffects {
         SpecialEffects.plugin = plugin;
     }
 
-    public static void blastFirework(int howMany) {
+    public static void blastFireworks(int howMany) {
         Location initial = Main.tradeCenter.getLocation();
         initial.setX((initial.getChunk().getX()*16)+8);
         initial.setZ((initial.getChunk().getZ()*16)+8);
         initial.setY(Tools.highestStandingPoint(initial).getY() + 10);
 
-        blastFirework(initial, howMany);
+        blastFireworks(initial, howMany);
     }
 
-    public static void blastFirework(Location where, int howMany) {
+    public static void blastFireworks(Location where, int howMany) {
         blastNextFireworks(where, howMany);
     }
 

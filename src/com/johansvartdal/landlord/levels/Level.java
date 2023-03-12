@@ -10,12 +10,14 @@ import java.util.ArrayList;
 public abstract class Level implements LevelInterface {
 
     protected Main plugin;
-    private int levelNumber;
+    private final int seasonNumber;
+    private final int levelNumber;
     private ArrayList<ItemStack> remainingItems;
 
 
-    public Level(Main plugin, int levelNumber) {
+    public Level(Main plugin, int seasonNumber, int levelNumber) {
         this.plugin = plugin;
+        this.seasonNumber = seasonNumber;
         this.levelNumber = levelNumber;
         this.remainingItems = getRequiredItemsForNextLevel();
     }
@@ -72,5 +74,9 @@ public abstract class Level implements LevelInterface {
 
     public void setRemainingItems(ArrayList<ItemStack> remainingItems) {
         this.remainingItems = remainingItems;
+    }
+
+    public int getDisplaySeasonNumber() {
+        return seasonNumber;
     }
 }

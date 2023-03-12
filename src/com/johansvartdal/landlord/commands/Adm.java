@@ -27,6 +27,14 @@ public class Adm implements CommandExecutor {
             return true;
         }
 
+        if (strings.length == 0) {
+            Tools.printMenuHeader(player, "COMMANDS");
+            Tools.printMenuOption(player, "/adm", "lladv");
+            Tools.printMenuOption(player, "/adm", "motherload");
+            Tools.printMenuOption(player, "/adm", "forceup");
+            return true;
+        }
+
         if (strings[0].equals("lladv")) {
             player.teleport(new Location(Bukkit.getWorld("lladv"), 194, 81, -112));
             Tools.tellPlayer(player, "Welcome to lladv");
@@ -34,9 +42,9 @@ public class Adm implements CommandExecutor {
         }else if (strings[0].equals("motherload")) {
             Bank.depositPlayerWithoutTax(player, 20000);
             Tools.tellPlayer(player, "Money reloaded!", ChatColor.GREEN);
-        }else {
-            Tools.printMenuHeader(player, "COMMANDS");
-            Tools.printMenuOption(player, "/adm", "lladv");
+        }else if (strings[0].equals("forceup")) {
+            Tools.tellPlayer(player, "Forcing upgrade!", ChatColor.YELLOW);
+            LevelManager.forceProceedToNextLevel();
         }
         return true;
     }

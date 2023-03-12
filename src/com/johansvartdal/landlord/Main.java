@@ -23,6 +23,8 @@ public class Main extends JavaPlugin implements Listener {
 		properties = new Properties();
 		properties.load();
 		configurator = new Configurator(this);
+		new CheatProtection(this);
+		new SleepPercentage(this);
 		configurator.configure();
 		LangDict.loadLanguage();
 		Bank.load();
@@ -31,7 +33,7 @@ public class Main extends JavaPlugin implements Listener {
 		LevelManager.init(this);
 
 
-		tradeCenter = new TradeCenter(Bukkit.getWorlds().get(0));
+		tradeCenter = new TradeCenter();
 		playerDataManager = new PlayerDataManager(Bukkit.getWorlds().get(0), this);
 		playerDataManager.loadData();
 		scoreboardHelper = new ScoreboardHelper(this);
@@ -55,7 +57,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Visit(this);
 		new SendHome(this);
 		new Adm(this);
-		new CheatProtection(this);
+		new SetTrade(this);
 
 		Bank.startTaxCollector(this);
 
@@ -68,20 +70,31 @@ public class Main extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if (!playerDataManager.playerExists(event.getPlayer())) {
-			if (properties.gameHasStarted()) {
-				event.getPlayer().kickPlayer("You are not allowed to join");
-				return;
-			}
+		if (playerDataManager.playerExists(event.getPlayer())) {
+			return;
+		}
 
-			PlayerData playerData = new PlayerData(event.getPlayer().getWorld(), event.getPlayer());
-			playerDataManager.addNewPlayer(playerData);
+		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
 
-			event.getPlayer().teleport(StaticValues.GAME_START_LOCATION);
+		// kick player if game already running
+		if (properties.gameHasStarted()) {
+			event.getPlayer().kickPlayer("You are not allowed to join");
+			return;
+		}
 
-			if (event.getPlayer().isOp()) {
-				Tools.tellPlayer(event.getPlayer(), "When everyone has joined, run the command '/landlord config' to find a suitable location to start the game");
-			}
+		// make sure number of players never exceeds max number
+		if (playerDataManager.getPlayerDataList().size() >= StaticValues.MAX_PLAYERS) {
+			event.getPlayer().kickPlayer("Sorry, the game is full");
+			return;
+		}
+
+		PlayerData playerData = new PlayerData(event.getPlayer().getWorld(), event.getPlayer());
+		playerDataManager.addNewPlayer(playerData);
+
+		event.getPlayer().teleport(StaticValues.GAME_START_LOCATION);
+
+		if (event.getPlayer().isOp()) {
+			Tools.tellPlayer(event.getPlayer(), "When everyone has joined, run the command '/landlord config' to find a suitable location to start the game");
 		}
 	}
 }

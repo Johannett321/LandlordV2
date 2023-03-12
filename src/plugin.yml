@@ -21,6 +21,9 @@ commands:
   trade:
     description: Teleports to the trading area
     usage: /trade
+  settrade:
+    description: Defines a new trade location
+    usage: /settrade
   home:
     description: Teleports you home
     usage: /home

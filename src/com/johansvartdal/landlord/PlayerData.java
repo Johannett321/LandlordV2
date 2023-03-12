@@ -203,4 +203,9 @@ public class PlayerData {
         this.streakCollectOpens = streakCollectOpens;
         save();
     }
+
+    public void addChunkPoints(int amount) {
+        availableChunkPoints += amount;
+        save();
+    }
 }

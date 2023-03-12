@@ -1,42 +1,38 @@
 package com.johansvartdal.landlord;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.json.simple.JSONObject;
 
 public class TradeCenter {
 
-    double xLoc = 0;
-    double zLoc = 0;
-    double yLoc = 0;
-    World world;
+    private Location location;
 
-    public TradeCenter(World world) {
-        this.world = world;
+    public TradeCenter() {
         load();
     }
 
     public void setLocation(Location location) {
-        this.xLoc = location.getX();
-        this.yLoc = location.getY();
-        this.zLoc = location.getZ();
-        this.world = location.getWorld();
+        this.location = location;
         save();
     }
 
     public void build() {
-        ChunkBuilder.createChunk(world, getLocation().getChunk());
+        ChunkBuilder.createChunk(location.getWorld(), location.getChunk());
     }
 
     public Location getLocation() {
-        return new Location(world, xLoc, yLoc, zLoc);
+        return location;
     }
 
     public void save() {
         JSONObject tradeInfo = new JSONObject();
-        tradeInfo.put("xLoc", xLoc);
-        tradeInfo.put("yLoc", yLoc);
-        tradeInfo.put("zLoc", zLoc);
+        tradeInfo.put("xLoc", location.getX());
+        tradeInfo.put("yLoc", location.getY());
+        tradeInfo.put("zLoc", location.getZ());
+        tradeInfo.put("yaw", location.getYaw());
+        tradeInfo.put("pitch", location.getPitch());
         Tools.saveJsonToFile("TradeCenter.json", tradeInfo);
     }
 
@@ -45,8 +41,15 @@ public class TradeCenter {
         if (tradeInfo == null) {
             return;
         }
-        xLoc = (double) tradeInfo.get("xLoc");
-        yLoc = (double) tradeInfo.get("yLoc");
-        zLoc = (double) tradeInfo.get("zLoc");
+
+        double xLoc = (double) tradeInfo.get("xLoc");
+        double yLoc = (double) tradeInfo.get("yLoc");
+        double zLoc = (double) tradeInfo.get("zLoc");
+        double yaw = (double) tradeInfo.get("yaw");
+        float pitch = (float) ((double) tradeInfo.get("pitch"));
+
+        location = new Location(Bukkit.getWorld("world"), xLoc, yLoc, zLoc);
+        location.setY(yaw);
+        location.setPitch(pitch);
     }
 }

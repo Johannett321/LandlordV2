@@ -47,6 +47,7 @@ public class NoNetherPortal implements Listener {
                     if (nearbyBlock.getType().equals(Material.OBSIDIAN)) {
                         // Cancel the event to prevent fire from creating a portal
                         event.setCancelled(true);
+                        Tools.tellPlayer(event.getPlayer(), "Use '/wilderness nether' to enter nether", ChatColor.RED);
                         return;
                     }
                 }

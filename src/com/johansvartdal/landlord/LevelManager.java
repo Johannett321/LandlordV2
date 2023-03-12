@@ -1,5 +1,7 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.lan.AudioLayer;
+import com.johansvartdal.landlord.lan.LanController;
 import com.johansvartdal.landlord.levels.Level;
 import com.johansvartdal.landlord.levels.Level1;
 import com.johansvartdal.landlord.levels.Level2;
@@ -52,12 +54,23 @@ public class LevelManager {
         currentLevel = getLevel(currentLevel.getLevelNumber()+1);
         acceptedPlayers.clear();
 
-        Tools.broadcastMessage("The town was just upgraded to level " + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
+        Tools.broadcastMessage("Congratulations! The town was just upgraded to level " + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
         currentLevel.justUpgraded();
         save();
 
         // update scoreboard
         Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
+
+        // effects
+        SpecialEffects.blastFireworks(6);
+        LanController.getLightsController().playLevelUpEffect();
+    }
+
+    public static void forceProceedToNextLevel() {
+        if (!Properties.DEBUG_MODE) {
+            return;
+        }
+        proceedToNextLevel();
     }
 
     public static boolean itemRequiredForUpgrade(ItemStack itemInMainHand) {
@@ -193,7 +206,10 @@ public class LevelManager {
     }
 
     public static int getCurrentDisplaySeasonNum() {
-        return 1;
+        if (currentLevel == null) {
+            return 0;
+        }
+        return currentLevel.getDisplaySeasonNumber();
     }
 
     public static int getRouletteGamePrice() {
@@ -274,7 +290,6 @@ public class LevelManager {
     private static void populateCommandLevels() {
         // season 1
         featureLevels.put("roulette", new LvlSeasonRelation(1,2));
-        featureLevels.put("home", new LvlSeasonRelation(1,3));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
         featureLevels.put("visit", new LvlSeasonRelation(1,7));

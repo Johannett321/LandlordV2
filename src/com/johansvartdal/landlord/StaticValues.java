@@ -11,4 +11,5 @@ public class StaticValues {
     public static final int CHUNK_TAX = 300;
     //TODO CHANGE MINING PRICE:
     public static final int MINING_PRICE = 1000;
+    public static final int MAX_PLAYERS = 8;
 }

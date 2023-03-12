@@ -60,6 +60,22 @@ public class GameJustStarted {
                 chunkX = centerChunk.getX();
                 chunkZ = centerChunk.getZ() - 2;
                 return new int[]{chunkX,chunkZ};
+            case 4:
+                chunkX = centerChunk.getX() + 3;
+                chunkZ = centerChunk.getZ() + 3;
+                return new int[]{chunkX,chunkZ};
+            case 5:
+                chunkX = centerChunk.getX() - 3;
+                chunkZ = centerChunk.getZ() + 3;
+                return new int[]{chunkX,chunkZ};
+            case 6:
+                chunkX = centerChunk.getX() + 3;
+                chunkZ = centerChunk.getZ() - 3;
+                return new int[]{chunkX,chunkZ};
+            case 7:
+                chunkX = centerChunk.getX() - 3;
+                chunkZ = centerChunk.getZ() - 3;
+                return new int[]{chunkX,chunkZ};
         }
         return null;
     }

@@ -37,7 +37,6 @@ public class Home implements CommandExecutor {
 
         PlayerData pd = Main.playerDataManager.getPlayerData(player);
         Location location = pd.getHomeLocation();
-        location = Tools.highestStandingPoint(location);
         player.teleport(location);
         Tools.tellPlayer(player, "You have magically been teleported home!");
         return true;

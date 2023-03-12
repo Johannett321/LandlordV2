@@ -28,6 +28,7 @@ public class RouletteGame {
     }
 
     private void startGame() {
+        //todo only run if we are in level 2 or higher
         checkIfGameShouldBeRunning();
         scheduleNewCheck();
     }

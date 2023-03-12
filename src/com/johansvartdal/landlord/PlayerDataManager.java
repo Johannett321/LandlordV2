@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -62,5 +63,15 @@ public class PlayerDataManager {
 
     public ArrayList<PlayerData> getPlayerDataList() {
         return playerDataList;
+    }
+
+    public void giveEveryoneChunkPoints(int amount) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            givePlayerChunkPoints(player, amount);
+        }
+    }
+
+    public void givePlayerChunkPoints(Player player, int amount) {
+        getPlayerData(player).addChunkPoints(amount);
     }
 }
