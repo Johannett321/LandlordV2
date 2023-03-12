@@ -49,6 +49,7 @@ public class Preparations extends LandlordEvent {
         new BukkitRunnable() {
             public void run() {
                 God.speak(LangDict.getString("listOfHelpful"));
+                God.speak(LangDict.getString("goodLuck"));
             }
         }.runTaskLater(plugin, Tools.secToTicks(1));
 

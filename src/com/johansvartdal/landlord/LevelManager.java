@@ -74,6 +74,9 @@ public class LevelManager {
             }
         }
 
+        // give everyone a chunk
+        Main.playerDataManager.giveEveryoneChunkPoints(1);
+
         // update scoreboard
         Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
 

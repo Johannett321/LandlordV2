@@ -17,7 +17,7 @@ public class Level4 extends Level{
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 
         requiredItems.add(new ItemStack(Material.COBBLESTONE, 192 * Main.properties.getNumberOfPlayers()));
-        requiredItems.add(new ItemStack(Material.SUGAR, 448 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.PUMPKIN_SEEDS, 64 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.SUGAR_CANE, 144 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LEAVES, 144 * Main.properties.getNumberOfPlayers()));
 

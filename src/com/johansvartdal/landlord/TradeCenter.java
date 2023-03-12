@@ -45,11 +45,11 @@ public class TradeCenter {
         double xLoc = (double) tradeInfo.get("xLoc");
         double yLoc = (double) tradeInfo.get("yLoc");
         double zLoc = (double) tradeInfo.get("zLoc");
-        double yaw = (double) tradeInfo.get("yaw");
+        float yaw = (float) ((double) tradeInfo.get("yaw"));
         float pitch = (float) ((double) tradeInfo.get("pitch"));
 
         location = new Location(Bukkit.getWorld("world"), xLoc, yLoc, zLoc);
-        location.setY(yaw);
+        location.setYaw(yaw);
         location.setPitch(pitch);
     }
 }

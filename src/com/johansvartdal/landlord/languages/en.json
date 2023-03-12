@@ -1,7 +1,8 @@
 {
   "god": "[The Landlord]",
-  "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes left till you'll all be locked up in your chunks, spend the time wisely!",
-  "listOfHelpful": "Here is a list of some items you should consider collecting: Saplings, wood, seeds (for farming)",
+  "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
+  "listOfHelpful": "Items you must gather in the preparation to be able to level up: Saplings from oak trees, sugar canes, seeds",
+  "goodLuck": "Good luck, the time is ticking!",
   "minutesRemaining": "minute(s) remaining till the borders will rise!",
   "secondsRemaining": "seconds remaining till the borders will rise!",
   "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",

@@ -29,7 +29,6 @@ public class Level2 extends Level{
                 " This time you unlocked a feature called roulette. Every hour, a roulette will run. The roulette gives you" +
                 " an opportunity to win a price. However, there is a participation fee to join. You will be notified before" +
                 " a roulette is about to start");
-        Main.playerDataManager.giveEveryoneChunkPoints(1);
         God.speak("You were also rewarded a chunk point each. Stand next to one of your chunk borders. While looking towards" +
                 " the border, execute the command '/buychunk', and watch the walls magically fall as you unlock your second chunk!");
     }
