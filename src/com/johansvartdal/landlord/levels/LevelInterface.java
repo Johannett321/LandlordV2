@@ -9,14 +9,8 @@ import java.util.ArrayList;
 
 public interface LevelInterface {
 
-    public int getLevelNumber();
-    public ArrayList<ItemStack> getRemainingItemsForNextLevel();
     ArrayList<ItemStack> getRequiredItemsForNextLevel();
-    public void load();
-
-    public void justUpgraded();
-
-    public void donateItem(Player player, ItemStack itemStack);
-
+    void justUpgraded();
     int getRouletteGamePrice();
+    ItemStack getBook();
 }

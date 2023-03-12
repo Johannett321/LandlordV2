@@ -1,8 +1,10 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.ArrayList;
 

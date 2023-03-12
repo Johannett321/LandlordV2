@@ -12,7 +12,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class Preparations extends LandlordEvent {
 
     private final Main plugin;
-    public int prepTime = 8;
     private World mainWorld;
 
     public Preparations(Main plugin) {
@@ -56,9 +55,9 @@ public class Preparations extends LandlordEvent {
         new BukkitRunnable() {
             @Override
             public void run() {
-                fiveMinutesLeft();
+                threeMinutesLeft();
             }
-        }.runTaskLater(plugin, Tools.secToTicks((prepTime-5)*60));
+        }.runTaskLater(plugin, Tools.secToTicks(2*60));
     }
 
     private void changeWeatherGood() {
@@ -76,16 +75,6 @@ public class Preparations extends LandlordEvent {
 
     public void setMainWorld(World mainWorld) {
         this.mainWorld = mainWorld;
-    }
-
-    private void fiveMinutesLeft() {
-        God.speak("5 " + LangDict.getString("minutesRemaining"));
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                threeMinutesLeft();
-            }
-        }.runTaskLater(plugin, Tools.secToTicks(2*60));
     }
 
     private void threeMinutesLeft() {

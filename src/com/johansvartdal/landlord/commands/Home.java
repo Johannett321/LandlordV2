@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,6 +28,7 @@ public class Home implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        // end event if player is in one
         if (PlayerEventManager.playerIsInEvent(player)) {
             if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {
                 Tools.tellPlayer(player, "You cannot teleport at the moment", ChatColor.RED);
@@ -35,10 +37,14 @@ public class Home implements CommandExecutor {
             PlayerEventManager.forceEndPlayerEvent(player);
         }
 
+        // teleport the player home
         PlayerData pd = Main.playerDataManager.getPlayerData(player);
         Location location = pd.getHomeLocation();
         player.teleport(location);
         Tools.tellPlayer(player, "You have magically been teleported home!");
+
+        // set game mode
+        player.setGameMode(GameMode.SURVIVAL);
         return true;
     }
 }

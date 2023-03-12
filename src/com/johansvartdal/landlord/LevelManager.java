@@ -46,6 +46,13 @@ public class LevelManager {
         Main.properties.setGameState(Properties.GameState.NORMAL);
         save();
 
+        // receive book
+        if (currentLevel.getBook() != null) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.getInventory().addItem(currentLevel.getBook());
+            }
+        }
+
         // update scoreboard
         Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
     }
@@ -56,7 +63,16 @@ public class LevelManager {
 
         Tools.broadcastMessage("Congratulations! The town was just upgraded to level " + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
         currentLevel.justUpgraded();
+
+        // save
         save();
+
+        // receive book
+        if (currentLevel.getBook() != null) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.getInventory().addItem(currentLevel.getBook());
+            }
+        }
 
         // update scoreboard
         Main.scoreboardHelper.warnNewLevel(getCurrentDisplaySeasonNum(), getCurrentDisplayLevelNum());
@@ -154,7 +170,6 @@ public class LevelManager {
         if (lvlInfo != null) {
             populateLevels();
             currentLevel = getLevel((int) (long) lvlInfo.get("currentLevel"));
-            currentLevel.load();
             if (lvlInfo.containsKey("remainingItems")) {
                 currentLevel.setRemainingItems(itemsFromJSONArr((JSONArray) lvlInfo.get("remainingItems")));
             }

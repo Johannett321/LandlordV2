@@ -68,15 +68,15 @@ public abstract class Level implements LevelInterface {
         }
     }
 
-    public void load() {
-
-    }
-
     public void setRemainingItems(ArrayList<ItemStack> remainingItems) {
         this.remainingItems = remainingItems;
     }
 
     public int getDisplaySeasonNumber() {
         return seasonNumber;
+    }
+
+    public ItemStack getBook() {
+        return null;
     }
 }
