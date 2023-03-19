@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.levels;
 
+import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -31,5 +32,10 @@ public class Level4 extends Level{
     @Override
     public int getRouletteGamePrice() {
         return 500;
+    }
+
+    @Override
+    public LandlordEvent getLevelStartEvent() {
+        return null;
     }
 }

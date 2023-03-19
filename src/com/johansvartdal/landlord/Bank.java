@@ -210,7 +210,7 @@ public class Bank {
             withdrawPlayerWithoutTax(player, bal);
             taxBank += bal;
 
-            JailManager.sendToJail(plugin, player, "you could not afford to pay your bills!", "You're out! Make sure to have enough money next time!", 60*7);
+            JailManager.sendToJail(plugin, player, "you could not afford to pay your tax!", "You're out! Make sure to have enough money next time!", 60*7);
             save();
             return false;
         }

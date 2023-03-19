@@ -1,0 +1,35 @@
+package com.johansvartdal.landlord;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+
+public class EmissionTax implements Listener {
+
+    private final Main plugin;
+
+    public EmissionTax(Main plugin) {
+        this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event){
+        if (event.getBlock().getType() == Material.COAL_ORE) {
+            Player player = event.getPlayer();
+
+            if (!Bank.playerCanAffordTaxFree(player, StaticValues.EMISSION_TAX)) {
+                event.setCancelled(true);
+                JailManager.sendToJail(plugin, player, "you could not afford to pay emission tax while mining coal!", "You're out! Make sure to have enough money next time!", 60*7);
+                return;
+            }
+
+            // actually withdraw
+            Bank.withdrawPlayerWithoutTax(player, StaticValues.EMISSION_TAX);
+            Tools.tellPlayer(player, "You paid " + StaticValues.EMISSION_TAX + LangDict.getString(LangDict.CURRENCY) + " in emission tax", ChatColor.GRAY);
+        }
+    }
+}

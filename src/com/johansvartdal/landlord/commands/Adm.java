@@ -1,6 +1,9 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.events.Preparations;
+import com.johansvartdal.landlord.events.TestEvent;
+import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -32,6 +35,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "lladv");
             Tools.printMenuOption(player, "/adm", "motherload");
             Tools.printMenuOption(player, "/adm", "forceup");
+            Tools.printMenuOption(player, "/adm", "testevent");
             return true;
         }
 
@@ -45,6 +49,19 @@ public class Adm implements CommandExecutor {
         }else if (strings[0].equals("forceup")) {
             Tools.tellPlayer(player, "Forcing upgrade!", ChatColor.YELLOW);
             LevelManager.forceProceedToNextLevel();
+        }else if (strings[0].equals("testevent")) {
+            TestEvent testEvent = new TestEvent(plugin);
+            testEvent.setOnEventEndListener(new OnLandlordEventEndListener() {
+                @Override
+                public void onEnd() {
+                    Tools.broadcastMessage("Event ended confirmed!");
+                }
+            });
+
+            testEvent.startEvent();
+        }else if (strings[0].equals("testarena")) {
+            ArenaFight1 arenaFight1 = new ArenaFight1(plugin);
+            LandlordEventManager.startEvent(arenaFight1);
         }
         return true;
     }

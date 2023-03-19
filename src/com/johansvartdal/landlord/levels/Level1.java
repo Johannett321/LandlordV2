@@ -34,4 +34,9 @@ public class Level1 extends Level {
 
         return requiredItems;
     }
+
+    @Override
+    public LandlordEvent getLevelStartEvent() {
+        return null;
+    }
 }

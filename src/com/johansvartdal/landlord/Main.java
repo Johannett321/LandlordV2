@@ -36,6 +36,7 @@ public class Main extends JavaPlugin implements Listener {
 		StockManager.loadStocks();
 		ChunkBuilder.load();
 		LevelManager.init(this);
+		new EmissionTax(this);
 
 
 		tradeCenter = new TradeCenter();

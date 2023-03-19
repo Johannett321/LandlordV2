@@ -2,9 +2,8 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.lan.AudioLayer;
 import com.johansvartdal.landlord.lan.LanController;
-import com.johansvartdal.landlord.levels.Level;
-import com.johansvartdal.landlord.levels.Level1;
-import com.johansvartdal.landlord.levels.Level2;
+import com.johansvartdal.landlord.levels.*;
+import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -36,7 +35,10 @@ public class LevelManager {
     public static void populateLevels() {
         allLevels = new Level[] {
                 new Level1(plugin),
-                new Level2(plugin)
+                new Level2(plugin),
+                new Level3(plugin),
+                new Level4(plugin),
+                new Level5(plugin)
         };
     }
 
@@ -58,9 +60,17 @@ public class LevelManager {
     }
 
     private static void proceedToNextLevel() {
+
+        // end all events
+        if (PlayerEventManager.anyPlayersInEvent()) {
+            PlayerEventManager.forceEndAllEvents();
+        }
+
+        // get new level
         currentLevel = getLevel(currentLevel.getLevelNumber()+1);
         acceptedPlayers.clear();
 
+        // run upgrade and inform
         Tools.broadcastMessage("Congratulations! The town was just upgraded to level " + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
         currentLevel.justUpgraded();
 
@@ -83,6 +93,9 @@ public class LevelManager {
         // effects
         SpecialEffects.blastFireworks(6);
         LanController.getLightsController().playLevelUpEffect();
+
+        // start event if any
+        LandlordEventManager.notifyLevelReached(currentLevel);
     }
 
     public static void forceProceedToNextLevel() {
@@ -254,11 +267,11 @@ public class LevelManager {
     public static int getWildernessPrice() {
         switch (getCurrentDisplaySeasonNum()) {
             case 1:
-                return 100;
-            case 2:
-                return 200;
-            case 3:
                 return 300;
+            case 2:
+                return 600;
+            case 3:
+                return 900;
         }
         return 0;
     }

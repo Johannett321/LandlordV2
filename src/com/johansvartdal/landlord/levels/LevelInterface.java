@@ -13,4 +13,6 @@ public interface LevelInterface {
     void justUpgraded();
     int getRouletteGamePrice();
     ItemStack getBook();
+
+    LandlordEvent getLevelStartEvent();
 }

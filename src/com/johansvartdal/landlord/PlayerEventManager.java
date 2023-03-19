@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -47,5 +48,11 @@ public class PlayerEventManager {
 
     public static void notifyEventEnd(PlayerEvent playerEvent) {
         playerEvents.remove(playerEvent);
+    }
+
+    public static void forceEndAllEvents() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            forceEndPlayerEvent(player);
+        }
     }
 }

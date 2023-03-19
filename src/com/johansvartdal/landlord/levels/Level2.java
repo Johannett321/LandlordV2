@@ -37,4 +37,9 @@ public class Level2 extends Level{
     public int getRouletteGamePrice() {
         return 300;
     }
+
+    @Override
+    public LandlordEvent getLevelStartEvent() {
+        return null;
+    }
 }

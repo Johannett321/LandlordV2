@@ -86,8 +86,7 @@ public class Landlord implements CommandExecutor {
 
         Preparations preparationsEvent = new Preparations(plugin);
         preparationsEvent.setOnEventEndListener(LevelManager::startLevel1);
-
         preparationsEvent.setMainWorld(player.getWorld());
-        preparationsEvent.startEvent();
+        LandlordEventManager.startEvent(preparationsEvent);
     }
 }
