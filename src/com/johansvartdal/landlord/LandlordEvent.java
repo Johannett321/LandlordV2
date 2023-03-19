@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 
-public abstract class LandlordEvent implements LandlordEventInterface{
+public abstract class LandlordEvent implements LandlordEventInterface {
 
     private class PlayerPrevLoc {
         Player player;
@@ -18,7 +18,7 @@ public abstract class LandlordEvent implements LandlordEventInterface{
         }
     }
 
-    private ArrayList<PlayerPrevLoc> previousLocations = new ArrayList<>();
+    private final ArrayList<PlayerPrevLoc> previousLocations = new ArrayList<>();
 
     private OnLandlordEventEndListener onLandlordEventEndListener;
     private BukkitTask exitLocationChecker = null;
@@ -29,6 +29,12 @@ public abstract class LandlordEvent implements LandlordEventInterface{
     private Integer endY;
     private Integer startZ;
     private Integer endZ;
+    protected Boolean eventHasEnded = false;
+    public final Main plugin;
+
+    public LandlordEvent(Main plugin) {
+        this.plugin = plugin;
+    }
 
     public void saveAllPrevLocs() {
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -45,15 +51,27 @@ public abstract class LandlordEvent implements LandlordEventInterface{
         this.onLandlordEventEndListener = onEventEndListener;
     }
 
-    public void eventEnded() {
+    public void endEvent(Boolean cancelled) {
+        eventHasEnded = true;
         if (exitLocationChecker != null)  {
             exitLocationChecker.cancel();
         }
         onLandlordEventEndListener.onEnd();
         Main.properties.setGameState(Properties.GameState.NORMAL);
+
+        Tools.deleteFile("runningEventType.txt");
     }
 
     public void teleportAllPlayersBack() {
+        // if no previous locations were saved
+        if (previousLocations.size() == 0) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.teleport(Main.playerDataManager.getPlayerData(player).getHomeLocation());
+            }
+            return;
+        }
+
+        // teleport players back
         for (PlayerPrevLoc playerPrevLoc : previousLocations) {
             playerPrevLoc.player.teleport(playerPrevLoc.location);
         }
@@ -82,7 +100,7 @@ public abstract class LandlordEvent implements LandlordEventInterface{
         }
 
         if (allPlayersWithin) {
-            this.eventEnded();
+            this.endEvent(false);
             return;
         }
 
@@ -92,5 +110,29 @@ public abstract class LandlordEvent implements LandlordEventInterface{
                 scheduleNextExitPositionCheck(plugin);
             }
         }, Tools.secToTicks(3));
+    }
+
+    protected void lockPlayersAtLocation(Location location, int radius) {
+        if (eventHasEnded) {
+            return;
+        }
+
+        double lX = location.getX();
+        double lZ = location.getZ();
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            double pX = player.getLocation().getX();
+            double pZ = player.getLocation().getZ();
+
+            if (pX > lX - radius && pX < lX + radius && pZ > lZ - radius && pZ < lZ + radius && location.getWorld().equals(player.getWorld())) {
+                continue;
+            }
+
+            // player is not within radius
+            player.teleport(location);
+            Tools.tellPlayer(player, "You have been teleported back to the event");
+        }
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> lockPlayersAtLocation(location, radius), Tools.secToTicks(3));
     }
 }

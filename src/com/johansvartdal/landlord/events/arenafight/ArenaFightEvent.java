@@ -5,6 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -12,20 +14,15 @@ import java.util.Arrays;
 
 public abstract class ArenaFightEvent extends LandlordEvent {
 
-    protected final Main plugin;
     private final World lladvWorld;
     private Location arenaSpawnLoc;
     private Location fireworkLocation;
     ArrayList<Wave> remainingWaves = new ArrayList<>(Arrays.asList(getWaves()));
 
-    // TODO: legge til en checker som sjekker om når sist remaingMobs ble oppdatert. Hvis det er lenge siden, skal alle mobs killes, noe som fører til at man går videre til neste wave.
     // TODO: Flere ArenaFight maps
-    // TODO: Hvis en EventRunning og man er utenfor eventForceLockLocation + 1000 blokker radius, skal man bli teleport til eventForceLockLocation (dette gjør også at nye players kommer inn i eventet igjen også)
-    // TODO: Dersom serveren restartes, må eventet begynne på nytt, og alle mobs fra forrige "try" drepes.
-
 
     public ArenaFightEvent(Main plugin) {
-        this.plugin = plugin;
+        super(plugin);
         lladvWorld = Bukkit.getWorld("lladv");
 
         // set spawn location
@@ -51,20 +48,25 @@ public abstract class ArenaFightEvent extends LandlordEvent {
     }
 
     @Override
-    public void eventEnded() {
+    public void endEvent(Boolean cancelled) {
         // teleport all players back
         teleportAllPlayersBack();
 
-        super.eventEnded();
+        super.endEvent(cancelled);
     }
 
     private void teleportAllPlayersToEventLocation() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.teleport(arenaSpawnLoc);
         }
+
+        super.lockPlayersAtLocation(arenaSpawnLoc, 200);
     }
 
     private void keepNight() {
+        if (eventHasEnded) {
+            return;
+        }
         lladvWorld.setTime(14000);
         lladvWorld.setStorm(false);
 
@@ -109,10 +111,23 @@ public abstract class ArenaFightEvent extends LandlordEvent {
 
         // end event
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            eventEnded();
+            endEvent(false);
         }, Tools.secToTicks(15));
     }
 
     public abstract Wave[] getWaves();
 
+    @Override
+    public String getEventType() {
+        return "ArenaFight";
+    }
+
+    @Override
+    public void resumeEvent() {
+        // kill all mobs
+        Tools.killAllMobsInWorld(Bukkit.getWorld("lladv"));
+
+        Tools.broadcastMessage("The event was cancelled due to a server restart", ChatColor.RED);
+        endEvent(true);
+    }
 }

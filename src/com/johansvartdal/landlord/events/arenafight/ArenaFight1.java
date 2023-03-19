@@ -5,6 +5,7 @@ import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
+import org.json.simple.JSONObject;
 
 public class ArenaFight1 extends ArenaFightEvent {
 

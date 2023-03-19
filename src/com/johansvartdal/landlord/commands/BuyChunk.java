@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.material.Directional;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 public class BuyChunk implements CommandExecutor {
@@ -69,11 +71,54 @@ public class BuyChunk implements CommandExecutor {
 		// Withdraw player
 		Bank.withdrawPlayer(player, chunkPurchasePrice);
 
-		// Unlock chunk
-		ChunkBuilder.unlockDirection(player, direction);
+		// unlock chunk using the animation
+		playEffectAndUnlock(player, direction);
 
 		Tools.broadcastMessage(player.getDisplayName() + " just bought a new chunk!");
 		return true;
+	}
+
+	private void playEffectAndUnlock(Player player, String direction) {
+		// levitation effect
+		PotionEffect levitationFast = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(20), 3);
+		player.addPotionEffect(levitationFast);
+
+		// 6 sec
+		Bukkit.getScheduler().runTaskLater(plugin, () -> {
+			// levitation
+			player.removePotionEffect(PotionEffectType.LEVITATION);
+			PotionEffect levitationSlow = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(9), 1);
+			player.addPotionEffect(levitationSlow);
+
+			// 3 sec
+			Bukkit.getScheduler().runTaskLater(plugin, () -> {
+				// get chunk
+				Chunk chunkAtDirection = getChunkAtDirection(player, direction);
+
+				// play anim and sound
+				SpecialEffects.playChunkUnlockAnim(chunkAtDirection);
+
+				// play sounds
+				player.playSound(player, Sound.ITEM_TOTEM_USE, 1, 0);
+				Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+					@Override
+					public void run() {
+						player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1, 0);
+					}
+				}, Tools.secToTicks(1));
+			}, Tools.secToTicks(2));
+
+			// 8 sec -> slow falling
+			Bukkit.getScheduler().runTaskLater(plugin, () -> {
+				player.removePotionEffect(PotionEffectType.LEVITATION);
+				PotionEffect slowFalling = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(6), 3);
+				player.addPotionEffect(slowFalling);
+			}, Tools.secToTicks(3));
+
+			// Unlock chunk
+			ChunkBuilder.unlockDirection(player, direction);
+
+		}, Tools.secToTicks(5));
 	}
 
 	public String getPlayerFacingDirection(Player player) {

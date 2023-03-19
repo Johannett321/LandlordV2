@@ -1,10 +1,9 @@
 package com.johansvartdal.landlord;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -44,16 +43,19 @@ public class Tools {
 	
 	public static String read(String fileName) {
 		String wholeText = null;
-        String line = null;
+        String line;
 
         try {
             FileReader fileReader = new FileReader(Tools.pluginDir.getAbsolutePath() + "/" + fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while((line = bufferedReader.readLine()) != null) {
-            	if (!wholeText.isEmpty()) {
-            		wholeText = wholeText + "/n";
-            	}
-            	wholeText = wholeText + line;
+                System.out.println(line);
+                if (wholeText == null) {
+                    wholeText = line;
+                }else {
+                    wholeText = wholeText + "/n";
+                    wholeText = wholeText + line;
+                }
             }   
             bufferedReader.close();         
         }
@@ -63,7 +65,7 @@ public class Tools {
         catch(IOException ex) {
             System.out.println("Error reading file '" + fileName + "'");                  
         }
-		return line;
+		return wholeText;
 	}
 	
 	public static void write(String fileName, String textToWrite) {
@@ -77,6 +79,11 @@ public class Tools {
             System.out.println("Error writing to file '" + fileName + "'");
         }
 	}
+
+    public static void deleteFile(String fileName) {
+        File file = new File(Tools.pluginDir.getAbsolutePath() + "/" + fileName);
+        file.delete();
+    }
 
     public static void serialize(String fileName, Serializable object) {
         try {
@@ -246,5 +253,17 @@ public class Tools {
 
     public static void printMenuOption(Player player, String title, String desc) {
         player.sendMessage(ChatColor.YELLOW + title + " " + ChatColor.WHITE + desc);
+    }
+
+    public static void killAllMobsInWorld(World world) {
+        for(Entity entity : world.getEntities()) {
+            if (entity instanceof Mob && !(entity instanceof Player)) {
+                entity.remove();
+            }
+        }
+    }
+
+    public static void performTaskAfterCountdown(Runnable runnable, int seconds) {
+
     }
 }

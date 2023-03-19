@@ -95,14 +95,36 @@ public class Wave {
         }, Tools.secToTicks(3));
     }
 
+    int lastCheckLivingEntities = 0;
+    long lastChangeInLivingEntities = 0;
+
     private Boolean allEntitiesKilled () {
+        int currentLivingEntities = 0;
         for (Entity entity : spawnedEntities) {
             if (!entity.isDead()) {
-                return false; // found living entity
+                currentLivingEntities++; // found living entity
+            }
+        }
+
+        if (currentLivingEntities == 0) {
+            lastCheckLivingEntities = currentLivingEntities;
+            lastChangeInLivingEntities = 0;
+            return true;
+        }
+
+        if (System.currentTimeMillis() > lastChangeInLivingEntities + 1000 * 15) {
+            // make sure we have progress
+            if (lastCheckLivingEntities == currentLivingEntities) {
+                lastChangeInLivingEntities = 0;
+                Tools.killAllMobsInWorld(Bukkit.getWorld("lladv"));
+                return true;
+            }else {
+                lastCheckLivingEntities = currentLivingEntities;
+                lastChangeInLivingEntities = System.currentTimeMillis();
             }
         }
 
         // all entities are dead
-        return true;
+        return false;
     }
 }

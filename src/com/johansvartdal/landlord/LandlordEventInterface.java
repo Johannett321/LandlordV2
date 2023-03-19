@@ -2,6 +2,10 @@ package com.johansvartdal.landlord;
 
 public interface LandlordEventInterface {
 
-    public void startEvent();
-    public void eventEnded();
+    void startEvent();
+    void endEvent(Boolean cancelled);
+    String getEventType();
+
+    void resumeEvent();
+
 }

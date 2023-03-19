@@ -5,15 +5,16 @@ import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 
 public class TestEvent extends LandlordEvent {
 
-    private Main plugin;
-
     public TestEvent(Main plugin) {
-        this.plugin = plugin;
+        super(plugin);
     }
 
     @Override
@@ -43,12 +44,32 @@ public class TestEvent extends LandlordEvent {
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.teleport(startLoc);
         }
+
+        super.lockPlayersAtLocation(startLoc, 10);
     }
 
     @Override
-    public void eventEnded() {
-        super.eventEnded();
+    public void endEvent(Boolean cancelled) {
+        super.endEvent(cancelled);
         teleportAllPlayersBack();
         God.speak("Amazing! You did it!");
+    }
+
+    @Override
+    public String getEventType() {
+        return "TestEvent";
+    }
+
+    @Override
+    public void resumeEvent() {
+        // kill all mobs
+        for(Entity entity : Bukkit.getWorld("lladv").getEntities()) {
+            if (entity instanceof Mob && !(entity instanceof Player)) {
+                entity.remove();
+            }
+        }
+
+        Tools.broadcastMessage("The event was cancelled due to a server restart", ChatColor.RED);
+        endEvent(true);
     }
 }

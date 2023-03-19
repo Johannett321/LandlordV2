@@ -11,13 +11,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Preparations extends LandlordEvent {
 
-    private final Main plugin;
     private World mainWorld;
 
     public Preparations(Main plugin) {
-        this.plugin = plugin;
+        super(plugin);
     }
-
 
     @Override
     public void startEvent() {
@@ -36,6 +34,17 @@ public class Preparations extends LandlordEvent {
                 startPrep();
             }
         }, Tools.secToTicks(5));
+    }
+
+    @Override
+    public String getEventType() {
+        return "Preparations";
+    }
+
+    @Override
+    public void resumeEvent() {
+        System.out.println("WARNING: SERVER WAS SHUT DOWN DURING PREPARATIONS. THE GAME CANNOT CONTINUE! PLEASE REINSTALL LANDLORD");
+        Bukkit.shutdown();
     }
 
     public void startPrep() {
@@ -158,6 +167,6 @@ public class Preparations extends LandlordEvent {
 
     private void riseBorders() {
         new GameJustStarted(plugin, mainWorld).doStart();
-        eventEnded();
+        endEvent(false);
     }
 }

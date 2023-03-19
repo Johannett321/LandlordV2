@@ -67,8 +67,10 @@ public class Main extends JavaPlugin implements Listener {
 
 		Bank.startTaxCollector(this);
 
-
 		getServer().getPluginManager().registerEvents(this, this);
+
+		// Event
+		LandlordEventManager.loadEventIfAny(this);
 
 		// Only for LAN
 		LanController.initiate();
