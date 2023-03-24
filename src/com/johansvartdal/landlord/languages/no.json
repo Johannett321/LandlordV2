@@ -1,10 +1,12 @@
 {
   "god": "[The Landlord]",
   "welcomeMessage": "Velkommen til Landlord mine borgere! Det er 5 minutter som gjenstår til dere blir låst i hver deres chunk. Bruk tiden klokt!",
+  "welcomeTitle": "Velkommen til ",
   "newCitizen": "En ny borger har ankommet! Gi en varm velkomst til ",
   "youJustPaid": "Du betalte ",
   "inTax": " i skatt",
   "governmentBank": "Statskassen",
   "cmdNotNow": "Du kan ikke bruke denne kommandoen akkurat nå",
-  "currency": "kr"
+  "currency": "kr",
+  "treasurySentinel": "Statskasseforvalteren"
 }

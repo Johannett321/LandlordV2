@@ -1,9 +1,11 @@
 package com.johansvartdal.landlord.events.adventure;
 
 import com.johansvartdal.landlord.God;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
 public class ValleyVillageAdventure extends AdventureEvent{
@@ -31,5 +33,15 @@ public class ValleyVillageAdventure extends AdventureEvent{
     @Override
     protected int getExcursionMinutes() {
         return excursionMinutes;
+    }
+
+    @Override
+    protected String getWelcomeTitle() {
+        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Solvheim village";
+    }
+
+    @Override
+    protected String getWelcomeSubtitle() {
+        return null;
     }
 }

@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.events.adventure;
 
-import com.johansvartdal.landlord.God;
-import com.johansvartdal.landlord.LandlordEvent;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -27,7 +24,11 @@ public abstract class AdventureEvent extends LandlordEvent {
     }
 
     private void scheduleExcursionStart() {
-        Tools.performTaskAfterCountdown(this::startExcursion, "The excursion starts in",60*5);
+        int startEventInSeconds = 60*5;
+        if (Properties.DEBUG_MODE) {
+            startEventInSeconds = 35;
+        }
+        Tools.performTaskAfterCountdown(this::startExcursion, "The excursion starts in",startEventInSeconds);
     }
 
     @Override
@@ -40,7 +41,12 @@ public abstract class AdventureEvent extends LandlordEvent {
         saveAllPrevLocs();
         teleportAllPlayersToEvent();
         showWelcomeMessage();
+        showTitle();
         scheduleEndEvent(getExcursionMinutes());
+    }
+
+    private void showTitle() {
+        Tools.broadcastTitle(getWelcomeTitle(), getWelcomeSubtitle());
     }
 
     protected void scheduleEndEvent(int inMinutes) {
@@ -71,4 +77,6 @@ public abstract class AdventureEvent extends LandlordEvent {
     protected abstract Location getEventSpawnLocation();
     protected abstract void showWelcomeMessage();
     protected abstract int getExcursionMinutes();
+    protected abstract String getWelcomeTitle();
+    protected abstract String getWelcomeSubtitle();
 }

@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord;
 
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 public class GameJustStarted {
@@ -24,6 +21,7 @@ public class GameJustStarted {
         OfflinePlayer[] players = plugin.getServer().getOfflinePlayers();
 
         for (int i = 0; i < players.length; i ++) {
+            Player currentPlayer = ((Player) players[i]);
             int[] chunkPosition = getXZChunkPosition(i, centerChunk);
             Chunk playerChunk = mainWorld.getChunkAt(chunkPosition[0], chunkPosition[1]);
             ChunkBuilder.createChunk((Player) players[i], mainWorld, playerChunk);
@@ -32,10 +30,11 @@ public class GameJustStarted {
             location = Tools.middlePointBlock(location);
             location = Tools.highestStandingPoint(location);
 
-            ((Player) players[i]).teleport(location);
-            ((Player) players[i]).setBedSpawnLocation(location);
+            currentPlayer.teleport(location);
+            currentPlayer.setBedSpawnLocation(location);
 
             Main.playerDataManager.getPlayerData((Player) players[i]).setHome(location);
+            currentPlayer.sendTitle(LangDict.getString("welcomeTitle") + ChatColor.DARK_PURPLE + "Landlord", ChatColor.RED + "V2");
         }
     }
 

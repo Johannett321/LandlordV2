@@ -11,6 +11,8 @@ public class LangDict {
     public static final String CURRENCY = "currency";
     public static final String CMD_NOT_NOW= "cmdNotNow";
     public static final String CMD_NOT_UNLOCKED = "cmdNotUnlocked";
+    public static final String TREASURY_SENTINEL = "treasurySentinel";
+    public static final String WELCOME_TITLE = "welcomeTitle";
     private static JSONObject english;
     private static JSONObject currentLanguage;
 

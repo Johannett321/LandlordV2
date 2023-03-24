@@ -5,6 +5,7 @@ import com.johansvartdal.landlord.events.TestEvent;
 import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
 import com.johansvartdal.landlord.events.mystery.Mystery1;
+import com.johansvartdal.landlord.events.taxevents.HasteEvent;
 import com.johansvartdal.landlord.levels.Level;
 import lombok.Getter;
 
@@ -41,6 +42,9 @@ public class LandlordEventManager {
                 break;
             case "Mystery":
                 event = new Mystery1(plugin);
+                break;
+            case "TaxEvent":
+                event = new HasteEvent(plugin);
                 break;
         }
 

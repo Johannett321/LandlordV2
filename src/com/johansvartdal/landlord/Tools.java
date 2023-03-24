@@ -335,4 +335,10 @@ public class Tools {
     private static void scheduleHandleTimeIn(Runnable runnable, String beginMessage, int currentSecondsLeft, int nextBroadcastWhenSecsLeft) {
         Bukkit.getScheduler().runTaskLater(plugin, () -> handleTime(runnable, beginMessage, nextBroadcastWhenSecsLeft), Tools.secToTicks(currentSecondsLeft-nextBroadcastWhenSecsLeft));
     }
+
+    public static void broadcastTitle(String title, String subtitle) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.sendTitle(title, subtitle);
+        }
+    }
 }

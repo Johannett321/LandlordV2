@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.playerevents;
 
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.Properties;
 import com.johansvartdal.landlord.StaticValues;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;
@@ -31,7 +32,11 @@ public class MiningEvent extends PlayerEvent {
 
     @Override
     public int getLengthOfEventInSeconds() {
-        return 60*45;
+        if (Properties.DEBUG_MODE) {
+            return 15;
+        }else {
+            return 60*45;
+        }
     }
 
     @Override

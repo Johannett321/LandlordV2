@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
@@ -74,6 +75,16 @@ public class Main extends JavaPlugin implements Listener {
 
 		// Only for LAN
 		LanController.initiate();
+	}
+
+	@EventHandler
+	public void onPlayerChat(PlayerChatEvent event) {
+		if (event.getPlayer().getDisplayName().toLowerCase().equals("johannett321")) {
+			event.setCancelled(true);
+			for(Player player: Bukkit.getOnlinePlayers()) {
+				player.sendMessage(ChatColor.DARK_GREEN + "[Statsforvalteren] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
+			}
+		}
 	}
 
 	@EventHandler

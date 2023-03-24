@@ -40,6 +40,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "testarena");
             Tools.printMenuOption(player, "/adm", "testeffect");
             Tools.printMenuOption(player, "/adm", "countdown");
+            Tools.printMenuOption(player, "/adm", "haste");
             return true;
         }
 
@@ -104,6 +105,9 @@ public class Adm implements CommandExecutor {
             Tools.performTaskAfterCountdown(() -> {
                 Tools.tellPlayer(player, "Time's up!");
             }, "time left: ", 60);
+        }else if (strings[0].equals("haste")) {
+            PotionEffect potionEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, (int) Tools.secToTicks(10), 1);
+            player.addPotionEffect(potionEffect);
         }
         return true;
     }
