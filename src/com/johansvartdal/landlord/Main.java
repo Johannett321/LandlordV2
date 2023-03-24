@@ -78,7 +78,14 @@ public class Main extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
+
+		// inform player about debug mode
+		if (Properties.DEBUG_MODE) {
+			Tools.tellPlayer(event.getPlayer(), "WARNING: DEBUG MODE ENABLED!", ChatColor.RED);
+		}
+
 		if (playerDataManager.playerExists(event.getPlayer())) {
+			event.setJoinMessage(ChatColor.GREEN + "[INFO]" + ChatColor.GOLD + " A soldier by the name of " + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + " has made his return!");
 			return;
 		}
 
@@ -109,10 +116,10 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		// give player playguide
-		givePlayguide(event.getPlayer());
+		givePlayGuide(event.getPlayer());
 	}
 
-	private void givePlayguide(Player player) {
+	private void givePlayGuide(Player player) {
 		ItemStack book = new ItemStack(Material.WRITTEN_BOOK, 1);
 		BookMeta meta = (BookMeta) book.getItemMeta();
 		meta.setTitle(ChatColor.translateAlternateColorCodes('&', "Playguide"));
