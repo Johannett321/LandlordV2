@@ -28,7 +28,6 @@ public class RouletteGame {
     }
 
     private void startGame() {
-        //todo only run if we are in level 2 or higher
         checkIfGameShouldBeRunning();
         scheduleNewCheck();
     }
@@ -43,7 +42,7 @@ public class RouletteGame {
     private void checkIfGameShouldBeRunning() {
         Calendar calendar = Calendar.getInstance();
         int minute = calendar.get(Calendar.MINUTE);
-        if (minute == 0 && !openForJoin && Main.properties.gameStateIsNormal()) {
+        if (minute == 0 && !openForJoin && Main.properties.gameStateIsNormal() && LevelManager.featureUnlocked("roulette")) {
             runRouletteGame();
         }
     }

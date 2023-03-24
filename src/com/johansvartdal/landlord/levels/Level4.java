@@ -35,7 +35,7 @@ public class Level4 extends Level{
     }
 
     @Override
-    public LandlordEvent getLevelStartEvent() {
+    public LandlordEvent getEventToStartBeforeLevel() {
         return null;
     }
 }

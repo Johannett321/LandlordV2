@@ -81,7 +81,7 @@ public class LandlordEventManager {
     }
 
     public static void notifyLevelReached(Level newLevel) {
-        LandlordEvent newLevelEvent = newLevel.getLevelStartEvent();
+        LandlordEvent newLevelEvent = newLevel.getEventToStartBeforeLevel();
         if (newLevelEvent != null) {
             startEvent(newLevelEvent);
         }

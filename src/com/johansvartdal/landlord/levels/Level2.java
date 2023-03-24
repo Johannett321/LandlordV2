@@ -25,7 +25,7 @@ public class Level2 extends Level{
 
     @Override
     public void justUpgraded() {
-        God.speak("Eeeey, how exciting! Your first town upgrade! Everytime your town levels up, things will happen." +
+        God.speak("Heeeey, how exciting! Your first town upgrade! Everytime your town levels up, something will happen." +
                 " This time you unlocked a feature called roulette. Every hour, a roulette will run. The roulette gives you" +
                 " an opportunity to win a price. However, there is a participation fee to join. You will be notified before" +
                 " a roulette is about to start");
@@ -39,7 +39,7 @@ public class Level2 extends Level{
     }
 
     @Override
-    public LandlordEvent getLevelStartEvent() {
+    public LandlordEvent getEventToStartBeforeLevel() {
         return null;
     }
 }

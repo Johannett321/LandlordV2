@@ -332,19 +332,19 @@ public class LevelManager {
         featureLevels.put("day", new LvlSeasonRelation(2,4));
     }
 
-    public static boolean featureUnlocked(String command) {
+    public static boolean featureUnlocked(String featureName) {
         // always allow while in DEBUG MODE
         if (Properties.DEBUG_MODE) {
             return true;
         }
 
-        // make sure the command requires a level
-        if (!featureLevels.containsKey(command.toLowerCase())) {
+        // make sure the featureName requires a level
+        if (!featureLevels.containsKey(featureName.toLowerCase())) {
             return true;
         }
 
         // check season
-        LvlSeasonRelation lvlSeasonRelation = featureLevels.get(command);
+        LvlSeasonRelation lvlSeasonRelation = featureLevels.get(featureName);
         if (lvlSeasonRelation.seasonNum < getCurrentDisplaySeasonNum()) {
             // season already completed
             return true;
@@ -353,7 +353,7 @@ public class LevelManager {
             return false;
         }
 
-        // is the level of the command lower or equals than the current display level num?
+        // is the level of the featureName lower or equals than the current display level num?
         return lvlSeasonRelation.levelNum <= getCurrentDisplayLevelNum();
     }
 }
