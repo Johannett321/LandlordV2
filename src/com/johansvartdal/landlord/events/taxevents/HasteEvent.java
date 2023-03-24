@@ -5,13 +5,14 @@ import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class HasteEvent extends LandlordEvent {
 
-    int durationSeconds = 10;
+    int durationSeconds = 60*3;
 
     public HasteEvent(Main plugin) {
         super(plugin);
@@ -19,10 +20,29 @@ public class HasteEvent extends LandlordEvent {
 
     @Override
     public void startEvent() {
-        Tools.broadcastMessage("Haste!");
+        God.speak("An order has placed from the Treasury Chancellor! Everyone shall receive haste in 1 minute.");
+        Tools.performTaskAfterCountdown(this::applyEffect, "Haste will begin in", 60);
+    }
+
+    @Override
+    public void endEvent(Boolean cancelled) {
+        super.endEvent(cancelled);
+        God.speak("Phew! I saw a lot of progress there");
+    }
+
+    private void applyEffect() {
+        Tools.playSoundForEveryone(Sound.BLOCK_BEACON_ACTIVATE);
+        God.speak("Let the haste begin! You have 3 minutes");
         for (Player player : Bukkit.getOnlinePlayers()) {
             givePlayerHaste(player);
         }
+        scheduleEndEvent();
+    }
+
+    private void scheduleEndEvent() {
+        Tools.performTaskAfterCountdown(() -> {
+            endEvent(false);
+        }, "The haste effect will end in", durationSeconds);
     }
 
     @Override

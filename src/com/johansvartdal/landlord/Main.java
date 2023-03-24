@@ -65,6 +65,7 @@ public class Main extends JavaPlugin implements Listener {
 		new SendHome(this);
 		new Adm(this);
 		new SetTrade(this);
+		new TreasuryCommand(this);
 
 		Bank.startTaxCollector(this);
 
@@ -82,7 +83,17 @@ public class Main extends JavaPlugin implements Listener {
 		if (event.getPlayer().getDisplayName().toLowerCase().equals("johannett321")) {
 			event.setCancelled(true);
 			for(Player player: Bukkit.getOnlinePlayers()) {
-				player.sendMessage(ChatColor.DARK_GREEN + "[Statsforvalteren] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
+				player.sendMessage(ChatColor.DARK_GREEN + "[DEV] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
+			}
+		}if (event.getPlayer().getDisplayName().toLowerCase().equals("karafo")) {
+			event.setCancelled(true);
+			for(Player player: Bukkit.getOnlinePlayers()) {
+				player.sendMessage(ChatColor.GREEN + "[BUILDER]" + ChatColor.WHITE + " <Karafo> " + event.getMessage());
+			}
+		}else if (event.getPlayer().getDisplayName().toLowerCase().equals("ss")) {
+			event.setCancelled(true);
+			for(Player player: Bukkit.getOnlinePlayers()) {
+				player.sendMessage(ChatColor.DARK_GREEN + "[" + LangDict.getString(LangDict.TREASURY_SENTINEL) + "] " + ChatColor.WHITE + event.getMessage());
 			}
 		}
 	}
@@ -104,7 +115,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		// kick player if game already running
 		if (properties.gameHasStarted()) {
-			event.getPlayer().kickPlayer("You are not allowed to join");
+			event.getPlayer().kickPlayer("You are not allowed to join. The game is already running");
 			return;
 		}
 

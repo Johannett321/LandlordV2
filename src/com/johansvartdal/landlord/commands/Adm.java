@@ -5,6 +5,7 @@ import com.johansvartdal.landlord.events.Preparations;
 import com.johansvartdal.landlord.events.TestEvent;
 import com.johansvartdal.landlord.events.adventure.IcyHillsEvent;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
+import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -41,6 +42,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "testeffect");
             Tools.printMenuOption(player, "/adm", "countdown");
             Tools.printMenuOption(player, "/adm", "haste");
+            Tools.printMenuOption(player, "/adm", "testtreasury");
             return true;
         }
 
@@ -58,49 +60,12 @@ public class Adm implements CommandExecutor {
             Tools.tellPlayer(player, "Forcing upgrade!", ChatColor.YELLOW);
             LevelManager.forceProceedToNextLevel();
         }else if (strings[0].equals("testevent")) {
-            LandlordEventManager.startEvent(new IcyHillsEvent(plugin));
+            LandlordEventManager.startEvent(new ChooseTreasuryEvent(plugin));
         }else if (strings[0].equals("testarena")) {
             ArenaFight1 arenaFight1 = new ArenaFight1(plugin);
             LandlordEventManager.startEvent(arenaFight1);
         }else if (strings[0].equals("testeffect")) {
-            // levitation effect
-            PotionEffect levitationFast = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(20), 3);
-            player.addPotionEffect(levitationFast);
-
-            // 6 sec
-            Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                // levitation
-                player.removePotionEffect(PotionEffectType.LEVITATION);
-                PotionEffect levitationSlow = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(9), 1);
-                player.addPotionEffect(levitationSlow);
-
-                // 3 sec
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    // get chunk
-                    String direction = getPlayerFacingDirection(player);
-                    Chunk chunkAtDirection = getChunkAtDirection(player, direction);
-
-                    // play anim and sound
-                    SpecialEffects.playChunkUnlockAnim(chunkAtDirection);
-
-                    // play sounds
-                    player.playSound(player, Sound.ITEM_TOTEM_USE, 1, 0);
-                    Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                        @Override
-                        public void run() {
-                            player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1, 0);
-                        }
-                    }, Tools.secToTicks(1));
-                }, Tools.secToTicks(2));
-
-                // 8 sec -> slow falling
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    player.removePotionEffect(PotionEffectType.LEVITATION);
-                    PotionEffect slowFalling = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(6), 3);
-                    player.addPotionEffect(slowFalling);
-                }, Tools.secToTicks(3));
-
-            }, Tools.secToTicks(5));
+            testEffectUnlockChunk(player);
         }else if (strings[0].equals("countdown")) {
             Tools.performTaskAfterCountdown(() -> {
                 Tools.tellPlayer(player, "Time's up!");
@@ -108,8 +73,71 @@ public class Adm implements CommandExecutor {
         }else if (strings[0].equals("haste")) {
             PotionEffect potionEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, (int) Tools.secToTicks(10), 1);
             player.addPotionEffect(potionEffect);
+        }else if (strings[0].equals("testtreasury")) {
+            testTreasury(player);
         }
         return true;
+    }
+
+    private void testTreasury(Player player) {
+        // levitation effect
+        God.speak("A Treasury Chancellor has been chosen");
+        PotionEffect levitationFast = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(10), 1);
+        player.addPotionEffect(levitationFast);
+
+        Location loc = player.getLocation();
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            player.removePotionEffect(PotionEffectType.LEVITATION);
+            //player.teleport(new Location(Bukkit.getWorld("lladv"), 202.5, 95, -1077.5));
+
+            player.getWorld().spawnParticle(Particle.SPELL_WITCH, loc,100, 2F, 2F, 2F);
+            player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, loc,100, 2F, 2F, 2F);
+            Tools.playSoundForEveryone(Sound.ITEM_TOTEM_USE);
+            Tools.playSoundForEveryone(Sound.ENTITY_PLAYER_LEVELUP);
+        }, Tools.secToTicks(3));
+
+    }
+
+    private void testEffectUnlockChunk(Player player) {
+        // levitation effect
+        PotionEffect levitationFast = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(20), 3);
+        player.addPotionEffect(levitationFast);
+
+        // 6 sec
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            // levitation
+            player.removePotionEffect(PotionEffectType.LEVITATION);
+            PotionEffect levitationSlow = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(9), 1);
+            player.addPotionEffect(levitationSlow);
+
+            // 3 sec
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                // get chunk
+                String direction = getPlayerFacingDirection(player);
+                Chunk chunkAtDirection = getChunkAtDirection(player, direction);
+
+                // play anim and sound
+                SpecialEffects.playChunkUnlockAnim(chunkAtDirection);
+
+                // play sounds
+                player.playSound(player, Sound.ITEM_TOTEM_USE, 1, 0);
+                Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                    @Override
+                    public void run() {
+                        player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1, 0);
+                    }
+                }, Tools.secToTicks(1));
+            }, Tools.secToTicks(2));
+
+            // 8 sec -> slow falling
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                player.removePotionEffect(PotionEffectType.LEVITATION);
+                PotionEffect slowFalling = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(6), 3);
+                player.addPotionEffect(slowFalling);
+            }, Tools.secToTicks(3));
+
+        }, Tools.secToTicks(5));
     }
 
     public String getPlayerFacingDirection(Player player) {

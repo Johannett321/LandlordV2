@@ -1,0 +1,191 @@
+package com.johansvartdal.landlord.commands;
+
+import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
+import com.johansvartdal.landlord.events.taxevents.HasteEvent;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+
+public class TreasuryCommand implements CommandExecutor {
+
+    private Main plugin;
+
+    @RequiredArgsConstructor
+    @Getter
+    public static class VoteHolder {
+        private final Player player;
+        private ArrayList<Player> votes = new ArrayList<>();
+
+        public void addVote(Player player) {
+            votes.add(player);
+        }
+    }
+
+    public static ArrayList<VoteHolder> treasuryPlayers = new ArrayList<>();
+    private final int hastePrice = 15000;
+    private final int withdrawPrice = 10000;
+    ArrayList<Player> playersVotedForResign = new ArrayList<>();
+
+    public TreasuryCommand(Main plugin) {
+        this.plugin = plugin;
+        plugin.getCommand("treasury").setExecutor(this);
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player player = (Player) sender;
+
+        // show menu
+        if (args.length == 0) {
+            // thise player is chancellor
+            if (Bank.playerIsTreasuryChancellor(player)) {
+                Tools.printMenuHeader(player, "COMMANDS");
+                Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + hastePrice + LangDict.getString(LangDict.CURRENCY) + ")");
+                Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + withdrawPrice + LangDict.getString(LangDict.CURRENCY) + ")");
+                return true;
+            }
+
+            Tools.printMenuHeader(player, "COMMANDS");
+
+            // chancellor is chosen
+            if (Bank.aTreasuryChancellorIsChosen()) {
+                Tools.printMenuOption(player, "/treasury", "voteresign");
+                return true;
+            }
+
+            // chancellor has NOT been chosen yet
+            Tools.printMenuOption(player, "/treasury", "apply");
+            Tools.printMenuOption(player, "/treasury", "vote [PLAYER]");
+            return true;
+        }
+
+        if (args[0].equals("voteresign")) {
+            if (!Bank.aTreasuryChancellorIsChosen() || !Main.properties.gameStateIsNormal()) {
+                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                return true;
+            }
+            if (args.length != 1) {
+                return false;
+            }
+
+            voteForResignation(player);
+            return true;
+        }
+
+        if (Bank.playerIsTreasuryChancellor(player)) {
+            return chancellorCommand(player, args);
+        }else {
+            return normalCommand(player, args);
+        }
+    }
+
+    private Boolean normalCommand(Player player, String[] args) {
+        if (args[0].equals("apply")) {
+            if (!(LandlordEventManager.getCurrentEvent() instanceof ChooseTreasuryEvent)) {
+                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                return true;
+            }
+
+            applyForTreasury(player);
+        }else if (args[0].equals("vote")) {
+            if (!(LandlordEventManager.getCurrentEvent() instanceof ChooseTreasuryEvent)) {
+                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                return true;
+            }
+            if (args.length != 2) {
+                return false;
+            }
+
+            voteForPlayer(player, args[1]);
+        }else {
+            return false;  // command not typed in correctly
+        }
+        return true;
+    }
+
+    private void voteForResignation(Player player) {
+        if (playersVotedForResign.contains(player)) {
+            Tools.tellPlayer(player, "You cannot vote twice", ChatColor.RED);
+        }
+        playersVotedForResign.add(player);
+        if (Main.properties.getNumberOfPlayers() <= 2 || (playersVotedForResign.size() > Main.properties.getNumberOfPlayers() / 2)) {
+            Tools.broadcastMessage("The Treasury Chancellor has been resigned! A new one must be chosen.", ChatColor.RED);
+            Bank.resignChancellor(plugin);
+        }else {
+            Tools.broadcastMessage("A player has voted for resignation of the Treasury Chancellor!" +
+                    " Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well!");
+        }
+    }
+
+    private void applyForTreasury(Player player) {
+        for (VoteHolder voteHolder : treasuryPlayers) {
+            if (voteHolder.getPlayer().equals(player)) {
+                Tools.tellPlayer(player, "You have already applied for this role", ChatColor.RED);
+                return;
+            }
+        }
+
+        VoteHolder voteHolder = new VoteHolder(player);
+        treasuryPlayers.add(voteHolder);
+        Tools.tellPlayer(player, "You applied for the treasury role", ChatColor.GREEN);
+    }
+
+    private void voteForPlayer(Player player, String voteUsername) {
+        if (voteUsername.equalsIgnoreCase(player.getDisplayName()) && !Properties.DEBUG_MODE) {
+            Tools.tellPlayer(player, "You cannot vote for yourself!", ChatColor.RED);
+            return;
+        }
+        for (VoteHolder voteHolder : treasuryPlayers) {
+            for (Player playerVote : voteHolder.getVotes()) {
+                if (playerVote.equals(player)) {
+                    Tools.tellPlayer(player, "You have already voted!", ChatColor.RED);
+                    return;
+                }
+            }
+        }
+
+        // add the current players vote
+        for (VoteHolder voteHolder : treasuryPlayers) {
+            if (voteHolder.getPlayer().getDisplayName().equalsIgnoreCase(voteUsername)) {
+                Tools.tellPlayer(player, "You voted for " + voteUsername + "!", ChatColor.GREEN);
+                voteHolder.addVote(player);
+                return;
+            }
+        }
+
+        Tools.tellPlayer(player, "Could not find any voluntary players with username: " + voteUsername, ChatColor.RED);
+    }
+
+    /*
+    ------------------------------------------------------ CHANCELLOR COMMANDS ------------------------------------------------------
+     */
+
+    private Boolean chancellorCommand(Player player, String[] args) {
+        if (!Main.properties.gameStateIsNormal()) {
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            return true;
+        }
+
+        if (args.length == 2 && args[0].equalsIgnoreCase("buy") && args[1].equalsIgnoreCase("haste")) {
+            // make sure the treasury can afford
+            if (!Bank.treasuryCanAfford(hastePrice)) {
+                Tools.tellPlayer(player, "The Treasury cannot afford haste for " + hastePrice + LangDict.getString(LangDict.CURRENCY));
+                return true;
+            }
+
+            Bank.withdrawTreasury(hastePrice);
+
+            LandlordEventManager.startEvent(new HasteEvent(plugin));
+            return true;
+        }
+        return false;
+    }
+}

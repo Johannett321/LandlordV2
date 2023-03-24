@@ -220,8 +220,8 @@ public class Tools {
     }
 
     public static void playSoundForEveryone(Sound sound) {
-        for(Player p : Bukkit.getOnlinePlayers()){
-            p.playSound(p.getLocation(), sound, 1, 0);
+        for(Player player : Bukkit.getOnlinePlayers()){
+            player.playSound(player, sound, 1, 0);
         }
     }
 
@@ -264,7 +264,7 @@ public class Tools {
     }
 
     public static String getTextTimeSeconds(int timeLeftSeconds) {
-        if (timeLeftSeconds > 60) {
+        if (timeLeftSeconds >= 60) {
             return timeLeftSeconds/60 + " minute(s)";
         }else {
             return timeLeftSeconds + " second(s)";
@@ -274,7 +274,7 @@ public class Tools {
     public static void performTaskAfterCountdown(Runnable runnable, String beginMessage, int seconds) {
 
         // we can safely wait a minute before counting down
-        if (seconds > 60) {
+        if (seconds > 90) {
             Bukkit.getScheduler().runTaskLater(plugin, ()-> {
                 handleTime(runnable, beginMessage, seconds-60);
             }, Tools.secToTicks(60));

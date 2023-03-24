@@ -1,8 +1,7 @@
 package com.johansvartdal.landlord;
 
-import com.johansvartdal.landlord.playerevents.JailEvent;
+import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
@@ -11,6 +10,7 @@ import java.util.Random;
 public class Bank {
 
     private static int taxBank = 0;
+    private static String chancellorUsername = null;
 
     public static boolean playerCanAfford(Player player, int price) {
         int tax = calculateWithdrawTaxAmount(price);
@@ -147,6 +147,7 @@ public class Bank {
     public static void save() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("taxBank", taxBank);
+        jsonObject.put("treasuryUsername", chancellorUsername);
         Tools.saveJsonToFile("Bank.json", jsonObject);
     }
 
@@ -156,6 +157,7 @@ public class Bank {
             return;
         }
         taxBank = (int) (long) jsonObject.get("taxBank");
+        chancellorUsername = (String) jsonObject.get("treasuryUsername");
     }
 
     public static int getBankBalance() {
@@ -219,5 +221,33 @@ public class Bank {
         withdrawPlayerWithoutTax(player, tax);
         save();
         return true;
+    }
+
+    public static boolean playerIsTreasuryChancellor(Player player) {
+        return player.getDisplayName().equalsIgnoreCase(chancellorUsername);
+    }
+
+    public static void promotePlayerToTreasuryChancellor(Player player) {
+        chancellorUsername = player.getDisplayName().toLowerCase();
+        save();
+    }
+
+    public static boolean aTreasuryChancellorIsChosen() {
+        return chancellorUsername != null;
+    }
+
+    public static void resignChancellor(Main plugin) {
+        chancellorUsername = null;
+        save();
+        LandlordEventManager.startEvent(new ChooseTreasuryEvent(plugin));
+    }
+
+    public static boolean treasuryCanAfford(int price) {
+        return taxBank >= price;
+    }
+
+    public static void withdrawTreasury(int amount) {
+        taxBank -= amount;
+        save();
     }
 }
