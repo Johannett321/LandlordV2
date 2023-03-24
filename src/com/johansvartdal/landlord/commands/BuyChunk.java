@@ -29,20 +29,35 @@ public class BuyChunk implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
+		int chunkPurchasePrice = Main.playerDataManager.getPlayerData(player).getChunkPurchasePrice();
+
+		if (args.length == 0) {
+			Tools.printMenuHeader(player, "Commands");
+			Tools.printMenuOption(player, "/buychunk", "now");
+			Tools.printMenuOption(player, "/buychunk", "info");
+			return true;
+		}
+
+		// INFO ABOUT CHUNKS
+		if (args[0].equals("info")) {
+			Tools.printMenuHeader(player, "CHUNK INFO");
+			Tools.printMenuOption(player, "Chunks available:", String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
+			Tools.printMenuOption(player, "Price of chunk:", chunkPurchasePrice + LangDict.getString("currency") + " + tax");
+			return true;
+		}
+
+		// make sure the player includes 'now' keyword to confirm
+		if (!args[0].equals("now")) {
+			return false;
+		}
+
+		/*
+		----------------------------------- START VALIDATIONS -----------------------------------
+		 */
 
 		// Make sure the player actually owns the chunk we are currently in
 		if (!Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
 			Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
-			return true;
-		}
-
-		int chunkPurchasePrice = Main.playerDataManager.getPlayerData(player).getChunkPurchasePrice();
-
-		// INFO ABOUT CHUNKS
-		if (args.length > 0 && args[0].equals("info")) {
-			Tools.printMenuHeader(player, "CHUNK INFO");
-			Tools.printMenuOption(player, "Chunks available:", String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
-			Tools.printMenuOption(player, "Price of chunk:", chunkPurchasePrice + LangDict.getString("currency") + " + tax");
 			return true;
 		}
 
@@ -68,12 +83,18 @@ public class BuyChunk implements CommandExecutor {
 			return true;
 		}
 
-		// Withdraw player
-		Bank.withdrawPlayer(player, chunkPurchasePrice);
+		/*
+		----------------------------------- END VALIDATIONS -----------------------------------
+		 */
 
-		// unlock chunk using the animation
+		// Withdraw player
+		Bank.withdrawPlayer(player, chunkPurchasePrice);  // money
+		Main.playerDataManager.getPlayerData(player).withdrawChunkPoint();  // chunk points
+
+		// Unlock chunk using the animation
 		playEffectAndUnlock(player, direction);
 
+		// Inform everyone
 		Tools.broadcastMessage(player.getDisplayName() + " just bought a new chunk!");
 		return true;
 	}

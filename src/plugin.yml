@@ -8,6 +8,7 @@ api-version: 1.19
 commands:
   buychunk:
     description: Buy a chunk
+    usage: /buychunk [ now | info ]
   day:
     description: turns off rain and turns night into day!
   bal:
@@ -17,7 +18,7 @@ commands:
     description: Claim your daily reward
   landlord:
     description: Start the game
-    usage: /landlord [start]
+    usage: /landlord [ start ]
   trade:
     description: Teleports to the trading area
     usage: /trade

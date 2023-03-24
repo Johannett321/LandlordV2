@@ -208,4 +208,9 @@ public class PlayerData {
         availableChunkPoints += amount;
         save();
     }
+
+    public void withdrawChunkPoint() {
+        availableChunkPoints--;
+        save();
+    }
 }
