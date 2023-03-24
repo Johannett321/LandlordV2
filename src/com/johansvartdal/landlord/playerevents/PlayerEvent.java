@@ -62,11 +62,7 @@ public abstract class PlayerEvent {
         }
 
         long timeLeftSeconds = (scheduledEndTime-current)/1000;
-        if (timeLeftSeconds > 60) {
-            return timeLeftSeconds/60 + " minute(s)";
-        }else {
-            return timeLeftSeconds + " second(s)";
-        }
+        return Tools.getTextTimeSeconds((int) timeLeftSeconds);
     }
 
     public abstract int getExtensionPrice();

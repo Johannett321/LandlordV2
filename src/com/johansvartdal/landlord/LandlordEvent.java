@@ -117,14 +117,14 @@ public abstract class LandlordEvent implements LandlordEventInterface {
             return;
         }
 
-        double lX = location.getX();
-        double lZ = location.getZ();
+        double locX = location.getX();
+        double locZ = location.getZ();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            double pX = player.getLocation().getX();
-            double pZ = player.getLocation().getZ();
+            double playerX = player.getLocation().getX();
+            double playerZ = player.getLocation().getZ();
 
-            if (pX > lX - radius && pX < lX + radius && pZ > lZ - radius && pZ < lZ + radius && location.getWorld().equals(player.getWorld())) {
+            if (playerX > locX - radius && playerX < locX + radius && playerZ > locZ - radius && playerZ < locZ + radius && location.getWorld().equals(player.getWorld())) {
                 continue;
             }
 

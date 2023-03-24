@@ -263,7 +263,76 @@ public class Tools {
         }
     }
 
-    public static void performTaskAfterCountdown(Runnable runnable, int seconds) {
+    public static String getTextTimeSeconds(int timeLeftSeconds) {
+        if (timeLeftSeconds > 60) {
+            return timeLeftSeconds/60 + " minute(s)";
+        }else {
+            return timeLeftSeconds + " second(s)";
+        }
+    }
 
+    public static void performTaskAfterCountdown(Runnable runnable, String beginMessage, int seconds) {
+
+        // we can safely wait a minute before counting down
+        if (seconds > 60) {
+            Bukkit.getScheduler().runTaskLater(plugin, ()-> {
+                handleTime(runnable, beginMessage, seconds-60);
+            }, Tools.secToTicks(60));
+            return;
+        }
+
+        // we can't wait a minute, as there is no minute left. Start countdown on 30 sec left
+        int timeTill30SecLeft = seconds-30;
+        Bukkit.getScheduler().runTaskLater(plugin, () -> handleTime(runnable, beginMessage, 30), Tools.secToTicks(timeTill30SecLeft));
+    }
+
+    private static void handleTime(Runnable runnable, String beginMessage, int seconds) {
+        if (seconds > 0) Tools.broadcastMessage(beginMessage + " " + getTextTimeSeconds(seconds));
+
+        if (seconds <= 0) {
+            runnable.run();
+            return;
+        }
+
+        // ----------------- SCHEDULE NEW MESSAGE -----------------
+
+        // One minute till next
+        if (seconds > 60) {
+            Bukkit.getScheduler().runTaskLater(plugin, ()-> {
+                handleTime(runnable, beginMessage, seconds-60);
+            }, Tools.secToTicks(60));
+            return;
+        }
+
+        // 30 sec left
+        if (seconds > 30) {
+            scheduleHandleTimeIn(runnable, beginMessage, seconds, 30);
+            return;
+        }
+
+        // 15 sec left
+        if (seconds > 15) {
+            scheduleHandleTimeIn(runnable, beginMessage, seconds, 15);
+            return;
+        }
+
+        // 10 sec left
+        if (seconds > 10) {
+            scheduleHandleTimeIn(runnable, beginMessage, seconds, 10);
+            return;
+        }
+
+        // 5 sec left
+        if (seconds > 5) {
+            scheduleHandleTimeIn(runnable, beginMessage, seconds, 5);
+            return;
+        }
+
+        // counting seconds
+        Bukkit.getScheduler().runTaskLater(plugin, () -> handleTime(runnable, beginMessage, seconds-1), Tools.secToTicks(1));
+    }
+
+    private static void scheduleHandleTimeIn(Runnable runnable, String beginMessage, int currentSecondsLeft, int nextBroadcastWhenSecsLeft) {
+        Bukkit.getScheduler().runTaskLater(plugin, () -> handleTime(runnable, beginMessage, nextBroadcastWhenSecsLeft), Tools.secToTicks(currentSecondsLeft-nextBroadcastWhenSecsLeft));
     }
 }

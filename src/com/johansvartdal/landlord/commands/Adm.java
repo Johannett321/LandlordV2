@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.events.Preparations;
 import com.johansvartdal.landlord.events.TestEvent;
+import com.johansvartdal.landlord.events.adventure.IcyHillsEvent;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -31,16 +32,21 @@ public class Adm implements CommandExecutor {
 
         if (strings.length == 0) {
             Tools.printMenuHeader(player, "COMMANDS");
+            Tools.printMenuOption(player, "/adm", "clear");
             Tools.printMenuOption(player, "/adm", "lladv");
             Tools.printMenuOption(player, "/adm", "motherload");
             Tools.printMenuOption(player, "/adm", "forceup");
             Tools.printMenuOption(player, "/adm", "testevent");
             Tools.printMenuOption(player, "/adm", "testarena");
             Tools.printMenuOption(player, "/adm", "testeffect");
+            Tools.printMenuOption(player, "/adm", "countdown");
             return true;
         }
 
-        if (strings[0].equals("lladv")) {
+        if (strings[0].equals("clear")) {
+            player.getWorld().setTime(0);
+            player.getWorld().setClearWeatherDuration((int) Tools.secToTicks(60*60));
+        }else if (strings[0].equals("lladv")) {
             player.teleport(new Location(Bukkit.getWorld("lladv"), 194, 81, -112));
             Tools.tellPlayer(player, "Welcome to lladv");
             player.setGameMode(GameMode.CREATIVE);
@@ -51,8 +57,7 @@ public class Adm implements CommandExecutor {
             Tools.tellPlayer(player, "Forcing upgrade!", ChatColor.YELLOW);
             LevelManager.forceProceedToNextLevel();
         }else if (strings[0].equals("testevent")) {
-            TestEvent testEvent = new TestEvent(plugin);
-            LandlordEventManager.startEvent(testEvent);
+            LandlordEventManager.startEvent(new IcyHillsEvent(plugin));
         }else if (strings[0].equals("testarena")) {
             ArenaFight1 arenaFight1 = new ArenaFight1(plugin);
             LandlordEventManager.startEvent(arenaFight1);
@@ -95,6 +100,10 @@ public class Adm implements CommandExecutor {
                 }, Tools.secToTicks(3));
 
             }, Tools.secToTicks(5));
+        }else if (strings[0].equals("countdown")) {
+            Tools.performTaskAfterCountdown(() -> {
+                Tools.tellPlayer(player, "Time's up!");
+            }, "time left: ", 60);
         }
         return true;
     }

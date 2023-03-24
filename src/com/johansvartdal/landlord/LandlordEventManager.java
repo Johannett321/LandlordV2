@@ -2,10 +2,8 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.events.Preparations;
 import com.johansvartdal.landlord.events.TestEvent;
-import com.johansvartdal.landlord.events.adventure.Adventure1;
-import com.johansvartdal.landlord.events.adventure.AdventureEvent;
+import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
-import com.johansvartdal.landlord.events.arenafight.ArenaFightEvent;
 import com.johansvartdal.landlord.levels.Level;
 import lombok.Getter;
 
@@ -38,7 +36,7 @@ public class LandlordEventManager {
                 event = new TestEvent(plugin);
                 break;
             case "Adventure":
-                event = new Adventure1(plugin);
+                event = new ValleyVillageAdventure(plugin);
                 break;
         }
 
