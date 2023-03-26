@@ -277,7 +277,7 @@ public class Tools {
             chatEntity = new InfoChat();
         }
         if (chatColor == null) {
-            chatColor = ChatColor.WHITE;
+            chatColor = chatEntity.getMessageColor();
         }
         player.sendMessage(chatEntity.getChatColor() + "[" + chatEntity.getDisplayName() + "] " + chatColor + message);
     }

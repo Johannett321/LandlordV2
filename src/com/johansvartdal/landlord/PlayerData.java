@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class PlayerData {
 
-    private int currentBalance = 17000;
-    private int availableChunkPoints = 1;
+    private int currentBalance = 0;
+    private int availableChunkPoints = 0;
     private int streakMultiplier = 0;
     private long streakCollectDeadline = 0;
     private long streakCollectOpens = 0;
@@ -25,6 +25,10 @@ public class PlayerData {
     public PlayerData(World mainWorld, Player player) {
         this.username = player.getName();
         this.mainWorld = mainWorld;
+        if (Properties.DEBUG_MODE) {
+            currentBalance = 10000000;
+            availableChunkPoints = 100;
+        }
         save();
     }
 

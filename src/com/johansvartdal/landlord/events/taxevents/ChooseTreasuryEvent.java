@@ -34,7 +34,11 @@ public class ChooseTreasuryEvent extends LandlordEvent {
 
     private void resumeFromHere() {
         informPlayers();
-        Tools.performTaskAfterCountdown(this::getMostVoted, "The Treasury Chancellor will be decided in", 120);
+        int decisionTime = 120;
+        if (Properties.DEBUG_MODE) {
+            decisionTime = 10;
+        }
+        Tools.performTaskAfterCountdown(this::getMostVoted, "The Treasury Chancellor will be decided in", decisionTime);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class SpecialEffects {
         SpecialEffects.plugin = plugin;
     }
 
-    public static void playChunkUnlockAnim(Chunk chunk) {
+    public static void playChunkUnlockAnim(Chunk chunk, int playerHeight) {
         int spell = 4;
         int endRod = 5;
         int smokeNormal = 10;
@@ -26,7 +26,7 @@ public class SpecialEffects {
             if (!(x % endRod == 0 || x % smokeNormal == 0 || x % spell == 0)) {
                 continue;
             }
-            for (double y = 50; y < 255; y++) {
+            for (int y = playerHeight-50; y < playerHeight+50; y++) {
                 if (!(y % endRod == 0 || y % smokeNormal == 0 || y % spell == 0)) {
                     continue;
                 }
@@ -35,7 +35,7 @@ public class SpecialEffects {
                         continue;
                     }
 
-                    Location location = chunk.getWorld().getBlockAt(x, (int) y,z).getLocation();
+                    Location location = chunk.getWorld().getBlockAt(x, y,z).getLocation();
 
                     if (z % smokeNormal == 0 && x % smokeNormal == 0) {
                         location.getWorld().spawnParticle(Particle.SMOKE_NORMAL,location,20, 0.1F, 1F, 1F);

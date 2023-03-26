@@ -116,8 +116,11 @@ public class BuyChunk implements CommandExecutor {
 				// get chunk
 				Chunk chunkAtDirection = getChunkAtDirection(player, direction);
 
+				// Unlock chunk
+				ChunkBuilder.unlockDirection(player, direction);
+
 				// play anim and sound
-				SpecialEffects.playChunkUnlockAnim(chunkAtDirection);
+				SpecialEffects.playChunkUnlockAnim(chunkAtDirection, (int) player.getLocation().getY());
 
 				// play sounds
 				player.playSound(player, Sound.ITEM_TOTEM_USE, 1, 0);
@@ -135,9 +138,6 @@ public class BuyChunk implements CommandExecutor {
 				PotionEffect slowFalling = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(6), 3);
 				player.addPotionEffect(slowFalling);
 			}, Tools.secToTicks(3));
-
-			// Unlock chunk
-			ChunkBuilder.unlockDirection(player, direction);
 
 		}, Tools.secToTicks(5));
 	}

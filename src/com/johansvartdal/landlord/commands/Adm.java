@@ -77,7 +77,7 @@ public class Adm implements CommandExecutor {
             PotionEffect potionEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, (int) Tools.secToTicks(10), 1);
             player.addPotionEffect(potionEffect);
         }else if (strings[0].equals("testtreasury")) {
-            testTreasury(player);
+            LandlordEventManager.startEvent(new ChooseTreasuryEvent(plugin));
         }else if (strings[0].equals("lockday")) {
             dayLocked = !dayLocked;
             if (dayLocked) {
@@ -107,26 +107,6 @@ public class Adm implements CommandExecutor {
         }
     }
 
-    private void testTreasury(Player player) {
-        // levitation effect
-        God.speak("A Treasury Chancellor has been chosen");
-        PotionEffect levitationFast = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(10), 1);
-        player.addPotionEffect(levitationFast);
-
-        Location loc = player.getLocation();
-
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            player.removePotionEffect(PotionEffectType.LEVITATION);
-            //player.teleport(new Location(Bukkit.getWorld("lladv"), 202.5, 95, -1077.5));
-
-            player.getWorld().spawnParticle(Particle.SPELL_WITCH, loc,100, 2F, 2F, 2F);
-            player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, loc,100, 2F, 2F, 2F);
-            Tools.playSoundForEveryone(Sound.ITEM_TOTEM_USE);
-            Tools.playSoundForEveryone(Sound.ENTITY_PLAYER_LEVELUP);
-        }, Tools.secToTicks(3));
-
-    }
-
     private void testEffectUnlockChunk(Player player) {
         // levitation effect
         PotionEffect levitationFast = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(20), 3);
@@ -146,7 +126,7 @@ public class Adm implements CommandExecutor {
                 Chunk chunkAtDirection = getChunkAtDirection(player, direction);
 
                 // play anim and sound
-                SpecialEffects.playChunkUnlockAnim(chunkAtDirection);
+                SpecialEffects.playChunkUnlockAnim(chunkAtDirection, (int) player.getLocation().getY());
 
                 // play sounds
                 player.playSound(player, Sound.ITEM_TOTEM_USE, 1, 0);

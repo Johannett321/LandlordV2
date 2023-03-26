@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord;
 
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -69,6 +66,8 @@ public class ChunkBuilder {
         buildEastWall(player.getWorld(), centerX-9, centerZ+8, 18, Material.BARRIER);
         buildSouthWall(player.getWorld(), centerX+8, centerZ-9, 18, Material.BARRIER);
 
+        buildChunkRoof(Bukkit.getWorld("world").getChunkAt(workingChunkX, workingChunkZ));
+
         Main.playerDataManager.addChunkToPlayer(player, workingChunkX, workingChunkZ);
         clearBarriersWithinOwnedChunks(player.getWorld(), Main.playerDataManager.getPlayerData(player));
 
@@ -85,6 +84,8 @@ public class ChunkBuilder {
         buildEastWall(player.getWorld(), centerX-9, centerZ-9, 18, Material.BARRIER);
         buildEastWall(player.getWorld(), centerX-9, centerZ+8, 18, Material.BARRIER);
         buildSouthWall(player.getWorld(), centerX-9, centerZ-9, 18, Material.BARRIER);
+
+        buildChunkRoof(Bukkit.getWorld("world").getChunkAt(workingChunkX, workingChunkZ));
 
         Main.playerDataManager.addChunkToPlayer(player, workingChunkX, workingChunkZ);
         clearBarriersWithinOwnedChunks(player.getWorld(), Main.playerDataManager.getPlayerData(player));
@@ -103,6 +104,8 @@ public class ChunkBuilder {
         buildSouthWall(player.getWorld(), centerX-9, centerZ-10, 18, Material.BARRIER);
         buildSouthWall(player.getWorld(), centerX+8, centerZ-10, 18, Material.BARRIER);
 
+        buildChunkRoof(Bukkit.getWorld("world").getChunkAt(workingChunkX, workingChunkZ));
+
         Main.playerDataManager.addChunkToPlayer(player, workingChunkX, workingChunkZ);
         clearBarriersWithinOwnedChunks(player.getWorld(), Main.playerDataManager.getPlayerData(player));
 
@@ -119,6 +122,8 @@ public class ChunkBuilder {
         buildEastWall(player.getWorld(), centerX-9, centerZ+8, 18, Material.BARRIER);
         buildSouthWall(player.getWorld(), centerX-9, centerZ-9, 18, Material.BARRIER);
         buildSouthWall(player.getWorld(), centerX+8, centerZ-9, 18, Material.BARRIER);
+
+        buildChunkRoof(Bukkit.getWorld("world").getChunkAt(workingChunkX, workingChunkZ));
 
         Main.playerDataManager.addChunkToPlayer(player, workingChunkX, workingChunkZ);
         clearBarriersWithinOwnedChunks(player.getWorld(), Main.playerDataManager.getPlayerData(player));
@@ -172,13 +177,13 @@ public class ChunkBuilder {
         }
     }
 
-    public static void clearChunkOfBarriers (World world, int chunkX, int chunkZ) {
+    public static void clearChunkOfBarriers(World world, int chunkX, int chunkZ) {
         int xStart = chunkX*16;
         int yStart = -64;
         int zStart = chunkZ*16;
 
         for (int x = xStart; x < xStart+16; x++) {
-            for (int y = yStart; y <= yStart+318; y++) {
+            for (int y = yStart; y <= 318; y++) {
                 for (int z = zStart; z < zStart+16; z++) {
                     Location location = new Location(world, x, y, z);
                     if (location.getBlock().getType() == Material.BARRIER) {

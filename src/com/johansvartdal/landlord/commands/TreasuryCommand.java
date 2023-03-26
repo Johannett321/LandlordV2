@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import com.johansvartdal.landlord.events.taxevents.HasteEvent;
 import lombok.Getter;
@@ -42,6 +43,12 @@ public class TreasuryCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
+
+        // check if unlocked
+        if (!LevelManager.featureUnlocked("treasury") && !Properties.DEBUG_MODE) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED));
+            return true;
+        }
 
         // show menu
         if (args.length == 0) {
@@ -184,6 +191,25 @@ public class TreasuryCommand implements CommandExecutor {
             Bank.withdrawTreasury(hastePrice);
 
             LandlordEventManager.startEvent(new HasteEvent(plugin));
+            return true;
+        }else if (args[0].equalsIgnoreCase("withdraw")) {
+            int price = Main.properties.getNumberOfPlayers() * 4000 + 10000;
+
+            // can treasury afford it?
+            if (!Bank.treasuryCanAfford(4000)) {
+                Tools.tellPlayer(new ErrorChat(), player, "Treasury cannot afford a withdrawal. It costs " + price + LangDict.getString(LangDict.CURRENCY));
+                return true;
+            }
+
+            // deposit players
+            for (PlayerData playerData : Main.playerDataManager.getPlayerDataList()) {
+                playerData.depositBalance(4000);
+            }
+
+            // tell players
+            God.speak("The Treasury has ordered a withdrawal! You have all received 4000" +
+                    LangDict.getString(LangDict.CURRENCY) + ". Unfortunately 10000" + LangDict.getString(LangDict.CURRENCY) +
+                    " was lost during the withdrawal");
             return true;
         }
         return false;

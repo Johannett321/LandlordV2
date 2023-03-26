@@ -28,12 +28,7 @@ public class Preparations extends LandlordEvent {
         LanController.getLanMusicController().playAudioFile("countdown.wav", AudioLayer.BACKGROUND);
 
         God.speak("Preparations will start in 5 seconds. Get ready!");
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
-            public void run() {
-                startPrep();
-            }
-        }, Tools.secToTicks(5));
+        Bukkit.getScheduler().runTaskLater(plugin, this::startPrep, Tools.secToTicks(5));
     }
 
     @Override
@@ -167,6 +162,7 @@ public class Preparations extends LandlordEvent {
 
     private void riseBorders() {
         new GameJustStarted(plugin, mainWorld).doStart();
+        LevelManager.startLevel1();
         endEvent(false);
     }
 }

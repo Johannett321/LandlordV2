@@ -47,16 +47,18 @@ public abstract class LandlordEvent implements LandlordEventInterface {
         this.onLandlordEventEndListener = onEventEndListener;
     }
 
-    public void setOnPrepareEndListener(OnLandlordEventEndListener onEventEndListener) {
-        this.onLandlordEventEndListener = onEventEndListener;
-    }
-
     public void endEvent(Boolean cancelled) {
         eventHasEnded = true;
         if (exitLocationChecker != null)  {
             exitLocationChecker.cancel();
         }
-        onLandlordEventEndListener.onEnd();
+
+        // run onEndListener
+        if (onLandlordEventEndListener != null) {
+            onLandlordEventEndListener.onEnd();
+        }
+
+        // update game type
         Main.properties.setGameState(Properties.GameState.NORMAL);
 
         Tools.deleteFile("runningEventType.txt");

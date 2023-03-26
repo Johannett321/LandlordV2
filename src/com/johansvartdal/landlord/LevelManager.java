@@ -43,6 +43,10 @@ public class LevelManager {
     }
 
     public static void startLevel1() {
+        System.out.println("Loading level 1...");
+        if (allLevels == null) {
+            System.out.println("WARNING! Attempting to load level 1, but we have not created level1");
+        }
         currentLevel = getLevel(0);
         currentLevel.justUpgraded();
         Main.properties.setGameState(Properties.GameState.NORMAL);
@@ -242,8 +246,10 @@ public class LevelManager {
 
     public static int getCurrentDisplaySeasonNum() {
         if (currentLevel == null) {
+            System.out.println("Warning! Seasong is 0");
             return 0;
         }
+        System.out.println("Returning season: " + currentLevel.getDisplaySeasonNumber());
         return currentLevel.getDisplaySeasonNumber();
     }
 
@@ -269,27 +275,21 @@ public class LevelManager {
     }
 
     public static int getWildernessPrice() {
-        switch (getCurrentDisplaySeasonNum()) {
-            case 1:
-                return 300;
-            case 2:
-                return 600;
-            case 3:
-                return 900;
-        }
-        return 0;
+        return switch (getCurrentDisplaySeasonNum()) {
+            case 1 -> 300;
+            case 2 -> 600;
+            case 3 -> 900;
+            default -> 0;
+        };
     }
 
     public static int getNetherWildernessPrice() {
-        switch (getCurrentDisplaySeasonNum()) {
-            case 1:
-                return 200;
-            case 2:
-                return 300;
-            case 3:
-                return 400;
-        }
-        return 0;
+        return switch (getCurrentDisplaySeasonNum()) {
+            case 1 -> 200;
+            case 2 -> 300;
+            case 3 -> 400;
+            default -> 0;
+        };
     }
 
     public static ArrayList<ItemStack> getListOfRemainingItems() {
