@@ -27,7 +27,7 @@ public class GameJustStarted {
             Chunk playerChunk = mainWorld.getChunkAt(chunkPosition[0], chunkPosition[1]);
             ChunkBuilder.createChunk((Player) players[i], mainWorld, playerChunk);
 
-            Location location = new Location(mainWorld, playerChunk.getX()*16+8, 256, playerChunk.getZ()*16+8);
+            Location location = new Location(mainWorld, playerChunk.getX()*16+8, 319, playerChunk.getZ()*16+8);
             location = Tools.middlePointBlock(location);
             location = Tools.highestStandingPoint(location);
 

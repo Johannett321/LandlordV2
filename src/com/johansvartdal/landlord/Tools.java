@@ -1,5 +1,7 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.chatentities.ChatEntity;
+import com.johansvartdal.landlord.chatentities.InfoChat;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -36,7 +38,7 @@ public class Tools {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             return reader.lines().collect(Collectors.joining(System.lineSeparator()));
         } catch (IOException e) {
-            e.printStackTrace();
+            if (Properties.DEBUG_MODE) e.printStackTrace();
         }
         return null;
     }
@@ -146,7 +148,7 @@ public class Tools {
             //Read JSON file
             return (JSONObject) jsonParser.parse(reader);
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            if (Properties.DEBUG_MODE) e.printStackTrace();
         }
         return null;
     }
@@ -157,18 +159,39 @@ public class Tools {
             //We can write any JSONArray or JSONObject instance to the file
             file.write(object.toJSONString());
             file.flush();
-
         } catch (IOException e) {
-            e.printStackTrace();
+            if (Properties.DEBUG_MODE) e.printStackTrace();
         }
     }
 
     public static void broadcastMessage(String message) {
-        broadcastMessage(message, ChatColor.WHITE);
+        broadcastMessage(message, ChatColor.WHITE, null);
+    }
+
+    public static void broadcastMessage(String message, Player[] excludePlayers) {
+        broadcastMessage(message, ChatColor.WHITE, excludePlayers);
     }
 
     public static void broadcastMessage(String message, ChatColor chatColor) {
+        broadcastMessage(message, chatColor, null);
+    }
+
+    public static void broadcastMessage(String message, ChatColor chatColor, Player[] excludePlayers) {
         for (Player player : Bukkit.getOnlinePlayers()) {
+            // check if player should be excluded
+            if (excludePlayers != null) {
+                boolean playerShouldBeExcluded = false;
+                for (Player excludedPlayer : excludePlayers) {
+                    if (player.equals(excludedPlayer)) {
+                        playerShouldBeExcluded = true;
+                    }
+                }
+                if (playerShouldBeExcluded) {
+                    continue;
+                }
+            }
+
+            // broadcast the message to the player
             Tools.tellPlayer(player, message, chatColor);
         }
     }
@@ -178,9 +201,9 @@ public class Tools {
     }
 
     public static Location highestStandingPoint(Location location) {
-        for (int y = 256; y > 0; y--) {
+        for (int y = 319; y > -64; y--) {
             location.setY(y);
-            if (!location.getBlock().getType().isAir()) {
+            if (!location.getBlock().getType().isAir() && location.getBlock().getType() != Material.BARRIER) {
                 location.setY(location.getY()+2);
                 location.setX(location.getX());
                 location.setZ(location.getZ());
@@ -236,15 +259,27 @@ public class Tools {
             tellPlayer((Player) player, message, null);
         }
     }
+
     public static void tellPlayer(Player player, String message) {
         tellPlayer(player, message, null);
     }
 
+    public static void tellPlayer(ChatEntity chatEntity, Player player, String message) {
+        tellPlayer(chatEntity, player, message, null);
+    }
+
     public static void tellPlayer(Player player, String message, ChatColor chatColor) {
+        tellPlayer(null, player, message, chatColor);
+    }
+
+    public static void tellPlayer(ChatEntity chatEntity, Player player, String message, ChatColor chatColor) {
+        if (chatEntity == null) {
+            chatEntity = new InfoChat();
+        }
         if (chatColor == null) {
             chatColor = ChatColor.WHITE;
         }
-        player.sendMessage(ChatColor.GREEN + "[INFO] " + chatColor + message);
+        player.sendMessage(chatEntity.getChatColor() + "[" + chatEntity.getDisplayName() + "] " + chatColor + message);
     }
 
     public static void printMenuHeader(Player player, String title) {

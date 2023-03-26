@@ -66,7 +66,7 @@ public class Landlord implements CommandExecutor {
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-                God.speak(opPlayer.getDisplayName() + " is now looking for a suitable location for the game. Please be patient!");
+                Tools.broadcastMessage(opPlayer.getDisplayName()+ " is now looking for a suitable location for the game. Please be patient!", new Player[]{opPlayer});
 
                 Tools.tellPlayer(opPlayer, "You are now in spectator mode. Please find a location you would like to start the game");
                 Tools.tellPlayer(opPlayer, "When you are ready, run '/landlord start'");

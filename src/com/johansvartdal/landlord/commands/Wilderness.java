@@ -78,7 +78,7 @@ public class Wilderness implements CommandExecutor {
             return;
         }
 
-        Bank.withdrawPlayer(player, wildernessPrice);
+        Bank.withdrawPlayer("wilderness", player, wildernessPrice);
         Tools.tellPlayer(player, "Welcome to the wilderness. You have 7 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
         WildernessEvent event = new WildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
@@ -102,7 +102,7 @@ public class Wilderness implements CommandExecutor {
             return;
         }
 
-        Bank.withdrawPlayer(player, minePrice);
+        Bank.withdrawPlayer("wilderness (mine)", player, minePrice);
         Tools.tellPlayer(player, "Welcome to the mine. You have 45 minutes before your " + minePrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
         MiningEvent event = new MiningEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
@@ -125,7 +125,7 @@ public class Wilderness implements CommandExecutor {
             return;
         }
 
-        Bank.withdrawPlayer(player, wildernessPrice);
+        Bank.withdrawPlayer("wilderness (nether)", player, wildernessPrice);
         Tools.tellPlayer(player, "Welcome to nether. You have 7 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
         NetherWildernessEvent event = new NetherWildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
@@ -148,7 +148,7 @@ public class Wilderness implements CommandExecutor {
         }
 
         // perform purchase
-        Bank.withdrawPlayer(player, extensionPrice);
+        Bank.withdrawPlayer("wilderness (extension)", player, extensionPrice);
         event.extend();
         Tools.tellPlayer(player, "Extended " + event.getTitle() + " with " + event.getTextTimeLeft() + " for " + extensionPrice + LangDict.getString("currency"), ChatColor.GREEN);
     }

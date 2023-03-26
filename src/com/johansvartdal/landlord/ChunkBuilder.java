@@ -39,11 +39,21 @@ public class ChunkBuilder {
 
         buildSouthWall(world, centerX-9, centerZ-9, 18, Material.BARRIER);
         buildSouthWall(world, centerX+8, centerZ-9, 18, Material.BARRIER);
+        
+        buildChunkRoof(chunk);
 
         Tools.saveJsonToFile("ReplacedBlocks.json", replacedBlocks);
 
         if (player != null) {
             Main.playerDataManager.getPlayerData(player).addOwnedChunk(chunk.getX(), chunk.getZ());
+        }
+    }
+
+    private static void buildChunkRoof(Chunk chunk) {
+        for (int x = 0; x < 16; x++) {
+            for (int z = 0; z < 16; z++) {
+                chunk.getBlock(x,319,z).setType(Material.BARRIER);
+            }
         }
     }
 
@@ -124,7 +134,7 @@ public class ChunkBuilder {
 
     public static void buildEastWall (World world, int currentBuildX, int currentBuildZ, int length, Material material) {
         for (int x = currentBuildX + 1; x < currentBuildX + length; x++) {
-            for (int y = 1; y < 256; y++) {
+            for (int y = -64; y <= 318; y++) {
                 Location location = new Location(world, x, y, currentBuildZ);
 
                 if (location.getBlock().getType() != Material.AIR &&
@@ -144,7 +154,7 @@ public class ChunkBuilder {
 
     public static void buildSouthWall (World world, int currentBuildX, int currentBuildZ, int length, Material material) {
         for (int z = currentBuildZ + 1; z < currentBuildZ + length; z++) {
-            for (int y = 1; y < 256; y++) {
+            for (int y = -64; y <= 318; y++) {
                 Location location = new Location(world, currentBuildX, y, z);
 
                 if (location.getBlock().getType() != Material.AIR &&
@@ -164,11 +174,11 @@ public class ChunkBuilder {
 
     public static void clearChunkOfBarriers (World world, int chunkX, int chunkZ) {
         int xStart = chunkX*16;
-        int yStart = 1;
+        int yStart = -64;
         int zStart = chunkZ*16;
 
         for (int x = xStart; x < xStart+16; x++) {
-            for (int y = yStart; y < yStart+256; y++) {
+            for (int y = yStart; y <= yStart+318; y++) {
                 for (int z = zStart; z < zStart+16; z++) {
                     Location location = new Location(world, x, y, z);
                     if (location.getBlock().getType() == Material.BARRIER) {

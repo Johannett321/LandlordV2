@@ -15,7 +15,7 @@ public class Properties implements Serializable {
     }
 
     private GameState currentGameState = GameState.NOT_STARTED;
-    public static final boolean DEBUG_MODE = false;
+    public static final boolean DEBUG_MODE = true;
 
     public Properties() {
         if (!Tools.fileExists("Properties.json")) {

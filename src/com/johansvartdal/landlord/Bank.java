@@ -1,7 +1,9 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.chatentities.BankChat;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
@@ -21,15 +23,17 @@ public class Bank {
         return Main.playerDataManager.getPlayerData(player).canAfford(price);
     }
 
-    public static void withdrawPlayer(Player player, int amount) {
+    public static void withdrawPlayer(String youJustPaidFor, Player player, int amount) {
         int tax = calculateWithdrawTaxAmount(amount);
         taxBank += tax;
 
-        Tools.tellPlayer(player, LangDict.getString("youJustPaid") + tax +
-                LangDict.getString("currency") +
-                " (" + getWithdrawTaxPercentDisplay() +
-                "%)"+
-                LangDict.getString("inTax"));
+        // inform player
+        Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + amount +
+                LangDict.getString(LangDict.CURRENCY) + " for " + youJustPaidFor + " + " +
+                tax + LangDict.getString("currency") + " (" + getWithdrawTaxPercentDisplay()
+                + "%)"+ LangDict.getString("inTax"), ChatColor.GRAY);
+
+        // withdraw player and save
         Main.playerDataManager.getPlayerData(player).withdrawBalance(amount + tax);
         save();
     }

@@ -128,6 +128,7 @@ public class Main extends JavaPlugin implements Listener {
 		// create the playerdata file
 		PlayerData playerData = new PlayerData(event.getPlayer().getWorld(), event.getPlayer());
 		playerDataManager.addNewPlayer(playerData);
+		event.setJoinMessage(ChatColor.DARK_PURPLE + LangDict.getString("god") + ChatColor.WHITE + LangDict.getString("newCitizen") + event.getPlayer().getDisplayName());
 
 		// teleport to start location
 		Bukkit.getScheduler().runTaskLater(this, ()-> {

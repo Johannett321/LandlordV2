@@ -98,15 +98,12 @@ public class Capture implements CommandExecutor {
         player.getInventory().addItem(items);
 
         // withdraw
-        Bank.withdrawPlayer(player, priceToWithdraw);
+        Bank.withdrawPlayer("capturing an animal", player, priceToWithdraw);
 
         // remove animal
         player.playEffect(near.get(entityIndexLowest).getLocation(), Effect.ELECTRIC_SPARK, null);
         player.playSound(near.get(entityIndexLowest).getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1, 0);
         near.get(entityIndexLowest).remove();
-
-        // inform player
-        Tools.tellPlayer(player, "You successfully captured the animal!", ChatColor.GREEN);
         return true;
     }
 }

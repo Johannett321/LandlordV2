@@ -25,7 +25,6 @@ public class PlayerData {
     public PlayerData(World mainWorld, Player player) {
         this.username = player.getName();
         this.mainWorld = mainWorld;
-        God.speak(LangDict.getString("newCitizen") + player.getDisplayName());
         save();
     }
 

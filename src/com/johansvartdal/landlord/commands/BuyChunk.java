@@ -88,14 +88,14 @@ public class BuyChunk implements CommandExecutor {
 		 */
 
 		// Withdraw player
-		Bank.withdrawPlayer(player, chunkPurchasePrice);  // money
+		Bank.withdrawPlayer("a chunk", player, chunkPurchasePrice);  // money
 		Main.playerDataManager.getPlayerData(player).withdrawChunkPoint();  // chunk points
 
 		// Unlock chunk using the animation
 		playEffectAndUnlock(player, direction);
 
 		// Inform everyone
-		Tools.broadcastMessage(player.getDisplayName() + " just bought a new chunk!");
+		Tools.broadcastMessage(player.getDisplayName() + " just bought a new chunk!", new Player[]{player});
 		return true;
 	}
 

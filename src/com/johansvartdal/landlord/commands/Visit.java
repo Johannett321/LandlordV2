@@ -113,7 +113,7 @@ public class Visit implements CommandExecutor {
                 return;
             }
 
-            Bank.withdrawPlayer(player, StaticValues.VISIT_PRICE);
+            Bank.withdrawPlayer("a visit", player, StaticValues.VISIT_PRICE);
             Bank.depositPlayer(player, StaticValues.VISIT_PRICE);
             wantsVisits.get(i).visitor.setGameMode(GameMode.ADVENTURE);
             wantsVisits.get(i).visitor.teleport(wantsVisits.get(i).host);
