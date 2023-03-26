@@ -124,6 +124,10 @@ public class LevelManager {
     public static String getRemainingItemsText() {
         StringBuilder remainingText = new StringBuilder();
 
+        if (currentLevel == null) {
+            return "Not available at the moment";
+        }
+
         ArrayList<ItemStack> remaining = currentLevel.getRemainingItemsForNextLevel();
         for (ItemStack itemStack : remaining) {
             if (!remainingText.toString().equals("")) {
@@ -183,8 +187,8 @@ public class LevelManager {
 
     public static void load() {
         JSONObject lvlInfo = Tools.loadJson("Level.json");
+        populateLevels();
         if (lvlInfo != null) {
-            populateLevels();
             currentLevel = getLevel((int) (long) lvlInfo.get("currentLevel"));
             if (lvlInfo.containsKey("remainingItems")) {
                 currentLevel.setRemainingItems(itemsFromJSONArr((JSONArray) lvlInfo.get("remainingItems")));

@@ -111,13 +111,13 @@ public class Main extends JavaPlugin implements Listener {
 			return;
 		}
 
-		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
-
 		// kick player if game already running
 		if (properties.gameHasStarted()) {
 			event.getPlayer().kickPlayer("You are not allowed to join. The game is already running");
 			return;
 		}
+
+		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
 
 		// make sure number of players never exceeds max number
 		if (playerDataManager.getPlayerDataList().size() >= StaticValues.MAX_PLAYERS) {
@@ -130,7 +130,10 @@ public class Main extends JavaPlugin implements Listener {
 		playerDataManager.addNewPlayer(playerData);
 
 		// teleport to start location
-		event.getPlayer().teleport(StaticValues.GAME_START_LOCATION);
+		Bukkit.getScheduler().runTaskLater(this, ()-> {
+			event.getPlayer().teleport(StaticValues.GAME_START_LOCATION);
+		}, Tools.secToTicks(1));
+
 
 		// inform OP about commands
 		if (event.getPlayer().isOp()) {

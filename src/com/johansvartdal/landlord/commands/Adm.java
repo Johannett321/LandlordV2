@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitTask;
 
 public class Adm implements CommandExecutor {
 
@@ -34,6 +35,7 @@ public class Adm implements CommandExecutor {
         if (strings.length == 0) {
             Tools.printMenuHeader(player, "COMMANDS");
             Tools.printMenuOption(player, "/adm", "clear");
+            Tools.printMenuOption(player, "/adm", "lockday");
             Tools.printMenuOption(player, "/adm", "lladv");
             Tools.printMenuOption(player, "/adm", "motherload");
             Tools.printMenuOption(player, "/adm", "forceup");
@@ -43,6 +45,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "countdown");
             Tools.printMenuOption(player, "/adm", "haste");
             Tools.printMenuOption(player, "/adm", "testtreasury");
+            Tools.printMenuOption(player, "/adm", "forcelvl1");
             return true;
         }
 
@@ -75,8 +78,33 @@ public class Adm implements CommandExecutor {
             player.addPotionEffect(potionEffect);
         }else if (strings[0].equals("testtreasury")) {
             testTreasury(player);
+        }else if (strings[0].equals("lockday")) {
+            dayLocked = !dayLocked;
+            if (dayLocked) {
+                Tools.broadcastMessage("Day is now locked!", ChatColor.GREEN);
+                lockDay();
+            }else {
+                Tools.broadcastMessage("Day is no longer locked!", ChatColor.GREEN);
+                if (dayLocker != null) {
+                    dayLocker.cancel();
+                }
+            }
+        }else if (strings[0].equals("forcelvl1")) {
+            LevelManager.startLevel1();
         }
         return true;
+    }
+
+    boolean dayLocked = false;
+    BukkitTask dayLocker = null;
+
+    private void lockDay() {
+        if (dayLocked) {
+            Bukkit.getWorld("lladv").setTime(3000);
+            Bukkit.getWorld("world").setTime(3000);
+
+            dayLocker = Bukkit.getScheduler().runTaskLater(plugin, this::lockDay, Tools.secToTicks(60*2));
+        }
     }
 
     private void testTreasury(Player player) {

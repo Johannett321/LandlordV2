@@ -140,9 +140,6 @@ public class PlayerData {
     public void load() {
         JSONObject obj = Tools.loadJson("players/" + username + ".json");
         System.out.println("LOADED OBJ: " + obj.toJSONString());
-        if (obj == null) {
-            System.out.println("CRITICAL ERRORR!!!!! MAYDAY");
-        }
 
         // Balance
         currentBalance = (int) ((long) obj.get("Balance"));

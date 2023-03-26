@@ -2,6 +2,7 @@ package com.johansvartdal.landlord;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class GameJustStarted {
 
@@ -30,11 +31,18 @@ public class GameJustStarted {
             location = Tools.middlePointBlock(location);
             location = Tools.highestStandingPoint(location);
 
+            // teleport players home
             currentPlayer.teleport(location);
-            currentPlayer.setBedSpawnLocation(location);
-
+            currentPlayer.setBedSpawnLocation(location, true);
             Main.playerDataManager.getPlayerData((Player) players[i]).setHome(location);
+
+            // show title
             currentPlayer.sendTitle(LangDict.getString("welcomeTitle") + ChatColor.DARK_PURPLE + "Landlord", ChatColor.RED + "V2");
+
+            // give players ice
+            ItemStack iceBlocks = new ItemStack(Material.ICE);
+            iceBlocks.setAmount(2);
+            currentPlayer.getInventory().addItem(iceBlocks);
         }
     }
 
