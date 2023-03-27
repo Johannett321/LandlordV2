@@ -191,7 +191,7 @@ public class Bank {
         int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
 
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(player, "You just paid " + tax + LangDict.getString("currency") + " in wealth tax");
+            Tools.tellPlayer(player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inWealthTax"));
         }
     }
 
@@ -201,7 +201,7 @@ public class Bank {
         int tax = chunkPoints*StaticValues.CHUNK_TAX;
 
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(player, "You just paid " + tax + LangDict.getString("currency") + " in property tax (number of owned chunks * " + StaticValues.CHUNK_TAX +")");
+            Tools.tellPlayer(player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inPropertyTax") + StaticValues.CHUNK_TAX +")");
         }
     }
 
@@ -216,7 +216,7 @@ public class Bank {
             withdrawPlayerWithoutTax(player, bal);
             taxBank += bal;
 
-            JailManager.sendToJail(plugin, player, "you could not afford to pay your tax!", "You're out! Make sure to have enough money next time!", 60*7);
+            JailManager.sendToJail(plugin, player, LangDict.getString("jailReasonTax"), LangDict.getString("jailOutTax"), 60*7);
             save();
             return false;
         }

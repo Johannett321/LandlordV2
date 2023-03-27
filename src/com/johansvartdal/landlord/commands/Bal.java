@@ -26,11 +26,11 @@ public class Bal implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
-		Tools.printMenuHeader(player, "Balance");
-		Tools.printMenuOption(player, "Current income tax:", Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
-		Tools.printMenuOption(player, "Current VAT:", Bank.getWithdrawTaxPercentDisplay() + "%");
-		Tools.printMenuOption(player, "Current wealth tax:", Bank.getWealthTaxPercentDisplayForPlayer(player) + "%");
-		Tools.printMenuOption(player, "Current balance:", Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString("currency"));
+		Tools.printMenuHeader(player, LangDict.getString("balance"));
+		Tools.printMenuOption(player, LangDict.getString("currentIncomeTax"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
+		Tools.printMenuOption(player, LangDict.getString("currentVAT"), Bank.getWithdrawTaxPercentDisplay() + "%");
+		Tools.printMenuOption(player, LangDict.getString("currentWealthTax"), Bank.getWealthTaxPercentDisplayForPlayer(player) + "%");
+		Tools.printMenuOption(player, LangDict.getString("currentBalance"), Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString("currency"));
 		return true;
 	}
 }

@@ -40,9 +40,9 @@ public class BuyChunk implements CommandExecutor {
 
 		// INFO ABOUT CHUNKS
 		if (args[0].equals("info")) {
-			Tools.printMenuHeader(player, "CHUNK INFO");
-			Tools.printMenuOption(player, "Chunks available:", String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
-			Tools.printMenuOption(player, "Price of chunk:", chunkPurchasePrice + LangDict.getString("currency") + " + tax");
+			Tools.printMenuHeader(player, LangDict.getString("chunkInfo"));
+			Tools.printMenuOption(player, LangDict.getString("chunkPoints"), String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
+			Tools.printMenuOption(player, LangDict.getString("priceOfNextChunk"), chunkPurchasePrice + LangDict.getString("currency") + " + tax");
 			return true;
 		}
 
@@ -63,13 +63,13 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure player can afford with ChunkPoints
 		if (!Main.playerDataManager.getPlayerData(player).hasChunkPoints()) {
-			Tools.tellPlayer(player, "You don't have any chunk points left", ChatColor.RED);
+			Tools.tellPlayer(player, LangDict.getString("noChunkPointsLeft"), ChatColor.RED);
 			return true;
 		}
 
 		// Make sure player can afford it
 		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
-			Tools.tellPlayer(player, "You need " + chunkPurchasePrice + LangDict.getString("currency") + " + tax to purchase a new chunk");
+			Tools.tellPlayer(player, LangDict.getString("youNeed") + chunkPurchasePrice + LangDict.getString("currency") + LangDict.getString("toPurchaseAChunk"));
 			return true;
 		}
 
@@ -79,7 +79,7 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure the chunk is available for purchase
 		if (!ChunkBuilder.chunkIsAvailableForPurchaseBy(player, chunkAtDirection)) {
-			Tools.tellPlayer(player, "You cannot purchase this chunk", ChatColor.RED);
+			Tools.tellPlayer(player, LangDict.getString("cannotPurchaseThisChunk"), ChatColor.RED);
 			return true;
 		}
 
@@ -88,14 +88,14 @@ public class BuyChunk implements CommandExecutor {
 		 */
 
 		// Withdraw player
-		Bank.withdrawPlayer("a chunk", player, chunkPurchasePrice);  // money
+		Bank.withdrawPlayer(LangDict.getString("aChunk"), player, chunkPurchasePrice);  // money
 		Main.playerDataManager.getPlayerData(player).withdrawChunkPoint();  // chunk points
 
 		// Unlock chunk using the animation
 		playEffectAndUnlock(player, direction);
 
 		// Inform everyone
-		Tools.broadcastMessage(player.getDisplayName() + " just bought a new chunk!", new Player[]{player});
+		Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("justBoughtAChunk"), new Player[]{player});
 		return true;
 	}
 

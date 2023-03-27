@@ -1,5 +1,31 @@
 {
   "god": "[The Landlord]",
+
+  "currency": "USD",
+  "balance": "Balance",
+  "currentIncomeTax": "Current income tax:",
+  "currentVAT": "Current VAT:",
+  "currentWealthTax": "Current wealth tax:",
+  "currentBalance": "Current balance:",
+
+  "chunkInfo": "CHUNK INFO",
+  "chunkPoints": "Chunks points:",
+  "priceOfNextChunk": "Price of next chunk:",
+  "noChunkPointsLeft": "You don't have any chunk points left",
+  "youNeed": "You need ",
+  "toPurchaseAChunk": " + tax to purchase a new chunk",
+  "cannotPurchaseThisChunk": "You cannot purchase this chunk",
+  "aChunk": "a chunk",
+  "justBoughtAChunk": " just bought a new chunk!",
+
+  "toCapture": " to capture an animal",
+  "toCaptureVillager": " to capture a villager",
+  "captureGetCloser": "You have to get closer to the animal",
+  "cannotCaptureAnimal": "This animal cannot be captured",
+
+  "cmdNotNow": "You cannot execute this command at the moment",
+  "cmdNotUnlocked": "This command has not been unlocked yet",
+
   "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
   "welcomeTitle": "Welcome to ",
   "listOfHelpful": "Items you must gather in the preparation to be able to level up: Saplings from oak trees, sugar canes, seeds",
@@ -9,14 +35,19 @@
   "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
   "risingBorders": "WARNING: Please stand still! Borders are rising!",
   "newCitizen": "A new citizen has arrived! Please welcome ",
+
   "justDonated": " just donated the last ",
   "toCommunity": " to the community!",
-  "youJustPaid": "You just paid ",
-  "inTax": " in tax",
-  "governmentBank": "The bank",
-  "cmdNotNow": "You cannot execute this command at the moment",
-  "cmdNotUnlocked": "This command has not been unlocked yet",
-  "currency": "USD",
-  "treasurySentinel": "The Treasury"
 
+  "youJustPaid": "You just paid ",
+  "inPropertyTax": " in property tax (number of owned chunks * ",
+  "inTax": " in tax",
+  "inWealthTax": " in wealth tax",
+  "forCapturing": "capturing an animal",
+
+  "governmentBank": "The bank",
+
+  "treasurySentinel": "The Treasury",
+  "jailReasonTax": "you could not afford to pay your tax!",
+  "jailOutTax": "You're out! Make sure to have enough money next time!"
 }

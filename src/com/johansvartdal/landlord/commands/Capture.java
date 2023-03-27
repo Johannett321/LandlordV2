@@ -22,10 +22,6 @@ public class Capture implements CommandExecutor {
         plugin.getCommand("capture").setExecutor(this);
     }
 
-    public static String getCaptureAnimalsString() {
-        return "Cow, Sheep, Chicken, Pig, LLama, Squid, Villager";
-    }
-
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (Tools.stateNotNormal(commandSender)) {
@@ -44,7 +40,7 @@ public class Capture implements CommandExecutor {
         // Make sure player has enough bal
         int priceToWithdraw = StaticValues.CAPTURE_PRICE;
         if (!Bank.playerCanAfford(player, StaticValues.CAPTURE_PRICE)) {
-            Tools.tellPlayer(player, "You need " + StaticValues.CAPTURE_PRICE + LangDict.getString("currency") + " to capture an animal", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("youNeed") + StaticValues.CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCapture"), ChatColor.RED);
             return true;
         }
 
@@ -62,7 +58,7 @@ public class Capture implements CommandExecutor {
         }
 
         if (near.size() == 0) {
-            Tools.tellPlayer(player, "You have to get closer to the animal", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("captureGetCloser"), ChatColor.RED);
             return true;
         }
 
@@ -86,11 +82,11 @@ public class Capture implements CommandExecutor {
             if (Bank.playerCanAfford(player, StaticValues.VILLAGER_CAPTURE_PRICE)) {
                 items = new ItemStack(Material.VILLAGER_SPAWN_EGG);
             }else {
-                Tools.tellPlayer(player, "You need at least " + StaticValues.VILLAGER_CAPTURE_PRICE + LangDict.getString("currency") + " to capture a villager", ChatColor.RED);
+                Tools.tellPlayer(player, LangDict.getString("youNeed") + StaticValues.VILLAGER_CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCaptureVillager"), ChatColor.RED);
                 return true;
             }
         }else {
-            Tools.tellPlayer(player, "This animal cannot be captured", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("cannotCaptureAnimal"), ChatColor.RED);
             return true;
         }
 
@@ -98,7 +94,7 @@ public class Capture implements CommandExecutor {
         player.getInventory().addItem(items);
 
         // withdraw
-        Bank.withdrawPlayer("capturing an animal", player, priceToWithdraw);
+        Bank.withdrawPlayer(LangDict.getString("forCapturing"), player, priceToWithdraw);
 
         // remove animal
         player.playEffect(near.get(entityIndexLowest).getLocation(), Effect.ELECTRIC_SPARK, null);
