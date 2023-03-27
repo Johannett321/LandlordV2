@@ -37,7 +37,7 @@ public class Stocks implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            Tools.printMenuHeader(player, "Commands");
+            Tools.printMenuHeader(player, LangDict.getString("stockCommands"));
             Tools.printMenuOption(player, "/stocks", "buy [stockname] [amount]");
             Tools.printMenuOption(player, "/stocks", "sell [stockname]");
             Tools.printMenuOption(player, "/stocks", "info [stockname]");
@@ -62,7 +62,7 @@ public class Stocks implements CommandExecutor {
     }
 
     private void showList(Player player) {
-        Tools.printMenuHeader(player, "STOCKS");
+        Tools.printMenuHeader(player, LangDict.getString("stocks"));
         for (Stock stock : StockManager.getAllStocks()) {
             Tools.printMenuOption(player, stock.getDisplayName() + " (" + stock.getID() + "):", stock.getCurrentPrice() + LangDict.getString("currency"));
         }
@@ -70,13 +70,13 @@ public class Stocks implements CommandExecutor {
 
     private void buyStocks(Player player, String[] args) {
         if (args.length < 3) {
-            Tools.tellPlayer(player, "Invalid use of command. Please type /stocks for info about command usage", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("invalidCommandUse"), ChatColor.RED);
             return;
         }
         String stockName = args[1];
         Stock stock = StockManager.getStockByID(stockName);
         if (stock == null) {
-            Tools.tellPlayer(player, "Could not find stock with name " + stockName, ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("couldNotFindStockWithName") + stockName, ChatColor.RED);
             return;
         }
 
@@ -85,12 +85,12 @@ public class Stocks implements CommandExecutor {
         int totalPrice = price*amount;
 
         if (!Bank.playerCanAffordTaxFree(player, totalPrice)) {
-            Tools.tellPlayer(player, "You cannot afford " + amount + " " + stockName + " stocks for " + totalPrice + " + tax", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("cannotAfford") + amount + " " + stockName + LangDict.getString("stocksFor") + totalPrice + LangDict.getString("plusTax"), ChatColor.RED);
             return;
         }
 
         int platformFee = (int) (totalPrice*0.03);
-        Tools.tellPlayer(player, "You just paid a platform fee of " + platformFee + LangDict.getString("currency") + " (3%)");
+        Tools.tellPlayer(player, LangDict.getString("justPaidPlatformFee") + platformFee + LangDict.getString("currency") + " (3%)");
         Bank.withdrawPlayerWithoutTax(player, totalPrice + platformFee);
 
         ItemStack itemStack = new ItemStack(Material.PAPER);

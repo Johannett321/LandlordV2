@@ -147,7 +147,7 @@ public class TreasuryCommand implements CommandExecutor {
 
     private void voteForPlayer(Player player, String voteUsername) {
         if (voteUsername.equalsIgnoreCase(player.getDisplayName()) && !Properties.DEBUG_MODE) {
-            Tools.tellPlayer(player, "You cannot vote for yourself!", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
             return;
         }
         for (VoteHolder voteHolder : treasuryPlayers) {

@@ -1,18 +1,25 @@
 {
   "god": "[The Landlord]",
 
+  "cmdNotNow": "You cannot execute this command at the moment",
+  "cmdNotUnlocked": "This command has not been unlocked yet",
+  "youAreNotAllowed": "You are not allowed to use this command",
+  "invalidCommandUse": "Invalid use of command",
+
   "currency": "USD",
   "balance": "Balance",
   "currentIncomeTax": "Current income tax:",
   "currentVAT": "Current VAT:",
   "currentWealthTax": "Current wealth tax:",
   "currentBalance": "Current balance:",
+  "youNeed": "You need ",
+  "cannotAfford": "You cannot afford ",
+  "plusTax": " + tax",
 
   "chunkInfo": "CHUNK INFO",
   "chunkPoints": "Chunks points:",
   "priceOfNextChunk": "Price of next chunk:",
   "noChunkPointsLeft": "You don't have any chunk points left",
-  "youNeed": "You need ",
   "toPurchaseAChunk": " + tax to purchase a new chunk",
   "cannotPurchaseThisChunk": "You cannot purchase this chunk",
   "aChunk": "a chunk",
@@ -23,8 +30,47 @@
   "captureGetCloser": "You have to get closer to the animal",
   "cannotCaptureAnimal": "This animal cannot be captured",
 
-  "cmdNotNow": "You cannot execute this command at the moment",
-  "cmdNotUnlocked": "This command has not been unlocked yet",
+  "bonusCollectedAlready": "You have already collected your bonus today",
+  "lostBonus": "Oh no! You've just lost your bonus of ",
+  "justCollectedBonus": "You just collected you daily bonus of ",
+
+  "aMagicSpell": "a magic spell",
+  "playerPaidForSpell": " has paid for a magic spell!",
+
+  "notRequiredForUpgrade": "This item is not required for upgrade",
+
+  "teleportedHome": "You have magically been teleported home!",
+  "onlySetHomeInHomeChunk": "You can only set your home inside a chunk you own",
+  "homeUpdated": "Your home was updated",
+
+  "tradeCommandOnlyInTrade": "The trade location must be set within the trade chunk",
+  "tradeUpdated": "Trade center location updated!",
+
+  "stockCommands": "STOCK COMMANDS",
+  "stocks": "STOCKS",
+  "stocksFor": " stocks for ",
+  "couldNotFindStockWithName": "Could not find stock with name ",
+  "justPaidPlatformFee": "You just paid a platform fee of ",
+
+  "gameAlreadyRunning": "The game is already running!",
+  "youMustConfigFirst": "You must run '/landlord config' before you can run this command",
+  "isNowLookingForLoc": " is now looking for a suitable location for the game. Please be patient!",
+  "pleaseFindLoc": "You are now in spectator mode. Please find a location you would like to start the game",
+  "runLandlordStart": "When you are ready, run '/landlord start'",
+
+  "itemCannotBeSold": "Item cannot be sold",
+  "cannotSellStock": "You cannot sell this item. If it is a stock, use /stocks sell [stockname]",
+  "item": "Item:",
+  "currentValue": "Current value:",
+  "toSell": " to sell.",
+  "youJustSold": "You just sold ",
+  "for": " for ",
+
+  "cannotUseOnYourself": "You cannot use this command on yourself",
+  "playerNotInChunk": "The player is not within one of your chunks",
+  "playerSentHome": "Player was sent home",
+  "sentHomeByOwner": "You were sent home by the owner",
+  "couldNotFindPlayer": "Could not find the player: ",
 
   "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
   "welcomeTitle": "Welcome to ",
@@ -40,6 +86,7 @@
   "toCommunity": " to the community!",
 
   "youJustPaid": "You just paid ",
+  "forThisCommand": " + tax for this command",
   "inPropertyTax": " in property tax (number of owned chunks * ",
   "inTax": " in tax",
   "inWealthTax": " in wealth tax",

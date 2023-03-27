@@ -54,13 +54,13 @@ public class Sell implements CommandExecutor {
         BuySellManager.AmountWorth currentWorth = BuySellManager.getWorth(itemStack.getType());
         if (currentWorth.getWorth() == 0) {
             Tools.printMenuHeader(player, "INFO");
-            Tools.printMenuOption(player, "Error", "Item cannot be sold or purchased");
+            Tools.printMenuOption(player, "Error:", LangDict.getString("itemCannotBeSold"));
             return;
         }
 
         Tools.printMenuHeader(player, "INFO");
-        Tools.printMenuOption(player, "Item:", itemStack.getType().name());
-        Tools.printMenuOption(player, "Current value:", String.valueOf(currentWorth.getWorth()));
+        Tools.printMenuOption(player, LangDict.getString("item"), itemStack.getType().name());
+        Tools.printMenuOption(player, LangDict.getString("currentValue"), String.valueOf(currentWorth.getWorth()));
 
         /*
         int worthAt1 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60));
@@ -77,7 +77,7 @@ public class Sell implements CommandExecutor {
 
          */
 
-        Tools.printMenuOption(player, "Tax percentage:", Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
+        Tools.printMenuOption(player, LangDict.getString("currentVAT"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
     }
 
     private void sellHand(Player player) {
@@ -86,19 +86,19 @@ public class Sell implements CommandExecutor {
 
         if (itemType == Material.PAPER) {
             // STOCK!!!
-            Tools.tellPlayer(player, "You cannot sell this item. If it is a stock, use /stocks sell [itemname]", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("cannotSellStock"), ChatColor.RED);
             return;
         }
 
         BuySellManager.AmountWorth amountWorth = BuySellManager.getWorth(itemType);
 
         if (amountWorth.getWorth() == 0) {
-            Tools.tellPlayer(player, "You cannot sell the current item in your hand!", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("itemCannotBeSold"), ChatColor.RED);
             return;
         }
 
         if (itemStack.getAmount() < amountWorth.getAmountNeeded()) {
-            Tools.tellPlayer(player, "You need at least " + amountWorth.getAmountNeeded() + " " + itemType.name() + " to sell.", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
             return;
         }
 
@@ -106,7 +106,7 @@ public class Sell implements CommandExecutor {
         player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount()-amountWorth.getAmountNeeded());
         Bank.depositPlayer(player, amountWorth.getWorth());
 
-        Tools.tellPlayer(player, "You just sold " + amountWorth.getAmountNeeded() + " " + itemType.name() + " for " + amountWorth.getWorth() + LangDict.getString("currency"));
+        Tools.tellPlayer(player, LangDict.getString("youJustSold") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("for") + amountWorth.getWorth() + LangDict.getString("currency"));
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 
@@ -136,13 +136,13 @@ public class Sell implements CommandExecutor {
         }
 
         if (amountSold == 0) {
-            Tools.tellPlayer(player, "You need at least " + amountWorth.getAmountNeeded() + " " + itemType.name() + " to sell.", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
             return;
         }
 
         // TELL PLAYER
         Bank.depositPlayer(player, amountToDeposit);
-        Tools.tellPlayer(player, "You just sold " + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + " for " + (amountSold * amountWorth.getWorth()), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("youJustSold") + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + LangDict.getString("for") + (amountSold * amountWorth.getWorth()), ChatColor.GREEN);
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 }

@@ -31,7 +31,7 @@ public class Home implements CommandExecutor {
         // end event if player is in one
         if (PlayerEventManager.playerIsInEvent(player)) {
             if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {
-                Tools.tellPlayer(player, "You cannot teleport at the moment", ChatColor.RED);
+                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
                 return true;
             }
             PlayerEventManager.forceEndPlayerEvent(player);
@@ -41,7 +41,7 @@ public class Home implements CommandExecutor {
         PlayerData pd = Main.playerDataManager.getPlayerData(player);
         Location location = pd.getHomeLocation();
         player.teleport(location);
-        Tools.tellPlayer(player, "You have magically been teleported home!");
+        Tools.tellPlayer(player, LangDict.getString("teleportedHome"));
 
         // set game mode
         player.setGameMode(GameMode.SURVIVAL);

@@ -29,17 +29,17 @@ public class SetTrade implements CommandExecutor {
         Player player = (Player) sender;
 
         if (!player.isOp()) {
-            Tools.tellPlayer(player, "This command can only be run by an OP", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
             return true;
         }
 
         if (!Main.tradeCenter.getLocation().getChunk().equals(player.getLocation().getChunk())) {
-            Tools.tellPlayer(player, "The trade location must be set within the trade chunk", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("tradeCommandOnlyInTrade"), ChatColor.RED);
             return true;
         }
 
         Main.tradeCenter.setLocation(player.getLocation());
-        Tools.tellPlayer(player, "Trade center location updated!", ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("tradeUpdated"), ChatColor.GREEN);
         return true;
     }
 }

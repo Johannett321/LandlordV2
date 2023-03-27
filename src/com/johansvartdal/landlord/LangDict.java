@@ -13,6 +13,7 @@ public class LangDict {
     public static final String CMD_NOT_UNLOCKED = "cmdNotUnlocked";
     public static final String TREASURY_SENTINEL = "treasurySentinel";
     public static final String WELCOME_TITLE = "welcomeTitle";
+    public static final String YOU_ARE_NOT_ALLOWED = "youAreNotAllowed";
     private static JSONObject english;
     private static JSONObject currentLanguage;
 

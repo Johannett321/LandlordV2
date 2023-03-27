@@ -35,19 +35,18 @@ public class Day implements CommandExecutor {
 		}
 
 		if (!Bank.playerCanAfford(player, commandPrice)) {
-			Tools.tellPlayer(player, "You cannot afford this command (" + commandPrice + LangDict.getString("currency") + " + tax)", ChatColor.RED);
+			Tools.tellPlayer(player, LangDict.getString("youNeed") + commandPrice + LangDict.getString("currency") + LangDict.getString("forThisCommand"), ChatColor.RED);
 			return true;
 		}
 
-		Bank.withdrawPlayer("a magic spell", player, commandPrice);
+		Bank.withdrawPlayer(LangDict.getString("aMagicSpell"), player, commandPrice);
 
 		World world = player.getWorld();
 		world.setTime(0);
 		world.setStorm(false);
 
-		God.speak(player.getDisplayName() + " has paid for a magic spell!");
+		God.speak(player.getDisplayName() + LangDict.getString("playerPaidForSpell"));
 		Tools.playSoundForEveryone(Sound.ENTITY_LIGHTNING_BOLT_THUNDER);
 		return false;
 	}
-
 }

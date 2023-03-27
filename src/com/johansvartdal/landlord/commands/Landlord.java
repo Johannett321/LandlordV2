@@ -22,13 +22,13 @@ public class Landlord implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
         if (!player.isOp()) {
-            commandSender.sendMessage("You are not allowed to use this command");
+            Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
             return true;
         }
 
         if (strings.length < 1) {
             Tools.printMenuHeader(player, "COMMANDS");
-            Tools.printMenuOption(player, "/landlord", "init");
+            Tools.printMenuOption(player, "/landlord", "config");
             Tools.printMenuOption(player, "/landlord", "start");
             return true;
         }
@@ -36,12 +36,12 @@ public class Landlord implements CommandExecutor {
         // START GAME
         if (strings[0].equalsIgnoreCase("start")) {
             if (Main.properties.gameHasStarted()) {
-                commandSender.sendMessage("The game is already running!");
+                commandSender.sendMessage(LangDict.getString("gameAlreadyRunning"));
                 return true;
             }
 
             if (player.getWorld().equals(Bukkit.getWorld("lladv"))) {
-                Tools.tellPlayer(player, "You must run '/landlord config' before you can run this command", ChatColor.RED);
+                Tools.tellPlayer(player, LangDict.getString("youMustConfigFirst"), ChatColor.RED);
                 return true;
             }
 
@@ -66,10 +66,10 @@ public class Landlord implements CommandExecutor {
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-                Tools.broadcastMessage(opPlayer.getDisplayName()+ " is now looking for a suitable location for the game. Please be patient!", new Player[]{opPlayer});
+                Tools.broadcastMessage(opPlayer.getDisplayName()+ LangDict.getString("isNowLookingForLoc"), new Player[]{opPlayer});
 
-                Tools.tellPlayer(opPlayer, "You are now in spectator mode. Please find a location you would like to start the game");
-                Tools.tellPlayer(opPlayer, "When you are ready, run '/landlord start'");
+                Tools.tellPlayer(opPlayer, LangDict.getString("pleaseFindLoc"));
+                Tools.tellPlayer(opPlayer, LangDict.getString("runLandlordStart"));
                 opPlayer.setGameMode(GameMode.SPECTATOR);
             }
         }, Tools.secToTicks(2));

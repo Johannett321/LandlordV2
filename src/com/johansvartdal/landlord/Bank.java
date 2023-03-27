@@ -29,7 +29,7 @@ public class Bank {
 
         // inform player
         Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + amount +
-                LangDict.getString(LangDict.CURRENCY) + " for " + youJustPaidFor + " + " +
+                LangDict.getString(LangDict.CURRENCY) + LangDict.getString("for") + youJustPaidFor + " + " +
                 tax + LangDict.getString("currency") + " (" + getWithdrawTaxPercentDisplay()
                 + "%)"+ LangDict.getString("inTax"), ChatColor.GRAY);
 
