@@ -29,7 +29,7 @@ public class Upgrade implements CommandExecutor {
 		Player player = (Player) sender;
 
 		if (args.length == 0) {
-			Tools.printMenuHeader(player, "COMMANDS");
+			Tools.printMenuHeader(player, LangDict.getString("commands"));
 			Tools.printMenuOption(player, "/upgrade", "info");
 			Tools.printMenuOption(player, "/upgrade", "accept");
 			if (player.isOp()) {
@@ -39,19 +39,19 @@ public class Upgrade implements CommandExecutor {
 		}
 
 		if (args[0].equals("info")) {
-			Tools.printMenuHeader(player, "UPGRADE INFO");
-			Tools.printMenuOption(player, "Current level: ", String.valueOf(LevelManager.getCurrentDisplayLevelNum()));
-			Tools.printMenuOption(player, "Donations remaining: ", LevelManager.getRemainingItemsText());
-			Tools.printMenuOption(player, "Players accepted: ", LevelManager.getAcceptedPlayersText());
+			Tools.printMenuHeader(player, LangDict.getString("upgradeInfo"));
+			Tools.printMenuOption(player, LangDict.getString("currentLevel"), String.valueOf(LevelManager.getCurrentDisplayLevelNum()));
+			Tools.printMenuOption(player, LangDict.getString("donationsRemaining"), LevelManager.getRemainingItemsText());
+			Tools.printMenuOption(player, LangDict.getString("playersAccepted"), LevelManager.getAcceptedPlayersText());
 		}else if (args[0].equals("accept")) {
 			if (LevelManager.playerHasAccepted(player)) {
-				Tools.tellPlayer(player, "You have already accepted");
+				Tools.tellPlayer(player, LangDict.getString("alreadyAccepted"));
 				return true;
 			}
 			LevelManager.playerAcceptsUpgrade(player);
 		}else if (args[0].equals("force")) {
 			if (!player.isOp()) {
-				Tools.tellPlayer(player, "You don't have access to this command", ChatColor.RED);
+				Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
 				return true;
 			}
 			LevelManager.forceUpgrade(player);

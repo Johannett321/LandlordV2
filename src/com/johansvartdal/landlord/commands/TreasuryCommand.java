@@ -54,13 +54,13 @@ public class TreasuryCommand implements CommandExecutor {
         if (args.length == 0) {
             // thise player is chancellor
             if (Bank.playerIsTreasuryChancellor(player)) {
-                Tools.printMenuHeader(player, "COMMANDS");
+                Tools.printMenuHeader(player, LangDict.getString("commands"));
                 Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + hastePrice + LangDict.getString(LangDict.CURRENCY) + ")");
                 Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + withdrawPrice + LangDict.getString(LangDict.CURRENCY) + ")");
                 return true;
             }
 
-            Tools.printMenuHeader(player, "COMMANDS");
+            Tools.printMenuHeader(player, LangDict.getString("commands"));
 
             // chancellor is chosen
             if (Bank.aTreasuryChancellorIsChosen()) {
@@ -120,29 +120,28 @@ public class TreasuryCommand implements CommandExecutor {
 
     private void voteForResignation(Player player) {
         if (playersVotedForResign.contains(player)) {
-            Tools.tellPlayer(player, "You cannot vote twice", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("cannotVoteTwice"), ChatColor.RED);
         }
         playersVotedForResign.add(player);
         if (Main.properties.getNumberOfPlayers() <= 2 || (playersVotedForResign.size() > Main.properties.getNumberOfPlayers() / 2)) {
-            Tools.broadcastMessage("The Treasury Chancellor has been resigned! A new one must be chosen.", ChatColor.RED);
+            Tools.broadcastMessage(LangDict.getString("treasuryResigned"), ChatColor.RED);
             Bank.resignChancellor(plugin);
         }else {
-            Tools.broadcastMessage("A player has voted for resignation of the Treasury Chancellor!" +
-                    " Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well!");
+            Tools.broadcastMessage(LangDict.getString("someoneVotedResignation"));
         }
     }
 
     private void applyForTreasury(Player player) {
         for (VoteHolder voteHolder : treasuryPlayers) {
             if (voteHolder.getPlayer().equals(player)) {
-                Tools.tellPlayer(player, "You have already applied for this role", ChatColor.RED);
+                Tools.tellPlayer(player, LangDict.getString("alreadyApplied"), ChatColor.RED);
                 return;
             }
         }
 
         VoteHolder voteHolder = new VoteHolder(player);
         treasuryPlayers.add(voteHolder);
-        Tools.tellPlayer(player, "You applied for the treasury role", ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("appliedForTreasury"), ChatColor.GREEN);
     }
 
     private void voteForPlayer(Player player, String voteUsername) {
@@ -153,7 +152,7 @@ public class TreasuryCommand implements CommandExecutor {
         for (VoteHolder voteHolder : treasuryPlayers) {
             for (Player playerVote : voteHolder.getVotes()) {
                 if (playerVote.equals(player)) {
-                    Tools.tellPlayer(player, "You have already voted!", ChatColor.RED);
+                    Tools.tellPlayer(player, LangDict.getString("alreadyVoted"), ChatColor.RED);
                     return;
                 }
             }
@@ -162,13 +161,13 @@ public class TreasuryCommand implements CommandExecutor {
         // add the current players vote
         for (VoteHolder voteHolder : treasuryPlayers) {
             if (voteHolder.getPlayer().getDisplayName().equalsIgnoreCase(voteUsername)) {
-                Tools.tellPlayer(player, "You voted for " + voteUsername + "!", ChatColor.GREEN);
+                Tools.tellPlayer(player, LangDict.getString("votedFor") + voteUsername + "!", ChatColor.GREEN);
                 voteHolder.addVote(player);
                 return;
             }
         }
 
-        Tools.tellPlayer(player, "Could not find any voluntary players with username: " + voteUsername, ChatColor.RED);
+        Tools.tellPlayer(player, LangDict.getString("cannotFindVoluntary") + voteUsername, ChatColor.RED);
     }
 
     /*
@@ -184,7 +183,7 @@ public class TreasuryCommand implements CommandExecutor {
         if (args.length == 2 && args[0].equalsIgnoreCase("buy") && args[1].equalsIgnoreCase("haste")) {
             // make sure the treasury can afford
             if (!Bank.treasuryCanAfford(hastePrice)) {
-                Tools.tellPlayer(player, "The Treasury cannot afford haste for " + hastePrice + LangDict.getString(LangDict.CURRENCY));
+                Tools.tellPlayer(player, LangDict.getString("treasuryCannotAffordHaste") + hastePrice + LangDict.getString(LangDict.CURRENCY));
                 return true;
             }
 
@@ -193,23 +192,25 @@ public class TreasuryCommand implements CommandExecutor {
             LandlordEventManager.startEvent(new HasteEvent(plugin));
             return true;
         }else if (args[0].equalsIgnoreCase("withdraw")) {
-            int price = Main.properties.getNumberOfPlayers() * 4000 + 10000;
+            int withdrawalAmountPerPlayer = 4000;
+            int fee = 10000;
+            int price = Main.properties.getNumberOfPlayers() * withdrawalAmountPerPlayer + fee;
 
             // can treasury afford it?
-            if (!Bank.treasuryCanAfford(4000)) {
-                Tools.tellPlayer(new ErrorChat(), player, "Treasury cannot afford a withdrawal. It costs " + price + LangDict.getString(LangDict.CURRENCY));
+            if (!Bank.treasuryCanAfford(withdrawalAmountPerPlayer)) {
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasuryCannotAffordWithdrawal") + price + LangDict.getString(LangDict.CURRENCY));
                 return true;
             }
 
             // deposit players
             for (PlayerData playerData : Main.playerDataManager.getPlayerDataList()) {
-                playerData.depositBalance(4000);
+                playerData.depositBalance(withdrawalAmountPerPlayer);
             }
 
             // tell players
-            God.speak("The Treasury has ordered a withdrawal! You have all received 4000" +
-                    LangDict.getString(LangDict.CURRENCY) + ". Unfortunately 10000" + LangDict.getString(LangDict.CURRENCY) +
-                    " was lost during the withdrawal");
+            God.speak(LangDict.getString("treasuryOrderedWithdrawal") + withdrawalAmountPerPlayer +
+                    LangDict.getString(LangDict.CURRENCY) + LangDict.getString("treasuryWithdrawalUnfortunately") + fee + LangDict.getString(LangDict.CURRENCY) +
+                    LangDict.getString("lostDuringWithdrawal"));
             return true;
         }
         return false;

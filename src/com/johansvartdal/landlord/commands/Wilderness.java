@@ -37,7 +37,7 @@ public class Wilderness implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            Tools.printMenuHeader(player, "WILDERNESS");
+            Tools.printMenuHeader(player, LangDict.getString("commands"));
             Tools.printMenuOption(player, "/wilderness", "world");
             Tools.printMenuOption(player, "/wilderness", "nether");
             Tools.printMenuOption(player, "/wilderness", "mine");
@@ -69,17 +69,17 @@ public class Wilderness implements CommandExecutor {
         }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, "You are already in an event", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(player, "You cannot afford the wilderness price of " + wildernessPrice + LangDict.getString("currency"), ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
-        Bank.withdrawPlayer("wilderness", player, wildernessPrice);
-        Tools.tellPlayer(player, "Welcome to the wilderness. You have 7 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
+        Bank.withdrawPlayer(LangDict.getString("wilderness"), player, wildernessPrice);
+        Tools.tellPlayer(player, LangDict.getString("welcomeToWild") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("expires"), ChatColor.GREEN);
         WildernessEvent event = new WildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -93,17 +93,17 @@ public class Wilderness implements CommandExecutor {
         }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, "You are already in an event", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
         if (!Bank.playerCanAfford(player, minePrice)) {
-            Tools.tellPlayer(player, "You cannot afford the wilderness price of " + minePrice + LangDict.getString("currency"), ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("youNeed") + minePrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
-        Bank.withdrawPlayer("wilderness (mine)", player, minePrice);
-        Tools.tellPlayer(player, "Welcome to the mine. You have 45 minutes before your " + minePrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
+        Bank.withdrawPlayer(LangDict.getString("wildernessMine"), player, minePrice);
+        Tools.tellPlayer(player, LangDict.getString("welcomeToWildMine") + minePrice + LangDict.getString("currency") + LangDict.getString("expires"), ChatColor.GREEN);
         MiningEvent event = new MiningEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -117,16 +117,16 @@ public class Wilderness implements CommandExecutor {
         }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, "You are already in an event", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(player, "You cannot afford the nether wilderness price of " + wildernessPrice + LangDict.getString("currency"), ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
-        Bank.withdrawPlayer("wilderness (nether)", player, wildernessPrice);
-        Tools.tellPlayer(player, "Welcome to nether. You have 7 minutes before your " + wildernessPrice + LangDict.getString("currency") + " expires!", ChatColor.GREEN);
+        Bank.withdrawPlayer(LangDict.getString("wildernessNether"), player, wildernessPrice);
+        Tools.tellPlayer(player, LangDict.getString("welcomeWildNether") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("expires"), ChatColor.GREEN);
         NetherWildernessEvent event = new NetherWildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -136,29 +136,29 @@ public class Wilderness implements CommandExecutor {
 
         // make sure event is not null
         if (event == null) {
-            Tools.tellPlayer(player, "This command can only be used while in wilderness", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
         // get wilderness price, and make sure player can afford
         int extensionPrice = event.getExtensionPrice();
         if (!Bank.playerCanAfford(player, extensionPrice)) {
-            Tools.tellPlayer(player, "You cannot afford to extend your wilderness journey", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("youNeed") + extensionPrice + LangDict.getString("currency") + LangDict.getString("toExtendThisJourney"), ChatColor.RED);
             return;
         }
 
         // perform purchase
-        Bank.withdrawPlayer("wilderness (extension)", player, extensionPrice);
+        Bank.withdrawPlayer(LangDict.getString("wildernessExtension"), player, extensionPrice);
         event.extend();
-        Tools.tellPlayer(player, "Extended " + event.getTitle() + " with " + event.getTextTimeLeft() + " for " + extensionPrice + LangDict.getString("currency"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("extended") + event.getTitle() + LangDict.getString("with") + event.getTextTimeLeft() + LangDict.getString("for") + extensionPrice + LangDict.getString("currency"), ChatColor.GREEN);
     }
 
     private void time(Player player) {
         if (!PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, "This command can only be used while in wilderness", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
-        Tools.tellPlayer(player, "You have " + PlayerEventManager.getEventForPlayer(player).getTextTimeLeft() + " left of your wilderness time");
+        Tools.tellPlayer(player, LangDict.getString("youHave") + PlayerEventManager.getEventForPlayer(player).getTextTimeLeft() + LangDict.getString("leftOfWildTime"));
     }
 }

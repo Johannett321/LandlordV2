@@ -29,7 +29,7 @@ public class Trade implements CommandExecutor {
         // check if player is allowed to teleport
         if (PlayerEventManager.playerIsInEvent(player)) {
             if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {
-                Tools.tellPlayer(player, "You cannot teleport at the moment", ChatColor.RED);
+                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
                 return true;
             }
             PlayerEventManager.forceEndPlayerEvent(player);
@@ -38,7 +38,7 @@ public class Trade implements CommandExecutor {
         Location location = Main.tradeCenter.getLocation();
         location = Tools.highestStandingPoint(location);
         player.teleport(location);
-        Tools.tellPlayer(player, "You have magically been teleported to the trading station");
+        Tools.tellPlayer(player, LangDict.getString("teleportTrade"));
         return true;
     }
 }

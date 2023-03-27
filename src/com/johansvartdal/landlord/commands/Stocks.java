@@ -37,7 +37,7 @@ public class Stocks implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            Tools.printMenuHeader(player, LangDict.getString("stockCommands"));
+            Tools.printMenuHeader(player, LangDict.getString("commands"));
             Tools.printMenuOption(player, "/stocks", "buy [stockname] [amount]");
             Tools.printMenuOption(player, "/stocks", "sell [stockname]");
             Tools.printMenuOption(player, "/stocks", "info [stockname]");
@@ -136,12 +136,12 @@ public class Stocks implements CommandExecutor {
         ItemMeta meta = itemStack.getItemMeta();
         // make sure meta is not null
         if (meta == null) {
-            Tools.tellPlayer(player, "These stocks are invalid!", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("stocksInvalid"), ChatColor.RED);
             return false;
         }
 
         if (!meta.hasEnchant(Enchantment.MENDING)) {
-            Tools.tellPlayer(player, "These stocks are invalid!", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("stocksInvalid"), ChatColor.RED);
             return false;
         }
 
@@ -149,7 +149,7 @@ public class Stocks implements CommandExecutor {
         String displayName = meta.getDisplayName();
         Stock stock = StockManager.getStockByID(displayName);
         if (stock == null) {
-            Tools.tellPlayer(player, "These stocks are invalid!" + displayName, ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("stocksInvalid"), ChatColor.RED);
             return false;
         }
         return true;
@@ -179,22 +179,22 @@ public class Stocks implements CommandExecutor {
         int price = stock.getCurrentPrice();
 
         Tools.printMenuHeader(player, "INFO");
-        Tools.printMenuOption(player, "Stock:", stock.getDisplayName() + " (" + stock.getID() + ")");
-        Tools.printMenuOption(player, "Description:", stock.getDescription());
-        Tools.printMenuOption(player, "Current value:", price + LangDict.getString("currency") + " per stock");
+        Tools.printMenuOption(player, LangDict.getString("stock"), stock.getDisplayName() + " (" + stock.getID() + ")");
+        Tools.printMenuOption(player, LangDict.getString("description"), stock.getDescription());
+        Tools.printMenuOption(player, LangDict.getString("currentValue"), price + LangDict.getString("currency") + LangDict.getString("perStock"));
 
         int worthAt1 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60));
         int worthAt2 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*2));
         int worthAt3 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*3));
         int worthAt4 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*4));
-        Tools.printMenuOption(player, "Values (1, 2, 3, 4) mins:", worthAt1 + ", " + worthAt2 + ", " + worthAt3 + ", " + worthAt4);
+        Tools.printMenuOption(player, LangDict.getString("values1To4Mins"), worthAt1 + ", " + worthAt2 + ", " + worthAt3 + ", " + worthAt4);
 
         int worthAt15 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*15));
         int worthAt30 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*30));
         int worthAt45 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*45));
         int worthAt60 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*60));
-        Tools.printMenuOption(player, "Values (15, 30, 45, 60) mins:", worthAt15 + ", " + worthAt30 + ", " + worthAt45 + ", " + worthAt60);
+        Tools.printMenuOption(player, LangDict.getString("values15To60Mins"), worthAt15 + ", " + worthAt30 + ", " + worthAt45 + ", " + worthAt60);
 
-        Tools.printMenuOption(player, "Platform-fee:", "3%");
+        Tools.printMenuOption(player, LangDict.getString("platformFee"), "3%");
     }
 }
