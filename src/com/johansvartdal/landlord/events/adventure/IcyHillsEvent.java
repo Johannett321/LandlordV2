@@ -48,7 +48,6 @@ public class IcyHillsEvent extends AdventureEvent{
 
     @Override
     protected void showWelcomeMessage() {
-        God.speak("Greetings and welcome to Frostgarde's mountains! There are some hidden treasures scattered throughout the mountain. " +
-                "Find them before your " + excursionMinutes + " minute excursion ends. Perhaps you'll uncover a valuable book of mending?");
+        God.speak(LangDict.getString("icyHillsWelcomeStart") + excursionMinutes + LangDict.getString("icyHillsWelcomeEnd"));
     }
 }

@@ -26,8 +26,7 @@ public class ValleyVillageAdventure extends AdventureEvent{
 
     @Override
     protected void showWelcomeMessage() {
-        God.speak("Greetings and welcome to Solvheim village! There are some hidden treasures scattered throughout the village. " +
-                "Find them before your " + excursionMinutes + " minute excursion ends. Perhaps you'll uncover a valuable book of mending?");
+        God.speak(LangDict.getString("solvheimWelcomeStart") + excursionMinutes + LangDict.getString("solvheimWelcomeEnd"));
     }
 
     @Override
@@ -37,7 +36,7 @@ public class ValleyVillageAdventure extends AdventureEvent{
 
     @Override
     protected String getWelcomeTitle() {
-        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Solvheim village";
+        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Solvheim " + LangDict.getString("village");
     }
 
     @Override

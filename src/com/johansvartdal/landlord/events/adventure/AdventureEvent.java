@@ -19,7 +19,7 @@ public abstract class AdventureEvent extends LandlordEvent {
 
     @Override
     public void startEvent() {
-        God.speak("Get ready, an excursion will begin in 5 minutes!");
+        God.speak(LangDict.getString("getReadyExcursion"));
         scheduleExcursionStart();
     }
 
@@ -28,7 +28,7 @@ public abstract class AdventureEvent extends LandlordEvent {
         if (Properties.DEBUG_MODE) {
             startEventInSeconds = 35;
         }
-        Tools.performTaskAfterCountdown(this::startExcursion, "The excursion starts in",startEventInSeconds);
+        Tools.performTaskAfterCountdown(this::startExcursion, LangDict.getString("excursionIn"), startEventInSeconds);
     }
 
     @Override
@@ -52,15 +52,15 @@ public abstract class AdventureEvent extends LandlordEvent {
     protected void scheduleEndEvent(int inMinutes) {
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             Tools.performTaskAfterCountdown(() -> {
-                God.speak("Unfortunately, your excursion has come to an end. Welcome back home");
+                God.speak(LangDict.getString("excursionEnd"));
                 endEvent(false);
-            }, "Excursion ending in", 60);
+            }, LangDict.getString("excursionEndIn"), 60);
         }, Tools.secToTicks(60*inMinutes-60));
     }
 
     @Override
     public void resumeEvent() {
-        Tools.broadcastMessage("The event was cancelled due to a server restart", ChatColor.RED);
+        Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART), ChatColor.RED);
         endEvent(true);
     }
 

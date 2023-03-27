@@ -55,7 +55,7 @@ public abstract class Level implements LevelInterface {
                     remainingItems.remove(i);
 
                     if (remainingItems.size() == 0) {
-                        God.speak("Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level");
+                        God.speak(LangDict.getString("itemDonationsComplete"));
                     }else {
                         God.speak(player.getDisplayName() + LangDict.getString("justDonated") + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("toCommunity"));
                     }

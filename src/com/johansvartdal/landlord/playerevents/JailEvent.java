@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.playerevents;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.StaticValues;
 import com.johansvartdal.landlord.Tools;
@@ -20,7 +21,7 @@ public class JailEvent extends PlayerEvent {
 
     @Override
     public void start() {
-        Tools.tellPlayer(player, "You have been sent to jail as " + jailReason, ChatColor.RED);
+        Tools.tellPlayer(player, LangDict.getString("youHaveBeenSentToJailBecause") + jailReason, ChatColor.RED);
 
         // teleport to actual jail location
         player.teleport(StaticValues.GAME_START_LOCATION);

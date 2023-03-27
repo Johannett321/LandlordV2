@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.events.taxevents;
 
-import com.johansvartdal.landlord.God;
-import com.johansvartdal.landlord.LandlordEvent;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -20,19 +17,19 @@ public class HasteEvent extends LandlordEvent {
 
     @Override
     public void startEvent() {
-        God.speak("An order has placed from the Treasury Chancellor! Everyone shall receive haste in 1 minute.");
+        God.speak(LangDict.getString("hasteInOneMinute"));
         Tools.performTaskAfterCountdown(this::applyEffect, "Haste will begin in", 60);
     }
 
     @Override
     public void endEvent(Boolean cancelled) {
         super.endEvent(cancelled);
-        God.speak("Phew! I saw a lot of progress there");
+        God.speak(LangDict.getString("lotOfProgress"));
     }
 
     private void applyEffect() {
         Tools.playSoundForEveryone(Sound.BLOCK_BEACON_ACTIVATE);
-        God.speak("Let the haste begin! You have 3 minutes");
+        God.speak(LangDict.getString("hasteBegin"));
         for (Player player : Bukkit.getOnlinePlayers()) {
             givePlayerHaste(player);
         }
@@ -42,7 +39,7 @@ public class HasteEvent extends LandlordEvent {
     private void scheduleEndEvent() {
         Tools.performTaskAfterCountdown(() -> {
             endEvent(false);
-        }, "The haste effect will end in", durationSeconds);
+        }, LangDict.getString("effectWilEndIn"), durationSeconds);
     }
 
     @Override
@@ -52,7 +49,7 @@ public class HasteEvent extends LandlordEvent {
 
     @Override
     public void resumeEvent() {
-        Tools.broadcastMessage("The haste effect ended, as the server was restarted");
+        Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART));
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.removePotionEffect(PotionEffectType.FAST_DIGGING);
         }

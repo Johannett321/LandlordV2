@@ -49,6 +49,9 @@
   "tradeUpdated": "Trade center location updated!",
   "teleportTrade": "You have magically been teleported to the trading station",
 
+  "treasurySentinel": "The Treasury",
+  "treasuryVotingHall": "Treasury Voting Hall",
+  "treasuryWelcome": "Greetings, and welcome to the Treasury voting hall. We need someone to take care of The Treasury Chancellor role",
   "cannotVoteTwice": "You cannot vote twice",
   "treasuryResigned": "The Treasury Chancellor has been resigned! A new one must be chosen",
   "someoneVotedResignation": "A player has voted for resignation of the Treasury Chancellor! Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well!",
@@ -62,6 +65,12 @@
   "treasuryOrderedWithdrawal": "The Treasury has ordered a withdrawal! You have all received ",
   "treasuryWithdrawalUnfortunately": ". Unfortunately ",
   "lostDuringWithdrawal": " was lost during the withdrawal",
+  "treasuryDecidingIn": "The Treasury Chancellor will be decided in",
+  "treasuryIsChosen": "A Treasury Chancellor has been chosen",
+  "playerHasBeenChosen": " has been chosen for The Treasury Chancellor role!",
+  "treasuryApplyInfo": "If you want to apply for the role, please type /treasury apply",
+  "treasuryVoteInfo": "If you want to make a vote, please type /treasury vote [username]",
+  "roleDecidingSoon": "The role will be decided soon!",
 
   "upgradeInfo": "UPGRADE INFO",
   "currentLevel": "Current level: ",
@@ -129,18 +138,9 @@
   "sentHomeByOwner": "You were sent home by the owner",
   "couldNotFindPlayer": "Could not find the player: ",
 
-  "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
-  "welcomeTitle": "Welcome to ",
-  "listOfHelpful": "Items you must gather in the preparation to be able to level up: Saplings from oak trees, sugar canes, seeds",
-  "goodLuck": "Good luck, the time is ticking!",
-  "minutesRemaining": "minute(s) remaining till the borders will rise!",
-  "secondsRemaining": "seconds remaining till the borders will rise!",
-  "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
-  "risingBorders": "WARNING: Please stand still! Borders are rising!",
-  "newCitizen": "A new citizen has arrived! Please welcome ",
-
   "justDonated": " just donated the last ",
   "toCommunity": " to the community!",
+  "itemDonationsComplete": "Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level",
 
   "youJustPaid": "You just paid ",
   "forThisCommand": " + tax for this command",
@@ -151,7 +151,61 @@
 
   "governmentBank": "The bank",
 
-  "treasurySentinel": "The Treasury",
+  "youHaveBeenSentToJailBecause": "You have been sent to jail because ",
   "jailReasonTax": "you could not afford to pay your tax!",
-  "jailOutTax": "You're out! Make sure to have enough money next time!"
+  "jailOutTax": "You're out! Make sure to have enough money next time!",
+
+
+
+
+  "level2Welcome1": "Heeeey, how exciting! Your first town upgrade! Everytime your town levels up, something will happen. This time you unlocked a feature called roulette. Every hour, a roulette will run. The roulette gives you an opportunity to win a price. However, there is a participation fee to join. You will be notified before a roulette is about to start",
+  "level2Welcome2": "You were also rewarded a chunk point each. Stand next to one of your chunk borders. While looking towards the border, execute the command '/buychunk', and watch the walls magically fall as you unlock your second chunk!",
+
+
+
+
+
+  "welcomeHome": "Welcome home",
+
+  "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
+  "welcomeTitle": "Welcome to ",
+  "prepInFiveMin": "Preparations will start in 5 seconds. Get ready!",
+  "listOfHelpful": "Items you must gather in the preparation to be able to level up: Saplings from oak trees, sugar canes, seeds",
+  "goodLuck": "Good luck, the time is ticking!",
+  "minutesRemaining": "minute(s) remaining till the borders will rise!",
+  "secondsRemaining": "seconds remaining till the borders will rise!",
+  "about0Sec": "about 0 seconds",
+  "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
+  "risingBorders": "WARNING: Please stand still! Borders are rising!",
+  "newCitizen": "A new citizen has arrived! Please welcome ",
+
+  "getReadyExcursion": "Get ready, an excursion will begin in 5 minutes!",
+  "excursionIn": "The excursion starts in",
+  "excursionEnd": "Unfortunately, your excursion has come to an end. Welcome back home",
+  "excursionEndIn": "Excursion ending in",
+  "eventCancelledServerRestart": "The event was cancelled due to a server restart",
+
+  "icyHillsWelcomeStart": "Greetings and welcome to Frostgarde's mountains! There are some hidden treasures scattered throughout the mountain. Find them before your ",
+  "icyHillsWelcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?",
+
+  "solvheimWelcomeStart": "Greetings and welcome to Solvheim village! There are some hidden treasures scattered throughout the village. Find them before your ",
+  "solvheimWelcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?",
+  "village": "village",
+
+  "nextWave30Sec": "Good job! Keep it going! Next wave starting in 30 seconds",
+  "firstWave30Sec": "The first wave is starting in 30 seconds! Please sleep in a bed before the battle begins",
+  "wellDoneArena": "Well done! You have completed the ArenaFight!",
+  "hasBegun": " has begun!",
+
+  "cakeWorldWelcome": "Greetings, intrepid travelers, to the enigmatic realm of CakeWorld! Herein lies a mystery, awaiting your intellect to decipher its enigmatic secrets. Dare you unravel the threads of this baffling enigma that has eluded many before you? Embrace the challenge, and may the mystique of CakeWorld guide you on your quest for answers.",
+
+  "hasteInOneMinute": "An order has placed from the Treasury Chancellor! Everyone shall receive haste in 1 minute.",
+  "lotOfProgress": "Phew! I saw a lot of progress there",
+  "hasteBegin": "Let the haste begin! You have 3 minutes",
+  "effectWillEndIn": "The haste effect will end in",
+
+  "wildEnding1Min": "Wilderness will end in 1 minute",
+  "wildEnding10Sec": "Wilderness will end in 10 seconds",
+  "heightLimitTooMuch": "That's it. You exceeded the height limit three times! You were therefore sent home!",
+  "mineGetDown": "GET FURTHER DOWN IMMEDIATELY! You're exceeding the height limit! (warning "
 }

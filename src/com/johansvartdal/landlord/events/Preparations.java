@@ -27,7 +27,7 @@ public class Preparations extends LandlordEvent {
         // play welcome audio
         LanController.getLanMusicController().playAudioFile("countdown.wav", AudioLayer.BACKGROUND);
 
-        God.speak("Preparations will start in 5 seconds. Get ready!");
+        God.speak(LangDict.getString("prepInFiveMin"));
         Bukkit.getScheduler().runTaskLater(plugin, this::startPrep, Tools.secToTicks(5));
     }
 

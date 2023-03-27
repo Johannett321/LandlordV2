@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.events.mystery;
 
 import com.johansvartdal.landlord.God;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -27,7 +28,6 @@ public class Mystery1 extends MysteryEvent {
 
     @Override
     protected void showWelcomeMessage() {
-        // Todo: Insert name here
-        God.speak("Greetings, intrepid travelers, to the enigmatic realm of [INSERT_PLACE_NAME_HERE]! Herein lies a mystery, awaiting your intellect to decipher its enigmatic secrets. Dare you unravel the threads of this baffling enigma that has eluded many before you? Embrace the challenge, and may the mystique of [INSERT_PLACE_NAME_HERE] guide you on your quest for answers.");
+        God.speak(LangDict.getString("cakeWorldWelcome"));
     }
 }

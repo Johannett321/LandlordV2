@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.events.mystery;
 
 import com.johansvartdal.landlord.LandlordEvent;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,7 @@ public abstract class MysteryEvent extends LandlordEvent {
 
     @Override
     public void resumeEvent() {
-        Tools.broadcastMessage("The event was cancelled due to a server restart", ChatColor.RED);
+        Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART), ChatColor.RED);
         endEvent(true);
     }
 

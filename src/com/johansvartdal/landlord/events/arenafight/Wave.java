@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.events.arenafight;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Properties;
 import com.johansvartdal.landlord.Tools;
@@ -52,7 +53,7 @@ public class Wave {
             giveBlindnessToEveryone();
         }
 
-        Tools.broadcastMessage("Wave " + (waveDisplayNumber) + " has begun!", ChatColor.RED);
+        Tools.broadcastMessage("Wave " + (waveDisplayNumber) + LangDict.getString("hasBegun"), ChatColor.RED);
         loopWaveSteps();
     }
 

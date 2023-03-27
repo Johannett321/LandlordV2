@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.playerevents;
 
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Properties;
-import com.johansvartdal.landlord.StaticValues;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -52,7 +49,7 @@ public class MiningEvent extends PlayerEvent {
         }
 
         player.teleport(locationBeforeEvent);
-        Tools.tellPlayer(player, "Welcome back");
+        Tools.tellPlayer(player, LangDict.getString(LangDict.WELCOME_HOME));
     }
 
     @Override
@@ -71,7 +68,7 @@ public class MiningEvent extends PlayerEvent {
     }
 
     public void warnOneMinLeft() {
-        Tools.tellPlayer(player, "Mining wilderness will end in 1 minute", ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("wildEnding1Min"), ChatColor.YELLOW);
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
@@ -81,7 +78,7 @@ public class MiningEvent extends PlayerEvent {
     }
 
     public void warnTenSecLeft() {
-        Tools.tellPlayer(player, "Mining wilderness will end in 10 seconds", ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("wildEnding10Sec"), ChatColor.YELLOW);
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
@@ -130,14 +127,12 @@ public class MiningEvent extends PlayerEvent {
                     strikes += 1;
 
                     if (strikes > 2) {
-                        Tools.tellPlayer(player, "That's it. You exceeded the height limit three times! You were therefore sent home!", ChatColor.RED);
+                        Tools.tellPlayer(player, LangDict.getString("heightLimitTooMuch"), ChatColor.RED);
                         endEvent();
                         return;
                     }else {
-                        Tools.tellPlayer(player, "GET FURTHER DOWN IMMEDIATELY! You're exceeding the height limit! (warning " + strikes + "/3)", ChatColor.RED);
+                        Tools.tellPlayer(player, LangDict.getString("mineGetDown") + strikes + "/3)", ChatColor.RED);
                     }
-                }else {
-                    System.out.println("Player height: " + player.getLocation().getY());
                 }
 
                 // reschedule

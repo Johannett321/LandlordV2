@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.playerevents;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.PlayerEventManager;
 import com.johansvartdal.landlord.Tools;
@@ -58,7 +59,7 @@ public abstract class PlayerEvent {
         long current = System.currentTimeMillis();
 
         if (scheduledEndTime <= current) {
-            return "about 0 seconds";
+            return LangDict.getString("about0Sec");
         }
 
         long timeLeftSeconds = (scheduledEndTime-current)/1000;

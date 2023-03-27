@@ -87,9 +87,9 @@ public abstract class ArenaFightEvent extends LandlordEvent {
 
         // inform players
         if (remainingWaves.size() < getWaves().length) {
-            God.speak("Good job! Keep it going! Next wave starting in 30 seconds");
+            God.speak(LangDict.getString("nextWave30Sec"));
         }else {
-            God.speak("The first wave is starting in 30 seconds! Please sleep in a bed before the battle begins");
+            God.speak(LangDict.getString("firstWave30Sec"));
         }
 
         // add loop repeater
@@ -107,7 +107,7 @@ public abstract class ArenaFightEvent extends LandlordEvent {
     private void allWavesCompleted() {
         // celebrate players
         SpecialEffects.blastFireworks(fireworkLocation, 5);
-        God.speak("Well done! You have completed the ArenaFight!");
+        God.speak(LangDict.getString("wellDoneArena"));
 
         // end event
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
@@ -127,7 +127,7 @@ public abstract class ArenaFightEvent extends LandlordEvent {
         // kill all mobs
         Tools.killAllMobsInWorld(Bukkit.getWorld("lladv"));
 
-        Tools.broadcastMessage("The event was cancelled due to a server restart", ChatColor.RED);
+        Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART), ChatColor.RED);
         endEvent(true);
     }
 }

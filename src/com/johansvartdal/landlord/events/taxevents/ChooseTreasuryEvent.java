@@ -38,7 +38,7 @@ public class ChooseTreasuryEvent extends LandlordEvent {
         if (Properties.DEBUG_MODE) {
             decisionTime = 10;
         }
-        Tools.performTaskAfterCountdown(this::getMostVoted, "The Treasury Chancellor will be decided in", decisionTime);
+        Tools.performTaskAfterCountdown(this::getMostVoted, LangDict.getString("treasuryDecidingIn"), decisionTime);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ChooseTreasuryEvent extends LandlordEvent {
 
     private void playTreasuryAnimation(Player player) {
         // levitation effect
-        God.speak("A Treasury Chancellor has been chosen");
+        God.speak(LangDict.getString("treasuryIsChosen"));
         PotionEffect levitationFast = new PotionEffect(PotionEffectType.LEVITATION, (int) Tools.secToTicks(10), 1);
         player.addPotionEffect(levitationFast);
 
@@ -111,7 +111,7 @@ public class ChooseTreasuryEvent extends LandlordEvent {
             Bank.promotePlayerToTreasuryChancellor(player);
 
             // inform others
-            Tools.broadcastMessage(player.getDisplayName() + " has been chosen for The Treasury Chancellor role!", ChatColor.GOLD);
+            Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("playerHasBeenChosen"), ChatColor.GOLD);
 
             // schedule end
             scheduleEndEvent();
@@ -123,11 +123,11 @@ public class ChooseTreasuryEvent extends LandlordEvent {
     }
 
     private void informPlayers() {
-        Tools.broadcastTitle("Treasury Voting Hall", null);
-        God.speak("Greetings, and welcome to the Treasury voting hall. We need someone to take care of The Treasury Chancellor role");
-        Tools.broadcastMessage("If you want to apply for the role, please type /treasury apply");
-        Tools.broadcastMessage("If you want to make a vote, please type /treasury vote [username]");
-        Tools.broadcastMessage("The role will be decided soon!");
+        Tools.broadcastTitle(LangDict.getString("treasuryVotingHall"), null);
+        God.speak(LangDict.getString("treasuryWelcome"));
+        Tools.broadcastMessage(LangDict.getString("treasuryApplyInfo"));
+        Tools.broadcastMessage(LangDict.getString("treasuryVoteInfo"));
+        Tools.broadcastMessage(LangDict.getString("roleDecidingSoon"));
     }
 
     private void teleportALlPlayersToEvent() {

@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.playerevents;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import com.johansvartdal.landlord.LevelManager;
@@ -66,12 +67,12 @@ public class NetherWildernessEvent extends PlayerEvent{
 
     @Override
     public void onWarningEventShouldCancel() {
-        Tools.tellPlayer(player, "Nether wilderness ending in 10 seconds", ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("wildEnding10Sec"), ChatColor.YELLOW);
 
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-                Tools.tellPlayer(player, "Welcome back home!");
+                Tools.tellPlayer(player, LangDict.getString(LangDict.WELCOME_HOME));
                 endEvent();
             }
         }, Tools.secToTicks(10));
