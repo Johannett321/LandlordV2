@@ -103,7 +103,7 @@ public class Stocks implements CommandExecutor {
         itemStack.setItemMeta(meta);
         player.getInventory().addItem(itemStack);
 
-        Tools.tellPlayer(player, "You just purchased " + amount + " " + stockName + " stocks for " + totalPrice + LangDict.getString("currency"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("justBought") + amount + " " + stockName + LangDict.getString("stocksFor") + totalPrice + LangDict.getString("currency"), ChatColor.GREEN);
     }
 
     private void sellStocks(Player player) {
@@ -127,8 +127,8 @@ public class Stocks implements CommandExecutor {
 
         Bank.depositPlayerWithoutTax(player, sellPrice + platformFee);
 
-        Tools.tellPlayer(player, "You just paid a platform fee of " + platformFee + LangDict.getString("currency") + " (3%)");
-        Tools.tellPlayer(player, "You just sold " + sellAmount + " " + displayName + " for " + sellPrice + LangDict.getString("currency"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("justPaidPlatformFee") + platformFee + LangDict.getString("currency") + " (3%)");
+        Tools.tellPlayer(player, LangDict.getString("youJustSold") + sellAmount + " " + displayName + LangDict.getString("for") + sellPrice + LangDict.getString("currency"), ChatColor.GREEN);
         player.getInventory().getItemInMainHand().setAmount(0);
     }
 
