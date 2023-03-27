@@ -14,6 +14,6 @@ The customers may choose a monthly payment plan or a one time payment
 - 290kr one-time purchase - Up to 8 players
 
 ## Requirements
-- Multiworld
+- Multiverse
 - lladv world
 - Landlord plugin
