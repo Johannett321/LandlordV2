@@ -18,16 +18,21 @@ public class LangDict {
     public static final String WELCOME_HOME = "welcomeHome";
     public static final String YOU_ARE_NOT_ALLOWED = "youAreNotAllowed";
     public static final String EVENT_CANCELLED_SERVER_RESTART = "eventCancelledServerRestart";
+    public static String languageCode = null;
 
     private static JSONObject english;
     private static JSONObject currentLanguage;
 
     public static void loadLanguage() {
-        JSONObject no = loadLanguage("nb-no");
-        JSONObject en = loadLanguage("en");
+        english = loadLanguage("en");
 
-        currentLanguage = no;
-        english = en;
+        JSONObject customLanguage = loadLanguage(languageCode);
+        if (customLanguage != null) {
+            currentLanguage = customLanguage;
+        }else {
+            System.out.println("Could not find language with languageCode: " + languageCode + ". Using english instead");
+            currentLanguage = english;
+        }
     }
 
     private static JSONObject loadLanguage(String languageName) {

@@ -26,10 +26,8 @@ public class Tools {
     public static File pluginDir;
 
     public static void init(Main plugin) {
-        System.out.println("DataFolder: " + pluginDir);
         Tools.plugin = plugin;
         pluginDir = plugin.getDataFolder();
-        System.out.println("DataFolder: " + pluginDir);
     }
 
     public static String readInternal(String fileName) {
@@ -51,11 +49,10 @@ public class Tools {
             FileReader fileReader = new FileReader(Tools.pluginDir.getAbsolutePath() + "/" + fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
                 if (wholeText == null) {
                     wholeText = line;
                 }else {
-                    wholeText = wholeText + "/n";
+                    wholeText = wholeText + System.lineSeparator();
                     wholeText = wholeText + line;
                 }
             }   

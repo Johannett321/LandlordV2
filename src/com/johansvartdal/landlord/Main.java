@@ -24,14 +24,18 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable() {
-		SpecialEffects.setPlugin(this);
+		configurator = new Configurator(this);
+		configurator.configure();
 		Tools.init(this);
+		CustomConfig.load();
+		LicenceVerifier.verifyLicence();
+
+		SpecialEffects.setPlugin(this);
+
 		properties = new Properties();
 		properties.load();
-		configurator = new Configurator(this);
 		new CheatProtection(this);
 		new SleepPercentage(this);
-		configurator.configure();
 		LangDict.loadLanguage();
 		Bank.load();
 		StockManager.loadStocks();
