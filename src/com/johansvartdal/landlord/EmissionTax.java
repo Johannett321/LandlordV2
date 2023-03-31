@@ -18,6 +18,9 @@ public class EmissionTax implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event){
+        if (!Main.properties.gameStateIsNormal()) {
+            return;
+        }
         if (event.getBlock().getType() == Material.COAL_ORE) {
             Player player = event.getPlayer();
 

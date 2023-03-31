@@ -23,7 +23,7 @@ public class LangDict {
     private static JSONObject currentLanguage;
 
     public static void loadLanguage() {
-        JSONObject no = loadLanguage("no");
+        JSONObject no = loadLanguage("nb-no");
         JSONObject en = loadLanguage("en");
 
         currentLanguage = no;
@@ -34,8 +34,12 @@ public class LangDict {
         JSONObject loadedLanguage = null;
 
         JSONParser jsonParser = new JSONParser();
-        try (InputStream in = LangDict.class.getResourceAsStream("languages/" + languageName + ".json");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+        try {
+            InputStream in = LangDict.class.getResourceAsStream("languages/" + languageName + ".json");
+            if (in == null) {
+                return null;
+            }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             loadedLanguage = (JSONObject) jsonParser.parse(reader);
         } catch (IOException | ParseException e) {
             e.printStackTrace();

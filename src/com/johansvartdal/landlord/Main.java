@@ -66,6 +66,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Adm(this);
 		new SetTrade(this);
 		new TreasuryCommand(this);
+		new ChangeLanguage(this);
 
 		Bank.startTaxCollector(this);
 
