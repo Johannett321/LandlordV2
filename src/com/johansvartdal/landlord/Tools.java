@@ -148,7 +148,7 @@ public class Tools {
             //Read JSON file
             return (JSONObject) jsonParser.parse(reader);
         } catch (IOException | ParseException e) {
-            if (Properties.DEBUG_MODE) e.printStackTrace();
+            if (Properties.DEBUG_MODE) System.out.println("ERROR: Cannot find file: " + fileName);
         }
         return null;
     }
@@ -160,7 +160,7 @@ public class Tools {
             file.write(object.toJSONString());
             file.flush();
         } catch (IOException e) {
-            if (Properties.DEBUG_MODE) e.printStackTrace();
+            if (Properties.DEBUG_MODE) System.out.println("ERROR: Failed to save json to file: " + fileName);
         }
     }
 

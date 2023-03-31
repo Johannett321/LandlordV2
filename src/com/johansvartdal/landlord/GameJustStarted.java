@@ -19,13 +19,13 @@ public class GameJustStarted {
         Main.tradeCenter.build();
         Chunk centerChunk = Main.tradeCenter.getLocation().getChunk();
 
-        OfflinePlayer[] players = plugin.getServer().getOfflinePlayers();
+        Player[] players = plugin.getServer().getOnlinePlayers().toArray(new Player[0]);
 
         for (int i = 0; i < players.length; i ++) {
-            Player currentPlayer = ((Player) players[i]);
+            Player currentPlayer = players[i];
             int[] chunkPosition = getXZChunkPosition(i, centerChunk);
             Chunk playerChunk = mainWorld.getChunkAt(chunkPosition[0], chunkPosition[1]);
-            ChunkBuilder.createChunk((Player) players[i], mainWorld, playerChunk);
+            ChunkBuilder.createChunk(players[i], mainWorld, playerChunk);
 
             Location location = new Location(mainWorld, playerChunk.getX()*16+8, 319, playerChunk.getZ()*16+8);
             location = Tools.middlePointBlock(location);

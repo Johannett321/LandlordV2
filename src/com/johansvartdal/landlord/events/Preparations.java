@@ -38,7 +38,9 @@ public class Preparations extends LandlordEvent {
 
     @Override
     public void resumeEvent() {
+        System.out.println("######################################################################################################");
         System.out.println("WARNING: SERVER WAS SHUT DOWN DURING PREPARATIONS. THE GAME CANNOT CONTINUE! PLEASE REINSTALL LANDLORD");
+        System.out.println("######################################################################################################");
         Bukkit.shutdown();
     }
 

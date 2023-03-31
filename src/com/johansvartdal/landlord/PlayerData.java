@@ -142,23 +142,28 @@ public class PlayerData {
 
     public void load() {
         JSONObject obj = Tools.loadJson("players/" + username + ".json");
-        System.out.println("LOADED OBJ: " + obj.toJSONString());
+        if (obj == null) {
+            System.out.println("ERROR: Failed to load PlayerData for " + username + "!");
+            return;
+        }
 
         // Balance
         currentBalance = (int) ((long) obj.get("Balance"));
         availableChunkPoints = (int) ((long)obj.get("AvailableChunkPoints"));
 
         // Home location
-        double homeX = (double) ((JSONObject) obj.get("Home")).get("x");
-        double homeY = (double) ((JSONObject) obj.get("Home")).get("y");
-        double homeZ = (double) ((JSONObject) obj.get("Home")).get("z");
-        double homeYawD = (double) ((JSONObject) obj.get("Home")).get("yaw");
-        double homePitchD = (double) ((JSONObject) obj.get("Home")).get("pitch");
-        float homeYaw = (float) homeYawD;
-        float homePitch = (float) homePitchD;
-        home = new Location(mainWorld, homeX, homeY, homeZ);
-        home.setYaw(homeYaw);
-        home.setPitch(homePitch);
+        if (obj.containsKey("home")) {
+            double homeX = (double) ((JSONObject) obj.get("Home")).get("x");
+            double homeY = (double) ((JSONObject) obj.get("Home")).get("y");
+            double homeZ = (double) ((JSONObject) obj.get("Home")).get("z");
+            double homeYawD = (double) ((JSONObject) obj.get("Home")).get("yaw");
+            double homePitchD = (double) ((JSONObject) obj.get("Home")).get("pitch");
+            float homeYaw = (float) homeYawD;
+            float homePitch = (float) homePitchD;
+            home = new Location(mainWorld, homeX, homeY, homeZ);
+            home.setYaw(homeYaw);
+            home.setPitch(homePitch);
+        }
 
         // Day streak
         streakMultiplier = (int) ((long) obj.get("streakMultiplier"));
