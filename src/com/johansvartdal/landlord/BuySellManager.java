@@ -20,7 +20,7 @@ public class BuySellManager {
     public static class AmountWorth {
         private int amountNeeded;
         private int worth;
-        private int flow;
+        private final int flow;
 
         public AmountWorth(int amountNeeded, int worth, int flow) {
             this.amountNeeded = amountNeeded;

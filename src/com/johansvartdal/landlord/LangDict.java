@@ -1,5 +1,7 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.chatentities.ErrorChat;
+import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -48,5 +50,17 @@ public class LangDict {
             string = english.get(stringName);
         }
         return (String) string;
+    }
+
+    public static void attemptChangeLanguage(Player player, String langCode) {
+        JSONObject loadedLang = loadLanguage(langCode);
+        if (loadedLang == null) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotFindLanguage") + langCode);
+            return;
+        }
+
+        currentLanguage = loadedLang;
+
+        Tools.broadcastMessage(LangDict.getString("langChangedTo") + LangDict.getString("language"));
     }
 }

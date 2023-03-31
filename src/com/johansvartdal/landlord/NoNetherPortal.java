@@ -29,7 +29,7 @@ public class NoNetherPortal implements Listener {
         Player player = event.getPlayer();
         if (event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
             event.setCancelled(true);
-            Tools.tellPlayer(player, "Use '/wilderness nether' to enter nether", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("cheatProtectionEnterNether"), ChatColor.RED);
         }
     }
 
@@ -47,7 +47,7 @@ public class NoNetherPortal implements Listener {
                     if (nearbyBlock.getType().equals(Material.OBSIDIAN)) {
                         // Cancel the event to prevent fire from creating a portal
                         event.setCancelled(true);
-                        Tools.tellPlayer(event.getPlayer(), "Use '/wilderness nether' to enter nether", ChatColor.RED);
+                        Tools.tellPlayer(event.getPlayer(), LangDict.getString("cheatProtectionEnterNether"), ChatColor.RED);
                         return;
                     }
                 }

@@ -132,7 +132,7 @@ public abstract class LandlordEvent implements LandlordEventInterface {
 
             // player is not within radius
             player.teleport(location);
-            Tools.tellPlayer(player, "You have been teleported back to the event");
+            Tools.tellPlayer(player, LangDict.getString("teleportedBackToEvent"));
         }
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> lockPlayersAtLocation(location, radius), Tools.secToTicks(3));

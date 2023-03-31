@@ -20,7 +20,7 @@ public class PlayerDataManager {
     }
 
     public void loadData() {
-        File directory = new File(plugin.getDataFolder() + "/" + "players");
+        File directory = new File(plugin.getDataFolder() + "/players");
         for (File file : directory.listFiles()) {
             if (file.isFile()) {
                 String filename = file.getName();

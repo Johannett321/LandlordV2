@@ -19,7 +19,7 @@ public class LevelManager {
 
     private static Level currentLevel;
     private static Level[] allLevels;
-    private static ArrayList<String> acceptedPlayers = new ArrayList<>();
+    private static final ArrayList<String> acceptedPlayers = new ArrayList<>();
     private static final HashMap<String, LvlSeasonRelation> featureLevels = new HashMap<>();
 
     public static void init(Main plugin) {
@@ -75,7 +75,7 @@ public class LevelManager {
         acceptedPlayers.clear();
 
         // run upgrade and inform
-        Tools.broadcastMessage("Congratulations! The town was just upgraded to level " + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
+        Tools.broadcastMessage(LangDict.getString("townJustUpgraded") + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
         currentLevel.justUpgraded();
 
         // save
@@ -129,7 +129,7 @@ public class LevelManager {
         StringBuilder remainingText = new StringBuilder();
 
         if (currentLevel == null) {
-            return "Not available at the moment";
+            return LangDict.getString("notAvailableRN");
         }
 
         ArrayList<ItemStack> remaining = currentLevel.getRemainingItemsForNextLevel();
@@ -145,7 +145,7 @@ public class LevelManager {
         }
 
         if (remainingText.isEmpty()) {
-            return "None";
+            return LangDict.getString("none");
         }
 
         return remainingText.toString();
@@ -157,14 +157,14 @@ public class LevelManager {
 
     public static void forceUpgrade(Player player) {
         if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
-            Tools.tellPlayer(player, "You cannot force upgrade without all items being collected", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("cannotForceUpWithoutAllItems"), ChatColor.RED);
             return;
         }
         checkIfUpgradeShouldBeScheduled(true);
     }
 
     public static void playerAcceptsUpgrade(Player player) {
-        God.speak("Citizens, " + player.getDisplayName() + " just accepted the upgrade!");
+        God.speak(LangDict.getString("citizens") + player.getDisplayName() + LangDict.getString("justAcceptedUpgrade"));
         acceptedPlayers.add(player.getDisplayName());
 
         checkIfUpgradeShouldBeScheduled(false);
@@ -211,7 +211,6 @@ public class LevelManager {
         ArrayList<ItemStack> currentRemaining = currentLevel.getRemainingItemsForNextLevel();
         JSONArray jsonArray = new JSONArray();
 
-        System.out.println("DEBUG!!!!");
         for (ItemStack itemStack : currentRemaining) {
             JSONObject object = new JSONObject();
             object.put("material", itemStack.getType().toString());

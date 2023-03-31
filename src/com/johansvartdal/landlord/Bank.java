@@ -228,6 +228,9 @@ public class Bank {
     }
 
     public static boolean playerIsTreasuryChancellor(Player player) {
+        if (chancellorUsername == null) {
+            return false;
+        }
         return player.getDisplayName().equalsIgnoreCase(chancellorUsername);
     }
 

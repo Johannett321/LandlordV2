@@ -18,8 +18,8 @@ public class Configurator {
         if (alreadyConfigured()) {
             return;
         }
-        System.out.println("Setting up Landlord files...");
 
+        System.out.println("Setting up Landlord files...");
         File pluginDir = new File(plugin.getDataFolder() + "/");
         if(!pluginDir.exists())
             pluginDir.mkdir();

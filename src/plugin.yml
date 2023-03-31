@@ -64,3 +64,6 @@ commands:
   treasury:
     description: Commands regarding treasury
     usage: /treasury
+  changelang:
+    description: Change the language of Landlord
+    usage: /changelang [ language_code ]

@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 public class CheatProtection {
 
-    private Main plugin;
+    private final Main plugin;
 
     public CheatProtection(Main plugin) {
         this.plugin = plugin;
@@ -20,12 +20,9 @@ public class CheatProtection {
     }
 
     public void scheduleCheckPlayerLocations() {
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
-            public void run() {
-                checkPlayerLocations();
-                scheduleCheckPlayerLocations();
-            }
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            checkPlayerLocations();
+            scheduleCheckPlayerLocations();
         }, Tools.secToTicks(5));
     }
 
@@ -53,7 +50,7 @@ public class CheatProtection {
             // make sure player owns the chunk
             if (!Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
                 Location homeLoc = Main.playerDataManager.getPlayerData(player).getHomeLocation();
-                Tools.tellPlayer(player, "You were sent home as it was detected that you were outside your own chunks", ChatColor.YELLOW);
+                Tools.tellPlayer(player, LangDict.getString("cheatProtectionOutsideChunk"), ChatColor.YELLOW);
                 player.teleport(homeLoc);
             }
         }

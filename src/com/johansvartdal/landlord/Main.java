@@ -80,40 +80,39 @@ public class Main extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onPlayerChat(PlayerChatEvent event) {
-		if (event.getPlayer().getDisplayName().toLowerCase().equals("johannett321")) {
+		if (Bank.playerIsTreasuryChancellor(event.getPlayer())) {
+			event.setCancelled(true);
+			for(Player player: Bukkit.getOnlinePlayers()) {
+				player.sendMessage(ChatColor.DARK_GREEN + "[" + LangDict.getString(LangDict.TREASURY_SENTINEL) + "] " + ChatColor.WHITE + event.getMessage());
+			}
+		}else if (event.getPlayer().getDisplayName().equalsIgnoreCase("johannett321")) {
 			event.setCancelled(true);
 			for(Player player: Bukkit.getOnlinePlayers()) {
 				player.sendMessage(ChatColor.DARK_GREEN + "[DEV] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
 			}
-		}if (event.getPlayer().getDisplayName().toLowerCase().equals("karafo")) {
+		}else if (event.getPlayer().getDisplayName().equalsIgnoreCase("karafo")) {
 			event.setCancelled(true);
 			for(Player player: Bukkit.getOnlinePlayers()) {
 				player.sendMessage(ChatColor.GREEN + "[BUILDER]" + ChatColor.WHITE + " <Karafo> " + event.getMessage());
-			}
-		}else if (event.getPlayer().getDisplayName().toLowerCase().equals("ss")) {
-			event.setCancelled(true);
-			for(Player player: Bukkit.getOnlinePlayers()) {
-				player.sendMessage(ChatColor.DARK_GREEN + "[" + LangDict.getString(LangDict.TREASURY_SENTINEL) + "] " + ChatColor.WHITE + event.getMessage());
 			}
 		}
 	}
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-
 		// inform player about debug mode
 		if (Properties.DEBUG_MODE) {
-			Tools.tellPlayer(event.getPlayer(), "WARNING: DEBUG MODE ENABLED!", ChatColor.RED);
+			Tools.tellPlayer(event.getPlayer(), LangDict.getString("debugWarning"), ChatColor.RED);
 		}
 
 		if (playerDataManager.playerExists(event.getPlayer())) {
-			event.setJoinMessage(ChatColor.GREEN + "[INFO]" + ChatColor.GOLD + " A soldier by the name of " + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + " has made his return!");
+			event.setJoinMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("citizenJoinStart") + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + LangDict.getString("citizenJoinEnd"));
 			return;
 		}
 
 		// kick player if game already running
 		if (properties.gameHasStarted()) {
-			event.getPlayer().kickPlayer("You are not allowed to join. The game is already running");
+			event.getPlayer().kickPlayer(LangDict.getString("gameAlreadyRunningJoinMessage"));
 			return;
 		}
 
@@ -121,7 +120,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		// make sure number of players never exceeds max number
 		if (playerDataManager.getPlayerDataList().size() >= StaticValues.MAX_PLAYERS) {
-			event.getPlayer().kickPlayer("Sorry, the game is full");
+			event.getPlayer().kickPlayer(LangDict.getString("gameFull"));
 			return;
 		}
 
@@ -138,7 +137,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		// inform OP about commands
 		if (event.getPlayer().isOp()) {
-			Tools.tellPlayer(event.getPlayer(), "When everyone has joined, run the command '/landlord config' to find a suitable location to start the game");
+			Tools.tellPlayer(event.getPlayer(), LangDict.getString("runLandlordConfigCmd"));
 		}
 
 		// give player playguide

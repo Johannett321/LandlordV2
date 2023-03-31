@@ -96,7 +96,7 @@ public class ScoreboardHelper {
     }
 
     public void warnNewLevel(int newSeason, int newLevel) {
-        setTitle("Season " + newSeason + " level " + newLevel);
+        setTitle(LangDict.getString("scoreboardSeason") + newSeason + " " + LangDict.getString("scoreboardLevel") + newLevel);
         ArrayList<ItemStack> requiredItems = LevelManager.getRequiredItemsForNextLevel();
 
         for (int i = 0; i < requiredItems.size(); i++) {

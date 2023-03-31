@@ -1,0 +1,257 @@
+{
+  "language": "Norsk (Bokmål)",
+
+  "god": "[The Landlord]",
+
+  "cmdNotNow": "Du kan ikke utføre denne kommandoen nå",
+  "cmdNotUnlocked": "Denne kommandoen har ikke blitt låst opp enda",
+  "youAreNotAllowed": "Du har ikke tilgang til denne kommandoen",
+  "invalidCommandUse": "Ugyldig bruk av kommando",
+  "cannotUseOnYourself": "Du kan ikke bruke denne kommandoen på deg selv",
+  "notAvailableRN": "Ikke tilgjengelig for øyeblikket",
+  "none": "Ingen",
+  "debugWarning": "ADVARSEL: DEBUG-MODUS AKTIVERT!",
+
+  "currency": "kr",
+  "balance": "Saldo",
+  "currentIncomeTax": "Nåværende inntektsskatt:",
+  "currentVAT": "Nåværende MVA:",
+  "currentWealthTax": "Nåværende formuesskatt:",
+  "currentBalance": "Nåværende saldo:",
+  "youNeed": "Du trenger ",
+  "cannotAfford": "Du har ikke råd til ",
+  "plusTax": " + skatt",
+  "justBought": "Du kjøpte nettopp ",
+
+  "cannotFindLanguage": "Finner ikke språk med språk-kode: ",
+  "langChangedTo": "Språket ble endret til ",
+
+
+
+  "citizenJoinStart": "En borger ved navn ",
+  "citizenJoinEnd": " har vendt tilbake!",
+  "gameAlreadyRunningJoinMessage": "Du kan ikke bli med. Spillet er allerede i gang",
+  "gameFull": "Beklager, maks antall spillere er nådd",
+
+
+
+  "chunkInfo": "CHUNK INFORMASJON",
+  "chunkPoints": "Chunk-poeng:",
+  "priceOfNextChunk": "Pris på neste chunk:",
+  "noChunkPointsLeft": "Du har ikke flere chunk-poeng igjen",
+  "toPurchaseAChunk": " + skatt for å kjøpe en ny chunk",
+  "cannotPurchaseThisChunk": "Du kan ikke kjøpe denne chunken",
+  "aChunk": "en chunk",
+  "justBoughtAChunk": " kjøpte akkurat en ny chunk!",
+
+  "toCapture": " for å fange et dyr",
+  "toCaptureVillager": " for å fange en villager",
+  "captureGetCloser": "Du må komme nærmere dyret",
+  "cannotCaptureAnimal": "Dette dyret kan ikke bli fanget",
+
+  "bonusCollectedAlready": "Du har allerede samlet inn din bonus i dag",
+  "lostBonus": "Å nei! Du mistet akkurat bonusen din på ",
+  "justCollectedBonus": "Du samlet nettopp inn din daglige bonus på ",
+
+  "aMagicSpell": "sort magi",
+  "playerPaidForSpell": " har betalt for sort magi!",
+
+  "teleportedHome": "Du har på magisk vis blitt teleportert hjem!",
+  "onlySetHomeInHomeChunk": "Du kan bare sette hjem-posisjonen din i en chunk du eier",
+  "homeUpdated": "Hjem-posisjonen din ble oppdatert!",
+
+  "tradeCommandOnlyInTrade": "Trade-posisjonen må være innenfor trade-chunken",
+  "tradeUpdated": "Trade-posisjonen ble oppdatert!",
+  "teleportTrade": "Du ble på magisk vis teleportert til trade",
+
+  "treasurySentinel": "Statsforvalteren",
+  "treasuryVotingHall": "Statsforvaltningens Stemmehall",
+  "treasuryWelcome": "Vær hilset, og velkommen til Statsforvaltningens Stemmehall. Vi trenger noen til å utøve Statsforvalter-rollen",
+  "cannotVoteTwice": "Du kan ikke stemme to ganger",
+  "treasuryResigned": "Statsforvalteren har trukket seg! En ny må velges",
+  "someoneVotedResignation": "En spiller har stemt for at Statsforvalteren trer av! Kjøre kommandoen '/treasury voteresign' hvis du også vil stemme for det samme",
+  "alreadyApplied": "Du har allerede søkt om denne rollen",
+  "appliedForTreasury": "Du søkte om statsforvalter-rollen",
+  "alreadyVoted": "Du har allerede stemt!",
+  "votedFor": "Du stemte for ",
+  "cannotFindVoluntary": "Kan ikke finne frivillig spiller med brukernavn: ",
+  "treasuryCannotAffordHaste": "Statskassen har ikke råd til haste for ",
+  "treasuryCannotAffordWithdrawal": "Statskassen har ikke råd til et uttak. Det koster ",
+  "treasuryOrderedWithdrawal": "Statsforvalteren har beordret et uttak! Dere har alle mottatt ",
+  "treasuryWithdrawalUnfortunately": ". Dessverre gikk ",
+  "lostDuringWithdrawal": " tapt under uttaket",
+  "treasuryDecidingIn": "Statsforvalteren vil bli bestemt om",
+  "treasuryIsChosen": "En statsforvalter er valgt",
+  "playerHasBeenChosen": " er valgt for statsforvalter-rollen!",
+  "treasuryApplyInfo": "Hvis du vil søke om rollen, vennligst skriv '/treasury apply'",
+  "treasuryVoteInfo": "Hvis du vil avgi en stemme, vennligst skriv '/treasury vote [brukernavn]'",
+  "roleDecidingSoon": "Rollen vil snart bli bestemt!",
+
+  "upgradeInfo": "OPPGRADERINGSINFO",
+  "currentLevel": "Nåværende level: ",
+  "donationsRemaining": "Gjenstående donasjoner: ",
+  "playersAccepted": "Spillere som har akseptert: ",
+  "alreadyAccepted": "Du har allerede akseptert",
+  "citizens": "Borgere, ",
+  "justAcceptedUp": " aksepterte nettopp oppgraderingen!",
+  "cannotForceUpWithoutAllItems": "Du kan ikke tvinge oppgradering uten at alle gjenstandene er samlet",
+  "notRequiredForUpgrade": "Denne gjenstanden er ikke nødvendig for oppgradering",
+  "scoreboardSeason": "Sesong ",
+  "scoreboardLevel": "Level ",
+
+  "commands": "KOMMANDOER",
+  "stocks": "Aksjer",
+  "stock": "Aksje:",
+  "description": "Beskrivelse:",
+  "stocksFor": " askjer for ",
+  "couldNotFindStockWithName": "Kunne ikke finne aksje med navn ",
+  "justPaidPlatformFee": "Du betalte nettop en plattformavgift på ",
+  "stocksInvalid": "Disse aksjene er ugyldige!",
+  "perStock": " per aksje",
+  "values1To4Mins": "Verdier (1, 2, 3, 4) min:",
+  "values15To60Mins": "Verdier (15, 30, 45, 60) min:",
+  "platformFee": "Plattformavgift:",
+
+  "toVisit": " for å besøke noen",
+  "waitingForReply": "Du venter nå på at ",
+  "toReply": " svarer.",
+  "newVisitRequest": "Du har en ny besøksforespørsel fra ",
+  "visitReqInstructions": "! Skriv '/visit [accept | reject]' for å svare",
+  "isNowVisiting": " er nå på besøk hos deg! Besøkende betalte deg ",
+  "asAVisitFee": " i besøksavgift",
+  "youAreNowVisiting": "Du besøker nå ",
+  "youPaidTheHost": ". Du betalte verten ",
+  "noVisitRequests": "Du har ingen besøksforespørsler",
+  "willNotBeVisiting": " kommer ikke til å besøke deg!",
+  "notAllowedToVisit": "Du fikk ikke lov til å besøke ",
+
+  "toAccessWilderness": " for å dra på eventyr",
+  "wilderness": "et eventyr",
+  "welcomeToWild": "Velkommen til villmarken. Du har 7 minutter før dine ",
+  "expires": " utløper!",
+  "toExtendThisJourney": " for å forlenge eventyret",
+  "wildernessMine": "et gruveeventyr",
+  "welcomeToWildMine": "Velkommen til gruven. Du har 45 minutter før dine ",
+  "wildernessNether": "et nethereventyr",
+  "welcomeWildNether": "Velkommen til nether. Du har 7 minutter før dine ",
+  "wildernessExtension": "utvidelse av eventyr",
+  "extended": "Forlenget ",
+  "youHave": "Du har ",
+  "leftOfWildTime": " igjen av ditt eventyr",
+
+  "gameAlreadyRunning": "Spillet er allerede i gang!",
+  "youMustConfigFirst": "Du må kjøre '/landlord config' før du kan kjøre denne kommandoen",
+  "isNowLookingForLoc": " leter nå etter et passende sted for spillet. Vær tålmodig!",
+  "pleaseFindLoc": "Du er nå i spectator-mode. Vennligst finn et sted du ønsker å starte spillet",
+  "runLandlordStart": "Når du er klar, kjør '/landlord start'",
+
+  "itemCannotBeSold": "Gjenstanden kan ikke selges",
+  "cannotSellStock": "Du kan ikke selge denne gjenstanden. Hvis det er en aksje, bruk '/stocks sell [stockname]'",
+  "item": "Gjenstand:",
+  "currentValue": "Nåværende verdi:",
+  "toSell": " for å selge.",
+  "youJustSold": "Du har nettopp solgt ",
+  "for": " for ",
+  "with": " med ",
+
+  "playerNotInChunk": "Spilleren er ikke innenfor en av dine chunks",
+  "playerSentHome": "Spilleren ble sendt hjem",
+  "sentHomeByOwner": "Du ble sendt hjem av verten",
+  "couldNotFindPlayer": "Kunne ikke finne spilleren: ",
+
+  "justDonated": " har nettopp donert de siste ",
+  "toCommunity": " til samfunnet!",
+  "itemDonationsComplete": "Meget bra! Du har fullført alle gjenstandene for dette nivået. Kjør '/upgrade accept' for å gå videre til neste nivå",
+  "townJustUpgraded": "Gratulerer! Byen ble nettopp oppgradert til nivå ",
+
+  "youJustPaid": "Du betalte nettopp ",
+  "forThisCommand": " + skatt for denne kommandoen",
+  "inPropertyTax": " i eiendomsskatt (antall eide chunks * ",
+  "inTax": " i skatt",
+  "inWealthTax": " i formuesskatt",
+  "forCapturing": " for å fange et dyr",
+  "inEmissionTax": " i miljøskatt",
+  "aRouletteTicket": " en roulett-billett",
+
+  "rouletteBegin": "Det er tid for en ny roulette! Kjør '/joinroulette' for en sjanse til å vinne ",
+  "rouletteEnding30": "Rouletten vil snart avsluttes. Vinneren blir kunngjort om 30 sekunder!",
+  "rouletteEnding5": "Rouletten er i ferd med å avsluttes. Vinneren blir kunngjort om 5 sekunder!",
+  "rouletteWinner": "Vinneren av rouletten er ",
+  "rouletteNoWinner": "Ingen vant rouletten!",
+  "rouletteJoinMessage": "Du er nå lagt til i rouletten!",
+  "rouletteJoinTwice": "Du er med! Igjen ... Ikke gjør det der to ganger ...",
+  "justJoinedRoulette": " har nettopp blitt med i rouletten!",
+  "noRouletteStart": "Det er ingen spill som går for øyeblikket. Neste roulette vil være om ",
+  "noRouletteEnd": " minutter",
+
+  "governmentBank": "Banken",
+
+  "youHaveBeenSentToJailBecause": "Du er blitt sendt til fengsel fordi ",
+  "jailReasonTax": "du ikke hadde råd til å betale skatten din!",
+  "jailOutTax": "Du er ute! Pass på å ha nok penger neste gang!",
+  "jailReasonEmissionTax": "du ikke hadde råd til å betale miljøskatten mens du utvinnet kull!",
+  "jailOutReasonEmissionTax": "Du er ute! Pass på å ha nok penger neste gang du utvinner mineraler!",
+
+  "cheatProtectionOutsideChunk": "Du ble sendt hjem fordi det ble oppdaget at du var utenfor dine egne chunks",
+  "cheatProtectionEnterNether": "Bruk '/wilderness nether' for å komme deg til nether",
+
+  "playersAreSleeping": " spiller(e) sover",
+  "minutes": " minutt(er)",
+  "seconds": " sekund(er)",
+
+
+
+
+  "level2Welcome1": "Eyyy, så spennende! Din første byoppgradering! Hver gang byen din går opp et nivå, vil noe skje. Denne gangen låste du opp en funksjon som kalles roulette. Hver time kjører en roulette. Rouletten gir deg en mulighet til å vinne en premie. Imidlertid er det en deltakeravgift for å delta. Du vil bli varslet før en roulette er i ferd med å starte",
+  "level2Welcome2": "Du ble også belønnet med ett chunk-poeng hver. Stå ved siden av en av dine chunkvegger. Mens du ser mot grensen, kjører du kommandoen '/buychunk', og se veggene magisk falle mens du låser opp din andre chunk!",
+
+
+
+
+
+  "welcomeHome": "Velkommen hjem",
+  "teleportedBackToEvent": "Du er blitt teleportert tilbake til eventet",
+
+  "welcomeMessage": "Velkommen til Landlord, borgere! Dere har 5 minutter før dere alle blir låst inne i deres chunks, bruk tiden klokt!",
+  "welcomeTitle": "Velkommen til ",
+  "prepInFiveMin": "Forberedelser vil starte om 5 sekunder. Gjør deg klar!",
+  "listOfHelpful": "Gjenstander du må samle i forberedelsen for å kunne komme til neste nivå: Eikeplanter, sukkerrør, hvetefrø",
+  "goodLuck": "Lykke til, tiden starter nå!",
+  "minutesRemaining": "minutt(er) igjen før veggene reises!",
+  "secondsRemaining": "sekunder igjen før veggene reises!",
+  "about0Sec": "omtrent 0 sekunder",
+  "secondListOfHelpful": "Forresten, beklager. Jeg glemte å nevne at du også bør huske å skaffe noe mat og også sand for å lage glass. Faktisk, kanskje kull heller ikke er en dårlig idé?",
+  "risingBorders": "ADVARSEL: Stå stille! Veggene reises!",
+  "newCitizen": "En ny borger har ankommet! Gi en varm velkomst til ",
+  "runLandlordConfigCmd": "Når alle har blitt med, kjør kommandoen '/landlord config' for å finne et passende sted å starte spillet",
+
+  "getReadyExcursion": "Gjør deg klar, en utflukt vil begynne om 5 minutter!",
+  "excursionIn": "Utflukten starter om",
+  "excursionEnd": "Dessverre har utflukten kommet til en slutt. Velkommen tilbake hjem",
+  "excursionEndIn": "Utflukten slutter om",
+  "eventCancelledServerRestart": "Eventet ble avbrutt på grunn av en serveromstart",
+
+  "icyHillsWelcomeStart": "Vær hilset, og velkommen til Frostgardes fjell! Det er noen skjulte skatter spredt over hele fjellet. Finn dem før din ",
+  "icyHillsWelcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?",
+
+  "solvheimWelcomeStart": "Vær hilset, og velkommen til Solvheim landsby! Det er noen skjulte skatter spredt over hele landsbyen. Finn dem før din ",
+  "solvheimWelcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?",
+  "village": "landsby",
+
+  "nextWave30Sec": "Bra jobbet! Fortsett sånn! Neste bølge starter om 30 sekunder",
+  "firstWave30Sec": "Den første bølgen starter om 30 sekunder! Sov i en seng før kampen begynner",
+  "wellDoneArena": "Bra gjort! Du har fullført en Arenakamp!",
+  "hasBegun": " har begynt!",
+
+  "cakeWorldWelcome": "Vær hilset, modige reisende, til det gåtefulle riket CakeWorld! Her ligger et mysterium og venter på din intelligens til å avdekke dets gåtefulle hemmeligheter. Tør du nøste opp trådene i dette forbløffende mysteriet som mange før deg har forsøkt? Ta utfordringen, og må mystikken til CakeWorld lede deg på søken etter svar.",
+
+  "hasteInOneMinute": "En ordre er plassert fra statsforvalteren! Alle skal motta haste om 1 minutt.",
+  "lotOfProgress": "Phew! Det var mye fremgang på kort tid",
+  "hasteBegin": "La haste begynne! Dere har 3 minutter",
+  "effectWillEndIn": "Haste-effekten vil slutte om",
+
+  "wildEnding1Min": "Ditt villmarkseventyr avsluttes om 1 minutt",
+  "wildEnding10Sec": "Ditt villmarkseventyr avsluttes om 10 sekunder",
+  "heightLimitTooMuch": "Det holder! Du overskred høydegrensen tre ganger! Du ble derfor sendt hjem!",
+  "mineGetDown": "KOM DEG NED UMIDDELBART! Du overskrider høydegrensen! (advarsel "
+}

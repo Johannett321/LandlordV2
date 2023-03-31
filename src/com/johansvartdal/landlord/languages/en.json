@@ -1,4 +1,6 @@
 {
+  "language": "English",
+
   "god": "[The Landlord]",
 
   "cmdNotNow": "You cannot execute this command at the moment",
@@ -6,6 +8,9 @@
   "youAreNotAllowed": "You are not allowed to use this command",
   "invalidCommandUse": "Invalid use of command",
   "cannotUseOnYourself": "You cannot use this command on yourself",
+  "notAvailableRN": "Not available at the moment",
+  "none": "None",
+  "debugWarning": "WARNING: DEBUG MODE ENABLED!",
 
   "currency": "USD",
   "balance": "Balance",
@@ -18,8 +23,20 @@
   "plusTax": " + tax",
   "justBought": "You just bought ",
 
+  "cannotFindLanguage": "Cannot find language with code: ",
+  "langChangedTo": "The language was changed to ",
+
+
+
+  "citizenJoinStart": "A citizen by the name of ",
+  "citizenJoinEnd": " has made his return!",
+  "gameAlreadyRunningJoinMessage": "You are not allowed to join. The game is already running",
+  "gameFull": "Sorry, the game is full",
+
+
+
   "chunkInfo": "CHUNK INFO",
-  "chunkPoints": "Chunks points:",
+  "chunkPoints": "Chunk points:",
   "priceOfNextChunk": "Price of next chunk:",
   "noChunkPointsLeft": "You don't have any chunk points left",
   "toPurchaseAChunk": " + tax to purchase a new chunk",
@@ -39,8 +56,6 @@
   "aMagicSpell": "a magic spell",
   "playerPaidForSpell": " has paid for a magic spell!",
 
-  "notRequiredForUpgrade": "This item is not required for upgrade",
-
   "teleportedHome": "You have magically been teleported home!",
   "onlySetHomeInHomeChunk": "You can only set your home inside a chunk you own",
   "homeUpdated": "Your home was updated",
@@ -54,7 +69,7 @@
   "treasuryWelcome": "Greetings, and welcome to the Treasury voting hall. We need someone to take care of The Treasury Chancellor role",
   "cannotVoteTwice": "You cannot vote twice",
   "treasuryResigned": "The Treasury Chancellor has been resigned! A new one must be chosen",
-  "someoneVotedResignation": "A player has voted for resignation of the Treasury Chancellor! Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well!",
+  "someoneVotedResignation": "A player has voted for resignation of the Treasury Chancellor! Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well",
   "alreadyApplied": "You have already applied for this role",
   "appliedForTreasury": "You applied for the treasury role",
   "alreadyVoted": "You have already voted!",
@@ -77,6 +92,12 @@
   "donationsRemaining": "Donations remaining: ",
   "playersAccepted": "Players accepted: ",
   "alreadyAccepted": "You have already accepted",
+  "citizens": "Citizens, ",
+  "justAcceptedUp": " just accepted the upgrade!",
+  "cannotForceUpWithoutAllItems": "You cannot force upgrade without all items being collected",
+  "notRequiredForUpgrade": "This item is not required for upgrade",
+  "scoreboardSeason": "Season ",
+  "scoreboardLevel": "Level ",
 
   "commands": "COMMANDS",
   "stocks": "STOCKS",
@@ -141,6 +162,7 @@
   "justDonated": " just donated the last ",
   "toCommunity": " to the community!",
   "itemDonationsComplete": "Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level",
+  "townJustUpgraded": "Congratulations! The town was just upgraded to level ",
 
   "youJustPaid": "You just paid ",
   "forThisCommand": " + tax for this command",
@@ -148,12 +170,34 @@
   "inTax": " in tax",
   "inWealthTax": " in wealth tax",
   "forCapturing": "capturing an animal",
+  "inEmissionTax": " in emission tax",
+  "aRouletteTicket": "a roulette ticket",
+
+  "rouletteBegin": "It's time for a new roulette! Do '/joinroulette' for a chance of winning ",
+  "rouletteEnding30": "The roulette game will soon end. The winner will be announced in 30 seconds!",
+  "rouletteEnding5": "The roulette game is about to end. The winner will be announced in 5 seconds!",
+  "rouletteWinner": "The winner of the roulette game is ",
+  "rouletteNoWinner": "No one won the roulette game!",
+  "rouletteJoinMessage": "You are now added to the game!",
+  "rouletteJoinTwice": "You're in! Again... Don't do that twice...",
+  "justJoinedRoulette": " just joined the roulette!",
+  "noRouletteStart": "There is no game running at the time. Next game will be in ",
+  "noRouletteEnd": " minutes",
 
   "governmentBank": "The bank",
 
   "youHaveBeenSentToJailBecause": "You have been sent to jail because ",
   "jailReasonTax": "you could not afford to pay your tax!",
   "jailOutTax": "You're out! Make sure to have enough money next time!",
+  "jailReasonEmissionTax": "you could not afford to pay emission tax while mining coal!",
+  "jailOutReasonEmissionTax": "You're out! Make sure to have enough money next time you're mining!",
+
+  "cheatProtectionOutsideChunk": "You were sent home as it was detected that you were outside your own chunks",
+  "cheatProtectionEnterNether": "Use '/wilderness nether' to enter nether",
+
+  "playersAreSleeping": " player(s) are sleeping",
+  "minutes": " minute(s)",
+  "seconds": " second(s)",
 
 
 
@@ -166,6 +210,7 @@
 
 
   "welcomeHome": "Welcome home",
+  "teleportedBackToEvent": "You have been teleported back to the event",
 
   "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
   "welcomeTitle": "Welcome to ",
@@ -178,6 +223,7 @@
   "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
   "risingBorders": "WARNING: Please stand still! Borders are rising!",
   "newCitizen": "A new citizen has arrived! Please welcome ",
+  "runLandlordConfigCmd": "When everyone has joined, run the command '/landlord config' to find a suitable location to start the game",
 
   "getReadyExcursion": "Get ready, an excursion will begin in 5 minutes!",
   "excursionIn": "The excursion starts in",
