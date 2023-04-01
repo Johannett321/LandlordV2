@@ -2,6 +2,8 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
+import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -94,12 +96,7 @@ public class Visit implements CommandExecutor {
     }
 
     private void scheduleRemovalOfRequest(WantsVisit wantsVisit) {
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
-            public void run() {
-                wantsVisits.remove(wantsVisit);
-            }
-        }, 20*15);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> wantsVisits.remove(wantsVisit), Tools.secToTicks(15));
     }
 
     private void acceptVisit(Player player) {
@@ -113,6 +110,19 @@ public class Visit implements CommandExecutor {
             if (!Bank.playerCanAfford(wantsVisits.get(i).visitor, StaticValues.VISIT_PRICE)) {
                 Tools.tellPlayer(player,LangDict.getString("youNeed") + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("toVisit"), ChatColor.RED);
                 return;
+            }
+
+            // make sure visitor is not in event that can't cancel
+            PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(wantsVisits.get(i).visitor);
+            if (playerEvent != null) {
+                // can tp away?
+                if (!playerEvent.playerTPAwayAllowed()) {
+                    Tools.tellPlayer(new ErrorChat(), wantsVisits.get(i).visitor, LangDict.getString(LangDict.CMD_NOT_NOW));
+                    return;
+                }
+
+                // end event
+                playerEvent.endEvent();
             }
 
             // withdraw player

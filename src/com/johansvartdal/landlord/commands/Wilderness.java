@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.playerevents.MiningEvent;
 import com.johansvartdal.landlord.playerevents.NetherWildernessEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
@@ -24,6 +25,7 @@ public class Wilderness implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+        // state normal
         if (Tools.stateNotNormal(commandSender)) {
             Tools.tellPlayer(commandSender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return true;
@@ -31,11 +33,13 @@ public class Wilderness implements CommandExecutor {
 
         Player player = (Player) commandSender;
 
+        // check if feature unlocked
         if (!LevelManager.featureUnlocked("wildworld")) {
             Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return true;
         }
 
+        // inform about commands
         if (args.length == 0) {
             Tools.printMenuHeader(player, LangDict.getString("commands"));
             Tools.printMenuOption(player, "/wilderness", "world");
@@ -46,6 +50,13 @@ public class Wilderness implements CommandExecutor {
             return true;
         }
 
+        // check if player is flying
+        if (PlayerEventManager.playerIsInFlyingEvent(player)) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.END_FLIGHT_FIRST));
+            return true;
+        }
+
+        // command args
         if (args[0].equals("world")) {
             attemptWorldWilderness(player);
         }else if (args[0].equals("nether")) {

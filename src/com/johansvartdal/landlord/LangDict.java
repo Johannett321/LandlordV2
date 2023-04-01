@@ -19,6 +19,7 @@ public class LangDict {
     public static final String YOU_ARE_NOT_ALLOWED = "youAreNotAllowed";
     public static final String EVENT_CANCELLED_SERVER_RESTART = "eventCancelledServerRestart";
     public static final String YOU_CANNOT_AFFORD_ = "cannotAfford";
+    public static final String END_FLIGHT_FIRST = "endFlightFirst";
     public static String languageCode = null;
 
     private static JSONObject english;

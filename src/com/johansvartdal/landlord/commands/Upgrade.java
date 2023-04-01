@@ -1,9 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
-import com.johansvartdal.landlord.LangDict;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
-import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -48,6 +46,14 @@ public class Upgrade implements CommandExecutor {
 				Tools.tellPlayer(player, LangDict.getString("alreadyAccepted"));
 				return true;
 			}
+
+			// check if player is flying
+			if (PlayerEventManager.playerIsInFlyingEvent(player)) {
+				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.END_FLIGHT_FIRST));
+				return true;
+			}
+
+			// actually accept
 			LevelManager.playerAcceptsUpgrade(player);
 		}else if (args[0].equals("force")) {
 			if (!player.isOp()) {

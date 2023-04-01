@@ -61,6 +61,9 @@ public class LandlordEventManager {
         // save eventType
         Tools.write("runningEventType.txt", event.getEventType());
 
+        // cancel all player events
+        PlayerEventManager.forceEndAllEvents();
+
         // start event
         event.startEvent();
     }

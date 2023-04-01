@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.playerevents.FlyingEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -9,6 +10,18 @@ import java.util.ArrayList;
 public class PlayerEventManager {
 
     private static final ArrayList<PlayerEvent> playerEvents = new ArrayList<>();
+
+    public static boolean playerIsInFlyingEvent(Player player) {
+        PlayerEvent playerEvent = getEventForPlayer(player);
+        return playerEvent instanceof FlyingEvent;
+    }
+
+    public static void cancelFlyingEventForPlayer(Player player) {
+        PlayerEvent playerEvent = getEventForPlayer(player);
+        if (playerEvent instanceof FlyingEvent flyingEvent) {
+            flyingEvent.endEvent();
+        }
+    }
 
     public static void startPlayerEvent(PlayerEvent event) {
         event.start();

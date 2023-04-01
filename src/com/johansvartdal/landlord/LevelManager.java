@@ -323,7 +323,6 @@ public class LevelManager {
 
     private static void populateCommandLevels() {
         // season 1
-        featureLevels.put("fly", new LvlSeasonRelation(1,1));
         featureLevels.put("roulette", new LvlSeasonRelation(1,2));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
@@ -333,7 +332,8 @@ public class LevelManager {
         // season 2
         featureLevels.put("stocks", new LvlSeasonRelation(2,1));
         featureLevels.put("wildmining", new LvlSeasonRelation(2,3));
-        featureLevels.put("day", new LvlSeasonRelation(2,4));
+        featureLevels.put("fly", new LvlSeasonRelation(2,5));
+        featureLevels.put("day", new LvlSeasonRelation(2,7));
     }
 
     public static boolean featureUnlocked(String featureName) {

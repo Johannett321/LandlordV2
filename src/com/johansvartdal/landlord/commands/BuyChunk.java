@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,6 +31,13 @@ public class BuyChunk implements CommandExecutor {
 
 		Player player = (Player) sender;
 		int chunkPurchasePrice = Main.playerDataManager.getPlayerData(player).getChunkPurchasePrice();
+
+
+		// check if player is flying
+		if (PlayerEventManager.playerIsInFlyingEvent(player)) {
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.END_FLIGHT_FIRST));
+			return true;
+		}
 
 		if (args.length == 0) {
 			Tools.printMenuHeader(player, "Commands");

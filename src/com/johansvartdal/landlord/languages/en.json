@@ -130,6 +130,7 @@
 
   "jail": "jail",
   "flying": "flying",
+  "endFlightFirst": "Please do '/fly end' first",
   "extendingFlight": "extending your flight",
   "pricePerMin": "Price per minute:",
   "whoahFlying": "Whoah! You can fly!",

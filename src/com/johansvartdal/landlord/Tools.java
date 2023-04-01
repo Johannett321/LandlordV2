@@ -218,7 +218,6 @@ public class Tools {
         if (!Main.properties.gameStateIsNormal()) {
             return true;
         }
-
         return false;
     }
 

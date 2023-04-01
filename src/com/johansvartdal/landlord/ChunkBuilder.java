@@ -263,4 +263,13 @@ public class ChunkBuilder {
 
         return true;
     }
+
+    public static boolean someoneOwnsChunk(Chunk chunk) {
+        for (PlayerData playerData : Main.playerDataManager.getPlayerDataList()) {
+            if (playerData.ownsChunkAtLocation(chunk.getX(), chunk.getZ())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

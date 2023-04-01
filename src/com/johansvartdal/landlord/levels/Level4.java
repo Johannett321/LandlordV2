@@ -25,6 +25,8 @@ public class Level4 extends Level{
         // DIORITE?
         // Deepslate fant jeg under Y0
         // TUFF fant jeg veldig dypt! -45Y
+        // cocoa beans
+        // milk bucket
 
         // -------- FRA NETHER -----------
         // warped nylium (grass)

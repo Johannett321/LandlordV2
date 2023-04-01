@@ -31,7 +31,7 @@ public class Fly implements CommandExecutor {
 		}
 
 		// game state normal
-		if (!Main.properties.gameStateIsNormal()) {
+		if (Tools.stateNotNormal(player)) {
 			Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW));
 			return true;
 		}

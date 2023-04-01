@@ -47,6 +47,11 @@ public class CheatProtection {
                 continue;
             }
 
+            // allow visiting
+            if (ChunkBuilder.someoneOwnsChunk(player.getLocation().getChunk())) {
+                continue;
+            }
+
             // make sure player owns the chunk
             if (!Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
                 Location homeLoc = Main.playerDataManager.getPlayerData(player).getHomeLocation();

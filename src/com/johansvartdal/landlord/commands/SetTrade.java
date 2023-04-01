@@ -2,7 +2,9 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.PlayerEventManager;
 import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -28,13 +30,21 @@ public class SetTrade implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        // make sure player is OP
         if (!player.isOp()) {
             Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
             return true;
         }
 
+        // make sure in trade
         if (!Main.tradeCenter.getLocation().getChunk().equals(player.getLocation().getChunk())) {
             Tools.tellPlayer(player, LangDict.getString("tradeCommandOnlyInTrade"), ChatColor.RED);
+            return true;
+        }
+
+        // check if player is flying
+        if (PlayerEventManager.playerIsInFlyingEvent(player)) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.END_FLIGHT_FIRST));
             return true;
         }
 
