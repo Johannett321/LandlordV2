@@ -1,8 +1,6 @@
 package com.johansvartdal.landlord.levels;
 
-import com.johansvartdal.landlord.God;
-import com.johansvartdal.landlord.LandlordEvent;
-import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.*;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -28,6 +26,8 @@ public class Level3 extends Level{
 
     @Override
     public void justUpgraded() {
+        God.speak(LangDict.getString("level3Welcome1"));
+        God.speak(LangDict.getString("level3Welcome2"));
     }
 
     @Override

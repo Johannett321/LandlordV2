@@ -55,7 +55,7 @@ public class JailEvent extends PlayerEvent {
 
     @Override
     public String getTitle() {
-        return "jail";
+        return LangDict.getString("jail");
     }
 
     public void setEndMessage(String endMessage) {

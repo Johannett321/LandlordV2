@@ -67,3 +67,6 @@ commands:
   changelang:
     description: Change the language of Landlord
     usage: /changelang [ language_code ]
+  fly:
+    description: Enables you to fly
+    usage: /fly [ now | end | info ]

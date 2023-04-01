@@ -2,17 +2,22 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.commands.*;
 import com.johansvartdal.landlord.lan.LanController;
+import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -71,6 +76,7 @@ public class Main extends JavaPlugin implements Listener {
 		new SetTrade(this);
 		new TreasuryCommand(this);
 		new ChangeLanguage(this);
+		new Fly(this);
 
 		Bank.startTaxCollector(this);
 
@@ -81,6 +87,14 @@ public class Main extends JavaPlugin implements Listener {
 
 		// Only for LAN
 		LanController.initiate();
+
+		// inform players about server restart
+		Tools.broadcastMessage(LangDict.getString("serverRestarted"), ChatColor.GREEN);
+	}
+
+	@Override
+	public void onDisable() {
+		PlayerEventManager.forceEndAllEvents();
 	}
 
 	@EventHandler
@@ -110,18 +124,36 @@ public class Main extends JavaPlugin implements Listener {
 			Tools.tellPlayer(event.getPlayer(), LangDict.getString("debugWarning"), ChatColor.RED);
 		}
 
+		// make sure player is not flying unless allowed to
+		if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
+			// end current flight
+			if (event.getPlayer().isFlying()) {
+				event.getPlayer().setFlying(false);
+
+				// add slow falling, so player doesn't hurt
+				PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(20), 6);
+				event.getPlayer().addPotionEffect(potionEffect);
+			}
+
+			// disapprove flight
+			if (event.getPlayer().getAllowFlight()) {
+				event.getPlayer().setAllowFlight(false);
+			}
+		}
+
+		// check if it is a returning player
 		if (playerDataManager.playerExists(event.getPlayer())) {
 			event.setJoinMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("citizenJoinStart") + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + LangDict.getString("citizenJoinEnd"));
 			return;
 		}
+
+		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
 
 		// kick player if game already running
 		if (properties.gameHasStarted()) {
 			event.getPlayer().kickPlayer(LangDict.getString("gameAlreadyRunningJoinMessage"));
 			return;
 		}
-
-		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
 
 		// make sure number of players never exceeds max number
 		if (playerDataManager.getPlayerDataList().size() >= StaticValues.MAX_PLAYERS) {
@@ -147,6 +179,26 @@ public class Main extends JavaPlugin implements Listener {
 
 		// give player playguide
 		givePlayGuide(event.getPlayer());
+	}
+
+	@EventHandler
+	public void onPlayerLeave(PlayerQuitEvent event){
+		event.setQuitMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("citizenLeaveStart") + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + LangDict.getString("citizenLeaveEnd"));
+
+		if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
+			if (event.getPlayer().isFlying()) {
+
+				// add slow falling, so player doesn't hurt when flight is ended
+				PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(20), 6);
+				event.getPlayer().addPotionEffect(potionEffect);
+			}
+		}
+
+		// end player event
+		PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(event.getPlayer());
+		if (playerEvent != null) {
+			playerEvent.endEvent();
+		}
 	}
 
 	private void givePlayGuide(Player player) {

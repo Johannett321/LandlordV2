@@ -11,6 +11,7 @@
   "notAvailableRN": "Not available at the moment",
   "none": "None",
   "debugWarning": "WARNING: DEBUG MODE ENABLED!",
+  "serverRestarted": "Server just restarted!",
 
   "currency": "USD",
   "balance": "Balance",
@@ -30,6 +31,8 @@
 
   "citizenJoinStart": "A citizen by the name of ",
   "citizenJoinEnd": " has made his return!",
+  "citizenLeaveStart": "Oh no! A citizen by the name of ",
+  "citizenLeaveEnd": " have left us!",
   "gameAlreadyRunningJoinMessage": "You are not allowed to join. The game is already running",
   "gameFull": "Sorry, the game is full",
 
@@ -125,6 +128,17 @@
   "willNotBeVisiting": " will not be visiting you!",
   "notAllowedToVisit": "You were not allowed to visit ",
 
+  "jail": "jail",
+  "flying": "flying",
+  "extendingFlight": "extending your flight",
+  "pricePerMin": "Price per minute:",
+  "whoahFlying": "Whoah! You can fly!",
+  "turnOffFlightInstructions": "Do '/fly end' to end your flight",
+  "cannotAffordExtendFlight": "Flying was disabled as you could not afford to extend it",
+  "landBeforeEndFlight": "Please land before you attempt this command!",
+  "flightTurnedOff": "Your flight effect was turned off",
+  "mining": "mining",
+
   "toAccessWilderness": " to access wilderness",
   "wilderness": "wilderness",
   "welcomeToWild": "Welcome to the wilderness. You have 7 minutes before your ",
@@ -205,6 +219,11 @@
   "level2Welcome1": "Heeeey, how exciting! Your first town upgrade! Everytime your town levels up, something will happen. This time you unlocked a feature called roulette. Every hour, a roulette will run. The roulette gives you an opportunity to win a price. However, there is a participation fee to join. You will be notified before a roulette is about to start",
   "level2Welcome2": "You were also rewarded a chunk point each. Stand next to one of your chunk borders. While looking towards the border, execute the command '/buychunk', and watch the walls magically fall as you unlock your second chunk!",
 
+  "level3Welcome1": "Alright, level 3! Not bad. You've been working quite hard for this. Other than unlocking your third chunk, there's not much special about this level.",
+  "level3Welcome2": "The next level however, is really something you can look forward to. I see the borders are getting softer and softer...",
+
+  "level4Welcome1": "This is quite exciting! I've got some good news! There is finally a way for you to escape your chunks! The bad news is that it's quite expensive however. Currently it's ",
+  "level4Welcome2": "If you want to try it, run '/wilderness' for some fresh air.",
 
 
 

@@ -59,6 +59,6 @@ public class WildernessEvent extends PlayerEvent{
 
     @Override
     public String getTitle() {
-        return "wilderness";
+        return LangDict.getString("wilderness");
     }
 }

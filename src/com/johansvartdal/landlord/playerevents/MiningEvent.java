@@ -64,7 +64,7 @@ public class MiningEvent extends PlayerEvent {
 
     @Override
     public String getTitle() {
-        return "mining";
+        return LangDict.getString("mining");
     }
 
     public void warnOneMinLeft() {

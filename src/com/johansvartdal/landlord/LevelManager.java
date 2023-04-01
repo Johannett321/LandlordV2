@@ -275,18 +275,18 @@ public class LevelManager {
 
     public static int getWildernessPrice() {
         return switch (getCurrentDisplaySeasonNum()) {
-            case 1 -> 300;
-            case 2 -> 600;
-            case 3 -> 900;
+            case 1 -> 1990;
+            case 2 -> 4990;
+            case 3 -> 9990;
             default -> 0;
         };
     }
 
     public static int getNetherWildernessPrice() {
         return switch (getCurrentDisplaySeasonNum()) {
-            case 1 -> 200;
-            case 2 -> 300;
-            case 3 -> 400;
+            case 1 -> 1490;
+            case 2 -> 3490;
+            case 3 -> 5990;
             default -> 0;
         };
     }
@@ -323,14 +323,15 @@ public class LevelManager {
 
     private static void populateCommandLevels() {
         // season 1
+        featureLevels.put("fly", new LvlSeasonRelation(1,1));
         featureLevels.put("roulette", new LvlSeasonRelation(1,2));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
         featureLevels.put("visit", new LvlSeasonRelation(1,7));
+        featureLevels.put("wildnether", new LvlSeasonRelation(1,9));
 
         // season 2
         featureLevels.put("stocks", new LvlSeasonRelation(2,1));
-        featureLevels.put("wildnether", new LvlSeasonRelation(2,2));
         featureLevels.put("wildmining", new LvlSeasonRelation(2,3));
         featureLevels.put("day", new LvlSeasonRelation(2,4));
     }

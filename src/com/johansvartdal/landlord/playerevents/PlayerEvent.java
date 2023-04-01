@@ -14,7 +14,7 @@ public abstract class PlayerEvent {
     protected Player player;
     protected Location locationBeforeEvent;
     protected Main plugin;
-    protected BukkitTask eventTimerWithAction;
+    protected BukkitTask eventTimerWithAction = null;
     protected long scheduledEndTime;
 
     public PlayerEvent(Main plugin, Player player) {
@@ -47,12 +47,14 @@ public abstract class PlayerEvent {
     public void scheduleAutoEnd() {
         long current = System.currentTimeMillis();
         scheduledEndTime = current + (1000L * getLengthOfEventInSeconds());
-        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
-            public void run() {
-                onWarningEventShouldCancel();
-            }
-        }, Tools.secToTicks(getLengthOfEventInSeconds()));
+
+        if (eventTimerWithAction != null) {
+            eventTimerWithAction.cancel();
+        }
+
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin,
+                this::onWarningEventShouldCancel,
+                Tools.secToTicks(getLengthOfEventInSeconds()));
     }
 
     public String getTextTimeLeft() {

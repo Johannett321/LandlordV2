@@ -39,7 +39,7 @@ public class CustomConfig {
         StringBuilder builder = new StringBuilder();
         builder.append("LICENCE_KEY=[WRITE_LICENCE_HERE]");
         builder.append(System.lineSeparator());
-        builder.append("LANGUAGE=nn-no"); // change to english
+        builder.append("LANGUAGE=nb-no"); // change to english
         Tools.write("landlord.config", builder.toString());
     }
 

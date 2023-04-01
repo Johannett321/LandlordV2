@@ -85,6 +85,6 @@ public class NetherWildernessEvent extends PlayerEvent{
 
     @Override
     public String getTitle() {
-        return "nether wilderness";
+        return LangDict.getString("wildernessNether");
     }
 }

@@ -1,7 +1,6 @@
 package com.johansvartdal.landlord.levels;
 
-import com.johansvartdal.landlord.LandlordEvent;
-import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.*;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,11 +21,32 @@ public class Level4 extends Level{
         requiredItems.add(new ItemStack(Material.SUGAR_CANE, 144 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LEAVES, 144 * Main.properties.getNumberOfPlayers()));
 
+        // COPPER ORE
+        // DIORITE?
+        // Deepslate fant jeg under Y0
+        // TUFF fant jeg veldig dypt! -45Y
+
+        // -------- FRA NETHER -----------
+        // warped nylium (grass)
+        // warped stem (trestamme blå)
+        // warped wart block (Leaves til blått tre)
+        // warped fungus (blomst fra nether)
+        // crimson fungus (annen blomst fra nether)
+        // shroomlights (glowstone lignende fra forest i nether)
+
+        // [rød nether]
+        // weeping wine (henger ned fra taket, er rød og dropper weeping wine
+
+        // [dark biome] (skjelden tror jeg)
+        // basalt (grå stein lignende blokk)
+        // blackstone (sort, og ganske vanlig i dark biome. En hel blokk)
         return requiredItems;
     }
 
     @Override
     public void justUpgraded() {
+        God.speak(LangDict.getString("level4Welcome1") + LevelManager.getWildernessPrice() + LangDict.getString(LangDict.CURRENCY));
+        God.speak(LangDict.getString("level4Welcome2"));
     }
 
     @Override
