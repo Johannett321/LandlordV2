@@ -94,7 +94,7 @@ public class RentManager {
                         // cleanup rent
                         RentableItem rentableItem = getRentedItem(content);
                         if (rentableItem != null) {
-                            rentableItem.endRentCleanup();
+                            rentableItem.endRentCleanup(true);
                         }
                     }
                 }
@@ -106,7 +106,7 @@ public class RentManager {
 
     public static void cancelRentOfItem(Player player) {
         for (RentableItem rentedItem : rentedItems) {
-            if (rentedItem.getPlayer().equals(player) && rentedItem.getRentedItem().isSimilar(player.getInventory().getItemInMainHand())) {
+            if (rentedItem.equalsTheRentedItem(player.getInventory().getItemInMainHand())) {
                 rentedItem.attemptEndRent();
                 return;
             }
@@ -153,5 +153,11 @@ public class RentManager {
             }
         }
         return false;
+    }
+
+    public static void forceEndAllRents() {
+        for (RentableItem rentedItem : rentedItems) {
+            rentedItem.forceEndRent();
+        }
     }
 }

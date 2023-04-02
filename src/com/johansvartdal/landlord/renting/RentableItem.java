@@ -8,10 +8,14 @@ import com.johansvartdal.landlord.chatentities.ErrorChat;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.scheduler.BukkitTask;
 
 public abstract class RentableItem implements Listener {
@@ -22,6 +26,8 @@ public abstract class RentableItem implements Listener {
     private Player player;
     private final Main plugin;
     private BukkitTask renewalLoop = null;
+    private BukkitTask repairLoop = null;
+    private int renewalSeconds = 120;
 
     public RentableItem(Main plugin) {
         this.plugin = plugin;
@@ -31,16 +37,53 @@ public abstract class RentableItem implements Listener {
         this.player = player;
 
         // give item to player
-        rentedItem = craftItem();
+        rentedItem = modifyCraftedItem(craftItem());
 
         player.getInventory().addItem(rentedItem);
 
         // schedule renewal
         scheduleRenewal();
+
+        // repair loop
+        itemRepairLoop();
+    }
+
+    protected void itemRepairLoop() {
+        ItemMeta itemMeta = rentedItem.getItemMeta();
+        if (itemMeta instanceof Damageable damageable) {
+            damageable.setDamage(rentedItem.getType().getMaxDurability()/2);
+        }
+
+        // schedule new repair
+        repairLoop = Bukkit.getScheduler().runTaskLater(plugin, this::itemRepairLoop, Tools.secToTicks(10));
+    }
+
+    protected ItemStack modifyCraftedItem(ItemStack craftedItem) {
+        ItemMeta itemMeta = craftedItem.getItemMeta();
+        if (itemMeta != null) {
+            itemMeta.setDisplayName("[RENTED] " + getItemName());
+        }
+
+        if (itemMeta instanceof Repairable repairable) {
+            repairable.setRepairCost(98);
+        }
+
+        if (itemMeta instanceof Damageable damageable) {
+            damageable.setDamage(craftedItem.getType().getMaxDurability()-(560/3));
+            damageable.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+        }
+
+        if (itemMeta != null) {
+            craftedItem.setItemMeta(itemMeta);
+        }
+        craftedItem.addEnchantment(Enchantment.DURABILITY, 3);
+        craftedItem.addEnchantment(Enchantment.VANISHING_CURSE, 1);
+        craftedItem.setAmount(1);
+        return craftedItem;
     }
 
     private void scheduleRenewal() {
-        renewalLoop = Bukkit.getScheduler().runTaskLater(plugin, this::renewItem, Tools.secToTicks(10));
+        renewalLoop = Bukkit.getScheduler().runTaskLater(plugin, this::renewItem, Tools.secToTicks(renewalSeconds));
     }
 
     public boolean equalsTheRentedItem(ItemStack itemStack) {
@@ -83,7 +126,7 @@ public abstract class RentableItem implements Listener {
         }
 
         // does the player wear the item?
-        if (equalsTheRentedItem(player.getInventory().getChestplate())) {
+        if (equalsTheRentedItem(player.getInventory().getChestplate()) || equalsTheRentedItem(player.getInventory().getHelmet())) {
             itemIsPresentInInventory = true;
         }
 
@@ -92,11 +135,16 @@ public abstract class RentableItem implements Listener {
             itemIsPresentInInventory = true;
         }
 
+        // does the player have it in their second hand?
+        if (equalsTheRentedItem(player.getInventory().getItemInOffHand())) {
+            itemIsPresentInInventory = true;
+        }
+
         // if item is not present, attempt to purchase item
         if (!itemIsPresentInInventory) {
             if (!Bank.playerCanAfford(player, getItemPurchaseFullPrice())) {
                 // send to jail as player could not afford to purchase item
-                JailManager.sendToJail(plugin, player, "you've been accused for attempting to steal a " + getItemName(), 60*8);
+                JailManager.sendToJail(plugin, player, "attempting to steal a " + getItemName(), 60*8);
                 RentManager.notifyItemRentEnded(this);
                 return;
             }
@@ -123,20 +171,33 @@ public abstract class RentableItem implements Listener {
 
     public void attemptEndRent() {
         // make sure correct item is held
-        if (!player.getInventory().getItemInMainHand().isSimilar(rentedItem)) {
+        if (!equalsTheRentedItem(player.getInventory().getItemInMainHand())) {
             Tools.tellPlayer(new ErrorChat(), player, "You must hold the " + getItemName() + " in your hand first when typing this command");
             return;
         }
 
         // cleanup
-        endRentCleanup();
+        endRentCleanup(true);
 
         // remove item
         player.getInventory().remove(player.getInventory().getItemInMainHand());
         Tools.tellPlayer(player, "Your rent of " + getItemName() + " ended", ChatColor.GREEN);
     }
 
-    public void endRentCleanup() {
+    public void forceEndRent() {
+        // remove the item
+        player.getInventory().remove(rentedItem);
+        if (player.getInventory().getChestplate() != null && player.getInventory().getChestplate().equals(rentedItem)) {
+            player.getInventory().setChestplate(null);
+        }else if (player.getInventory().getHelmet() != null && player.getInventory().getHelmet().equals(rentedItem)) {
+            player.getInventory().setHelmet(null);
+        }
+
+        // cleanup
+        endRentCleanup(false);
+    }
+
+    public void endRentCleanup(boolean notifyManager) {
         // this is the preferred method to call to end the rent
 
         // cancel renewalLoop
@@ -144,7 +205,14 @@ public abstract class RentableItem implements Listener {
             renewalLoop.cancel();
         }
 
-        RentManager.notifyItemRentEnded(this);
+        // cancel repair loop
+        if (repairLoop != null) {
+            repairLoop.cancel();
+        }
+
+        if (notifyManager) {
+            RentManager.notifyItemRentEnded(this);
+        }
     }
 
     public abstract String getItemName();

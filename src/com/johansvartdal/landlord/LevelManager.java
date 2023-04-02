@@ -323,16 +323,18 @@ public class LevelManager {
 
     private static void populateCommandLevels() {
         // season 1
-        featureLevels.put("rentPickaxe", new LvlSeasonRelation(1,1));
-        featureLevels.put("rentElytra", new LvlSeasonRelation(1,1));
         featureLevels.put("roulette", new LvlSeasonRelation(1,2));
+        featureLevels.put("rent_basic_tool", new LvlSeasonRelation(1,2));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
         featureLevels.put("visit", new LvlSeasonRelation(1,7));
+        featureLevels.put("rent_diamond_tools", new LvlSeasonRelation(1,7));
         featureLevels.put("wildnether", new LvlSeasonRelation(1,9));
 
         // season 2
         featureLevels.put("stocks", new LvlSeasonRelation(2,1));
+        featureLevels.put("rent_turtle_shell", new LvlSeasonRelation(2,2));
+        featureLevels.put("rent_elytra", new LvlSeasonRelation(2,2));
         featureLevels.put("wildmining", new LvlSeasonRelation(2,3));
         featureLevels.put("fly", new LvlSeasonRelation(2,5));
         featureLevels.put("day", new LvlSeasonRelation(2,7));
@@ -350,7 +352,7 @@ public class LevelManager {
         }
 
         // check season
-        LvlSeasonRelation lvlSeasonRelation = featureLevels.get(featureName);
+        LvlSeasonRelation lvlSeasonRelation = featureLevels.get(featureName.toLowerCase());
         if (lvlSeasonRelation.seasonNum < getCurrentDisplaySeasonNum()) {
             // season already completed
             return true;
