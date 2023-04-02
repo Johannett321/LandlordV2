@@ -13,8 +13,8 @@ import java.util.Enumeration;
 
 public class BuySellManager {
 
-    public static String getSellableItemsString() {
-        return "Cobblestone, Diamond, Sugar_cane, Kelp, Bamboo, Cactus, Wheat, Dirt, Logs, Leaves, Seeds, Pumpkin, MelonSlice";
+    public static String getSellableItemsHint() {
+        return "Cobblestone, Diamond, Sugar_cane, Kelp, Bamboo, Cactus, Wheat, Dirt, Logs, Leaves, Seeds, Pumpkin, MelonSlice, Potato, Eggs";
     }
 
     public static class AmountWorth {
@@ -49,7 +49,7 @@ public class BuySellManager {
         }
     }
 
-    public static AmountWorth getWorth (Material material) {
+    public static AmountWorth getItemValue(Material material) {
         switch (material) {
             case COBBLESTONE: return new AmountWorth(64, 150, 1);
             case DIAMOND: return new AmountWorth(1, 2000, 2);
@@ -61,11 +61,12 @@ public class BuySellManager {
             case BAMBOO: return new AmountWorth(64, 95, 7);
             case BEETROOT_SEEDS:
             case WHEAT_SEEDS: return new AmountWorth(64, 129, 8);
-            case PUMPKIN:return new AmountWorth(16, 225, 9);
+            case PUMPKIN: return new AmountWorth(16, 225, 9);
             case MELON_SLICE:return new AmountWorth(16, 125, 10);
             case POTATO:
             case BEETROOT:
-            case CARROT:return new AmountWorth(64,615, 11);
+            case CARROT: return new AmountWorth(64,615, 11);
+            case COCOA_BEANS: return new AmountWorth(16,340, 22);
 
 
             case HONEYCOMB:return new AmountWorth(16, 415, 12);

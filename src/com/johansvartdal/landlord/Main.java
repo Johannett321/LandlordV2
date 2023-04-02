@@ -57,6 +57,7 @@ public class Main extends JavaPlugin implements Listener {
 		LevelManager.init(this);
 		new EmissionTax(this);
 		RentManager.registerListeners(this);
+		new RandomHint(this);
 
 
 		tradeCenter = new TradeCenter();
@@ -108,44 +109,6 @@ public class Main extends JavaPlugin implements Listener {
 		PlayerEventManager.forceEndAllEvents();
 		RentManager.forceEndAllRents();
 	}
-
-	/*
-	@EventHandler
-	public void onInventoryClick(InventoryClickEvent event) {
-		// Check if the event was triggered by a player
-		if (event.getWhoClicked() instanceof Player) {
-			Player player = (Player) event.getWhoClicked();
-
-			// Check if the clicked inventory was the player's inventory
-			if (event.getClickedInventory() == player.getInventory()) {
-
-				// Do something with the clicked item
-				ItemStack clickedItem = event.getCurrentItem();
-				if (clickedItem != null) {
-					if (clickedItem.getType().equals(Material.WOODEN_PICKAXE)) {
-						event.setCancelled(true);
-					}
-				}
-			}
-		}
-	}
-
-	@EventHandler
-	public void onInventoryDrag(InventoryDragEvent event) {
-		// Check if the event was triggered by a player
-		if (event.getWhoClicked() instanceof Player) {
-			Player player = (Player) event.getWhoClicked();
-
-			// Do something with the clicked item
-			ItemStack clickedItem = event.getCursor();
-			if (clickedItem != null) {
-				if (clickedItem.getType().equals(Material.WOODEN_PICKAXE)) {
-					event.setCancelled(true);
-				}
-			}
-		}
-	}
-	*/
 
 	@EventHandler
 	public void onPlayerChat(PlayerChatEvent event) {

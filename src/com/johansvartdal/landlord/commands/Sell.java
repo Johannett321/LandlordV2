@@ -51,7 +51,7 @@ public class Sell implements CommandExecutor {
 
     private void sellInfo(Player player) {
         ItemStack itemStack = player.getInventory().getItemInMainHand();
-        BuySellManager.AmountWorth currentWorth = BuySellManager.getWorth(itemStack.getType());
+        BuySellManager.AmountWorth currentWorth = BuySellManager.getItemValue(itemStack.getType());
         if (currentWorth.getWorth() == 0) {
             Tools.printMenuHeader(player, "INFO");
             Tools.printMenuOption(player, "Error:", LangDict.getString("itemCannotBeSold"));
@@ -61,22 +61,6 @@ public class Sell implements CommandExecutor {
         Tools.printMenuHeader(player, "INFO");
         Tools.printMenuOption(player, LangDict.getString("item"), itemStack.getType().name());
         Tools.printMenuOption(player, LangDict.getString("currentValue"), String.valueOf(currentWorth.getWorth()));
-
-        /*
-        int worthAt1 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60));
-        int worthAt2 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*2));
-        int worthAt3 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*3));
-        int worthAt4 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*4));
-        Tools.printMenuOption(player, "Values (1, 2, 3, 4) mins:", worthAt1 + ", " + worthAt2 + ", " + worthAt3 + ", " + worthAt4);
-
-        int worthAt15 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*15));
-        int worthAt30 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*30));
-        int worthAt45 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*45));
-        int worthAt60 = currentWorth.getWorthAtTime(System.currentTimeMillis()-(1000*60*60));
-        Tools.printMenuOption(player, "Values (15, 30, 45, 60) mins:", worthAt15 + ", " + worthAt30 + ", " + worthAt45 + ", " + worthAt60);
-
-         */
-
         Tools.printMenuOption(player, LangDict.getString("currentVAT"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
     }
 
@@ -90,7 +74,7 @@ public class Sell implements CommandExecutor {
             return;
         }
 
-        BuySellManager.AmountWorth amountWorth = BuySellManager.getWorth(itemType);
+        BuySellManager.AmountWorth amountWorth = BuySellManager.getItemValue(itemType);
 
         if (amountWorth.getWorth() == 0) {
             Tools.tellPlayer(player, LangDict.getString("itemCannotBeSold"), ChatColor.RED);
@@ -115,7 +99,7 @@ public class Sell implements CommandExecutor {
         ItemStack mainHandItem = player.getInventory().getItemInMainHand();
         Material itemType = mainHandItem.getType();
 
-        BuySellManager.AmountWorth amountWorth = BuySellManager.getWorth(itemType);
+        BuySellManager.AmountWorth amountWorth = BuySellManager.getItemValue(itemType);
 
         int amountToDeposit = 0;
         for (int i = 0; i < 9; i++) { //loop through hotbar to see if user got more to sell

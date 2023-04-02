@@ -45,6 +45,7 @@ public class Fly implements CommandExecutor {
 		if (args.length == 0) {
 			Tools.printMenuHeader(player, "FLY COMMAND");
 			Tools.printMenuOption(player, "/fly", "now");
+			Tools.printMenuOption(player, "/fly", "end");
 			Tools.printMenuOption(player, "/fly", "info");
 			return true;
 		}
@@ -83,6 +84,7 @@ public class Fly implements CommandExecutor {
 		}
 
 		// start flying event
+		Bank.withdrawPlayer(LangDict.getString("paidForFlying"), player, StaticValues.FLYING_PRICE_PER_MINUTE);
 		PlayerEventManager.startPlayerEvent(new FlyingEvent(plugin, player));
 	}
 

@@ -49,7 +49,7 @@ public class Bank {
         if (amount - tax <= 0) {
             tax = 0;
         }else {
-            Tools.tellPlayer(player, LangDict.getString("youJustPaid") +
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") +
                     tax +
                     LangDict.getString("currency") +
                     " (" + getDepositTaxPercentDisplayForPlayer(player) +

@@ -130,6 +130,7 @@
 
   "jail": "fengsel",
   "flying": "flyeffekten",
+  "paidForFlying": "fly-engeinkaper",
   "endFlightFirst": "Skriv '/fly end' først",
   "extendingFlight": "å utvida flyeffekten",
   "pricePerMin": "Pris per minutt:",

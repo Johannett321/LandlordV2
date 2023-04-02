@@ -10,12 +10,13 @@ commands:
     description: Buy a chunk
     usage: /buychunk [ now | info ]
   day:
-    description: turns off rain and turns night into day!
+    description: removes rain, and forces day
   bal:
-    description: Get Balance of player
+    description: Get your current balance, and see tax info
     usage: /bal
   claimbonus:
     description: Claim your daily reward
+    usage: /claimbonus
   landlord:
     description: Start the game
     usage: /landlord [ start ]

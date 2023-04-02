@@ -162,18 +162,30 @@ public class Tools {
     }
 
     public static void broadcastMessage(String message) {
-        broadcastMessage(message, ChatColor.WHITE, null);
+        broadcastMessage(new InfoChat(), message, null, null);
     }
 
     public static void broadcastMessage(String message, Player[] excludePlayers) {
-        broadcastMessage(message, ChatColor.WHITE, excludePlayers);
+        broadcastMessage(new InfoChat(), message, null, excludePlayers);
     }
 
     public static void broadcastMessage(String message, ChatColor chatColor) {
-        broadcastMessage(message, chatColor, null);
+        broadcastMessage(new InfoChat(), message, chatColor, null);
     }
 
-    public static void broadcastMessage(String message, ChatColor chatColor, Player[] excludePlayers) {
+    public static void broadcastMessage(ChatEntity chatEntity, String message) {
+        broadcastMessage(chatEntity, message, null, null);
+    }
+
+    public static void broadcastMessage(ChatEntity chatEntity, String message, Player[] excludePlayers) {
+        broadcastMessage(chatEntity, message, null, excludePlayers);
+    }
+
+    public static void broadcastMessage(ChatEntity chatEntity, String message, ChatColor chatColor) {
+        broadcastMessage(chatEntity, message, chatColor, null);
+    }
+
+    public static void broadcastMessage(ChatEntity chatEntity, String message, ChatColor chatColor, Player[] excludePlayers) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             // check if player should be excluded
             if (excludePlayers != null) {
@@ -188,8 +200,12 @@ public class Tools {
                 }
             }
 
+            if (chatColor == null) {
+                chatColor = chatEntity.getMessageColor();
+            }
+
             // broadcast the message to the player
-            Tools.tellPlayer(player, message, chatColor);
+            Tools.tellPlayer(chatEntity, player, message, chatColor);
         }
     }
 
