@@ -12,7 +12,6 @@ public class StaticValues {
     public static final int VISIT_PRICE = 1000;
     public static final int CHUNK_TAX = 300;
     public static final int MINING_PRICE = 9990;
-    public static final int FLYING_PRICE_PER_MINUTE = 10;
-
+    public static final int FLYING_PRICE_PER_MINUTE = 10; //TODO sett en bedre pris per min
     public static final int MAX_PLAYERS = 8;
 }

@@ -21,7 +21,7 @@ public class FlyingEvent extends PlayerEvent {
 
         // tell how to stop
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            Tools.tellPlayer(player, "turnOffFlightInstructions", ChatColor.YELLOW);
+            Tools.tellPlayer(player, LangDict.getString("turnOffFlightInstructions"), ChatColor.YELLOW);
         }, Tools.secToTicks(5));
 
         scheduleAutoEnd();

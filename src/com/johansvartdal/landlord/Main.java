@@ -3,17 +3,24 @@ package com.johansvartdal.landlord;
 import com.johansvartdal.landlord.commands.*;
 import com.johansvartdal.landlord.lan.LanController;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
+import com.johansvartdal.landlord.renting.RentManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryAction;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
@@ -29,6 +36,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable() {
+		// before licence
 		configurator = new Configurator(this);
 		configurator.configure();
 		Tools.init(this);
@@ -37,6 +45,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		SpecialEffects.setPlugin(this);
 
+		// initialize managers
 		properties = new Properties();
 		properties.load();
 		new CheatProtection(this);
@@ -47,6 +56,7 @@ public class Main extends JavaPlugin implements Listener {
 		ChunkBuilder.load();
 		LevelManager.init(this);
 		new EmissionTax(this);
+		RentManager.registerListeners(this);
 
 
 		tradeCenter = new TradeCenter();
@@ -77,6 +87,7 @@ public class Main extends JavaPlugin implements Listener {
 		new TreasuryCommand(this);
 		new ChangeLanguage(this);
 		new Fly(this);
+		new Rent(this);
 
 		Bank.startTaxCollector(this);
 
@@ -96,6 +107,44 @@ public class Main extends JavaPlugin implements Listener {
 	public void onDisable() {
 		PlayerEventManager.forceEndAllEvents();
 	}
+
+	/*
+	@EventHandler
+	public void onInventoryClick(InventoryClickEvent event) {
+		// Check if the event was triggered by a player
+		if (event.getWhoClicked() instanceof Player) {
+			Player player = (Player) event.getWhoClicked();
+
+			// Check if the clicked inventory was the player's inventory
+			if (event.getClickedInventory() == player.getInventory()) {
+
+				// Do something with the clicked item
+				ItemStack clickedItem = event.getCurrentItem();
+				if (clickedItem != null) {
+					if (clickedItem.getType().equals(Material.WOODEN_PICKAXE)) {
+						event.setCancelled(true);
+					}
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void onInventoryDrag(InventoryDragEvent event) {
+		// Check if the event was triggered by a player
+		if (event.getWhoClicked() instanceof Player) {
+			Player player = (Player) event.getWhoClicked();
+
+			// Do something with the clicked item
+			ItemStack clickedItem = event.getCursor();
+			if (clickedItem != null) {
+				if (clickedItem.getType().equals(Material.WOODEN_PICKAXE)) {
+					event.setCancelled(true);
+				}
+			}
+		}
+	}
+	*/
 
 	@EventHandler
 	public void onPlayerChat(PlayerChatEvent event) {

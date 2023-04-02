@@ -71,7 +71,7 @@ public class Fly implements CommandExecutor {
 	private void attemptFlying(Player player) {
 		// check if player is in event
 		if (PlayerEventManager.playerIsInEvent(player)) {
-			Tools.tellPlayer(player, LangDict.CMD_NOT_NOW);
+			Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW));
 			return;
 		}
 

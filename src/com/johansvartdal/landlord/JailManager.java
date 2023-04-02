@@ -11,6 +11,10 @@ public class JailManager {
 
     public static void sendToJail(Main plugin, Player player, String reason, String endReason, int jailSeconds) {
         if (PlayerEventManager.playerIsInEvent(player)) {
+            // don't send to jail twice
+            if (PlayerEventManager.getEventForPlayer(player) instanceof JailEvent) {
+                return;
+            }
             PlayerEventManager.forceEndPlayerEvent(player);
         }
 

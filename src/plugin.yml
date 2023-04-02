@@ -70,3 +70,6 @@ commands:
   fly:
     description: Enables you to fly
     usage: /fly [ now | end | info ]
+  rent:
+    description: Allows you to rent something
+    usage: /rent [ name ]

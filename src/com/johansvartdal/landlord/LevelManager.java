@@ -323,6 +323,8 @@ public class LevelManager {
 
     private static void populateCommandLevels() {
         // season 1
+        featureLevels.put("rentPickaxe", new LvlSeasonRelation(1,1));
+        featureLevels.put("rentElytra", new LvlSeasonRelation(1,1));
         featureLevels.put("roulette", new LvlSeasonRelation(1,2));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
