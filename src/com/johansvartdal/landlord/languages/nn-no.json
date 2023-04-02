@@ -11,6 +11,7 @@
   "notAvailableRN": "Ikkje tilgjengeleg akkurat no",
   "none": "Ingen",
   "debugWarning": "ÅTVARING: DEBUG-MODUS AKTIVERT!",
+  "serverRestarted": "Serveren vart nyleg restarta!",
 
   "currency": "kr",
   "balance": "Saldo",
@@ -30,6 +31,8 @@
 
   "citizenJoinStart": "Ein borgar ved namn ",
   "citizenJoinEnd": " har komme tilbake!",
+  "citizenLeaveStart": "Ånei! Ein borgar med namn ",
+  "citizenLeaveEnd": " har nyleg forlate oss!",
   "gameAlreadyRunningJoinMessage": "Du kan ikkje bli med. Spelet er allereie i gang",
   "gameFull": "Beklagar, maks antall spelarar er nådd",
 
@@ -125,6 +128,18 @@
   "willNotBeVisiting": " kjem ikkje til å besøke deg!",
   "notAllowedToVisit": "Du fekk ikkje lov til å besøke ",
 
+  "jail": "fengsel",
+  "flying": "flyeffekten",
+  "endFlightFirst": "Skriv '/fly end' først",
+  "extendingFlight": "å utvida flyeffekten",
+  "pricePerMin": "Pris per minutt:",
+  "whoahFlying": "WOW! Du kan flyga jo!",
+  "turnOffFlightInstructions": "Køyr '/fly end' for å avslutta flyturen",
+  "cannotAffordExtendFlight": "Du vart nøydd til å landa, då du ikkje hadde råd til å flyga meir",
+  "landBeforeEndFlight": "Vennlegast land før du skriv denne kommandoen!",
+  "flightTurnedOff": "Flyeffekten vart skrudd av",
+  "mining": "gruve-eventyret",
+
   "toAccessWilderness": " for å dra på eventyr",
   "wilderness": "eit eventyr",
   "welcomeToWild": "Velkommen til villmarka. Du har 7 minutt før dine ",
@@ -138,6 +153,22 @@
   "extended": "Forlenga ",
   "youHave": "Du har ",
   "leftOfWildTime": " att av ditt eventyr",
+
+  "rentableItems": "LEIE-MENY",
+  "everyTwoMinutes": " (kvart 2. minutt)",
+  "pleaseHoldMainHand": "Vennlegast hald den leigde tingen i handa",
+  "cannotRentTwice": "Du leiger allereie denne tingen!",
+  "rentingA": "å leiga ein ",
+  "stolenItemFound": "Ein stolen gjenstand vart funnen! Den vart fjerna frå behaldaren",
+  "rentedPrefix": "[LEID] ",
+  "attemptingToStealA": "du prøvde å stela ein ",
+  "theRented": "Klarte ikkje å finna ein ",
+  "itemNotFoundInInv": " i din inventory, og du vart nøydd til å betala erstatning!",
+  "paidFullPrice": "erstatning av ein leid ",
+  "gaveBackStart": "Du gav tilbake ein leid ",
+  "gaveBackEnd": ", fordi du ikkje hadde råd til å bruka den meir",
+  "renewingRented": "fornying av ein leid ",
+  "deliveredBackRented": "Du leverte tilbake ein leid ",
 
   "gameAlreadyRunning": "Spelet er allereie i gang!",
   "youMustConfigFirst": "Du må køyre '/landlord config' før du kan køyre denne kommandoen",
@@ -154,6 +185,15 @@
   "for": " for ",
   "with": " med ",
 
+  "youJustPaid": "Du betalte nettopp ",
+  "forThisCommand": " + skatt for denne kommandoen",
+  "inPropertyTax": " i eigedomsskatt (antal eigde chunks * ",
+  "inTax": " i skatt",
+  "inWealthTax": " i formuesskatt",
+  "forCapturing": " for å fange eit dyr",
+  "inEmissionTax": " i miljøskatt",
+  "aRouletteTicket": " ein roulette-billett",
+
   "playerNotInChunk": "Spelaren er ikkje innanfor ein av dine chunks",
   "playerSentHome": "Spelaren blei sendt heim",
   "sentHomeByOwner": "Du blei sendt heim av verten",
@@ -163,15 +203,6 @@
   "toCommunity": " til samfunnet!",
   "itemDonationsComplete": "Svært bra! Du har fullført alle gjenstandane for dette nivået. Køyr '/upgrade accept' for å gå vidare til neste nivå",
   "townJustUpgraded": "Gratulerer! Byen blei nettopp oppgradert til nivå ",
-
-  "youJustPaid": "Du betalte nettopp ",
-  "forThisCommand": " + skatt for denne kommandoen",
-  "inPropertyTax": " i eigedomsskatt (antal eigde chunks * ",
-  "inTax": " i skatt",
-  "inWealthTax": " i formuesskatt",
-  "forCapturing": " for å fange eit dyr",
-  "inEmissionTax": " i miljøskatt",
-  "aRouletteTicket": " ein roulette-billett",
 
   "rouletteBegin": "Det er tid for ein ny roulette! Køyr '/joinroulette' for ein sjanse til å vinne ",
   "rouletteEnding30": "Rouletten vil snart avsluttast. Vinnaren blir kunngjort om 30 sekund!",
@@ -205,7 +236,11 @@
   "level2Welcome1": "Eyyy, så spennande! Din første byoppgradering! Kvar gong byen din går opp eit nivå, vil noko skje. Denne gongen låste du opp ein funksjon som blir kalla roulette. Kvar time køyrer ein roulette. Rouletten gir deg ein moglegheit til å vinne ein premie. Men det er ein deltakaravgift for å delta. Du vil bli varsla før ein roulette er i ferd med å starte",
   "level2Welcome2": "Du blei også belønna med eitt chunk-poeng kvar. Stå ved sidan av ein av dine chunkveggar. Medan du ser mot grensa, køyrer du kommandoen '/buychunk', og sjå veggen magisk falla medan du låser opp din andre chunk!",
 
+  "level3Welcome1": "Alright, level 3! Ikkje dårleg. De har arbeidd ganske hardt for dette, eller kva? Anna enn å unlocke deira 3. chunk, er det ikkje mykje spesielt med denne levelen.",
+  "level3Welcome2": "Den neste levelen derimot, er verkeleg noko de kan sjå fram til. Eg ser at veggene blir mjukare og mjukare...",
 
+  "level4Welcome1": "Dette er utruleg morosamt! Eg har spennande nyheiter! Det er endeleg ein måte å forlata chunken på! Dei dårlege nyheitene er at det er ganske dyrt. Det kostar akkurat no ",
+  "level4Welcome2": "Viss de vil prøva det, bruk '/wilderness' for litt frisk luft.",
 
 
 

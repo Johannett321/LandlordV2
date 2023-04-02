@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.renting;
 
-import com.johansvartdal.landlord.Bank;
-import com.johansvartdal.landlord.JailManager;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -61,7 +58,7 @@ public abstract class RentableItem implements Listener {
     protected ItemStack modifyCraftedItem(ItemStack craftedItem) {
         ItemMeta itemMeta = craftedItem.getItemMeta();
         if (itemMeta != null) {
-            itemMeta.setDisplayName("[RENTED] " + getItemName());
+            itemMeta.setDisplayName(LangDict.getString("rentedPrefix") + getItemName());
         }
 
         if (itemMeta instanceof Repairable repairable) {
@@ -144,14 +141,14 @@ public abstract class RentableItem implements Listener {
         if (!itemIsPresentInInventory) {
             if (!Bank.playerCanAfford(player, getItemPurchaseFullPrice())) {
                 // send to jail as player could not afford to purchase item
-                JailManager.sendToJail(plugin, player, "attempting to steal a " + getItemName(), 60*8);
+                JailManager.sendToJail(plugin, player, LangDict.getString("attemptingToStealA") + getItemName(), 60*8);
                 RentManager.notifyItemRentEnded(this);
                 return;
             }
 
             // withdraw full price
-            Tools.tellPlayer(player, "The rented " + getItemName() + " was not found in your inventory, and you had to pay the full price of the item!", ChatColor.RED);
-            Bank.withdrawPlayer("the full price of the rented " + getItemName(), player, getItemPurchaseFullPrice());
+            Tools.tellPlayer(player, LangDict.getString("theRented") + getItemName() + LangDict.getString("itemNotFoundInInv"), ChatColor.RED);
+            Bank.withdrawPlayer(LangDict.getString("paidFullPrice") + getItemName(), player, getItemPurchaseFullPrice());
             RentManager.notifyItemRentEnded(this);
             return;
         }
@@ -160,19 +157,19 @@ public abstract class RentableItem implements Listener {
         if (!Bank.playerCanAfford(player, getItemRentPrice())) {
             player.getInventory().remove(rentedItem);
             RentManager.notifyItemRentEnded(this);
-            Tools.tellPlayer(player, "You gave back the " + getItemName() + ", as you could not afford to use it anymore", ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("gaveBackStart") + getItemName() + LangDict.getString("gaveBackEnd"), ChatColor.RED);
             return;
         }
 
         // renew item, and reschedule
-        Bank.withdrawPlayer("renewing the rented " + getItemName(), player, getItemRentPrice());
+        Bank.withdrawPlayer(LangDict.getString("renewingRented") + getItemName(), player, getItemRentPrice());
         scheduleRenewal();
     }
 
     public void attemptEndRent() {
         // make sure correct item is held
         if (!equalsTheRentedItem(player.getInventory().getItemInMainHand())) {
-            Tools.tellPlayer(new ErrorChat(), player, "You must hold the " + getItemName() + " in your hand first when typing this command");
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("pleaseHoldMainHand"));
             return;
         }
 
@@ -181,7 +178,7 @@ public abstract class RentableItem implements Listener {
 
         // remove item
         player.getInventory().remove(player.getInventory().getItemInMainHand());
-        Tools.tellPlayer(player, "Your rent of " + getItemName() + " ended", ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("deliveredBackRented") + getItemName(), ChatColor.GREEN);
     }
 
     public void forceEndRent() {

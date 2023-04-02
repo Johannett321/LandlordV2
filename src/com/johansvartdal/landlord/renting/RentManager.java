@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.renting;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.ChatColor;
@@ -89,7 +90,7 @@ public class RentManager {
                 for (ItemStack content : inventory.getContents()) {
                     if (itemIsRented(content)) {
                         inventory.remove(content);
-                        Tools.tellPlayer(event.getPlayer(), "A stolen item was found! The item was removed from the chest!", ChatColor.RED);
+                        Tools.tellPlayer(event.getPlayer(), LangDict.getString("stolenItemFound"), ChatColor.RED);
 
                         // cleanup rent
                         RentableItem rentableItem = getRentedItem(content);

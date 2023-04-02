@@ -44,7 +44,7 @@ public class Rent implements CommandExecutor {
 			attemptEndRent(player);
 			return true;
 		}else if (args[0].equalsIgnoreCase("info")) {
-			Tools.printMenuHeader(player, "RENTABLE ITEMS");
+			Tools.printMenuHeader(player, LangDict.getString("rentableItems"));
 			printRentableItem(player, new RentableSword(plugin), "rent_basic_tool");
 			printRentableItem(player, new RentablePickaxe(plugin), "rent_basic_tool");
 			printRentableItem(player, new RentableAxe(plugin), "rent_basic_tool");
@@ -81,12 +81,12 @@ public class Rent implements CommandExecutor {
 			}
 		}
 		Tools.printMenuOption(player, "/rent " + rentableItem.getItemName() + ":", rentableItem.getItemRentPrice() +
-				LangDict.getString("currency") + " (every 2. minute)");
+				LangDict.getString("currency") + LangDict.getString("everyTwoMinutes"));
 	}
 
 	private void attemptEndRent(Player player) {
 		if (!RentManager.itemIsRented(player.getInventory().getItemInMainHand())) {
-			Tools.tellPlayer(new ErrorChat(), player, "Please hold the rented item in your main hand");
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("pleaseHoldMainHand"));
 			return;
 		}
 		RentManager.cancelRentOfItem(player);
@@ -131,18 +131,18 @@ public class Rent implements CommandExecutor {
 
 		// make sure player is not already renting this
 		if (RentManager.playerCurrentlyRentingItem(rentableItem)) {
-			Tools.tellPlayer(new ErrorChat(), player, "You cannot rent a " + rentableItem.getItemName() + " twice");
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotRentTwice"));
 			return;
 		}
 
 		// can afford
 		if (!Bank.playerCanAfford(player, rentableItem.getItemRentPrice())) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_ + "renting a " + rentableItem.getItemName()));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_ + LangDict.getString("rentingA") + rentableItem.getItemName()));
 			return;
 		}
 
 		// rent and give player pickaxe
-		Bank.withdrawPlayer("renting a " + rentableItem.getItemName(), player, rentableItem.getItemRentPrice());
+		Bank.withdrawPlayer(LangDict.getString("rentingA") + rentableItem.getItemName(), player, rentableItem.getItemRentPrice());
 		RentManager.rentItem(player, rentableItem);
 	}
 }

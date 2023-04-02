@@ -130,6 +130,7 @@
 
   "jail": "fengsel",
   "flying": "flyeffekten",
+  "endFlightFirst": "Skriv '/fly end' først",
   "extendingFlight": "å utvide flyeffekten",
   "pricePerMin": "Pris per minutt:",
   "whoahFlying": "WOW! Du kan fly jo!",
@@ -153,6 +154,22 @@
   "youHave": "Du har ",
   "leftOfWildTime": " igjen av ditt eventyr",
 
+  "rentableItems": "LEIE-MENY",
+  "everyTwoMinutes": " (hvert 2. minutt)",
+  "pleaseHoldMainHand": "Vennligst hold den leide tingen i hånden",
+  "cannotRentTwice": "Du leier allerede denne tingen!",
+  "rentingA": "å leie en ",
+  "stolenItemFound": "En stjålet gjenstand ble funnet! Den ble fjernet fra beholderen",
+  "rentedPrefix": "[LEID] ",
+  "attemptingToStealA": "du forsøkte å stjele en ",
+  "theRented": "Klarte ikke å finne en ",
+  "itemNotFoundInInv": " i din inventory, og du ble nødt til å betale erstatning!",
+  "paidFullPrice": "erstatning av en leid ",
+  "gaveBackStart": "Du ga tilbake en leid ",
+  "gaveBackEnd": ", fordi du ikke hadde råd til å bruke den mer",
+  "renewingRented": "fornyelse av en leid ",
+  "deliveredBackRented": "Du leverte tilbake en leid ",
+
   "gameAlreadyRunning": "Spillet er allerede i gang!",
   "youMustConfigFirst": "Du må kjøre '/landlord config' før du kan kjøre denne kommandoen",
   "isNowLookingForLoc": " leter nå etter et passende sted for spillet. Vær tålmodig!",
@@ -168,6 +185,15 @@
   "for": " for ",
   "with": " med ",
 
+  "youJustPaid": "Du betalte nettopp ",
+  "forThisCommand": " + skatt for denne kommandoen",
+  "inPropertyTax": " i eiendomsskatt (antall eide chunks * ",
+  "inTax": " i skatt",
+  "inWealthTax": " i formuesskatt",
+  "forCapturing": " for å fange et dyr",
+  "inEmissionTax": " i miljøskatt",
+  "aRouletteTicket": " en roulett-billett",
+
   "playerNotInChunk": "Spilleren er ikke innenfor en av dine chunks",
   "playerSentHome": "Spilleren ble sendt hjem",
   "sentHomeByOwner": "Du ble sendt hjem av verten",
@@ -177,15 +203,6 @@
   "toCommunity": " til samfunnet!",
   "itemDonationsComplete": "Meget bra! Du har fullført alle gjenstandene for dette nivået. Kjør '/upgrade accept' for å gå videre til neste nivå",
   "townJustUpgraded": "Gratulerer! Byen ble nettopp oppgradert til nivå ",
-
-  "youJustPaid": "Du betalte nettopp ",
-  "forThisCommand": " + skatt for denne kommandoen",
-  "inPropertyTax": " i eiendomsskatt (antall eide chunks * ",
-  "inTax": " i skatt",
-  "inWealthTax": " i formuesskatt",
-  "forCapturing": " for å fange et dyr",
-  "inEmissionTax": " i miljøskatt",
-  "aRouletteTicket": " en roulett-billett",
 
   "rouletteBegin": "Det er tid for en ny roulette! Kjør '/joinroulette' for en sjanse til å vinne ",
   "rouletteEnding30": "Rouletten vil snart avsluttes. Vinneren blir kunngjort om 30 sekunder!",
@@ -224,7 +241,6 @@
 
   "level4Welcome1": "Dette er utrolig morsomt! Jeg har spennende nyheter! Det er endelig en måte å forlate chunken på! De dårlige nyhetene er at det er ganske dyrt. Det koster for øyeblikket ",
   "level4Welcome2": "Hvis dere vil prøve det, bruk '/wilderness' for litt frisk luft.",
-
 
 
 
