@@ -130,6 +130,7 @@
 
   "jail": "jail",
   "flying": "flying",
+  "flyCommand": "FLY COMMAND",
   "paidForFlying": "flying abilities",
   "endFlightFirst": "Please do '/fly end' first",
   "extendingFlight": "extending your flight",

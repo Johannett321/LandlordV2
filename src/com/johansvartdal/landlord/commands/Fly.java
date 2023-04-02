@@ -43,7 +43,7 @@ public class Fly implements CommandExecutor {
 
 		// print fly menu
 		if (args.length == 0) {
-			Tools.printMenuHeader(player, "FLY COMMAND");
+			Tools.printMenuHeader(player, LangDict.getString("flyCommand"));
 			Tools.printMenuOption(player, "/fly", "now");
 			Tools.printMenuOption(player, "/fly", "end");
 			Tools.printMenuOption(player, "/fly", "info");

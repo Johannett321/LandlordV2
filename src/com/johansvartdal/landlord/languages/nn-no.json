@@ -130,6 +130,7 @@
 
   "jail": "fengsel",
   "flying": "flyeffekten",
+  "flyCommand": "FLY KOMMANDOER",
   "paidForFlying": "fly-engeinkaper",
   "endFlightFirst": "Skriv '/fly end' først",
   "extendingFlight": "å utvida flyeffekten",
