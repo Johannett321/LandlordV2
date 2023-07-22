@@ -3,10 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -42,17 +39,18 @@ public class Home implements CommandExecutor {
         // get home location
         PlayerData pd = Main.playerDataManager.getPlayerData(player);
         Location location = pd.getHomeLocation();
+        Location teleportTo = location;
 
         // get home head location
-        Location headLocation = pd.getHomeLocation();
-        headLocation.setY(headLocation.getY()+1);
+        Location headLocation = new Location(Bukkit.getWorld("world"), location.getX(), location.getY() + 1, location.getZ());
 
         // make sure player can stand there, and inform if not
         if (location.getBlock().getType() != Material.AIR || headLocation.getBlock().getType() != Material.AIR) {
-            location = Tools.highestStandingPoint(location);
+            Location tallestStandingPoint = new Location(Bukkit.getWorld("world"), location.getX(), location.getY(), location.getZ());
+            teleportTo = Tools.highestStandingPoint(tallestStandingPoint);
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("obstructedHome"), ChatColor.RED);
         }
-        player.teleport(location);
+        player.teleport(teleportTo);
         Tools.tellPlayer(player, LangDict.getString("teleportedHome"));
 
         // set game mode
