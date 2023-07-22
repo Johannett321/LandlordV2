@@ -18,6 +18,7 @@ public class Fly implements CommandExecutor {
 	public Fly(Main plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("fly").setExecutor(this);
+
 	}
 
 	@Override
