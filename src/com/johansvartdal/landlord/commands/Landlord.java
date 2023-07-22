@@ -26,6 +26,7 @@ public class Landlord implements CommandExecutor {
             return true;
         }
 
+        // If you only write /landlord
         if (strings.length < 1) {
             Tools.printMenuHeader(player, "COMMANDS");
             Tools.printMenuOption(player, "/landlord", "config");
@@ -33,23 +34,27 @@ public class Landlord implements CommandExecutor {
             return true;
         }
 
-        // START GAME
-        if (strings[0].equalsIgnoreCase("start")) {
+        // Understand args
+        if (strings[0].equalsIgnoreCase("start")) { // start game
+
+            // check if game is already running
             if (Main.properties.gameHasStarted()) {
                 commandSender.sendMessage(LangDict.getString("gameAlreadyRunning"));
                 return true;
             }
 
+            // make sure player has already configured the game
             if (player.getWorld().equals(Bukkit.getWorld("lladv"))) {
                 Tools.tellPlayer(player, LangDict.getString("youMustConfigFirst"), ChatColor.RED);
                 return true;
             }
 
             startGame(player);
-        }else if (strings[0].equals("config")) {
+        }else if (strings[0].equals("config")) { // config game
             configure(player);
+            return true;
         }
-        return true;
+        return false;
     }
 
     private void configure(Player opPlayer) {

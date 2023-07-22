@@ -236,7 +236,7 @@
 
 
   "level2Welcome1": "Eyyy, så spennende! Din første byoppgradering! Hver gang byen din går opp et nivå, vil noe skje. Denne gangen låste du opp en funksjon som kalles roulette. Hver time kjører en roulette. Rouletten gir deg en mulighet til å vinne en premie. Imidlertid er det en deltakeravgift for å delta. Du vil bli varslet før en roulette er i ferd med å starte",
-  "level2Welcome2": "Du ble også belønnet med ett chunk-poeng hver. Stå ved siden av en av dine chunkvegger. Mens du ser mot grensen, kjører du kommandoen '/buychunk', og se veggene magisk falle mens du låser opp din andre chunk!",
+  "level2Welcome2": "Dere ble også belønnet med ett chunk-poeng hver. Stå ved siden av en av dine chunkvegger. Mens du ser mot grensen, kjører du kommandoen '/buychunk', og se veggene magisk falle mens du låser opp din andre chunk!",
 
   "level3Welcome1": "Alright, level 3! Ikke dårlig. Dere har arbeidet ganske hardt for dette, eller hva? Annet enn å unlocke deres 3. chunk, er det ikke mye spesielt med denne levelen.",
   "level3Welcome2": "Den neste levelen derimot, er virkelig noe dere kan se frem til. Jeg ser at veggene blir mykere og mykere...",
@@ -251,14 +251,15 @@
 
   "welcomeMessage": "Velkommen til Landlord, borgere! Dere har 5 minutter før dere alle blir låst inne i deres chunks, bruk tiden klokt!",
   "welcomeTitle": "Velkommen til ",
+  "preparations": "FORBEREDELSER",
   "prepInFiveMin": "Forberedelser vil starte om 5 sekunder. Gjør deg klar!",
-  "listOfHelpful": "Gjenstander du må samle i forberedelsen for å kunne komme til neste nivå: Eikeplanter, sukkerrør, hvetefrø",
+  "listOfHelpful": "Gjenstander dere må samle i forberedelsen for å kunne komme til neste nivå: Frø til trær, sukkerrør, hvetefrø",
   "goodLuck": "Lykke til, tiden starter nå!",
-  "minutesRemaining": "minutt(er) igjen før veggene reises!",
-  "secondsRemaining": "sekunder igjen før veggene reises!",
+  "minutesRemaining": "minutt(er) igjen før veggene heves!",
+  "secondsRemaining": "sekunder igjen før veggene heves!",
   "about0Sec": "omtrent 0 sekunder",
   "secondListOfHelpful": "Forresten, beklager. Jeg glemte å nevne at du også bør huske å skaffe noe mat og også sand for å lage glass. Faktisk, kanskje kull heller ikke er en dårlig idé?",
-  "risingBorders": "ADVARSEL: Stå stille! Veggene reises!",
+  "risingBorders": "ADVARSEL: Stå stille! Veggene heves!",
   "newCitizen": "En ny borger har ankommet! Gi en varm velkomst til ",
   "runLandlordConfigCmd": "Når alle har blitt med, kjør kommandoen '/landlord config' for å finne et passende sted å starte spillet",
 

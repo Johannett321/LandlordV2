@@ -164,7 +164,7 @@ public class LevelManager {
     }
 
     public static void playerAcceptsUpgrade(Player player) {
-        God.speak(LangDict.getString("citizens") + player.getDisplayName() + LangDict.getString("justAcceptedUpgrade"));
+        God.speak(LangDict.getString("citizens") + player.getDisplayName() + LangDict.getString("justAcceptedUp"));
         acceptedPlayers.add(player.getDisplayName());
 
         checkIfUpgradeShouldBeScheduled(false);
@@ -215,7 +215,9 @@ public class LevelManager {
             JSONObject object = new JSONObject();
             object.put("material", itemStack.getType().toString());
             object.put("amount", itemStack.getAmount());
-            System.out.println("Adding: " + object.toJSONString());
+            if (Properties.DEBUG_MODE) {
+                System.out.println("Adding: " + object.toJSONString());
+            }
             jsonArray.add(object);
         }
         return jsonArray;
@@ -248,7 +250,9 @@ public class LevelManager {
             System.out.println("Warning! Seasong is 0");
             return 0;
         }
-        System.out.println("Returning season: " + currentLevel.getDisplaySeasonNumber());
+        if (Properties.DEBUG_MODE) {
+            System.out.println("Returning season: " + currentLevel.getDisplaySeasonNumber());
+        }
         return currentLevel.getDisplaySeasonNumber();
     }
 

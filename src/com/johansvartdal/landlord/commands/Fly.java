@@ -4,7 +4,6 @@ import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.playerevents.FlyingEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,7 +17,6 @@ public class Fly implements CommandExecutor {
 	public Fly(Main plugin) {
 		this.plugin = plugin;
 		plugin.getCommand("fly").setExecutor(this);
-
 	}
 
 	@Override

@@ -37,8 +37,8 @@ public class ScoreboardHelper {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         if (LevelManager.getCurrentDisplayLevelNum() == 0) {
-            setTitle("PREPARATIONS");
-            objective.setDisplayName("PREPARATIONS");
+            setTitle(LangDict.getString("preparations"));
+            objective.setDisplayName(LangDict.getString("preparations"));
         }else {
             setTitle(LangDict.getString("scoreboardSeason") + LevelManager.getCurrentDisplaySeasonNum() + " " + LangDict.getString("scoreboardLevel") + (LevelManager.getCurrentDisplayLevelNum()));
         }

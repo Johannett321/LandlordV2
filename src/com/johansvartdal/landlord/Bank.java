@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.chatentities.BankChat;
+import com.johansvartdal.landlord.chatentities.ChatEntity;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -200,8 +201,9 @@ public class Bank {
         int chunkPoints = Main.playerDataManager.getPlayerData(player).getOwnedChunks().size();
         int tax = chunkPoints*StaticValues.CHUNK_TAX;
 
+        // pay it
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inPropertyTax") + StaticValues.CHUNK_TAX +")");
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inPropertyTax") + StaticValues.CHUNK_TAX + ")");
         }
     }
 
@@ -249,6 +251,11 @@ public class Bank {
         LandlordEventManager.startEvent(new ChooseTreasuryEvent(plugin));
     }
 
+    /**
+     * Checks if treasury can afford the inputted price. Treasury does not pay tax
+     * @param price The price of what you want to check
+     * @return true if treasury can afford
+     */
     public static boolean treasuryCanAfford(int price) {
         return taxBank >= price;
     }
