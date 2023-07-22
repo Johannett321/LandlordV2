@@ -62,6 +62,7 @@
   "teleportedHome": "You have magically been teleported home!",
   "onlySetHomeInHomeChunk": "You can only set your home inside a chunk you own",
   "homeUpdated": "Your home was updated",
+  "obstructedHome": "Your home address is obstructed, please set a new one with '/sethome'",
 
   "tradeCommandOnlyInTrade": "The trade location must be set within the trade chunk",
   "tradeUpdated": "Trade center location updated!",

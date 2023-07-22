@@ -62,6 +62,7 @@
   "teleportedHome": "Du har på magisk vis blitt teleportert heim!",
   "onlySetHomeInHomeChunk": "Du kan berre setje heime-posisjonen din i ein chunk du eig",
   "homeUpdated": "Heime-posisjonen din vart oppdatert!",
+  "obstructedHome": "Heimeadressa di er blokkert av eit objekt, vennligst sett ei ny med '/sethome'.",
 
   "tradeCommandOnlyInTrade": "Trade-posisjonen må vere innanfor trade-chunken",
   "tradeUpdated": "Trade-posisjonen vart oppdatert!",
