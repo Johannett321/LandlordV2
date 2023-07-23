@@ -25,13 +25,13 @@ public class Fly implements CommandExecutor {
 
 		// check unlocked
 		if (!LevelManager.featureUnlocked("fly")) {
-			Tools.tellPlayer(player,LangDict.getString(LangDict.CMD_NOT_UNLOCKED));
+			Tools.tellPlayer(new ErrorChat(), player,LangDict.getString(LangDict.CMD_NOT_UNLOCKED));
 			return true;
 		}
 
 		// game state normal
 		if (Tools.stateNotNormal(player)) {
-			Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
 			return true;
 		}
 
@@ -71,13 +71,13 @@ public class Fly implements CommandExecutor {
 	private void attemptFlying(Player player) {
 		// check if player is in event
 		if (PlayerEventManager.playerIsInEvent(player)) {
-			Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
 			return;
 		}
 
 		// can player afford
 		if (!Bank.playerCanAfford(player, StaticValues.FLYING_PRICE_PER_MINUTE)) {
-			Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + LangDict.getString("flying")
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + LangDict.getString("flying")
 					+ LangDict.getString("for") + StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString("currency"));
 			return;
 		}

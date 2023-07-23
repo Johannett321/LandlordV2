@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -29,7 +30,7 @@ public class Trade implements CommandExecutor {
         // check if player is allowed to teleport
         if (PlayerEventManager.playerIsInEvent(player)) {
             if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {
-                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
                 return true;
             }
             PlayerEventManager.forceEndPlayerEvent(player);

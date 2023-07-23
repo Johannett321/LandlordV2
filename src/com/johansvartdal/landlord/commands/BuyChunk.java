@@ -77,7 +77,7 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure player can afford it
 		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
-			Tools.tellPlayer(player, LangDict.getString("youNeed") + chunkPurchasePrice + LangDict.getString("currency") + LangDict.getString("toPurchaseAChunk"));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + chunkPurchasePrice + LangDict.getString("currency") + LangDict.getString("toPurchaseAChunk"));
 			return true;
 		}
 

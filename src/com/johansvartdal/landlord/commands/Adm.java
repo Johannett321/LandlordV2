@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.Preparations;
 import com.johansvartdal.landlord.events.TestEvent;
 import com.johansvartdal.landlord.events.adventure.IcyHillsEvent;
@@ -29,7 +30,7 @@ public class Adm implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
         if (!player.isOp() || !Properties.DEBUG_MODE) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW));
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
             return true;
         }
 

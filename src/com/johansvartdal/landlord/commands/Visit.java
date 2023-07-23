@@ -35,7 +35,7 @@ public class Visit implements CommandExecutor {
         Player player = (Player) commandSender;
 
         if (!LevelManager.featureUnlocked("visit")) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return true;
         }
 
@@ -77,7 +77,7 @@ public class Visit implements CommandExecutor {
 
         // make sure visitor can afford
         if (!Bank.playerCanAfford(player, StaticValues.VISIT_PRICE)) {
-            Tools.tellPlayer(player,LangDict.getString("youNeed") + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("toVisit"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player,LangDict.getString("youNeed") + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("toVisit"), ChatColor.RED);
             return true;
         }
 
@@ -108,7 +108,7 @@ public class Visit implements CommandExecutor {
 
             // make sure visitor can still afford
             if (!Bank.playerCanAfford(wantsVisits.get(i).visitor, StaticValues.VISIT_PRICE)) {
-                Tools.tellPlayer(player,LangDict.getString("youNeed") + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("toVisit"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player,LangDict.getString("youNeed") + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("toVisit"), ChatColor.RED);
                 return;
             }
 

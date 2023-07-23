@@ -30,7 +30,7 @@ public class Home implements CommandExecutor {
         // end event if player is in one
         if (PlayerEventManager.playerIsInEvent(player)) {
             if (!PlayerEventManager.getEventForPlayer(player).playerTPAwayAllowed()) {
-                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
                 return true;
             }
             PlayerEventManager.forceEndPlayerEvent(player);

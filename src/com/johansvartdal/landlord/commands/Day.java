@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -30,12 +31,12 @@ public class Day implements CommandExecutor {
 		Player player = (Player) sender;
 
 		if (!LevelManager.featureUnlocked("day")) {
-			Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
 			return true;
 		}
 
 		if (!Bank.playerCanAfford(player, commandPrice)) {
-			Tools.tellPlayer(player, LangDict.getString("youNeed") + commandPrice + LangDict.getString("currency") + LangDict.getString("forThisCommand"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + commandPrice + LangDict.getString("currency") + LangDict.getString("forThisCommand"), ChatColor.RED);
 			return true;
 		}
 

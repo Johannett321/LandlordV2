@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -83,7 +84,7 @@ public class Sell implements CommandExecutor {
         }
 
         if (itemStack.getAmount() < amountWorth.getAmountNeeded()) {
-            Tools.tellPlayer(player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
             return;
         }
 
@@ -121,7 +122,7 @@ public class Sell implements CommandExecutor {
         }
 
         if (amountSold == 0) {
-            Tools.tellPlayer(player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
             return;
         }
 

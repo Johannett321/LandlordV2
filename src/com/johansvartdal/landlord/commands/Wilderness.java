@@ -35,7 +35,7 @@ public class Wilderness implements CommandExecutor {
 
         // check if feature unlocked
         if (!LevelManager.featureUnlocked("wildworld")) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return true;
         }
 
@@ -75,17 +75,17 @@ public class Wilderness implements CommandExecutor {
         int wildernessPrice = LevelManager.getWildernessPrice();
 
         if (!LevelManager.featureUnlocked("wildworld")) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return;
         }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
@@ -99,17 +99,17 @@ public class Wilderness implements CommandExecutor {
         int minePrice = StaticValues.MINING_PRICE;
 
         if (!LevelManager.featureUnlocked("wildmining")) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return;
         }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
         if (!Bank.playerCanAfford(player, minePrice)) {
-            Tools.tellPlayer(player, LangDict.getString("youNeed") + minePrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + minePrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
@@ -123,16 +123,16 @@ public class Wilderness implements CommandExecutor {
         int wildernessPrice = LevelManager.getNetherWildernessPrice();
 
         if (!LevelManager.featureUnlocked("wildnether")) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return;
         }
 
         if (PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
@@ -147,14 +147,14 @@ public class Wilderness implements CommandExecutor {
 
         // make sure event is not null
         if (event == null) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
         // get wilderness price, and make sure player can afford
         int extensionPrice = event.getExtensionPrice();
         if (!Bank.playerCanAfford(player, extensionPrice)) {
-            Tools.tellPlayer(player, LangDict.getString("youNeed") + extensionPrice + LangDict.getString("currency") + LangDict.getString("toExtendThisJourney"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + extensionPrice + LangDict.getString("currency") + LangDict.getString("toExtendThisJourney"), ChatColor.RED);
             return;
         }
 
@@ -166,7 +166,7 @@ public class Wilderness implements CommandExecutor {
 
     private void time(Player player) {
         if (!PlayerEventManager.playerIsInEvent(player)) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 

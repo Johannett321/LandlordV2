@@ -76,7 +76,7 @@ public class TreasuryCommand implements CommandExecutor {
 
         if (args[0].equals("voteresign")) {
             if (!Bank.aTreasuryChancellorIsChosen() || !Main.properties.gameStateIsNormal()) {
-                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
                 return true;
             }
             if (args.length != 1) {
@@ -97,14 +97,14 @@ public class TreasuryCommand implements CommandExecutor {
     private Boolean normalCommand(Player player, String[] args) {
         if (args[0].equals("apply")) {
             if (!(LandlordEventManager.getCurrentEvent() instanceof ChooseTreasuryEvent)) {
-                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
                 return true;
             }
 
             applyForTreasury(player);
         }else if (args[0].equals("vote")) {
             if (!(LandlordEventManager.getCurrentEvent() instanceof ChooseTreasuryEvent)) {
-                Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
                 return true;
             }
             if (args.length != 2) {
@@ -176,14 +176,14 @@ public class TreasuryCommand implements CommandExecutor {
 
     private Boolean chancellorCommand(Player player, String[] args) {
         if (!Main.properties.gameStateIsNormal()) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return true;
         }
 
         if (args.length == 2 && args[0].equalsIgnoreCase("buy") && args[1].equalsIgnoreCase("haste")) {
             // make sure the treasury can afford
             if (!Bank.treasuryCanAfford(hastePrice)) {
-                Tools.tellPlayer(player, LangDict.getString("treasuryCannotAffordHaste") + hastePrice + LangDict.getString(LangDict.CURRENCY));
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasuryCannotAffordHaste") + hastePrice + LangDict.getString(LangDict.CURRENCY));
                 return true;
             }
 

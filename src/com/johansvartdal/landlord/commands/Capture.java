@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -33,14 +34,14 @@ public class Capture implements CommandExecutor {
 
         // Make sure the command has been unlocked
         if (!LevelManager.featureUnlocked("capture")) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return true;
         }
 
         // Make sure player has enough bal
         int priceToWithdraw = StaticValues.CAPTURE_PRICE;
         if (!Bank.playerCanAfford(player, StaticValues.CAPTURE_PRICE)) {
-            Tools.tellPlayer(player, LangDict.getString("youNeed") + StaticValues.CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCapture"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + StaticValues.CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCapture"), ChatColor.RED);
             return true;
         }
 
@@ -82,7 +83,7 @@ public class Capture implements CommandExecutor {
             if (Bank.playerCanAfford(player, StaticValues.VILLAGER_CAPTURE_PRICE)) {
                 items = new ItemStack(Material.VILLAGER_SPAWN_EGG);
             }else {
-                Tools.tellPlayer(player, LangDict.getString("youNeed") + StaticValues.VILLAGER_CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCaptureVillager"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + StaticValues.VILLAGER_CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCaptureVillager"), ChatColor.RED);
                 return true;
             }
         }else {

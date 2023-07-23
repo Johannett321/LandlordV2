@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.playerevents;
 import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import static com.johansvartdal.landlord.Tools.debugLog;
@@ -23,8 +24,10 @@ public class JailEvent extends PlayerEvent {
     public void start() {
         Tools.tellPlayer(player, LangDict.getString("youHaveBeenSentToJailBecause") + jailReason + LangDict.getString("sentenceTime") + (jailSeconds/60) + LangDict.getString("minutes"), ChatColor.RED);
 
-        // TODO: teleport to actual jail location
-        player.teleport(StaticValues.GAME_START_LOCATION);
+        Location jailLocation = new Location(Bukkit.getWorld("lladv"), 203.5, 74, -146.5);
+        jailLocation.setPitch(11);
+        jailLocation.setYaw(133);
+        player.teleport(jailLocation);
 
         scheduleAutoEnd();
     }
