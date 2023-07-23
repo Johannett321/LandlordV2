@@ -192,7 +192,7 @@ public class Bank {
         int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
 
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inWealthTax"));
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inWealthTax"));
         }
     }
 
