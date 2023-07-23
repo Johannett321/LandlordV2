@@ -26,6 +26,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import static com.johansvartdal.landlord.Tools.debugLog;
+
 public class Main extends JavaPlugin implements Listener {
 
 	public static ScoreboardHelper scoreboardHelper;
@@ -36,6 +38,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable() {
+		debugLog("Landlord is loading!");
 		// before licence
 		configurator = new Configurator(this);
 		configurator.configure();
@@ -208,6 +211,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		// end player event
+		// TODO: Hva hvis eventet er jailevent?
 		PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(event.getPlayer());
 		if (playerEvent != null) {
 			playerEvent.endEvent();

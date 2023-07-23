@@ -183,6 +183,7 @@
   "cannotSellStock": "Du kan ikkje selje denne gjenstanden. Om det er ein aksje, bruk '/stocks sell [stockname]'",
   "item": "Gjenstand:",
   "currentValue": "Noverande verdi:",
+  "requiredAmount": "For tal:",
   "toSell": " for å selje.",
   "youJustSold": "Du har nettopp selt ",
   "for": " for ",

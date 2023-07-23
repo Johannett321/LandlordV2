@@ -183,6 +183,7 @@
   "cannotSellStock": "You cannot sell this item. If it is a stock, use /stocks sell [stockname]",
   "item": "Item:",
   "currentValue": "Current value:",
+  "requiredAmount": "Required amount:",
   "toSell": " to sell.",
   "youJustSold": "You just sold ",
   "for": " for ",

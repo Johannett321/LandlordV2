@@ -61,6 +61,7 @@ public class Sell implements CommandExecutor {
         Tools.printMenuHeader(player, "INFO");
         Tools.printMenuOption(player, LangDict.getString("item"), itemStack.getType().name());
         Tools.printMenuOption(player, LangDict.getString("currentValue"), String.valueOf(currentWorth.getWorth()));
+        Tools.printMenuOption(player, LangDict.getString("requiredAmount"), String.valueOf(currentWorth.getAmountNeeded()));
         Tools.printMenuOption(player, LangDict.getString("currentVAT"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
     }
 

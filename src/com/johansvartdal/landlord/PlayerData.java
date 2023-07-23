@@ -9,6 +9,8 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.johansvartdal.landlord.Tools.*;
+
 public class PlayerData {
 
     private int currentBalance = 0;
@@ -141,9 +143,11 @@ public class PlayerData {
     }
 
     public void load() {
+        debugLog("Loading playerdata for " + username + "...");
+
         JSONObject obj = Tools.loadJson("players/" + username + ".json");
         if (obj == null) {
-            System.out.println("ERROR: Failed to load PlayerData for " + username + "!");
+            fatalLog("Failed to load " + username + "'s data");
             return;
         }
 
@@ -152,7 +156,7 @@ public class PlayerData {
         availableChunkPoints = (int) ((long)obj.get("AvailableChunkPoints"));
 
         // Home location
-        if (obj.containsKey("home")) {
+        if (obj.containsKey("Home")) {
             double homeX = (double) ((JSONObject) obj.get("Home")).get("x");
             double homeY = (double) ((JSONObject) obj.get("Home")).get("y");
             double homeZ = (double) ((JSONObject) obj.get("Home")).get("z");
@@ -160,9 +164,13 @@ public class PlayerData {
             double homePitchD = (double) ((JSONObject) obj.get("Home")).get("pitch");
             float homeYaw = (float) homeYawD;
             float homePitch = (float) homePitchD;
+            debugLog(username + "'s home address: " + homeX + ":" + homeY + ":" + homeZ + ":" + homeYawD + ":" + homePitchD + ":" + homeYaw + ":" + homePitch);
+
             home = new Location(mainWorld, homeX, homeY, homeZ);
             home.setYaw(homeYaw);
             home.setPitch(homePitch);
+        }else {
+            debugLog("No Home data found for player. Must be a new player");
         }
 
         // Day streak

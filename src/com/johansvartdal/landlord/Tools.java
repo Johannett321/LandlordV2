@@ -388,4 +388,20 @@ public class Tools {
             player.sendTitle(title, subtitle);
         }
     }
+
+
+    public static void debugLog(String message) {
+        if (Properties.DEBUG_LOGGING) {
+            System.out.println("[LANDLORD] Debug: " + message);
+        }
+    }
+
+    public static void errorLog(String message) {
+        System.out.println("[LANDLORD] ERROR: " + message);
+    }
+
+    public static void fatalLog(String message) {
+        message = message.toUpperCase();
+        System.out.println("[LANDLORD] FATAL ERROR: " + message);
+    }
 }

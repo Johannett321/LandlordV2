@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.util.ArrayList;
 
+import static com.johansvartdal.landlord.Tools.debugLog;
+
 public class PlayerDataManager {
 
     private final Main plugin;
@@ -21,6 +23,10 @@ public class PlayerDataManager {
 
     public void loadData() {
         File directory = new File(plugin.getDataFolder() + "/players");
+
+        debugLog("Attempting to load playerdata...");
+        if (!directory.exists()) debugLog("IF THIS IS NOT A NEW GAME, AN ERROR HAS OCCURED. NO PLAYERSAVES WERE FOUND");
+
         for (File file : directory.listFiles()) {
             if (file.isFile()) {
                 String filename = file.getName();
