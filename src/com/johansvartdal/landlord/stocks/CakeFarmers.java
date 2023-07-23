@@ -13,11 +13,6 @@ public class CakeFarmers extends Stock{
     }
 
     @Override
-    public String getDescription() {
-        return "";
-    }
-
-    @Override
     public int getInitialWorth() {
         return 42;
     }

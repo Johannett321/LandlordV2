@@ -1,19 +1,19 @@
 package com.johansvartdal.landlord.stocks;
 
-public class ElCarts extends Stock{
+public class BlockBNB extends Stock{
 
     @Override
     public String getID() {
-        return "elcarts";
+        return "blockbnb";
     }
 
     @Override
     public String getDisplayName() {
-        return "El-carts Inc";
+        return "BlockBnB";
     }
 
     @Override
     public int getInitialWorth() {
-        return 1000;
+        return 750;
     }
 }

@@ -203,6 +203,7 @@
   "couldNotFindPlayer": "Kunne ikkje finne spelaren: ",
 
   "justDonated": " har nettopp donert dei siste ",
+  "youJustDonated": "Du donerte nettop ",
   "toCommunity": " til samfunnet!",
   "itemDonationsComplete": "Svært bra! Du har fullført alle gjenstandane for dette nivået. Køyr '/upgrade accept' for å gå vidare til neste nivå",
   "townJustUpgraded": "Gratulerer! Byen blei nettopp oppgradert til nivå ",
@@ -292,5 +293,12 @@
   "wildEnding1Min": "Ditt villmarkseventyr avsluttast om 1 minutt",
   "wildEnding10Sec": "Ditt villmarkseventyr avsluttast om 10 sekund",
   "heightLimitTooMuch": "Det held! Du overskred høgdegrensen tre gonger! Du blei difor sendt heim!",
-  "mineGetDown": "KOM DEG NED UMIDDELBART! Du overskrid høgdegrensa! (åtvaring "
+  "mineGetDown": "KOM DEG NED UMIDDELBART! Du overskrid høgdegrensa! (åtvaring ",
+
+  "blockbnb": "Ein utleigeteneste der du kan betale for å overnatta. Dei er kjende for sine små plassar, ettersom kvar leilegheit er berre ein block stor.",
+  "cakefarm": "CakeFarm inc plantar frø i håp om at dei ein dag vil vekse til ein kake. Dei har for tida tusenvis av frø, som dei ivrig ventar på å forvandle til kaker.",
+  "elcarts": "El-carts er ein bilprodusent. Bilane deira krev elektrifiserte skinner kvar tredje blokk, som dei kallar super-skinnenettverket. Dei er kjende for å ha sendt ei minecart til verdsrommet",
+  "golddiggers": "GoldDiggers er eit gullgruveselskap som berre tilset kvinner for å jobbe i gruvene deira. Dei er kjende for å berre gå forbi alle diamantar dei finn, sidan dei berre treng gull.",
+  "minedonalds": "Ein hurtigmatrestaurant for gruvearbeidarar som har tilbrakt ein lang dag i det djupaste mørkret. Dei er mest kjende for deira 'Creeper Crunch Burgarar', 'Ender Pommes Frites' og 'Lava Shakes'",
+  "netherexpress": "Ei bedrift kjend for mykje raskare leveringstid på grunn av deira bruk av nether-portalane. Med kvart steg i Nether tilsvarar 16 steg i Overworld, er leveringstidene deira praktisk talt uslåelige."
 }

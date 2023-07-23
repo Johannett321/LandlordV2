@@ -1,6 +1,8 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.InfoChat;
+import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -50,6 +52,7 @@ public abstract class Level implements LevelInterface {
 
                 if (required > 0) {
                     remainingItems.get(i).setAmount(required);
+                    Tools.tellPlayer(new InfoChat(), player, LangDict.getString("youJustDonated") + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack) + " " + LangDict.getString("toCommunity"), ChatColor.GREEN);
                 }else {
                     Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_GUITAR);
                     remainingItems.remove(i);

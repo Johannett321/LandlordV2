@@ -13,11 +13,6 @@ public class GoldDiggers extends Stock{
     }
 
     @Override
-    public String getDescription() {
-        return "GoldDiggers is a gold mining company that only hire women for working in their mines. They are known for just walking past all diamonds they find, as they only mine gold.";
-    }
-
-    @Override
     public int getInitialWorth() {
         return 450;
     }

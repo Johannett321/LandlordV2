@@ -1,19 +1,19 @@
 package com.johansvartdal.landlord.stocks;
 
-public class ElCarts extends Stock{
+public class NetherExpress extends Stock{
 
     @Override
     public String getID() {
-        return "elcarts";
+        return "netherexpress";
     }
 
     @Override
     public String getDisplayName() {
-        return "El-carts Inc";
+        return "The Nether Express inc";
     }
 
     @Override
     public int getInitialWorth() {
-        return 1000;
+        return 125;
     }
 }

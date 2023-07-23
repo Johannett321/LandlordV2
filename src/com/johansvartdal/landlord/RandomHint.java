@@ -46,7 +46,7 @@ public class RandomHint {
         hints.add("By typing '/buychunk info', you can see how many chunks you can claim");
         hints.add("Type '/bal' to see your current tax and fortune");
         hints.add("The value of items change during the day. By typing '/sell info', you can monitor the price, and sell when it's worth the most");
-        hints.add("Do '/claimbonus' to claim your daily reward");
+        hints.add("Have you calimed your bonus today? Do '/claimbonus' to claim your daily reward");
         hints.add("Do '/changelang [ LANG_CODE ]' to change the language of Landlord");
         hints.add("'/home' will almost always take you home. Almost...");
         hints.add("Do you want to build something cool, or just trade with someone? Do '/trade'");

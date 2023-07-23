@@ -203,6 +203,7 @@
   "couldNotFindPlayer": "Could not find the player: ",
 
   "justDonated": " just donated the last ",
+  "youJustDonated": "You just donated ",
   "toCommunity": " to the community!",
   "itemDonationsComplete": "Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level",
   "townJustUpgraded": "Congratulations! The town was just upgraded to level ",
@@ -293,5 +294,12 @@
   "wildEnding1Min": "Wilderness will end in 1 minute",
   "wildEnding10Sec": "Wilderness will end in 10 seconds",
   "heightLimitTooMuch": "That's it. You exceeded the height limit three times! You were therefore sent home!",
-  "mineGetDown": "GET FURTHER DOWN IMMEDIATELY! You're exceeding the height limit! (warning "
+  "mineGetDown": "GET FURTHER DOWN IMMEDIATELY! You're exceeding the height limit! (warning ",
+
+  "blockbnb": "A rental service where you can pay to stay for the night. They are known for their small space, as every apartment is only one block.",
+  "cakefarm": "The CakeFarm inc plant seeds in a hope that they one day will grow into a cake. They currently possess thousands of seeds, which they are eagerly waiting to transform into cakes.",
+  "elcarts": "El-carts is a car manufacturer. Their cars require powered rails every three blocks which they call the super-rails network. They are known for sending a minecart to space",
+  "golddiggers": "GoldDiggers is a gold mining company that only hire women for working in their mines. They are known for just walking past all diamonds they find, as they only mine gold.",
+  "minedonalds": "A fast food restaurant for miners who have spent a long day in the deep dark. They are most famous for their 'Creeper Crunch Burgers', 'Ender Fries' and 'Lava Shakes'",
+  "netherexpress": "A business known for a much faster delivery time due to their use of nether portals. As each step in the Nether equaling 16 steps in the Overworld, their delivery times are practically unbeatable."
 }

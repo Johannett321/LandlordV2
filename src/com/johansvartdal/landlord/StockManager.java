@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord;
 
-import com.johansvartdal.landlord.stocks.CakeFarmers;
-import com.johansvartdal.landlord.stocks.ElCarts;
-import com.johansvartdal.landlord.stocks.GoldDiggers;
-import com.johansvartdal.landlord.stocks.Stock;
+import com.johansvartdal.landlord.stocks.*;
 
 import java.util.ArrayList;
 
@@ -15,6 +12,9 @@ public class StockManager {
         stockList.add(new ElCarts());
         stockList.add(new CakeFarmers());
         stockList.add(new GoldDiggers());
+        stockList.add(new BlockBNB());
+        stockList.add(new MineDonalds());
+        stockList.add(new NetherExpress());
     }
 
     public static Stock getStockByID(String id) {

@@ -1,12 +1,17 @@
 package com.johansvartdal.landlord.stocks;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Tools;
 
 public abstract class Stock {
 
     public abstract String getID();
     public abstract String getDisplayName();
-    public abstract String getDescription();
+
+    public String getDescription() {
+        return LangDict.getString(getID());
+    }
+
     public abstract int getInitialWorth();
 
     public int getCurrentPrice() {
