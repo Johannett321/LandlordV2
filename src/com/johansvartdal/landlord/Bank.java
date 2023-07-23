@@ -218,7 +218,7 @@ public class Bank {
             withdrawPlayerWithoutTax(player, bal);
             taxBank += bal;
 
-            JailManager.sendToJail(plugin, player, LangDict.getString("jailReasonTax"), LangDict.getString("jailOutTax"), 60*7);
+            JailManager.sendToJail(plugin, player, LangDict.getString("jailReasonTax"), LangDict.getString("jailOutTax"), 60*4);
             save();
             return false;
         }

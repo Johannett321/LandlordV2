@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
+import static com.johansvartdal.landlord.Tools.debugLog;
+
 public class PlayerEventManager {
 
     private static final ArrayList<PlayerEvent> playerEvents = new ArrayList<>();
@@ -30,7 +32,7 @@ public class PlayerEventManager {
 
     public static void forceEndPlayerEvent(Player player) {
         for (PlayerEvent event : playerEvents) {
-            if (event.getPlayer().getUniqueId() == player.getUniqueId()) {
+            if (event.getPlayer().getUniqueId().equals(player.getUniqueId())) {
                 forceEndPlayerEvent(event);
                 return;
             }
@@ -48,7 +50,7 @@ public class PlayerEventManager {
 
     public static PlayerEvent getEventForPlayer(Player player) {
         for (PlayerEvent event : playerEvents) {
-            if (event.getPlayer().getUniqueId() == player.getUniqueId()) {
+            if (event.getPlayer().getUniqueId().equals(player.getUniqueId())) {
                 return event;
             }
         }

@@ -223,6 +223,7 @@
   "governmentBank": "The bank",
 
   "youHaveBeenSentToJailBecause": "You have been sent to jail because ",
+  "sentenceTime": " Sentence time: ",
   "jailReasonTax": "you could not afford to pay your tax!",
   "jailOutTax": "You're out! Make sure to have enough money next time!",
   "jailReasonEmissionTax": "you could not afford to pay emission tax while mining coal!",

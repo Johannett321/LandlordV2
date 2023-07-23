@@ -47,7 +47,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "haste");
             Tools.printMenuOption(player, "/adm", "testtreasury");
             Tools.printMenuOption(player, "/adm", "forcelvl1");
-            Tools.printMenuOption(player, "/adm", "testrent");
+            Tools.printMenuOption(player, "/adm", "testjail");
             return true;
         }
 
@@ -93,8 +93,8 @@ public class Adm implements CommandExecutor {
             }
         }else if (strings[0].equals("forcelvl1")) {
             LevelManager.startLevel1();
-        }else if (strings[0].equals("testrent")) {
-
+        }else if (strings[0].equals("testjail")) {
+            JailManager.sendToJail(plugin, player, LangDict.getString("jailReasonTax"), LangDict.getString("jailOutTax"), 60);
         }
         return true;
     }

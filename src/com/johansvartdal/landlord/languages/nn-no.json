@@ -223,6 +223,7 @@
   "governmentBank": "Statskassen",
 
   "youHaveBeenSentToJailBecause": "Du er blitt sendt til fengsel fordi ",
+  "sentenceTime": " Straffelengda: ",
   "jailReasonTax": "du ikkje hadde råd til å betale skatten din!",
   "jailOutTax": "Du er ute! Pass på å ha nok pengar neste gong!",
   "jailReasonEmissionTax": "du ikkje hadde råd til å betale miljøskatten medan du utvinna kol!",

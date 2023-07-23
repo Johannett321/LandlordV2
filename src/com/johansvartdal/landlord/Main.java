@@ -2,6 +2,7 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.commands.*;
 import com.johansvartdal.landlord.lan.LanController;
+import com.johansvartdal.landlord.playerevents.JailEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import com.johansvartdal.landlord.renting.RentManager;
 import org.bukkit.Bukkit;
@@ -200,6 +201,12 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerLeave(PlayerQuitEvent event){
 		event.setQuitMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("citizenLeaveStart") + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + LangDict.getString("citizenLeaveEnd"));
+
+		// Player is in jail
+		if (PlayerEventManager.getEventForPlayer(event.getPlayer()) instanceof JailEvent) {
+			debugLog("A player in jail just left!");
+			return;
+		}
 
 		if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
 			if (event.getPlayer().isFlying()) {

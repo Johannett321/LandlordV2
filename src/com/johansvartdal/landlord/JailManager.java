@@ -3,6 +3,8 @@ package com.johansvartdal.landlord;
 import com.johansvartdal.landlord.playerevents.JailEvent;
 import org.bukkit.entity.Player;
 
+import static com.johansvartdal.landlord.Tools.debugLog;
+
 public class JailManager {
 
     public static void sendToJail(Main plugin, Player player, String reason, int jailSeconds) {
@@ -13,6 +15,7 @@ public class JailManager {
         if (PlayerEventManager.playerIsInEvent(player)) {
             // don't send to jail twice
             if (PlayerEventManager.getEventForPlayer(player) instanceof JailEvent) {
+                debugLog("Player was already in jail, and was therefore not sent to jail again. Username: " + player.getDisplayName());
                 return;
             }
             PlayerEventManager.forceEndPlayerEvent(player);
