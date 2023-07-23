@@ -18,6 +18,8 @@ public class EmissionTax implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event){
+
+        // You don't pay emission tax in events such as preparation.
         if (!Main.properties.gameStateIsNormal()) {
             return;
         }

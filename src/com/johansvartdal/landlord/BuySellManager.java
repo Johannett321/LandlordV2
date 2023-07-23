@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import lombok.NonNull;
 import org.bukkit.Material;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -49,10 +50,14 @@ public class BuySellManager {
         }
     }
 
+    @NonNull
     public static AmountWorth getItemValue(Material material) {
         switch (material) {
             case COBBLESTONE: return new AmountWorth(64, 150, 1);
-            case DIAMOND: return new AmountWorth(1, 2000, 2);
+            case DIORITE:
+            case GRANITE:
+            case ANDESITE:
+                return new AmountWorth(64, 200, 2);
 
             case CACTUS: return new AmountWorth(64, 610, 3);
             case SUGAR_CANE: return new AmountWorth(64, 512, 4);
@@ -66,35 +71,40 @@ public class BuySellManager {
             case POTATO:
             case BEETROOT:
             case CARROT: return new AmountWorth(64,615, 11);
-            case COCOA_BEANS: return new AmountWorth(16,340, 22);
+            case COCOA_BEANS: return new AmountWorth(16,340, 12);
 
 
-            case HONEYCOMB:return new AmountWorth(16, 415, 12);
-            case LEATHER:return new AmountWorth(25, 415, 13);
-            case WHITE_WOOL:return new AmountWorth(64, 449, 14);
-            case FEATHER:return new AmountWorth(32, 449, 15);
-            case EGG:return new AmountWorth(16, 119, 16);
+            case HONEYCOMB:return new AmountWorth(16, 415, 13);
+            case LEATHER:return new AmountWorth(25, 415, 14);
+            case WHITE_WOOL:return new AmountWorth(64, 449, 15);
+            case FEATHER:return new AmountWorth(32, 449, 16);
+            case EGG:return new AmountWorth(16, 119, 17);
 
-            case DIRT: return new AmountWorth(64, 319, 17);
+            case DIRT: return new AmountWorth(64, 319, 18);
             case OAK_LOG:
             case JUNGLE_LOG:
             case SPRUCE_LOG:
             case BIRCH_LOG:
-                return new AmountWorth(64, 619, 18);
+                return new AmountWorth(64, 619, 19);
 
             case OAK_SAPLING:
             case BIRCH_SAPLING:
             case SPRUCE_SAPLING:
             case JUNGLE_SAPLING:
-                return new AmountWorth(64, 250, 19);
+                return new AmountWorth(64, 250, 20);
 
             case OAK_LEAVES:
             case BIRCH_LEAVES:
             case JUNGLE_LEAVES:
             case SPRUCE_LEAVES:
-                return new AmountWorth(16, 37, 20);
+                return new AmountWorth(16, 37, 21);
+
+            case DIAMOND: return new AmountWorth(1, 2000, 22);
+            case COAL: return new AmountWorth(16, 1500, 23);
+
+
         }
-        return new AmountWorth(0, 0, 21);
+        return new AmountWorth(0, 0, 1);
     }
 
     public static AmountWorth getStockWorth(String displayName) {

@@ -24,9 +24,16 @@ public class PlayerData {
 
     private final World mainWorld;
 
+
+    /**
+     * WARNING: Only use this method for the first time the user joins the server. It sets a starting balance.
+     * @param mainWorld The main world
+     * @param player The player that just joined
+     */
     public PlayerData(World mainWorld, Player player) {
         this.username = player.getName();
         this.mainWorld = mainWorld;
+        currentBalance = StaticValues.PLAYERS_STARTING_BALANCE;
         if (Properties.DEBUG_MODE) {
             currentBalance = 10000000;
             availableChunkPoints = 100;
@@ -34,6 +41,11 @@ public class PlayerData {
         save();
     }
 
+    /**
+     * This method should be used each time the server starts to load a user.
+     * @param mainWorld The main world
+     * @param username The username of the player that just joined
+     */
     public PlayerData(World mainWorld, String username) {
         this.username = username;
         this.mainWorld = mainWorld;

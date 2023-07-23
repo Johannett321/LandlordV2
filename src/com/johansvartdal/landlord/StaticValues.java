@@ -15,4 +15,5 @@ public class StaticValues {
     public static final int CHUNK_TAX = 300;
     public static final int MINING_PRICE = 9990;
     public static final int FLYING_PRICE_PER_MINUTE = 1690;
+    public static final int PLAYERS_STARTING_BALANCE = 500;
 }

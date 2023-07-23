@@ -16,9 +16,9 @@ public class Level2 extends Level{
     public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 
-        requiredItems.add(new ItemStack(Material.COBBLESTONE, 80 * Main.properties.getNumberOfPlayers()));
-        requiredItems.add(new ItemStack(Material.SUGAR, 208 * Main.properties.getNumberOfPlayers()));
-        requiredItems.add(new ItemStack(Material.WHEAT, 80 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.COBBLESTONE, 170 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.SUGAR, 603 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.WHEAT, 120 * Main.properties.getNumberOfPlayers()));
 
         return requiredItems;
     }
