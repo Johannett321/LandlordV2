@@ -43,7 +43,7 @@ public class Upgrade implements CommandExecutor {
 			Tools.printMenuOption(player, LangDict.getString("playersAccepted"), LevelManager.getAcceptedPlayersText());
 		}else if (args[0].equals("accept")) {
 			if (LevelManager.playerHasAccepted(player)) {
-				Tools.tellPlayer(player, LangDict.getString("alreadyAccepted"));
+				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("alreadyAccepted"));
 				return true;
 			}
 
@@ -57,7 +57,7 @@ public class Upgrade implements CommandExecutor {
 			LevelManager.playerAcceptsUpgrade(player);
 		}else if (args[0].equals("force")) {
 			if (!player.isOp()) {
-				Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
+				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
 				return true;
 			}
 			LevelManager.forceUpgrade(player);

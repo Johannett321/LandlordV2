@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -29,7 +30,7 @@ public class SendHome implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase(player.getDisplayName())) {
-            Tools.tellPlayer(player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
             return true;
         }
 
@@ -44,7 +45,7 @@ public class SendHome implements CommandExecutor {
             }
 
             if(!Main.playerDataManager.getPlayerData(owningPlayer).ownsChunk(player.getLocation().getChunk())) {
-                Tools.tellPlayer(owningPlayer, LangDict.getString("playerNotInChunk"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), owningPlayer, LangDict.getString("playerNotInChunk"), ChatColor.RED);
                 return;
             }
 
@@ -57,6 +58,6 @@ public class SendHome implements CommandExecutor {
             return;
         }
 
-        Tools.tellPlayer(owningPlayer, LangDict.getString("couldNotFindPlayer") + playerName, ChatColor.RED);
+        Tools.tellPlayer(new ErrorChat(), owningPlayer, LangDict.getString("couldNotFindPlayer") + playerName, ChatColor.RED);
     }
 }

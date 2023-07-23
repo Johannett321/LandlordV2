@@ -72,14 +72,14 @@ public class Sell implements CommandExecutor {
 
         if (itemType == Material.PAPER) {
             // STOCK!!!
-            Tools.tellPlayer(player, LangDict.getString("cannotSellStock"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotSellStock"), ChatColor.RED);
             return;
         }
 
         BuySellManager.AmountWorth amountWorth = BuySellManager.getItemValue(itemType);
 
         if (amountWorth.getWorth() == 0) {
-            Tools.tellPlayer(player, LangDict.getString("itemCannotBeSold"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("itemCannotBeSold"), ChatColor.RED);
             return;
         }
 

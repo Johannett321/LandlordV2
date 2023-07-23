@@ -65,13 +65,13 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure the player actually owns the chunk we are currently in
 		if (!Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
-			Tools.tellPlayer(sender, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
 			return true;
 		}
 
 		// Make sure player can afford with ChunkPoints
 		if (!Main.playerDataManager.getPlayerData(player).hasChunkPoints()) {
-			Tools.tellPlayer(player, LangDict.getString("noChunkPointsLeft"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("noChunkPointsLeft"), ChatColor.RED);
 			return true;
 		}
 
@@ -87,7 +87,7 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure the chunk is available for purchase
 		if (!ChunkBuilder.chunkIsAvailableForPurchaseBy(player, chunkAtDirection)) {
-			Tools.tellPlayer(player, LangDict.getString("cannotPurchaseThisChunk"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotPurchaseThisChunk"), ChatColor.RED);
 			return true;
 		}
 

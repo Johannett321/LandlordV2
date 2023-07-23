@@ -65,13 +65,13 @@ public class Visit implements CommandExecutor {
 
         // make sure player exists
         if (teleportTo == null) {
-            Tools.tellPlayer(player, LangDict.getString("couldNotFindPlayer") + teleportToString, ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("couldNotFindPlayer") + teleportToString, ChatColor.RED);
             return true;
         }
 
         // don't visit yourself
         if (teleportTo == player) {
-            Tools.tellPlayer(player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
             return true;
         }
 

@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.chatentities.BankChat;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.stocks.Stock;
 import org.bukkit.ChatColor;
@@ -71,13 +72,13 @@ public class Stocks implements CommandExecutor {
 
     private void buyStocks(Player player, String[] args) {
         if (args.length < 3) {
-            Tools.tellPlayer(player, LangDict.getString("invalidCommandUse"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("invalidCommandUse"), ChatColor.RED);
             return;
         }
         String stockName = args[1];
         Stock stock = StockManager.getStockByID(stockName);
         if (stock == null) {
-            Tools.tellPlayer(player, LangDict.getString("couldNotFindStockWithName") + stockName, ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("couldNotFindStockWithName") + stockName, ChatColor.RED);
             return;
         }
 
@@ -86,12 +87,12 @@ public class Stocks implements CommandExecutor {
         int totalPrice = price*amount;
 
         if (!Bank.playerCanAffordTaxFree(player, totalPrice)) {
-            Tools.tellPlayer(player, LangDict.getString("cannotAfford") + amount + " " + stockName + LangDict.getString("stocksFor") + totalPrice + LangDict.getString("plusTax"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotAfford") + amount + " " + stockName + LangDict.getString("stocksFor") + totalPrice + LangDict.getString("plusTax"), ChatColor.RED);
             return;
         }
 
         int platformFee = (int) (totalPrice*0.03);
-        Tools.tellPlayer(player, LangDict.getString("justPaidPlatformFee") + platformFee + LangDict.getString("currency") + " (3%)");
+        Tools.tellPlayer(new BankChat(), player, LangDict.getString("justPaidPlatformFee") + platformFee + LangDict.getString("currency") + " (3%)");
         Bank.withdrawPlayerWithoutTax(player, totalPrice + platformFee);
 
         ItemStack itemStack = new ItemStack(Material.PAPER);

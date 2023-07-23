@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.Preparations;
 import com.johansvartdal.landlord.LevelManager;
 import org.bukkit.*;
@@ -22,7 +23,7 @@ public class Landlord implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
         if (!player.isOp()) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
             return true;
         }
 
@@ -45,7 +46,7 @@ public class Landlord implements CommandExecutor {
 
             // make sure player has already configured the game
             if (player.getWorld().equals(Bukkit.getWorld("lladv"))) {
-                Tools.tellPlayer(player, LangDict.getString("youMustConfigFirst"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youMustConfigFirst"), ChatColor.RED);
                 return true;
             }
 

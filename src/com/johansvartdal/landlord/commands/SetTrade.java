@@ -32,13 +32,13 @@ public class SetTrade implements CommandExecutor {
 
         // make sure player is OP
         if (!player.isOp()) {
-            Tools.tellPlayer(player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_ARE_NOT_ALLOWED), ChatColor.RED);
             return true;
         }
 
         // make sure in trade
         if (!Main.tradeCenter.getLocation().getChunk().equals(player.getLocation().getChunk())) {
-            Tools.tellPlayer(player, LangDict.getString("tradeCommandOnlyInTrade"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("tradeCommandOnlyInTrade"), ChatColor.RED);
             return true;
         }
 

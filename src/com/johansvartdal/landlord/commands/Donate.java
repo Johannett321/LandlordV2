@@ -4,6 +4,7 @@ import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,7 +32,7 @@ private Main plugin;
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
 		if (!LevelManager.itemRequiredForUpgrade(itemInMainHand)) {
-			Tools.tellPlayer(player, LangDict.getString("notRequiredForUpgrade"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("notRequiredForUpgrade"), ChatColor.RED);
 			return true;
 		}
 

@@ -7,6 +7,7 @@ import com.johansvartdal.landlord.Bank;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -43,7 +44,7 @@ private Main plugin;
 
 		// Check if player has  already collected today
 		if (currentTime < streakCollectOpens) {
-			Tools.tellPlayer(player, LangDict.getString("bonusCollectedAlready"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("bonusCollectedAlready"), ChatColor.RED);
 			return true;
 		}
 

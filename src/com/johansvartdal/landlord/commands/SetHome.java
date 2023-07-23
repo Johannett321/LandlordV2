@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -28,7 +29,7 @@ public class SetHome implements CommandExecutor {
         Location currentLocation = player.getLocation();
 
         if (!Main.playerDataManager.getPlayerData(player).ownsChunk(currentLocation.getChunk())) {
-            Tools.tellPlayer(player, LangDict.getString("onlySetHomeInHomeChunk"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("onlySetHomeInHomeChunk"), ChatColor.RED);
             return true;
         }
 

@@ -120,7 +120,7 @@ public class TreasuryCommand implements CommandExecutor {
 
     private void voteForResignation(Player player) {
         if (playersVotedForResign.contains(player)) {
-            Tools.tellPlayer(player, LangDict.getString("cannotVoteTwice"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotVoteTwice"), ChatColor.RED);
         }
         playersVotedForResign.add(player);
         if (Main.properties.getNumberOfPlayers() <= 2 || (playersVotedForResign.size() > Main.properties.getNumberOfPlayers() / 2)) {
@@ -134,7 +134,7 @@ public class TreasuryCommand implements CommandExecutor {
     private void applyForTreasury(Player player) {
         for (VoteHolder voteHolder : treasuryPlayers) {
             if (voteHolder.getPlayer().equals(player)) {
-                Tools.tellPlayer(player, LangDict.getString("alreadyApplied"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("alreadyApplied"), ChatColor.RED);
                 return;
             }
         }
@@ -146,13 +146,13 @@ public class TreasuryCommand implements CommandExecutor {
 
     private void voteForPlayer(Player player, String voteUsername) {
         if (voteUsername.equalsIgnoreCase(player.getDisplayName()) && !Properties.DEBUG_MODE) {
-            Tools.tellPlayer(player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
             return;
         }
         for (VoteHolder voteHolder : treasuryPlayers) {
             for (Player playerVote : voteHolder.getVotes()) {
                 if (playerVote.equals(player)) {
-                    Tools.tellPlayer(player, LangDict.getString("alreadyVoted"), ChatColor.RED);
+                    Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("alreadyVoted"), ChatColor.RED);
                     return;
                 }
             }
@@ -167,7 +167,7 @@ public class TreasuryCommand implements CommandExecutor {
             }
         }
 
-        Tools.tellPlayer(player, LangDict.getString("cannotFindVoluntary") + voteUsername, ChatColor.RED);
+        Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotFindVoluntary") + voteUsername, ChatColor.RED);
     }
 
     /*
