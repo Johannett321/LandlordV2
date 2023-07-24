@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import lombok.NonNull;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +38,11 @@ public class Level1 extends Level {
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
+        return null;
+    }
+
+    @Override
+    public @NonNull Book getBook() {
         return null;
     }
 }

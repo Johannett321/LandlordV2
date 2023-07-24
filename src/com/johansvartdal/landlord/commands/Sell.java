@@ -128,7 +128,7 @@ public class Sell implements CommandExecutor {
 
         // TELL PLAYER
         Bank.depositPlayer(player, amountToDeposit);
-        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + LangDict.getString("sellItem.for") + (amountSold * amountWorth.getWorth()), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + LangDict.getString("sellItem.for") + (amountSold * amountWorth.getWorth()) + LangDict.getString("banking.currency"), ChatColor.GREEN);
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 }

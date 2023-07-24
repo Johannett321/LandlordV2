@@ -12,7 +12,7 @@ import static com.johansvartdal.landlord.Tools.errorLog;
 
 public class LangDict {
 
-    public static final String CURRENCY = "currency";
+    public static final String CURRENCY = "banking.currency";
 
     public static final String CMD_NOT_NOW= "commandResponses.errorMessages.cmdNotNow";
     public static final String CMD_NOT_UNLOCKED = "commandResponses.errorMessages.cmdNotUnlocked";
@@ -20,10 +20,10 @@ public class LangDict {
     public static final String CANNOT_USE_ON_YOURSELF = "commandResponses.errorMessages.cannotUseOnYourself";
 
     public static final String TREASURY_SENTINEL = "treasury.treasurySentinel";
-    public static final String WELCOME_TITLE = "welcomeTitle";
+    public static final String WELCOME_TITLE = "events.preparations.welcomeTitle";
     public static final String WELCOME_HOME = "info.welcomeHome";
     public static final String EVENT_CANCELLED_SERVER_RESTART = "events.excursion.eventCancelledServerRestart";
-    public static final String YOU_CANNOT_AFFORD_ = "cannotAfford";
+    public static final String YOU_CANNOT_AFFORD_ = "banking.cannotAfford";
     public static final String YOU_NEED = "generalSentenceParts.youNeed";
     public static final String END_FLIGHT_FIRST = "playerEvents.fly.endFlightFirst";
 

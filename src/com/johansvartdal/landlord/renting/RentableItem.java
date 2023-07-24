@@ -5,6 +5,7 @@ import com.johansvartdal.landlord.chatentities.ErrorChat;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -14,6 +15,10 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.scheduler.BukkitTask;
+
+import java.util.PrimitiveIterator;
+
+import static com.johansvartdal.landlord.Tools.errorLog;
 
 public abstract class RentableItem implements Listener {
 
@@ -112,35 +117,51 @@ public abstract class RentableItem implements Listener {
         return true;
     }
 
-    private void renewItem() {
-        // try to find the item in the players inventory
-        boolean itemIsPresentInInventory = false;
+    private static final int CHESTPLATE = 122131;
+    private static final int HELMET = 5767445;
+    private static final int CURSOR = 352342;
+    private static final int SECOND_HAND = 982373;
+    private static final int NOT_FOUND = -1;
+
+    private int getIndexOfRentedItem() {
         for (int i = 0; i < 36; i++) {
             ItemStack currentItem = player.getInventory().getItem(i);
             if (equalsTheRentedItem(currentItem)) {
-                itemIsPresentInInventory = true;
+                return i;
             }
         }
 
         // does the player wear the item?
-        if (equalsTheRentedItem(player.getInventory().getChestplate()) || equalsTheRentedItem(player.getInventory().getHelmet())) {
-            itemIsPresentInInventory = true;
+        if (equalsTheRentedItem(player.getInventory().getChestplate())) {
+            return CHESTPLATE;
+        }
+
+        // does the player wear the item?
+        if (equalsTheRentedItem(player.getInventory().getHelmet())) {
+            return HELMET;
         }
 
         // does the player have it in their cursor?
         if (equalsTheRentedItem(player.getItemOnCursor())) {
-            itemIsPresentInInventory = true;
+            return CURSOR;
         }
 
         // does the player have it in their second hand?
         if (equalsTheRentedItem(player.getInventory().getItemInOffHand())) {
-            itemIsPresentInInventory = true;
+            return SECOND_HAND;
         }
+        return NOT_FOUND;
+    }
+
+    private void renewItem() {
+        // try to find the item in the players inventory
+        int indexOfRentedItem = getIndexOfRentedItem();
 
         // if item is not present, attempt to purchase item
-        if (!itemIsPresentInInventory) {
+        if (indexOfRentedItem == NOT_FOUND) {
             if (!Bank.playerCanAfford(player, getItemPurchaseFullPrice())) {
                 // send to jail as player could not afford to purchase item
+                Bank.bankruptPlayer(player);
                 JailManager.sendToJail(plugin, player, LangDict.getString("itemRent.attemptingToStealA") + getItemName(), 60*8);
                 RentManager.notifyItemRentEnded(this);
                 return;
@@ -155,7 +176,7 @@ public abstract class RentableItem implements Listener {
 
         // player cannot afford
         if (!Bank.playerCanAfford(player, getItemRentPrice())) {
-            player.getInventory().remove(rentedItem);
+            removeItemFromPlayersInv(indexOfRentedItem);
             RentManager.notifyItemRentEnded(this);
             Tools.tellPlayer(player, LangDict.getString("itemRent.gaveBackStart") + getItemName() + LangDict.getString("itemRent.gaveBackEnd"), ChatColor.RED);
             return;
@@ -164,6 +185,41 @@ public abstract class RentableItem implements Listener {
         // renew item, and reschedule
         Bank.withdrawPlayer(LangDict.getString("itemRent.renewingRented") + getItemName(), player, getItemRentPrice());
         scheduleRenewal();
+    }
+
+    private void removeItemFromPlayersInv(int indexOfRentedItem) {
+        // not found
+        if (indexOfRentedItem == NOT_FOUND) {
+            errorLog("Attempted to remove a rented item from a players inventory. It was found, when looking, but could not be found when about to be removed.");
+            return;
+        }
+
+        // remove chestplate
+        if (indexOfRentedItem == CHESTPLATE) {
+            player.getInventory().setChestplate(null);
+            return;
+        }
+
+        // remove helmet
+        if (indexOfRentedItem == HELMET) {
+            player.getInventory().setHelmet(null);
+            return;
+        }
+
+        // remove cursor
+        if (indexOfRentedItem == CURSOR) {
+            player.setItemOnCursor(null);
+            return;
+        }
+
+        // remove second hand
+        if (indexOfRentedItem == SECOND_HAND) {
+            player.getInventory().setItemInOffHand(null);
+            return;
+        }
+
+        // remove normal inventory item
+        player.getInventory().clear(indexOfRentedItem);
     }
 
     public void attemptEndRent() {
@@ -194,9 +250,11 @@ public abstract class RentableItem implements Listener {
         endRentCleanup(false);
     }
 
+    /**
+     * this is the preferred method to call to end the rent
+     * @param notifyManager
+     */
     public void endRentCleanup(boolean notifyManager) {
-        // this is the preferred method to call to end the rent
-
         // cancel renewalLoop
         if (renewalLoop != null) {
             renewalLoop.cancel();

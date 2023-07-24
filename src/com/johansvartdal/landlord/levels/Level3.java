@@ -16,9 +16,9 @@ public class Level3 extends Level{
     public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 
-        requiredItems.add(new ItemStack(Material.COBBLESTONE, 80 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.COBBLESTONE, 210 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.SUGAR, 448 * Main.properties.getNumberOfPlayers()));
-        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 144 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 203 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LOG, 176 * Main.properties.getNumberOfPlayers()));
 
         return requiredItems;
@@ -26,8 +26,7 @@ public class Level3 extends Level{
 
     @Override
     public void justUpgraded() {
-        God.speak(LangDict.getString("levelBooks.level3.page1"));
-        God.speak(LangDict.getString("levelBooks.level3.page2"));
+
     }
 
     @Override
@@ -38,5 +37,13 @@ public class Level3 extends Level{
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
         return null;
+    }
+
+    @Override
+    public Book getBook() {
+        Book book = new Book("S1L3");
+        book.addPage(LangDict.getString("levelBooks.level3.page1"));
+        book.addPage(LangDict.getString("levelBooks.level3.page2"));
+        return book;
     }
 }

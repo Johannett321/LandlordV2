@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 public class Day implements CommandExecutor {
 
 	private Main plugin;
-	private int commandPrice = 100;
+	private int commandPrice = 100; // TODO Denne må ha en ny pris
 	
 	public Day(Main plugin) {
 		this.plugin = plugin;

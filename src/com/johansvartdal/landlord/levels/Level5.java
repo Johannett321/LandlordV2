@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.levels;
 
+import com.johansvartdal.landlord.Book;
 import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
@@ -40,5 +41,10 @@ public class Level5 extends Level{
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
         return new ValleyVillageAdventure(plugin);
+    }
+
+    @Override
+    public Book getBook() {
+        return null;
     }
 }

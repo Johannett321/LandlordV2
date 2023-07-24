@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import lombok.NonNull;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -25,8 +26,7 @@ public class Level2 extends Level{
 
     @Override
     public void justUpgraded() {
-        God.speak(LangDict.getString("levelBooks.level2.page1"));
-        God.speak(LangDict.getString("levelBooks.level2.page2"));
+
     }
 
     @Override
@@ -37,5 +37,13 @@ public class Level2 extends Level{
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
         return null;
+    }
+
+    @Override
+    public @NonNull Book getBook() {
+        Book book = new Book("S1L2");
+        book.addPage(LangDict.getString("levelBooks.level2.page1"));
+        book.addPage(LangDict.getString("levelBooks.level2.page2"));
+        return book;
     }
 }

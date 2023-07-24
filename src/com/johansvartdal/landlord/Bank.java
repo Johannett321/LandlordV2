@@ -31,7 +31,7 @@ public class Bank {
         // inform player
         Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + amount +
                 LangDict.getString(LangDict.CURRENCY) + LangDict.getString("sellItem.for") + youJustPaidFor + " + " +
-                tax + LangDict.getString("banking.currency") + " (" + getWithdrawTaxPercentDisplay()
+                tax + LangDict.getString(LangDict.CURRENCY) + " (" + getWithdrawTaxPercentDisplay()
                 + "%)"+ LangDict.getString("banking.inTax"), ChatColor.GRAY);
 
         // withdraw player and save
@@ -54,7 +54,7 @@ public class Bank {
                     tax +
                     LangDict.getString("banking.currency") +
                     " (" + getDepositTaxPercentDisplayForPlayer(player) +
-                    "%)" + LangDict.getString("banking.inTax"));
+                    "%)" + LangDict.getString("banking.inTax"), ChatColor.GRAY);
         }
         Main.playerDataManager.getPlayerData(player).depositBalance(amount - tax);
         save();
@@ -263,5 +263,13 @@ public class Bank {
     public static void withdrawTreasury(int amount) {
         taxBank -= amount;
         save();
+    }
+
+    /**
+     * Removes all money from a player.
+     * @param player
+     */
+    public static void bankruptPlayer(Player player) {
+        withdrawPlayerWithoutTax(player, getPlayerBalance(player));
     }
 }

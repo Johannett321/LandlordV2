@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.levels;
 
+import com.johansvartdal.landlord.Book;
 import com.johansvartdal.landlord.LandlordEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -10,7 +11,7 @@ public interface LevelInterface {
     ArrayList<ItemStack> getRequiredItemsForNextLevel();
     void justUpgraded();
     int getRouletteGamePrice();
-    ItemStack getBook();
+    Book getBook();
 
     LandlordEvent getEventToStartBeforeLevel();
 }

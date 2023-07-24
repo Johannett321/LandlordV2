@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord.levels;
 
+import com.johansvartdal.landlord.Book;
 import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Material;
@@ -38,6 +39,11 @@ public class Level6 extends Level{
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
+        return null;
+    }
+
+    @Override
+    public Book getBook() {
         return null;
     }
 }

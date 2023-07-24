@@ -60,4 +60,9 @@ public class Level4 extends Level{
     public LandlordEvent getEventToStartBeforeLevel() {
         return null;
     }
+
+    @Override
+    public Book getBook() {
+        return null;
+    }
 }

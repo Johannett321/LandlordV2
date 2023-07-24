@@ -28,6 +28,7 @@ public class EmissionTax implements Listener {
 
             if (!Bank.playerCanAffordTaxFree(player, StaticValues.EMISSION_TAX)) {
                 event.setCancelled(true);
+                Bank.bankruptPlayer(player);
                 JailManager.sendToJail(plugin, player, LangDict.getString("playerEvents.jail.jailReasonEmissionTax"), LangDict.getString("playerEvents.jail.jailOutReasonEmissionTax"), 60*2);
                 return;
             }

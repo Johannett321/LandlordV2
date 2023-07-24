@@ -137,7 +137,7 @@ public class Rent implements CommandExecutor {
 
 		// can afford
 		if (!Bank.playerCanAfford(player, rentableItem.getItemRentPrice())) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_ + LangDict.getString("itemRent.rentingA") + rentableItem.getItemName()));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + LangDict.getString("itemRent.rentingA") + rentableItem.getItemName());
 			return;
 		}
 
