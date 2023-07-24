@@ -63,7 +63,7 @@ public class Sell implements CommandExecutor {
         Tools.printMenuOption(player, LangDict.getString("item"), itemStack.getType().name());
         Tools.printMenuOption(player, LangDict.getString("currentValue"), String.valueOf(currentWorth.getWorth()));
         Tools.printMenuOption(player, LangDict.getString("requiredAmount"), String.valueOf(currentWorth.getAmountNeeded()));
-        Tools.printMenuOption(player, LangDict.getString("currentVAT"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
+        Tools.printMenuOption(player, LangDict.getString("banking.currentVAT"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
     }
 
     private void sellHand(Player player) {
@@ -84,7 +84,7 @@ public class Sell implements CommandExecutor {
         }
 
         if (itemStack.getAmount() < amountWorth.getAmountNeeded()) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
             return;
         }
 
@@ -92,7 +92,7 @@ public class Sell implements CommandExecutor {
         player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount()-amountWorth.getAmountNeeded());
         Bank.depositPlayer(player, amountWorth.getWorth());
 
-        Tools.tellPlayer(player, LangDict.getString("youJustSold") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("for") + amountWorth.getWorth() + LangDict.getString("currency"));
+        Tools.tellPlayer(player, LangDict.getString("youJustSold") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("for") + amountWorth.getWorth() + LangDict.getString("banking.currency"));
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 
@@ -122,7 +122,7 @@ public class Sell implements CommandExecutor {
         }
 
         if (amountSold == 0) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
             return;
         }
 

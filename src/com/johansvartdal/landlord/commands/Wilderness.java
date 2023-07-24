@@ -85,12 +85,12 @@ public class Wilderness implements CommandExecutor {
         }
 
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
         Bank.withdrawPlayer(LangDict.getString("wilderness"), player, wildernessPrice);
-        Tools.tellPlayer(player, LangDict.getString("welcomeToWild") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("expires"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("welcomeToWild") + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("expires"), ChatColor.GREEN);
         WildernessEvent event = new WildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -109,12 +109,12 @@ public class Wilderness implements CommandExecutor {
         }
 
         if (!Bank.playerCanAfford(player, minePrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + minePrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + minePrice + LangDict.getString("banking.currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
         Bank.withdrawPlayer(LangDict.getString("wildernessMine"), player, minePrice);
-        Tools.tellPlayer(player, LangDict.getString("welcomeToWildMine") + minePrice + LangDict.getString("currency") + LangDict.getString("expires"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("welcomeToWildMine") + minePrice + LangDict.getString("banking.currency") + LangDict.getString("expires"), ChatColor.GREEN);
         MiningEvent event = new MiningEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -132,12 +132,12 @@ public class Wilderness implements CommandExecutor {
             return;
         }
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("toAccessWilderness"), ChatColor.RED);
             return;
         }
 
         Bank.withdrawPlayer(LangDict.getString("wildernessNether"), player, wildernessPrice);
-        Tools.tellPlayer(player, LangDict.getString("welcomeWildNether") + wildernessPrice + LangDict.getString("currency") + LangDict.getString("expires"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("welcomeWildNether") + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("expires"), ChatColor.GREEN);
         NetherWildernessEvent event = new NetherWildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -154,14 +154,14 @@ public class Wilderness implements CommandExecutor {
         // get wilderness price, and make sure player can afford
         int extensionPrice = event.getExtensionPrice();
         if (!Bank.playerCanAfford(player, extensionPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + extensionPrice + LangDict.getString("currency") + LangDict.getString("toExtendThisJourney"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + extensionPrice + LangDict.getString("banking.currency") + LangDict.getString("toExtendThisJourney"), ChatColor.RED);
             return;
         }
 
         // perform purchase
         Bank.withdrawPlayer(LangDict.getString("wildernessExtension"), player, extensionPrice);
         event.extend();
-        Tools.tellPlayer(player, LangDict.getString("extended") + event.getTitle() + LangDict.getString("with") + event.getTextTimeLeft() + LangDict.getString("for") + extensionPrice + LangDict.getString("currency"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("extended") + event.getTitle() + LangDict.getString("with") + event.getTextTimeLeft() + LangDict.getString("for") + extensionPrice + LangDict.getString("banking.currency"), ChatColor.GREEN);
     }
 
     private void time(Player player) {

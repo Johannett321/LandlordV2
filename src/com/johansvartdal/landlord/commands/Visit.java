@@ -71,19 +71,19 @@ public class Visit implements CommandExecutor {
 
         // don't visit yourself
         if (teleportTo == player) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CANNOT_USE_ON_YOURSELF), ChatColor.RED);
             return true;
         }
 
         // make sure visitor can afford
         if (!Bank.playerCanAfford(player, StaticValues.VISIT_PRICE)) {
-            Tools.tellPlayer(new ErrorChat(), player,LangDict.getString("youNeed") + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("toVisit"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player,LangDict.getString(LangDict.YOU_NEED) + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("visit.toVisit"), ChatColor.RED);
             return true;
         }
 
         addVisitWaiter(teleportTo, player);
-        Tools.tellPlayer(player, LangDict.getString("waitingForReply") + args[0] + LangDict.getString("toReply"), ChatColor.GREEN);
-        Tools.tellPlayer(teleportTo,LangDict.getString("newVisitRequest") + player.getDisplayName() + LangDict.getString("visitReqInstructions"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("visit.waitingForReply") + args[0] + LangDict.getString("visit.toReply"), ChatColor.GREEN);
+        Tools.tellPlayer(teleportTo,LangDict.getString("visit.newVisitRequest") + player.getDisplayName() + LangDict.getString("visit.visitReqInstructions"), ChatColor.GREEN);
         return true;
     }
 
@@ -108,7 +108,7 @@ public class Visit implements CommandExecutor {
 
             // make sure visitor can still afford
             if (!Bank.playerCanAfford(wantsVisits.get(i).visitor, StaticValues.VISIT_PRICE)) {
-                Tools.tellPlayer(new ErrorChat(), player,LangDict.getString("youNeed") + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("toVisit"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player,LangDict.getString(LangDict.YOU_NEED) + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("visit.toVisit"), ChatColor.RED);
                 return;
             }
 
@@ -134,25 +134,25 @@ public class Visit implements CommandExecutor {
             wantsVisits.get(i).visitor.teleport(wantsVisits.get(i).host);
 
             // inform
-            Tools.tellPlayer(wantsVisits.get(i).host, wantsVisits.get(i).visitor.getDisplayName() + LangDict.getString("isNowVisiting") + StaticValues.VISIT_PRICE + LangDict.getString("asAVisitFee"), ChatColor.GREEN);
-            Tools.tellPlayer(wantsVisits.get(i).visitor,LangDict.getString("youAreNowVisiting") + wantsVisits.get(i).host.getDisplayName() + LangDict.getString("youPaidTheHost") + StaticValues.VISIT_PRICE + LangDict.getString("asAVisitFee"), ChatColor.GREEN);
+            Tools.tellPlayer(wantsVisits.get(i).host, wantsVisits.get(i).visitor.getDisplayName() + LangDict.getString("visit.isNowVisiting") + StaticValues.VISIT_PRICE + LangDict.getString("visit.asAVisitFee"), ChatColor.GREEN);
+            Tools.tellPlayer(wantsVisits.get(i).visitor,LangDict.getString("visit.youAreNowVisiting") + wantsVisits.get(i).host.getDisplayName() + LangDict.getString("visit.youPaidTheHost") + StaticValues.VISIT_PRICE + LangDict.getString("visit.asAVisitFee"), ChatColor.GREEN);
 
             // remove request
             wantsVisits.remove(i);
             return;
         }
-        Tools.tellPlayer(player,LangDict.getString("noVisitRequests"), ChatColor.RED);
+        Tools.tellPlayer(player,LangDict.getString("visit.noVisitRequests"), ChatColor.RED);
     }
 
     private void rejectVisit(Player player) {
         for (int i = 0; i < wantsVisits.size(); i++) {
             if (wantsVisits.get(i).host.getUniqueId().toString().equals(player.getUniqueId().toString())) {
-                Tools.tellPlayer(wantsVisits.get(i).host, wantsVisits.get(i).visitor.getDisplayName() + LangDict.getString("willNotBeVisiting"), ChatColor.RED);
-                Tools.tellPlayer(wantsVisits.get(i).visitor,LangDict.getString("notAllowedToVisit") + wantsVisits.get(i).host.getDisplayName(), ChatColor.RED);
+                Tools.tellPlayer(wantsVisits.get(i).host, wantsVisits.get(i).visitor.getDisplayName() + LangDict.getString("visit.willNotBeVisiting"), ChatColor.RED);
+                Tools.tellPlayer(wantsVisits.get(i).visitor,LangDict.getString("visit.notAllowedToVisit") + wantsVisits.get(i).host.getDisplayName(), ChatColor.RED);
                 return;
             }
         }
-        Tools.tellPlayer(player,LangDict.getString("noVisitRequests"), ChatColor.RED);
+        Tools.tellPlayer(player,LangDict.getString("visit.noVisitRequests"), ChatColor.RED);
     }
 
     private class WantsVisit {

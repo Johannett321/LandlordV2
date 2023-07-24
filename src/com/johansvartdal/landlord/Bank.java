@@ -31,7 +31,7 @@ public class Bank {
         // inform player
         Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + amount +
                 LangDict.getString(LangDict.CURRENCY) + LangDict.getString("for") + youJustPaidFor + " + " +
-                tax + LangDict.getString("currency") + " (" + getWithdrawTaxPercentDisplay()
+                tax + LangDict.getString("banking.currency") + " (" + getWithdrawTaxPercentDisplay()
                 + "%)"+ LangDict.getString("inTax"), ChatColor.GRAY);
 
         // withdraw player and save
@@ -52,7 +52,7 @@ public class Bank {
         }else {
             Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") +
                     tax +
-                    LangDict.getString("currency") +
+                    LangDict.getString("banking.currency") +
                     " (" + getDepositTaxPercentDisplayForPlayer(player) +
                     "%)" + LangDict.getString("inTax"));
         }
@@ -192,7 +192,7 @@ public class Bank {
         int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
 
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inWealthTax"));
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("inWealthTax"));
         }
     }
 
@@ -203,7 +203,7 @@ public class Bank {
 
         // pay it
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("currency") + LangDict.getString("inPropertyTax") + StaticValues.CHUNK_TAX + ")");
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("inPropertyTax") + StaticValues.CHUNK_TAX + ")");
         }
     }
 

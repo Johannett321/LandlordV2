@@ -11,15 +11,20 @@ import java.io.*;
 public class LangDict {
 
     public static final String CURRENCY = "currency";
-    public static final String CMD_NOT_NOW= "cmdNotNow";
-    public static final String CMD_NOT_UNLOCKED = "cmdNotUnlocked";
-    public static final String TREASURY_SENTINEL = "treasurySentinel";
+
+    public static final String CMD_NOT_NOW= "commandResponses.errorMessages.cmdNotNow";
+    public static final String CMD_NOT_UNLOCKED = "commandResponses.errorMessages.cmdNotUnlocked";
+    public static final String YOU_ARE_NOT_ALLOWED = "commandResponses.errorMessages.youAreNotAllowed";
+    public static final String CANNOT_USE_ON_YOURSELF = "commandResponses.errorMessages.cannotUseOnYourself";
+
+    public static final String TREASURY_SENTINEL = "treasury.treasurySentinel";
     public static final String WELCOME_TITLE = "welcomeTitle";
     public static final String WELCOME_HOME = "welcomeHome";
-    public static final String YOU_ARE_NOT_ALLOWED = "youAreNotAllowed";
     public static final String EVENT_CANCELLED_SERVER_RESTART = "eventCancelledServerRestart";
     public static final String YOU_CANNOT_AFFORD_ = "cannotAfford";
+    public static final String YOU_NEED = "generalSentenceParts.youNeed";
     public static final String END_FLIGHT_FIRST = "endFlightFirst";
+
     public static String languageCode = null;
 
     private static JSONObject english;
@@ -56,11 +61,18 @@ public class LangDict {
     }
 
     public static String getString(String stringName) {
-        Object string = currentLanguage.get(stringName);
-        if (string == null) {
-            string = english.get(stringName);
+        JSONObject navigator = currentLanguage;
+        String[] keys = stringName.split("\\.");
+
+        for (int i = 0; i < keys.length - 1; i++) {
+            navigator = (JSONObject) navigator.get(keys[i]);
+
+            if (navigator == null) {
+                return null;
+            }
         }
-        return (String) string;
+
+        return (String) navigator.get(keys[keys.length - 1]);
     }
 
     public static void attemptChangeLanguage(Player player, String langCode) {

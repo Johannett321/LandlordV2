@@ -3,40 +3,48 @@
 
   "god": "[The Landlord]",
 
-  "cmdNotNow": "Du kan ikkje utføre denne kommandoen no",
-  "cmdNotUnlocked": "Denne kommandoen er ikkje låst opp enno",
-  "youAreNotAllowed": "Du har ikkje tilgang til denne kommandoen",
-  "invalidCommandUse": "Ugyldig bruk av kommando",
-  "cannotUseOnYourself": "Du kan ikkje bruke denne kommandoen på deg sjølv",
-  "notAvailableRN": "Ikkje tilgjengeleg akkurat no",
+  "generalSentenceParts": {
+    "youNeed": "Du treng "
+  },
+
+  "commandResponses": {
+    "errorMessages": {
+      "cmdNotNow": "Du kan ikkje utføre denne kommandoen no",
+      "cmdNotUnlocked": "Denne kommandoen er ikkje låst opp enno",
+      "youAreNotAllowed": "Du har ikkje tilgang til denne kommandoen",
+      "invalidCommandUse": "Ugyldig bruk av kommando",
+      "cannotUseOnYourself": "Du kan ikkje bruke denne kommandoen på deg sjølv",
+      "notAvailableRN": "Ikkje tilgjengeleg akkurat no"
+    }
+  },
+
   "none": "Ingen",
   "debugWarning": "ÅTVARING: DEBUG-MODUS AKTIVERT!",
   "serverRestarted": "Serveren vart nyleg restarta!",
 
-  "currency": "kr",
-  "balance": "Saldo",
-  "currentIncomeTax": "Noverande inntektsskatt:",
-  "currentVAT": "Noverande MVA:",
-  "currentWealthTax": "Noverande formuesskatt:",
-  "currentBalance": "Noverande saldo:",
-  "youNeed": "Du treng ",
-  "cannotAfford": "Du har ikkje råd til ",
-  "plusTax": " + skatt",
-  "justBought": "Du kjøpte nettopp ",
+  "banking": {
+    "currency": "kr",
+    "balance": "Saldo",
+    "currentIncomeTax": "Noverande inntektsskatt:",
+    "currentVAT": "Noverande MVA:",
+    "currentWealthTax": "Noverande formuesskatt:",
+    "currentBalance": "Noverande saldo:",
+    "cannotAfford": "Du har ikkje råd til ",
+    "plusTax": " + skatt",
+    "justBought": "Du kjøpte nettopp "
+  },
 
   "cannotFindLanguage": "Finn ikkje språk med språkkode: ",
   "langChangedTo": "Språket vart endra til ",
 
-
-
-  "citizenJoinStart": "Ein borgar ved namn ",
-  "citizenJoinEnd": " har komme tilbake!",
-  "citizenLeaveStart": "Ånei! Ein borgar med namn ",
-  "citizenLeaveEnd": " har nyleg forlate oss!",
-  "gameAlreadyRunningJoinMessage": "Du kan ikkje bli med. Spelet er allereie i gang",
-  "gameFull": "Beklagar, maks antall spelarar er nådd",
-
-
+  "joinMessages": {
+    "citizenJoinStart": "Ein borgar ved namn ",
+    "citizenJoinEnd": " har komme tilbake!",
+    "citizenLeaveStart": "Ånei! Ein borgar med namn ",
+    "citizenLeaveEnd": " har nyleg forlate oss!",
+    "gameAlreadyRunningJoinMessage": "Du kan ikkje bli med. Spelet er allereie i gang",
+    "gameFull": "Beklagar, maks antall spelarar er nådd"
+  },
 
   "chunkInfo": "CHUNK INFORMASJON",
   "chunkPoints": "Chunk-poeng:",
@@ -68,28 +76,30 @@
   "tradeUpdated": "Trade-posisjonen vart oppdatert!",
   "teleportTrade": "Du vart på magisk vis teleportert til trade",
 
-  "treasurySentinel": "Statsforvaltaren",
-  "treasuryVotingHall": "Statsforvaltinga si Stemmehall",
-  "treasuryWelcome": "Ver helsa, og velkommen til Statsforvaltinga si Stemmehall. Vi treng nokon til å utøve Statsforvaltar-rolla",
-  "cannotVoteTwice": "Du kan ikkje stemme to gonger",
-  "treasuryResigned": "Statsforvaltaren har trekt seg! Ein ny må veljast",
-  "someoneVotedResignation": "Ein spelar har stemt for at Statsforvaltaren trer av! Kjør kommandoen '/treasury voteresign' viss du òg vil stemme for det same",
-  "alreadyApplied": "Du har allereie søkt om denne rolla",
-  "appliedForTreasury": "Du søkte om statsforvaltar-rolla",
-  "alreadyVoted": "Du har allereie stemt!",
-  "votedFor": "Du stemte for ",
-  "cannotFindVoluntary": "Kan ikkje finne frivillig spelar med brukarnamn: ",
-  "treasuryCannotAffordHaste": "Statskassa har ikkje råd til haste for ",
-  "treasuryCannotAffordWithdrawal": "Statskassa har ikkje råd til eit uttak. Det kostar ",
-  "treasuryOrderedWithdrawal": "Statsforvaltaren har beordra eit uttak! De har alle motteke ",
-  "treasuryWithdrawalUnfortunately": ". Dessverre gjekk ",
-  "lostDuringWithdrawal": " tapt under uttaket",
-  "treasuryDecidingIn": "Statsforvaltaren vil bli bestemt om",
-  "treasuryIsChosen": "Ein statsforvaltar er vald",
-  "playerHasBeenChosen": " er vald for statsforvaltar-rolla!",
-  "treasuryApplyInfo": "Viss du vil søkje om rolla, vennleg skriv '/treasury apply'",
-  "treasuryVoteInfo": "Hvis du vil avgi en stemme, vennligst skriv '/treasury vote [brukernavn]'",
-  "roleDecidingSoon": "Rollen vil snart bli bestemt!",
+  "treasury": {
+    "treasurySentinel": "Statsforvaltaren",
+    "treasuryVotingHall": "Statsforvaltinga si Stemmehall",
+    "treasuryWelcome": "Ver helsa, og velkommen til Statsforvaltinga si Stemmehall. Vi treng nokon til å utøve Statsforvaltar-rolla",
+    "cannotVoteTwice": "Du kan ikkje stemme to gonger",
+    "treasuryResigned": "Statsforvaltaren har trekt seg! Ein ny må veljast",
+    "someoneVotedResignation": "Ein spelar har stemt for at Statsforvaltaren trer av! Kjør kommandoen '/treasury voteresign' viss du òg vil stemme for det same",
+    "alreadyApplied": "Du har allereie søkt om denne rolla",
+    "appliedForTreasury": "Du søkte om statsforvaltar-rolla",
+    "alreadyVoted": "Du har allereie stemt!",
+    "votedFor": "Du stemte for ",
+    "cannotFindVoluntary": "Kan ikkje finne frivillig spelar med brukarnamn: ",
+    "treasuryCannotAffordHaste": "Statskassa har ikkje råd til haste for ",
+    "treasuryCannotAffordWithdrawal": "Statskassa har ikkje råd til eit uttak. Det kostar ",
+    "treasuryOrderedWithdrawal": "Statsforvaltaren har beordra eit uttak! De har alle motteke ",
+    "treasuryWithdrawalUnfortunately": ". Dessverre gjekk ",
+    "lostDuringWithdrawal": " tapt under uttaket",
+    "treasuryDecidingIn": "Statsforvaltaren vil bli bestemt om",
+    "treasuryIsChosen": "Ein statsforvaltar er vald",
+    "playerHasBeenChosen": " er vald for statsforvaltar-rolla!",
+    "treasuryApplyInfo": "Viss du vil søkje om rolla, vennleg skriv '/treasury apply'",
+    "treasuryVoteInfo": "Hvis du vil avgi en stemme, vennligst skriv '/treasury vote [brukernavn]'",
+    "roleDecidingSoon": "Rollen vil snart bli bestemt!"
+  },
 
   "upgradeInfo": "OPPGRADERINGSINFO",
   "currentLevel": "Noverande level: ",
@@ -104,30 +114,21 @@
   "scoreboardLevel": "Level ",
 
   "commands": "KOMMANDOAR",
-  "stocks": "Aksjar",
-  "stock": "Aksje:",
-  "description": "Skildring:",
-  "stocksFor": " aksjar for ",
-  "couldNotFindStockWithName": "Kunne ikkje finne aksje med namn ",
-  "justPaidPlatformFee": "Du betalte nettopp ei plattformavgift på ",
-  "stocksInvalid": "Desse aksjane er ugyldige!",
-  "perStock": " per aksje",
-  "values1To4Mins": "Verdiar (1, 2, 3, 4) min:",
-  "values15To60Mins": "Verdiar (15, 30, 45, 60) min:",
-  "platformFee": "Plattformavgift:",
 
-  "toVisit": " for å besøke nokon",
-  "waitingForReply": "Du ventar no på at ",
-  "toReply": " svarar.",
-  "newVisitRequest": "Du har ein ny besøksførespurnad frå ",
-  "visitReqInstructions": "! Skriv '/visit [accept | reject]' for å svare",
-  "isNowVisiting": " er no på besøk hjå deg! Besøkjande betalte deg ",
-  "asAVisitFee": " i besøksavgift",
-  "youAreNowVisiting": "Du besøker no ",
-  "youPaidTheHost": ". Du betalte verten ",
-  "noVisitRequests": "Du har ingen besøksførespurnadar",
-  "willNotBeVisiting": " kjem ikkje til å besøke deg!",
-  "notAllowedToVisit": "Du fekk ikkje lov til å besøke ",
+  "visit": {
+    "toVisit": " for å besøke nokon",
+    "waitingForReply": "Du ventar no på at ",
+    "toReply": " svarar.",
+    "newVisitRequest": "Du har ein ny besøksførespurnad frå ",
+    "visitReqInstructions": "! Skriv '/visit [accept | reject]' for å svare",
+    "isNowVisiting": " er no på besøk hjå deg! Besøkjande betalte deg ",
+    "asAVisitFee": " i besøksavgift",
+    "youAreNowVisiting": "Du besøker no ",
+    "youPaidTheHost": ". Du betalte verten ",
+    "noVisitRequests": "Du har ingen besøksførespurnadar",
+    "willNotBeVisiting": " kjem ikkje til å besøke deg!",
+    "notAllowedToVisit": "Du fekk ikkje lov til å besøke "
+  },
 
   "jail": "fengsel",
   "flying": "flyeffekten",
@@ -297,10 +298,25 @@
   "heightLimitTooMuch": "Det held! Du overskred høgdegrensen tre gonger! Du blei difor sendt heim!",
   "mineGetDown": "KOM DEG NED UMIDDELBART! Du overskrid høgdegrensa! (åtvaring ",
 
-  "blockbnb": "Ein utleigeteneste der du kan betale for å overnatta. Dei er kjende for sine små plassar, ettersom kvar leilegheit er berre ein block stor.",
-  "cakefarm": "CakeFarm inc plantar frø i håp om at dei ein dag vil vekse til ein kake. Dei har for tida tusenvis av frø, som dei ivrig ventar på å forvandle til kaker.",
-  "elcarts": "El-carts er ein bilprodusent. Bilane deira krev elektrifiserte skinner kvar tredje blokk, som dei kallar super-skinnenettverket. Dei er kjende for å ha sendt ei minecart til verdsrommet",
-  "golddiggers": "GoldDiggers er eit gullgruveselskap som berre tilset kvinner for å jobbe i gruvene deira. Dei er kjende for å berre gå forbi alle diamantar dei finn, sidan dei berre treng gull.",
-  "minedonalds": "Ein hurtigmatrestaurant for gruvearbeidarar som har tilbrakt ein lang dag i det djupaste mørkret. Dei er mest kjende for deira 'Creeper Crunch Burgarar', 'Ender Pommes Frites' og 'Lava Shakes'",
-  "netherexpress": "Ei bedrift kjend for mykje raskare leveringstid på grunn av deira bruk av nether-portalane. Med kvart steg i Nether tilsvarar 16 steg i Overworld, er leveringstidene deira praktisk talt uslåelige."
+  "description": "Skildring:",
+
+  "stocks": {
+    "stocksTitle": "Aksjar",
+    "stock": "Aksje:",
+    "stocksFor": " aksjar for ",
+    "couldNotFindStockWithName": "Kunne ikkje finne aksje med namn ",
+    "justPaidPlatformFee": "Du betalte nettopp ei plattformavgift på ",
+    "stocksInvalid": "Desse aksjane er ugyldige!",
+    "perStock": " per aksje",
+    "values1To4Mins": "Verdiar (1, 2, 3, 4) min:",
+    "values15To60Mins": "Verdiar (15, 30, 45, 60) min:",
+    "platformFee": "Plattformavgift:",
+
+    "blockbnb": "Ein utleigeteneste der du kan betale for å overnatta. Dei er kjende for sine små plassar, ettersom kvar leilegheit er berre ein block stor.",
+    "cakefarm": "CakeFarm inc plantar frø i håp om at dei ein dag vil vekse til ein kake. Dei har for tida tusenvis av frø, som dei ivrig ventar på å forvandle til kaker.",
+    "elcarts": "El-carts er ein bilprodusent. Bilane deira krev elektrifiserte skinner kvar tredje blokk, som dei kallar super-skinnenettverket. Dei er kjende for å ha sendt ei minecart til verdsrommet",
+    "golddiggers": "GoldDiggers er eit gullgruveselskap som berre tilset kvinner for å jobbe i gruvene deira. Dei er kjende for å berre gå forbi alle diamantar dei finn, sidan dei berre treng gull.",
+    "minedonalds": "Ein hurtigmatrestaurant for gruvearbeidarar som har tilbrakt ein lang dag i det djupaste mørkret. Dei er mest kjende for deira 'Creeper Crunch Burgarar', 'Ender Pommes Frites' og 'Lava Shakes'",
+    "netherexpress": "Ei bedrift kjend for mykje raskare leveringstid på grunn av deira bruk av nether-portalane. Med kvart steg i Nether tilsvarar 16 steg i Overworld, er leveringstidene deira praktisk talt uslåelige."
+  }
 }

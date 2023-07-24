@@ -129,7 +129,7 @@ public class LevelManager {
         StringBuilder remainingText = new StringBuilder();
 
         if (currentLevel == null) {
-            return LangDict.getString("notAvailableRN");
+            return LangDict.getString("commandResponses.errorMessages.notAvailableRN");
         }
 
         ArrayList<ItemStack> remaining = currentLevel.getRemainingItemsForNextLevel();

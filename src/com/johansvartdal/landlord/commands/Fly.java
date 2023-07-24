@@ -78,7 +78,7 @@ public class Fly implements CommandExecutor {
 		// can player afford
 		if (!Bank.playerCanAfford(player, StaticValues.FLYING_PRICE_PER_MINUTE)) {
 			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + LangDict.getString("flying")
-					+ LangDict.getString("for") + StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString("currency"));
+					+ LangDict.getString("for") + StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString("banking.currency"));
 			return;
 		}
 

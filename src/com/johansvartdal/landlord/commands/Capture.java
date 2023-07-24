@@ -41,7 +41,7 @@ public class Capture implements CommandExecutor {
         // Make sure player has enough bal
         int priceToWithdraw = StaticValues.CAPTURE_PRICE;
         if (!Bank.playerCanAfford(player, StaticValues.CAPTURE_PRICE)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + StaticValues.CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCapture"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + StaticValues.CAPTURE_PRICE + LangDict.getString("banking.currency") + LangDict.getString("toCapture"), ChatColor.RED);
             return true;
         }
 
@@ -83,7 +83,7 @@ public class Capture implements CommandExecutor {
             if (Bank.playerCanAfford(player, StaticValues.VILLAGER_CAPTURE_PRICE)) {
                 items = new ItemStack(Material.VILLAGER_SPAWN_EGG);
             }else {
-                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + StaticValues.VILLAGER_CAPTURE_PRICE + LangDict.getString("currency") + LangDict.getString("toCaptureVillager"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + StaticValues.VILLAGER_CAPTURE_PRICE + LangDict.getString("banking.currency") + LangDict.getString("toCaptureVillager"), ChatColor.RED);
                 return true;
             }
         }else {

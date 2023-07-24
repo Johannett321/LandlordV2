@@ -36,7 +36,7 @@ public class Day implements CommandExecutor {
 		}
 
 		if (!Bank.playerCanAfford(player, commandPrice)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + commandPrice + LangDict.getString("currency") + LangDict.getString("forThisCommand"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + commandPrice + LangDict.getString("banking.currency") + LangDict.getString("forThisCommand"), ChatColor.RED);
 			return true;
 		}
 

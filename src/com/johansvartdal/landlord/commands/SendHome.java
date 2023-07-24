@@ -30,7 +30,7 @@ public class SendHome implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase(player.getDisplayName())) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CANNOT_USE_ON_YOURSELF), ChatColor.RED);
             return true;
         }
 

@@ -120,39 +120,39 @@ public class TreasuryCommand implements CommandExecutor {
 
     private void voteForResignation(Player player) {
         if (playersVotedForResign.contains(player)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotVoteTwice"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.cannotVoteTwice"), ChatColor.RED);
         }
         playersVotedForResign.add(player);
         if (Main.properties.getNumberOfPlayers() <= 2 || (playersVotedForResign.size() > Main.properties.getNumberOfPlayers() / 2)) {
-            Tools.broadcastMessage(LangDict.getString("treasuryResigned"), ChatColor.RED);
+            Tools.broadcastMessage(LangDict.getString("treasury.treasuryResigned"), ChatColor.RED);
             Bank.resignChancellor(plugin);
         }else {
-            Tools.broadcastMessage(LangDict.getString("someoneVotedResignation"));
+            Tools.broadcastMessage(LangDict.getString("treasury.someoneVotedResignation"));
         }
     }
 
     private void applyForTreasury(Player player) {
         for (VoteHolder voteHolder : treasuryPlayers) {
             if (voteHolder.getPlayer().equals(player)) {
-                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("alreadyApplied"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.alreadyApplied"), ChatColor.RED);
                 return;
             }
         }
 
         VoteHolder voteHolder = new VoteHolder(player);
         treasuryPlayers.add(voteHolder);
-        Tools.tellPlayer(player, LangDict.getString("appliedForTreasury"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("treasury.appliedForTreasury"), ChatColor.GREEN);
     }
 
     private void voteForPlayer(Player player, String voteUsername) {
         if (voteUsername.equalsIgnoreCase(player.getDisplayName()) && !Properties.DEBUG_MODE) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotUseOnYourself"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CANNOT_USE_ON_YOURSELF), ChatColor.RED);
             return;
         }
         for (VoteHolder voteHolder : treasuryPlayers) {
             for (Player playerVote : voteHolder.getVotes()) {
                 if (playerVote.equals(player)) {
-                    Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("alreadyVoted"), ChatColor.RED);
+                    Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.alreadyVoted"), ChatColor.RED);
                     return;
                 }
             }
@@ -161,13 +161,13 @@ public class TreasuryCommand implements CommandExecutor {
         // add the current players vote
         for (VoteHolder voteHolder : treasuryPlayers) {
             if (voteHolder.getPlayer().getDisplayName().equalsIgnoreCase(voteUsername)) {
-                Tools.tellPlayer(player, LangDict.getString("votedFor") + voteUsername + "!", ChatColor.GREEN);
+                Tools.tellPlayer(player, LangDict.getString("treasury.votedFor") + voteUsername + "!", ChatColor.GREEN);
                 voteHolder.addVote(player);
                 return;
             }
         }
 
-        Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotFindVoluntary") + voteUsername, ChatColor.RED);
+        Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.cannotFindVoluntary") + voteUsername, ChatColor.RED);
     }
 
     /*
@@ -183,7 +183,7 @@ public class TreasuryCommand implements CommandExecutor {
         if (args.length == 2 && args[0].equalsIgnoreCase("buy") && args[1].equalsIgnoreCase("haste")) {
             // make sure the treasury can afford
             if (!Bank.treasuryCanAfford(hastePrice)) {
-                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasuryCannotAffordHaste") + hastePrice + LangDict.getString(LangDict.CURRENCY));
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.treasuryCannotAffordHaste") + hastePrice + LangDict.getString(LangDict.CURRENCY));
                 return true;
             }
 
@@ -198,7 +198,7 @@ public class TreasuryCommand implements CommandExecutor {
 
             // can treasury afford it?
             if (!Bank.treasuryCanAfford(withdrawalAmountPerPlayer)) {
-                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasuryCannotAffordWithdrawal") + price + LangDict.getString(LangDict.CURRENCY));
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.treasuryCannotAffordWithdrawal") + price + LangDict.getString(LangDict.CURRENCY));
                 return true;
             }
 
@@ -208,9 +208,9 @@ public class TreasuryCommand implements CommandExecutor {
             }
 
             // tell players
-            God.speak(LangDict.getString("treasuryOrderedWithdrawal") + withdrawalAmountPerPlayer +
-                    LangDict.getString(LangDict.CURRENCY) + LangDict.getString("treasuryWithdrawalUnfortunately") + fee + LangDict.getString(LangDict.CURRENCY) +
-                    LangDict.getString("lostDuringWithdrawal"));
+            God.speak(LangDict.getString("treasury.treasuryOrderedWithdrawal") + withdrawalAmountPerPlayer +
+                    LangDict.getString(LangDict.CURRENCY) + LangDict.getString("treasury.treasuryWithdrawalUnfortunately") + fee + LangDict.getString(LangDict.CURRENCY) +
+                    LangDict.getString("treasury.lostDuringWithdrawal"));
             return true;
         }
         return false;

@@ -50,7 +50,7 @@ public class BuyChunk implements CommandExecutor {
 		if (args[0].equals("info")) {
 			Tools.printMenuHeader(player, LangDict.getString("chunkInfo"));
 			Tools.printMenuOption(player, LangDict.getString("chunkPoints"), String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
-			Tools.printMenuOption(player, LangDict.getString("priceOfNextChunk"), chunkPurchasePrice + LangDict.getString("currency") + " + tax");
+			Tools.printMenuOption(player, LangDict.getString("priceOfNextChunk"), chunkPurchasePrice + LangDict.getString("banking.currency") + " + tax");
 			return true;
 		}
 
@@ -77,7 +77,7 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure player can afford it
 		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youNeed") + chunkPurchasePrice + LangDict.getString("currency") + LangDict.getString("toPurchaseAChunk"));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + chunkPurchasePrice + LangDict.getString("banking.currency") + LangDict.getString("toPurchaseAChunk"));
 			return true;
 		}
 

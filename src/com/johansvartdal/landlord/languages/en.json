@@ -3,40 +3,48 @@
 
   "god": "[The Landlord]",
 
-  "cmdNotNow": "You cannot execute this command at the moment",
-  "cmdNotUnlocked": "This command has not been unlocked yet",
-  "youAreNotAllowed": "You are not allowed to use this command",
-  "invalidCommandUse": "Invalid use of command",
-  "cannotUseOnYourself": "You cannot use this command on yourself",
-  "notAvailableRN": "Not available at the moment",
+  "generalSentenceParts": {
+    "youNeed": "You need "
+  },
+
+  "commandResponses": {
+    "errorMessages":{
+      "cmdNotNow": "You cannot execute this command at the moment",
+      "cmdNotUnlocked": "This command has not been unlocked yet",
+      "youAreNotAllowed": "You are not allowed to use this command",
+      "invalidCommandUse": "Invalid use of command",
+      "cannotUseOnYourself": "You cannot use this command on yourself",
+      "notAvailableRN": "Not available at the moment"
+    }
+  },
+
   "none": "None",
   "debugWarning": "WARNING: DEBUG MODE ENABLED!",
   "serverRestarted": "Server just restarted!",
 
-  "currency": "USD",
-  "balance": "Balance",
-  "currentIncomeTax": "Current income tax:",
-  "currentVAT": "Current VAT:",
-  "currentWealthTax": "Current wealth tax:",
-  "currentBalance": "Current balance:",
-  "youNeed": "You need ",
-  "cannotAfford": "You cannot afford ",
-  "plusTax": " + tax",
-  "justBought": "You just bought ",
+  "banking": {
+    "currency": "USD",
+    "balance": "Balance",
+    "currentIncomeTax": "Current income tax:",
+    "currentVAT": "Current VAT:",
+    "currentWealthTax": "Current wealth tax:",
+    "currentBalance": "Current balance:",
+    "cannotAfford": "You cannot afford ",
+    "plusTax": " + tax",
+    "justBought": "You just bought "
+  },
 
   "cannotFindLanguage": "Cannot find language with code: ",
   "langChangedTo": "The language was changed to ",
 
-
-
-  "citizenJoinStart": "A citizen by the name of ",
-  "citizenJoinEnd": " has made his return!",
-  "citizenLeaveStart": "Oh no! A citizen by the name of ",
-  "citizenLeaveEnd": " have left us!",
-  "gameAlreadyRunningJoinMessage": "You are not allowed to join. The game is already running",
-  "gameFull": "Sorry, the game is full",
-
-
+  "joinMessages":{
+    "citizenJoinStart": "A citizen by the name of ",
+    "citizenJoinEnd": " has made his return!",
+    "citizenLeaveStart": "Oh no! A citizen by the name of ",
+    "citizenLeaveEnd": " have left us!",
+    "gameAlreadyRunningJoinMessage": "You are not allowed to join. The game is already running",
+    "gameFull": "Sorry, the game is full"
+  },
 
   "chunkInfo": "CHUNK INFO",
   "chunkPoints": "Chunk points:",
@@ -68,28 +76,30 @@
   "tradeUpdated": "Trade center location updated!",
   "teleportTrade": "You have magically been teleported to the trading station",
 
-  "treasurySentinel": "The Treasury",
-  "treasuryVotingHall": "Treasury Voting Hall",
-  "treasuryWelcome": "Greetings, and welcome to the Treasury voting hall. We need someone to take care of The Treasury Chancellor role",
-  "cannotVoteTwice": "You cannot vote twice",
-  "treasuryResigned": "The Treasury Chancellor has been resigned! A new one must be chosen",
-  "someoneVotedResignation": "A player has voted for resignation of the Treasury Chancellor! Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well",
-  "alreadyApplied": "You have already applied for this role",
-  "appliedForTreasury": "You applied for the treasury role",
-  "alreadyVoted": "You have already voted!",
-  "votedFor": "You voted for ",
-  "cannotFindVoluntary": "Cannot find voluntary player with username: ",
-  "treasuryCannotAffordHaste": "The Treasury cannot afford haste for ",
-  "treasuryCannotAffordWithdrawal": "Treasury cannot afford a withdrawal. It costs ",
-  "treasuryOrderedWithdrawal": "The Treasury has ordered a withdrawal! You have all received ",
-  "treasuryWithdrawalUnfortunately": ". Unfortunately ",
-  "lostDuringWithdrawal": " was lost during the withdrawal",
-  "treasuryDecidingIn": "The Treasury Chancellor will be decided in",
-  "treasuryIsChosen": "A Treasury Chancellor has been chosen",
-  "playerHasBeenChosen": " has been chosen for The Treasury Chancellor role!",
-  "treasuryApplyInfo": "If you want to apply for the role, please type /treasury apply",
-  "treasuryVoteInfo": "If you want to make a vote, please type /treasury vote [username]",
-  "roleDecidingSoon": "The role will be decided soon!",
+  "treasury": {
+    "treasurySentinel": "The Treasury",
+    "treasuryVotingHall": "Treasury Voting Hall",
+    "treasuryWelcome": "Greetings, and welcome to the Treasury voting hall. We need someone to take care of The Treasury Chancellor role",
+    "cannotVoteTwice": "You cannot vote twice",
+    "treasuryResigned": "The Treasury Chancellor has been resigned! A new one must be chosen",
+    "someoneVotedResignation": "A player has voted for resignation of the Treasury Chancellor! Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well",
+    "alreadyApplied": "You have already applied for this role",
+    "appliedForTreasury": "You applied for the treasury role",
+    "alreadyVoted": "You have already voted!",
+    "votedFor": "You voted for ",
+    "cannotFindVoluntary": "Cannot find voluntary player with username: ",
+    "treasuryCannotAffordHaste": "The Treasury cannot afford haste for ",
+    "treasuryCannotAffordWithdrawal": "Treasury cannot afford a withdrawal. It costs ",
+    "treasuryOrderedWithdrawal": "The Treasury has ordered a withdrawal! You have all received ",
+    "treasuryWithdrawalUnfortunately": ". Unfortunately ",
+    "lostDuringWithdrawal": " was lost during the withdrawal",
+    "treasuryDecidingIn": "The Treasury Chancellor will be decided in",
+    "treasuryIsChosen": "A Treasury Chancellor has been chosen",
+    "playerHasBeenChosen": " has been chosen for The Treasury Chancellor role!",
+    "treasuryApplyInfo": "If you want to apply for the role, please type /treasury apply",
+    "treasuryVoteInfo": "If you want to make a vote, please type /treasury vote [username]",
+    "roleDecidingSoon": "The role will be decided soon!"
+  },
 
   "upgradeInfo": "UPGRADE INFO",
   "currentLevel": "Current level: ",
@@ -104,30 +114,22 @@
   "scoreboardLevel": "Level ",
 
   "commands": "COMMANDS",
-  "stocks": "STOCKS",
-  "stock": "Stock:",
-  "description": "Description:",
-  "stocksFor": " stocks for ",
-  "couldNotFindStockWithName": "Could not find stock with name ",
-  "justPaidPlatformFee": "You just paid a platform fee of ",
-  "stocksInvalid": "These stocks are invalid!",
-  "perStock": " per stock",
-  "values1To4Mins": "Values (1, 2, 3, 4) mins:",
-  "values15To60Mins": "Values (15, 30, 45, 60) mins:",
-  "platformFee": "Platform-fee:",
 
-  "toVisit": " to visit someone",
-  "waitingForReply": "You are now waiting for ",
-  "toReply": " to reply.",
-  "newVisitRequest": "You have a new visit request from ",
-  "visitReqInstructions": "! Type '/visit [accept | reject]' to answer",
-  "isNowVisiting": " is now visiting you! The visitor paid you ",
-  "asAVisitFee": " as a visit fee",
-  "youAreNowVisiting": "You are now visiting ",
-  "youPaidTheHost": ". You paid the host ",
-  "noVisitRequests": "You have no visit requests",
-  "willNotBeVisiting": " will not be visiting you!",
-  "notAllowedToVisit": "You were not allowed to visit ",
+
+  "visit":{
+    "toVisit": " to visit someone",
+    "waitingForReply": "You are now waiting for ",
+    "toReply": " to reply.",
+    "newVisitRequest": "You have a new visit request from ",
+    "visitReqInstructions": "! Type '/visit [accept | reject]' to answer",
+    "isNowVisiting": " is now visiting you! The visitor paid you ",
+    "asAVisitFee": " as a visit fee",
+    "youAreNowVisiting": "You are now visiting ",
+    "youPaidTheHost": ". You paid the host ",
+    "noVisitRequests": "You have no visit requests",
+    "willNotBeVisiting": " will not be visiting you!",
+    "notAllowedToVisit": "You were not allowed to visit "
+  },
 
   "jail": "jail",
   "flying": "flying",
@@ -298,10 +300,25 @@
   "heightLimitTooMuch": "That's it. You exceeded the height limit three times! You were therefore sent home!",
   "mineGetDown": "GET FURTHER DOWN IMMEDIATELY! You're exceeding the height limit! (warning ",
 
-  "blockbnb": "A rental service where you can pay to stay for the night. They are known for their small space, as every apartment is only one block.",
-  "cakefarm": "The CakeFarm inc plant seeds in a hope that they one day will grow into a cake. They currently possess thousands of seeds, which they are eagerly waiting to transform into cakes.",
-  "elcarts": "El-carts is a car manufacturer. Their cars require powered rails every three blocks which they call the super-rails network. They are known for sending a minecart to space",
-  "golddiggers": "GoldDiggers is a gold mining company that only hire women for working in their mines. They are known for just walking past all diamonds they find, as they only mine gold.",
-  "minedonalds": "A fast food restaurant for miners who have spent a long day in the deep dark. They are most famous for their 'Creeper Crunch Burgers', 'Ender Fries' and 'Lava Shakes'",
-  "netherexpress": "A business known for a much faster delivery time due to their use of nether portals. As each step in the Nether equaling 16 steps in the Overworld, their delivery times are practically unbeatable."
+  "description": "Description:",
+
+  "stocks": {
+    "stocksTitle": "STOCKS",
+    "stock": "Stock:",
+    "stocksFor": " stocks for ",
+    "couldNotFindStockWithName": "Could not find stock with name ",
+    "justPaidPlatformFee": "You just paid a platform fee of ",
+    "stocksInvalid": "These stocks are invalid!",
+    "perStock": " per stock",
+    "values1To4Mins": "Values (1, 2, 3, 4) mins:",
+    "values15To60Mins": "Values (15, 30, 45, 60) mins:",
+    "platformFee": "Platform-fee:",
+
+    "blockbnb": "A rental service where you can pay to stay for the night. They are known for their small space, as every apartment is only one block.",
+    "cakefarm": "The CakeFarm inc plant seeds in a hope that they one day will grow into a cake. They currently possess thousands of seeds, which they are eagerly waiting to transform into cakes.",
+    "elcarts": "El-carts is a car manufacturer. Their cars require powered rails every three blocks which they call the super-rails network. They are known for sending a minecart to space",
+    "golddiggers": "GoldDiggers is a gold mining company that only hire women for working in their mines. They are known for just walking past all diamonds they find, as they only mine gold.",
+    "minedonalds": "A fast food restaurant for miners who have spent a long day in the deep dark. They are most famous for their 'Creeper Crunch Burgers', 'Ender Fries' and 'Lava Shakes'",
+    "netherexpress": "A business known for a much faster delivery time due to their use of nether portals. As each step in the Nether equaling 16 steps in the Overworld, their delivery times are practically unbeatable."
+  }
 }

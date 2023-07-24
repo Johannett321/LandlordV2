@@ -9,7 +9,7 @@ public abstract class Stock {
     public abstract String getDisplayName();
 
     public String getDescription() {
-        return LangDict.getString(getID());
+        return LangDict.getString("stocks." + getID());
     }
 
     public abstract int getInitialWorth();
@@ -21,10 +21,6 @@ public abstract class Stock {
 
     public int getPriceAtMillis(long millis) {
         return (int) (getInitialWorth() * getMarketValuePercent(getID(), millis));
-    }
-
-    public void getPriceHistory() {
-
     }
 
     private static double getMarketValuePercent(String flowName, long timeMillis) {
