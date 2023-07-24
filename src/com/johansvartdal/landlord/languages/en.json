@@ -22,7 +22,8 @@
       "cannotFindLanguage": "Cannot find language with code: "
     },
     "successMessages": {
-      "langChangedTo": "The language was changed to "
+      "langChangedTo": "The language was changed to ",
+      "onlyEnglish": "Language fallback is working correctly!"
     }
   },
   "info": {
@@ -254,17 +255,26 @@
   },
   "levelBooks":{
     "level2": {
-      "page1": "Heeeey, how exciting! Your first town upgrade! Everytime your town levels up, something will happen. This time you unlocked a feature called roulette. Every hour, a roulette will run. The roulette gives you an opportunity to win a price. However, there is a participation fee to join. You will be notified before a roulette is about to start",
-      "page2": "You were also rewarded a chunk point each. Stand next to one of your chunk borders. While looking towards the border, execute the command '/buychunk', and watch the walls magically fall as you unlock your second chunk!"
+      "godSpeak": "Congratulations citizens! I wrote you a short book about this level. Please read the book in your inventory called S1L2",
+      "page1": "Congratulations! You just upgraded your town to level 2. This is big! There's a few things happening each time you level up. This time you unlocked a game called \"roulette\". More on that on the fourth page. In addition to unlocking new features, you also receive chunk points.",
+      "page2": "----Chunk points----\nEach time you level up, you receive a chunk point. With the chunk point, you can purchase a nearby chunk. This allows you to extend your plot. To unlock your second chunk. Stand next to the borders of the chunk you want to unlock, and look into it. Then type the...",
+      "page3": "following command:\n/buychunk now\n\nYou can see information about your chunk points and the price of purchasing a chunk by typing the command:\n/buychunk info\n\nKeep in mind that you have to pay tax for each chunk you own.",
+      "page4": "------Roulette------\nRoulette is a game that runs once an hour. You will be notified in the chat when the game is running. The game functions like a lottery, and allows you to pay for a chance of winning precious items.",
+      "page5": "----Renting tools----\nAnother feature you unlocked, was the ability to rent tools. By typing /rent info, you can see what tools you can rent. The tools will become better as your town levels up. For now it's quite good iron tools. They even have enchantments. Just make sure not to...",
+      "page6": "steal the tools. The tools should be kept in your inventory at all time. If you loose it, you will have to pay... A lot!\n\nWhen done renting the item, hold it in your main hand, and type:\n/rent end"
     },
     "level3": {
-      "page1": "Alright, level 3! Not bad. You've been working quite hard for this. Other than unlocking your third chunk, there's not much special about this level.",
-      "page2": "The next level however, is really something you can look forward to. I see the borders are getting softer and softer..."
+      "godSpeak": "Congratzzz! A new level is a new book, read the book in your inventory please",
+      "page1": "Sweet! You've made it to level 3. That means you're rewarded your third chunk point! Just remember that you pay tax for every chunk you own. You don't have to use the chunk point. However, if you decide to use it. Build something smart on it. Something that can make you even more money. Other...",
+      "page2": "than that, there's not much more to level 3. No more features or anything. Sounds quite boring, doesn't it? Well, the next one will be big. I promise!"
     },
     "level4": {
-      "page1": "This is quite exciting! I've got some good news! There is finally a way for you to escape your chunks! The bad news is that it's quite expensive however. Currently it's ",
-      "page2": "If you want to try it, run '/wilderness' for some fresh air."
-    }
+      "godSpeak": "Congratulations! Please read the book i wrote about this level. I got big news!",
+      "page1": "Oh wow! Your town is rocking level 4. This is amazing! I promised you something big for this town upgrade. I wasn't lying. You unlocked a feature called \"wilderness\". This feature allows you to get out of your town for a short period of time. During that time, you are not restricted by the...",
+      "page2": "size of your own chunk, and can explore the wilderness.",
+      "page3": "---- Wilderness ----\nWilderness allows you to be teleported outside your chunk to the free open world for a short period of time. To see the available commands, do /wilderness"
+    },
+    "endSignature": "\n\n\n\n\n\n\n\n\n\n\n\n# Signature #\n- The Landlord"
   },
   "events": {
     "preparations": {

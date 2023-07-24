@@ -7,6 +7,7 @@ import com.johansvartdal.landlord.events.TestEvent;
 import com.johansvartdal.landlord.events.adventure.IcyHillsEvent;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
+import com.johansvartdal.landlord.levels.Level3;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,6 +18,8 @@ import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
+
+import static com.johansvartdal.landlord.Tools.debugLog;
 
 public class Adm implements CommandExecutor {
 
@@ -51,6 +54,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "forcelvl1");
             Tools.printMenuOption(player, "/adm", "testjail");
             Tools.printMenuOption(player, "/adm", "copybook");
+            Tools.printMenuOption(player, "/adm", "testlangfallback");
             return true;
         }
 
@@ -100,27 +104,33 @@ public class Adm implements CommandExecutor {
             JailManager.sendToJail(plugin, player, LangDict.getString("playerEvents.jail.jailReasonTax"), LangDict.getString("playerEvents.jail.jailOutTax"), 60);
         }else if (strings[0].equals("copybook")) {
             copyBook(player);
+        }else if (strings[0].equals("testlangfallback")) {
+            Tools.tellPlayer(player, LangDict.getString("commandResponses.successMessages.onlyEnglish"));
+            Level3 level3 = new Level3(plugin);
+            player.getInventory().addItem(level3.getBook().produceAndGetBook());
         }
         return true;
     }
 
     private void copyBook(Player player) {
         ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
-        if (!itemInMainHand.getType().equals(Material.BOOK)) {
+        if (!itemInMainHand.getType().equals(Material.WRITABLE_BOOK)) {
             Tools.tellPlayer(new ErrorChat(), player, "This is not a book");
             return;
         }
 
         BookMeta bookMeta = (BookMeta) itemInMainHand.getItemMeta();
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < bookMeta.getPageCount(); i++) {
-            if (i > 0) {
+        for (int i = 1; i < bookMeta.getPageCount()+1; i++) {
+            if (i > 1) {
                 stringBuilder.append("\n\n\n\n\n\n\n");
             }
+            debugLog("Attempting to read page: " + i);
             stringBuilder.append(bookMeta.getPage(i));
         }
 
-        Tools.write("Books/Book" + System.currentTimeMillis(), stringBuilder.toString());
+        Tools.write("Books/Book" + System.currentTimeMillis() + ".txt", stringBuilder.toString());
+        Tools.tellPlayer(player, "SUCCESS! Book has been saved as txt in plugin dir!", ChatColor.GREEN);
     }
 
     boolean dayLocked = false;

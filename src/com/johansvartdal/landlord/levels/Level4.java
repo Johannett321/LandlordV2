@@ -47,8 +47,7 @@ public class Level4 extends Level{
 
     @Override
     public void justUpgraded() {
-        God.speak(LangDict.getString("levelBooks.level4.page1") + LevelManager.getWildernessPrice() + LangDict.getString(LangDict.CURRENCY));
-        God.speak(LangDict.getString("levelBooks.level4.page2"));
+
     }
 
     @Override
@@ -63,6 +62,11 @@ public class Level4 extends Level{
 
     @Override
     public Book getBook() {
-        return null;
+        Book book = new Book("S1L4");
+        book.addPage(LangDict.getString("levelBooks.level4.page1"));
+        book.addPage(LangDict.getString("levelBooks.level4.page2"));
+        book.addPage(LangDict.getString("levelBooks.level4.page3"));
+        book.addPage(LangDict.getString("levelBooks.endSignature"));
+        return book;
     }
 }

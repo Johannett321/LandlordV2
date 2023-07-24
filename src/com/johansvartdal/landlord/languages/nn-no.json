@@ -254,16 +254,13 @@
   },
   "levelBooks": {
     "level2": {
-      "page1": "Eyyy, så spennande! Din første byoppgradering! Kvar gong byen din går opp eit nivå, vil noko skje. Denne gongen låste du opp ein funksjon som blir kalla roulette. Kvar time køyrer ein roulette. Rouletten gir deg ein moglegheit til å vinne ein premie. Men det er ein deltakaravgift for å delta. Du vil bli varsla før ein roulette er i ferd med å starte",
-      "page2": "De blei også belønna med eitt chunk-poeng kvar. Stå ved sidan av ein av dine chunkveggar. Medan du ser mot grensa, køyrer du kommandoen '/buychunk', og sjå veggen magisk falla medan du låser opp din andre chunk!"
+      "godSpeak": "Gratulerer, innbyggarar! Eg har skrive ei kort bok om dette nivået. Ver venleg og les boka i inventaret ditt som heiter S1L2."
     },
     "level3": {
-      "page1": "Alright, level 3! Ikkje dårleg. De har arbeidd ganske hardt for dette, eller kva? Anna enn å unlocke deira 3. chunk, er det ikkje mykje spesielt med denne levelen.",
-      "page2": "Den neste levelen derimot, er verkeleg noko de kan sjå fram til. Eg ser at veggene blir mjukare og mjukare..."
+      "godSpeak": "Gratulerer! Eit nytt nivå er ei ny bok, ver venleg og les boka i inventaret ditt."
     },
     "level4": {
-      "page1": "Dette er utruleg morosamt! Eg har spennande nyheiter! Det er endeleg ein måte å forlata chunken på! Dei dårlege nyheitene er at det er ganske dyrt. Det kostar akkurat no ",
-      "page2": "Viss de vil prøva det, bruk '/wilderness' for litt frisk luft."
+      "godSpeak": "Gratulerer! Ver venleg og les boka eg skreiv om dette nivået. Eg har store nyhende!"
     }
   },
   "events": {

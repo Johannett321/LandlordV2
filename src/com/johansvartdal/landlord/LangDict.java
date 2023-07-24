@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 
+import static com.johansvartdal.landlord.Tools.debugLog;
 import static com.johansvartdal.landlord.Tools.errorLog;
 
 public class LangDict {
@@ -63,18 +64,28 @@ public class LangDict {
     }
 
     public static String getString(String stringName) {
-        JSONObject navigator = currentLanguage;
+        return getStringFromLanguage(stringName, currentLanguage);
+    }
+
+    private static String getStringFromLanguage(String stringName, JSONObject language) {
+        JSONObject navigator = language;
         String[] keys = stringName.split("\\.");
 
         for (int i = 0; i < keys.length - 1; i++) {
             navigator = (JSONObject) navigator.get(keys[i]);
 
-            if (navigator == null) {
-                return null;
+            // if key cannot be found in current language, use english instead.
+            if (navigator == null && language != english) {
+                debugLog("Error. Translation could not be found for key: " + stringName + ". Therefore using english instead");
+                return getStringFromLanguage(stringName, english);
             }
         }
+        String value = (String) navigator.get(keys[keys.length - 1]);
 
-        return (String) navigator.get(keys[keys.length - 1]);
+        if (value == null && language != english) {
+            return getStringFromLanguage(stringName, english);
+        }
+        return value;
     }
 
     public static void attemptChangeLanguage(Player player, String langCode) {
