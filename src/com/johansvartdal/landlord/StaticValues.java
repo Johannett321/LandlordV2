@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 public class StaticValues {
-    // CASINO/SPILLPARK: 486 64 -330 i lladv
     public static final Location GAME_START_LOCATION = new Location(Bukkit.getWorld("lladv"), 171.5, 66, -182.5);
     public static final int MAX_PLAYERS = 8;
 
