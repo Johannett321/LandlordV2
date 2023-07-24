@@ -158,21 +158,23 @@
   "youHave": "Du har ",
   "leftOfWildTime": " igjen av ditt eventyr",
 
-  "rentableItems": "LEIE-MENY",
-  "everyTwoMinutes": " (hvert 2. minutt)",
-  "pleaseHoldMainHand": "Vennligst hold den leide tingen i hånden",
-  "cannotRentTwice": "Du leier allerede denne tingen!",
-  "rentingA": "å leie en ",
-  "stolenItemFound": "En stjålet gjenstand ble funnet! Den ble fjernet fra beholderen",
-  "rentedPrefix": "[LEID] ",
-  "attemptingToStealA": "du forsøkte å stjele en ",
-  "theRented": "Klarte ikke å finne en ",
-  "itemNotFoundInInv": " i din inventory, og du ble nødt til å betale erstatning!",
-  "paidFullPrice": "erstatning av en leid ",
-  "gaveBackStart": "Du ga tilbake en leid ",
-  "gaveBackEnd": ", fordi du ikke hadde råd til å bruke den mer",
-  "renewingRented": "fornyelse av en leid ",
-  "deliveredBackRented": "Du leverte tilbake en leid ",
+  "itemRent": {
+    "rentableItems": "LEIE-MENY",
+    "everyTwoMinutes": " (hvert 2. minutt)",
+    "pleaseHoldMainHand": "Vennligst hold den leide tingen i hånden",
+    "cannotRentTwice": "Du leier allerede denne tingen!",
+    "rentingA": "å leie en ",
+    "stolenItemFound": "En stjålet gjenstand ble funnet! Den ble fjernet fra beholderen",
+    "rentedPrefix": "[LEID] ",
+    "attemptingToStealA": "du forsøkte å stjele en ",
+    "theRented": "Klarte ikke å finne en ",
+    "itemNotFoundInInv": " i din inventory, og du ble nødt til å betale erstatning!",
+    "paidFullPrice": "erstatning av en leid ",
+    "gaveBackStart": "Du ga tilbake en leid ",
+    "gaveBackEnd": ", fordi du ikke hadde råd til å bruke den mer",
+    "renewingRented": "fornyelse av en leid ",
+    "deliveredBackRented": "Du leverte tilbake en leid "
+  },
 
   "gameAlreadyRunning": "Spillet er allerede i gang!",
   "youMustConfigFirst": "Du må kjøre '/landlord config' før du kan kjøre denne kommandoen",
@@ -210,16 +212,18 @@
   "itemDonationsComplete": "Meget bra! Du har fullført alle gjenstandene for dette nivået. Kjør '/upgrade accept' for å gå videre til neste nivå",
   "townJustUpgraded": "Gratulerer! Byen ble nettopp oppgradert til nivå ",
 
-  "rouletteBegin": "Det er tid for en ny roulette! Kjør '/joinroulette' for en sjanse til å vinne ",
-  "rouletteEnding30": "Rouletten vil snart avsluttes. Vinneren blir kunngjort om 30 sekunder!",
-  "rouletteEnding5": "Rouletten er i ferd med å avsluttes. Vinneren blir kunngjort om 5 sekunder!",
-  "rouletteWinner": "Vinneren av rouletten er ",
-  "rouletteNoWinner": "Ingen vant rouletten!",
-  "rouletteJoinMessage": "Du er nå lagt til i rouletten!",
-  "rouletteJoinTwice": "Du er med! Igjen ... Ikke gjør det der to ganger ...",
-  "justJoinedRoulette": " har nettopp blitt med i rouletten!",
-  "noRouletteStart": "Det er ingen spill som går for øyeblikket. Neste roulette vil være om ",
-  "noRouletteEnd": " minutter",
+  "roulette": {
+    "rouletteBegin": "Det er tid for en ny roulette! Kjør '/joinroulette' for en sjanse til å vinne ",
+    "rouletteEnding30": "Rouletten vil snart avsluttes. Vinneren blir kunngjort om 30 sekunder!",
+    "rouletteEnding5": "Rouletten er i ferd med å avsluttes. Vinneren blir kunngjort om 5 sekunder!",
+    "rouletteWinner": "Vinneren av rouletten er ",
+    "rouletteNoWinner": "Ingen vant rouletten!",
+    "rouletteJoinMessage": "Du er nå lagt til i rouletten!",
+    "rouletteJoinTwice": "Du er med! Igjen ... Ikke gjør det der to ganger ...",
+    "justJoinedRoulette": " har nettopp blitt med i rouletten!",
+    "noRouletteStart": "Det er ingen spill som går for øyeblikket. Neste roulette vil være om ",
+    "noRouletteEnd": " minutter"
+  },
 
   "governmentBank": "Statskassen",
 
@@ -237,34 +241,57 @@
   "minutes": " minutt(er)",
   "seconds": " sekund(er)",
 
-
-
-
-  "level2Welcome1": "Eyyy, så spennende! Din første byoppgradering! Hver gang byen din går opp et nivå, vil noe skje. Denne gangen låste du opp en funksjon som kalles roulette. Hver time kjører en roulette. Rouletten gir deg en mulighet til å vinne en premie. Imidlertid er det en deltakeravgift for å delta. Du vil bli varslet før en roulette er i ferd med å starte",
-  "level2Welcome2": "Du ble også belønnet med ett chunk-poeng. Stå ved siden av en av dine chunkvegger. Mens du ser mot grensen, kjører du kommandoen '/buychunk', og se veggene magisk falle mens du låser opp din andre chunk!",
-
-  "level3Welcome1": "Alright, level 3! Ikke dårlig. Dere har arbeidet ganske hardt for dette, eller hva? Annet enn å unlocke deres 3. chunk, er det ikke mye spesielt med denne levelen.",
-  "level3Welcome2": "Den neste levelen derimot, er virkelig noe dere kan se frem til. Jeg ser at veggene blir mykere og mykere...",
-
-  "level4Welcome1": "Dette er utrolig morsomt! Jeg har spennende nyheter! Det er endelig en måte å forlate chunken på! De dårlige nyhetene er at det er ganske dyrt. Det koster for øyeblikket ",
-  "level4Welcome2": "Hvis du vil prøve det, bruk '/wilderness' for litt frisk luft.",
-
-
+  "levelBooks": {
+    "level2": {
+      "page1": "Eyyy, så spennende! Din første byoppgradering! Hver gang byen din går opp et nivå, vil noe skje. Denne gangen låste du opp en funksjon som kalles roulette. Hver time kjører en roulette. Rouletten gir deg en mulighet til å vinne en premie. Imidlertid er det en deltakeravgift for å delta. Du vil bli varslet før en roulette er i ferd med å starte",
+      "page2": "Du ble også belønnet med ett chunk-poeng. Stå ved siden av en av dine chunkvegger. Mens du ser mot grensen, kjører du kommandoen '/buychunk', og se veggene magisk falle mens du låser opp din andre chunk!"
+    },
+    "level3": {
+      "page1": "Alright, level 3! Ikke dårlig. Dere har arbeidet ganske hardt for dette, eller hva? Annet enn å unlocke deres 3. chunk, er det ikke mye spesielt med denne levelen.",
+      "page2": "Den neste levelen derimot, er virkelig noe dere kan se frem til. Jeg ser at veggene blir mykere og mykere..."
+    },
+    "level4": {
+      "page1": "Dette er utrolig morsomt! Jeg har spennende nyheter! Det er endelig en måte å forlate chunken på! De dårlige nyhetene er at det er ganske dyrt. Det koster for øyeblikket ",
+      "page2": "Hvis du vil prøve det, bruk '/wilderness' for litt frisk luft."
+    }
+  },
 
   "welcomeHome": "Velkommen hjem",
   "teleportedBackToEvent": "Du er blitt teleportert tilbake til eventet",
 
-  "welcomeMessage": "Velkommen til Landlord, borgere! Dere har 5 minutter før dere alle blir låst inne i deres chunks, bruk tiden klokt!",
-  "welcomeTitle": "Velkommen til ",
-  "preparations": "FORBEREDELSER",
-  "prepInFiveMin": "Forberedelser vil starte om 5 sekunder. Gjør deg klar!",
-  "listOfHelpful": "Gjenstander dere må samle i forberedelsen for å kunne komme til neste nivå: Frø til trær, sukkerrør, hvetefrø",
-  "goodLuck": "Lykke til, tiden starter nå!",
-  "minutesRemaining": "minutt(er) igjen før veggene heves!",
-  "secondsRemaining": "sekunder igjen før veggene heves!",
-  "about0Sec": "omtrent 0 sekunder",
-  "secondListOfHelpful": "Forresten, beklager. Jeg glemte å nevne at du også bør huske å skaffe noe mat og også sand for å lage glass. Faktisk, kanskje kull heller ikke er en dårlig idé?",
-  "risingBorders": "ADVARSEL: Stå stille! Veggene heves!",
+  "events": {
+    "preparations": {
+      "welcomeMessage": "Velkommen til Landlord, borgere! Dere har 5 minutter før dere alle blir låst inne i deres chunks, bruk tiden klokt!",
+      "welcomeTitle": "Velkommen til ",
+      "preparations": "FORBEREDELSER",
+      "prepInFiveMin": "Forberedelser vil starte om 5 sekunder. Gjør deg klar!",
+      "listOfHelpful": "Gjenstander dere må samle i forberedelsen for å kunne komme til neste nivå: Frø til trær, sukkerrør, hvetefrø",
+      "goodLuck": "Lykke til, tiden starter nå!",
+      "minutesRemaining": "minutt(er) igjen før veggene heves!",
+      "secondsRemaining": "sekunder igjen før veggene heves!",
+      "about0Sec": "omtrent 0 sekunder",
+      "secondListOfHelpful": "Forresten, beklager. Jeg glemte å nevne at du også bør huske å skaffe noe mat og også sand for å lage glass. Faktisk, kanskje kull heller ikke er en dårlig idé?",
+      "risingBorders": "ADVARSEL: Stå stille! Veggene heves!"
+    },
+    "icyHills":{
+      "welcomeStart": "Vær hilset, og velkommen til Frostgardes fjell! Det er noen skjulte skatter spredt over hele fjellet. Finn dem før din ",
+      "welcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?"
+    },
+    "solvheim": {
+      "welcomeStart": "Vær hilset, og velkommen til Solvheim landsby! Det er noen skjulte skatter spredt over hele landsbyen. Finn dem før din ",
+      "welcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?"
+    },
+    "cakeWorld": {
+      "welcomeStart": "Vær hilset, modige reisende, til det gåtefulle riket CakeWorld! Her ligger et mysterium og venter på din intelligens til å avdekke dets gåtefulle hemmeligheter. Tør du nøste opp trådene i dette forbløffende mysteriet som mange før deg har forsøkt? Ta utfordringen, og må mystikken til CakeWorld lede deg på søken etter svar."
+    },
+    "arenaFight": {
+      "nextWave30Sec": "Bra jobbet! Fortsett sånn! Neste bølge starter om 30 sekunder",
+      "firstWave30Sec": "Den første bølgen starter om 30 sekunder! Sov i en seng før kampen begynner",
+      "wellDoneArena": "Bra gjort! Du har fullført en Arenakamp!",
+      "hasBegun": " har begynt!"
+    }
+  },
+
   "newCitizen": "En ny borger har ankommet! Gi en varm velkomst til ",
   "runLandlordConfigCmd": "Når alle har blitt med, kjør kommandoen '/landlord config' for å finne et passende sted å starte spillet",
 
@@ -274,19 +301,7 @@
   "excursionEndIn": "Utflukten slutter om",
   "eventCancelledServerRestart": "Eventet ble avbrutt på grunn av en serveromstart",
 
-  "icyHillsWelcomeStart": "Vær hilset, og velkommen til Frostgardes fjell! Det er noen skjulte skatter spredt over hele fjellet. Finn dem før din ",
-  "icyHillsWelcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?",
-
-  "solvheimWelcomeStart": "Vær hilset, og velkommen til Solvheim landsby! Det er noen skjulte skatter spredt over hele landsbyen. Finn dem før din ",
-  "solvheimWelcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?",
   "village": "landsby",
-
-  "nextWave30Sec": "Bra jobbet! Fortsett sånn! Neste bølge starter om 30 sekunder",
-  "firstWave30Sec": "Den første bølgen starter om 30 sekunder! Sov i en seng før kampen begynner",
-  "wellDoneArena": "Bra gjort! Du har fullført en Arenakamp!",
-  "hasBegun": " har begynt!",
-
-  "cakeWorldWelcome": "Vær hilset, modige reisende, til det gåtefulle riket CakeWorld! Her ligger et mysterium og venter på din intelligens til å avdekke dets gåtefulle hemmeligheter. Tør du nøste opp trådene i dette forbløffende mysteriet som mange før deg har forsøkt? Ta utfordringen, og må mystikken til CakeWorld lede deg på søken etter svar.",
 
   "hasteInOneMinute": "En ordre er plassert fra statsforvalteren! Alle skal motta haste om 1 minutt.",
   "lotOfProgress": "Phew! Det var mye fremgang på kort tid",

@@ -115,7 +115,6 @@
 
   "commands": "COMMANDS",
 
-
   "visit":{
     "toVisit": " to visit someone",
     "waitingForReply": "You are now waiting for ",
@@ -159,21 +158,23 @@
   "youHave": "You have ",
   "leftOfWildTime": " left of your wilderness time",
 
-  "rentableItems": "RENTABLE ITEMS",
-  "everyTwoMinutes": " (every 2. minute)",
-  "pleaseHoldMainHand": "Please hold the rented item in your main hand",
-  "cannotRentTwice": "You're already renting this item!'",
-  "rentingA": "renting a ",
-  "stolenItemFound": "A stolen item was found! The item was removed from the container!",
-  "rentedPrefix": "[RENTED] ",
-  "attemptingToStealA": "attempting to steal a ",
-  "theRented": "The rented ",
-  "itemNotFoundInInv": " was not found in your inventory, and you had to pay the full price of the item!",
-  "paidFullPrice": "the full price of the rented ",
-  "gaveBackStart": "You gave back the ",
-  "gaveBackEnd": ", as you could not afford to use it anymore",
-  "renewingRented": "renewing the rented ",
-  "deliveredBackRented": "You delivered back the rented ",
+  "itemRent": {
+    "rentableItems": "RENTABLE ITEMS",
+    "everyTwoMinutes": " (every 2. minute)",
+    "pleaseHoldMainHand": "Please hold the rented item in your main hand",
+    "cannotRentTwice": "You're already renting this item!'",
+    "rentingA": "renting a ",
+    "stolenItemFound": "A stolen item was found! The item was removed from the container!",
+    "rentedPrefix": "[RENTED] ",
+    "attemptingToStealA": "attempting to steal a ",
+    "theRented": "The rented ",
+    "itemNotFoundInInv": " was not found in your inventory, and you had to pay the full price of the item!",
+    "paidFullPrice": "the full price of the rented ",
+    "gaveBackStart": "You gave back the ",
+    "gaveBackEnd": ", as you could not afford to use it anymore",
+    "renewingRented": "renewing the rented ",
+    "deliveredBackRented": "You delivered back the rented "
+  },
 
   "gameAlreadyRunning": "The game is already running!",
   "youMustConfigFirst": "You must run '/landlord config' before you can run this command",
@@ -211,18 +212,21 @@
   "itemDonationsComplete": "Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level",
   "townJustUpgraded": "Congratulations! The town was just upgraded to level ",
 
-  "rouletteBegin": "It's time for a new roulette! Do '/joinroulette' for a chance of winning ",
-  "rouletteEnding30": "The roulette game will soon end. The winner will be announced in 30 seconds!",
-  "rouletteEnding5": "The roulette game is about to end. The winner will be announced in 5 seconds!",
-  "rouletteWinner": "The winner of the roulette game is ",
-  "rouletteNoWinner": "No one won the roulette game!",
-  "rouletteJoinMessage": "You are now added to the game!",
-  "rouletteJoinTwice": "You're in! Again... Don't do that twice...",
-  "justJoinedRoulette": " just joined the roulette!",
-  "noRouletteStart": "There is no game running at the time. Next game will be in ",
-  "noRouletteEnd": " minutes",
+  "roulette": {
+    "rouletteBegin": "It's time for a new roulette! Do '/joinroulette' for a chance of winning ",
+    "rouletteEnding30": "The roulette game will soon end. The winner will be announced in 30 seconds!",
+    "rouletteEnding5": "The roulette game is about to end. The winner will be announced in 5 seconds!",
+    "rouletteWinner": "The winner of the roulette game is ",
+    "rouletteNoWinner": "No one won the roulette game!",
+    "rouletteJoinMessage": "You are now added to the game!",
+    "rouletteJoinTwice": "You're in! Again... Don't do that twice...",
+    "justJoinedRoulette": " just joined the roulette!",
+    "noRouletteStart": "There is no game running at the time. Next game will be in ",
+    "noRouletteEnd": " minutes"
+  },
 
   "governmentBank": "The bank",
+
 
   "youHaveBeenSentToJailBecause": "You have been sent to jail because ",
   "sentenceTime": " Sentence time: ",
@@ -238,35 +242,56 @@
   "minutes": " minute(s)",
   "seconds": " second(s)",
 
+  "levelBooks":{
+    "level2": {
+      "page1": "Heeeey, how exciting! Your first town upgrade! Everytime your town levels up, something will happen. This time you unlocked a feature called roulette. Every hour, a roulette will run. The roulette gives you an opportunity to win a price. However, there is a participation fee to join. You will be notified before a roulette is about to start",
+      "page2": "You were also rewarded a chunk point each. Stand next to one of your chunk borders. While looking towards the border, execute the command '/buychunk', and watch the walls magically fall as you unlock your second chunk!"
+    },
+    "level3": {
+      "page1": "Alright, level 3! Not bad. You've been working quite hard for this. Other than unlocking your third chunk, there's not much special about this level.",
+      "page2": "The next level however, is really something you can look forward to. I see the borders are getting softer and softer..."
+    },
+    "level4": {
+      "page1": "This is quite exciting! I've got some good news! There is finally a way for you to escape your chunks! The bad news is that it's quite expensive however. Currently it's ",
+      "page2": "If you want to try it, run '/wilderness' for some fresh air."
+    }
+  },
 
-
-
-  "level2Welcome1": "Heeeey, how exciting! Your first town upgrade! Everytime your town levels up, something will happen. This time you unlocked a feature called roulette. Every hour, a roulette will run. The roulette gives you an opportunity to win a price. However, there is a participation fee to join. You will be notified before a roulette is about to start",
-  "level2Welcome2": "You were also rewarded a chunk point each. Stand next to one of your chunk borders. While looking towards the border, execute the command '/buychunk', and watch the walls magically fall as you unlock your second chunk!",
-
-  "level3Welcome1": "Alright, level 3! Not bad. You've been working quite hard for this. Other than unlocking your third chunk, there's not much special about this level.",
-  "level3Welcome2": "The next level however, is really something you can look forward to. I see the borders are getting softer and softer...",
-
-  "level4Welcome1": "This is quite exciting! I've got some good news! There is finally a way for you to escape your chunks! The bad news is that it's quite expensive however. Currently it's ",
-  "level4Welcome2": "If you want to try it, run '/wilderness' for some fresh air.",
-
-
-
+  "events": {
+    "preparations": {
+      "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
+      "welcomeTitle": "Welcome to ",
+      "preparations": "PREPARATIONS",
+      "prepInFiveMin": "Preparations will start in 5 seconds. Get ready!",
+      "listOfHelpful": "Items you must gather in the preparation to be able to level up: Saplings from oak trees, sugar canes, seeds",
+      "goodLuck": "Good luck, the time is ticking!",
+      "minutesRemaining": "minute(s) remaining till the borders will rise!",
+      "secondsRemaining": "seconds remaining till the borders will rise!",
+      "about0Sec": "about 0 seconds",
+      "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
+      "risingBorders": "WARNING: Please stand still! Borders are rising!"
+    },
+    "icyHills": {
+      "welcomeStart": "Greetings and welcome to Frostgarde's mountains! There are some hidden treasures scattered throughout the mountain. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
+    },
+    "solvheim": {
+      "welcomeStart": "Greetings and welcome to Solvheim village! There are some hidden treasures scattered throughout the village. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
+    },
+    "cakeWorld": {
+      "welcomeStart": "Greetings, intrepid travelers, to the enigmatic realm of CakeWorld! Herein lies a mystery, awaiting your intellect to decipher its enigmatic secrets. Dare you unravel the threads of this baffling enigma that has eluded many before you? Embrace the challenge, and may the mystique of CakeWorld guide you on your quest for answers."
+    },
+    "arenaFight":{
+      "nextWave30Sec": "Good job! Keep it going! Next wave starting in 30 seconds",
+      "firstWave30Sec": "The first wave is starting in 30 seconds! Please sleep in a bed before the battle begins",
+      "wellDoneArena": "Well done! You have completed the ArenaFight!",
+      "hasBegun": " has begun!"
+    }
+  },
 
   "welcomeHome": "Welcome home",
   "teleportedBackToEvent": "You have been teleported back to the event",
-
-  "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
-  "welcomeTitle": "Welcome to ",
-  "preparations": "PREPARATIONS",
-  "prepInFiveMin": "Preparations will start in 5 seconds. Get ready!",
-  "listOfHelpful": "Items you must gather in the preparation to be able to level up: Saplings from oak trees, sugar canes, seeds",
-  "goodLuck": "Good luck, the time is ticking!",
-  "minutesRemaining": "minute(s) remaining till the borders will rise!",
-  "secondsRemaining": "seconds remaining till the borders will rise!",
-  "about0Sec": "about 0 seconds",
-  "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
-  "risingBorders": "WARNING: Please stand still! Borders are rising!",
   "newCitizen": "A new citizen has arrived! Please welcome ",
   "runLandlordConfigCmd": "When everyone has joined, run the command '/landlord config' to find a suitable location to start the game",
 
@@ -276,19 +301,7 @@
   "excursionEndIn": "Excursion ending in",
   "eventCancelledServerRestart": "The event was cancelled due to a server restart",
 
-  "icyHillsWelcomeStart": "Greetings and welcome to Frostgarde's mountains! There are some hidden treasures scattered throughout the mountain. Find them before your ",
-  "icyHillsWelcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?",
-
-  "solvheimWelcomeStart": "Greetings and welcome to Solvheim village! There are some hidden treasures scattered throughout the village. Find them before your ",
-  "solvheimWelcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?",
   "village": "village",
-
-  "nextWave30Sec": "Good job! Keep it going! Next wave starting in 30 seconds",
-  "firstWave30Sec": "The first wave is starting in 30 seconds! Please sleep in a bed before the battle begins",
-  "wellDoneArena": "Well done! You have completed the ArenaFight!",
-  "hasBegun": " has begun!",
-
-  "cakeWorldWelcome": "Greetings, intrepid travelers, to the enigmatic realm of CakeWorld! Herein lies a mystery, awaiting your intellect to decipher its enigmatic secrets. Dare you unravel the threads of this baffling enigma that has eluded many before you? Embrace the challenge, and may the mystique of CakeWorld guide you on your quest for answers.",
 
   "hasteInOneMinute": "An order has placed from the Treasury Chancellor! Everyone shall receive haste in 1 minute.",
   "lotOfProgress": "Phew! I saw a lot of progress there",

@@ -53,7 +53,7 @@ public class Wave {
             giveBlindnessToEveryone();
         }
 
-        Tools.broadcastMessage("Wave " + (waveDisplayNumber) + LangDict.getString("hasBegun"), ChatColor.RED);
+        Tools.broadcastMessage("Wave " + (waveDisplayNumber) + LangDict.getString("events.arenaFight.hasBegun"), ChatColor.RED);
         loopWaveSteps();
     }
 

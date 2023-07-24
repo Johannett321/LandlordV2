@@ -48,6 +48,6 @@ public class IcyHillsEvent extends AdventureEvent{
 
     @Override
     protected void showWelcomeMessage() {
-        God.speak(LangDict.getString("icyHillsWelcomeStart") + excursionMinutes + LangDict.getString("icyHillsWelcomeEnd"));
+        God.speak(LangDict.getString("events.icyHills.welcomeStart") + excursionMinutes + LangDict.getString("events.icyHills.welcomeEnd"));
     }
 }

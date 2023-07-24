@@ -90,7 +90,7 @@ public class RentManager {
                 for (ItemStack content : inventory.getContents()) {
                     if (itemIsRented(content)) {
                         inventory.remove(content);
-                        Tools.tellPlayer(event.getPlayer(), LangDict.getString("stolenItemFound"), ChatColor.RED);
+                        Tools.tellPlayer(event.getPlayer(), LangDict.getString("itemRent.stolenItemFound"), ChatColor.RED);
 
                         // cleanup rent
                         RentableItem rentableItem = getRentedItem(content);

@@ -26,8 +26,8 @@ public class Level3 extends Level{
 
     @Override
     public void justUpgraded() {
-        God.speak(LangDict.getString("level3Welcome1"));
-        God.speak(LangDict.getString("level3Welcome2"));
+        God.speak(LangDict.getString("levelBooks.level3.page1"));
+        God.speak(LangDict.getString("levelBooks.level3.page2"));
     }
 
     @Override

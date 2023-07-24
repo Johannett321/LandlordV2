@@ -28,6 +28,6 @@ public class Mystery1 extends MysteryEvent {
 
     @Override
     protected void showWelcomeMessage() {
-        God.speak(LangDict.getString("cakeWorldWelcome"));
+        God.speak(LangDict.getString("events.cakeWorld.welcomeStart"));
     }
 }

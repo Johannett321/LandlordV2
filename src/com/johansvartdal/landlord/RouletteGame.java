@@ -51,7 +51,7 @@ public class RouletteGame {
         openForJoin = true;
         itemStack = getRandomItemStack();
 
-        Tools.broadcastMessage(LangDict.getString("rouletteBegin") + itemStack.getAmount() + " " + itemStack.getType().name());
+        Tools.broadcastMessage(LangDict.getString("roulette.rouletteBegin") + itemStack.getAmount() + " " + itemStack.getType().name());
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK);
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
@@ -63,7 +63,7 @@ public class RouletteGame {
     }
 
     public void thirtySecsLeft() {
-        Tools.broadcastMessage(ChatColor.YELLOW + LangDict.getString("rouletteEnding30"));
+        Tools.broadcastMessage(ChatColor.YELLOW + LangDict.getString("roulette.rouletteEnding30"));
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK);
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
@@ -74,7 +74,7 @@ public class RouletteGame {
     }
 
     public void fiveSecsLeft() {
-        Tools.broadcastMessage(ChatColor.YELLOW + LangDict.getString("rouletteEnding5"));
+        Tools.broadcastMessage(ChatColor.YELLOW + LangDict.getString("roulette.rouletteEnding5"));
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK);
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
@@ -89,11 +89,11 @@ public class RouletteGame {
         Random random = new Random();
         int randomInt = random.nextInt(rouletteGamePlayers.size() + 1);
         if (randomInt < rouletteGamePlayers.size()) {
-            Tools.broadcastMessage(ChatColor.GREEN +  LangDict.getString("rouletteWinner") + rouletteGamePlayers.get(randomInt).getDisplayName());
+            Tools.broadcastMessage(ChatColor.GREEN +  LangDict.getString("roulette.rouletteWinner") + rouletteGamePlayers.get(randomInt).getDisplayName());
             Tools.playSoundForEveryone(Sound.ENTITY_PLAYER_LEVELUP);
             rouletteGamePlayers.get(randomInt).getInventory().addItem(itemStack);
         }else {
-            Tools.broadcastMessage(ChatColor.RED + LangDict.getString("rouletteNoWinner"));
+            Tools.broadcastMessage(ChatColor.RED + LangDict.getString("roulette.rouletteNoWinner"));
         }
         rouletteGamePlayers.clear();
     }
@@ -101,7 +101,7 @@ public class RouletteGame {
     public static void addToGame(Player player) {
         for (Player player1:rouletteGamePlayers) {
             if (player.getUniqueId().toString().equals(player1.getUniqueId().toString())) {
-                Tools.tellPlayer(player, LangDict.getString("rouletteJoinTwice"), ChatColor.RED);
+                Tools.tellPlayer(player, LangDict.getString("roulette.rouletteJoinTwice"), ChatColor.RED);
                 return;
             }
         }
@@ -109,8 +109,8 @@ public class RouletteGame {
             if (Bank.playerCanAfford(player, LevelManager.getRouletteGamePrice())) {
                 Bank.withdrawPlayer(LangDict.getString("aRouletteTicket"), player, LevelManager.getRouletteGamePrice());
                 RouletteGame.rouletteGamePlayers.add(player);
-                Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("justJoinedRoulette"));
-                Tools.tellPlayer(player,LangDict.getString("rouletteJoinMessage"), ChatColor.GREEN);
+                Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("roulette.justJoinedRoulette"));
+                Tools.tellPlayer(player,LangDict.getString("roulette.rouletteJoinMessage"), ChatColor.GREEN);
             }else {
                 Tools.tellPlayer(player,LangDict.getString("cannotAfford") + LangDict.getString("aRouletteTicket") + LangDict.getString("for") + LevelManager.getRouletteGamePrice() + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("plusTax"), ChatColor.RED);
             }
@@ -119,7 +119,7 @@ public class RouletteGame {
             Calendar calendar = Calendar.getInstance();
             int minute = calendar.get(Calendar.MINUTE);
             int minutesLeft = 60-minute;
-            Tools.tellPlayer(player,LangDict.getString("noRouletteStart") + minutesLeft + LangDict.getString("noRouletteEnd"), ChatColor.RED);
+            Tools.tellPlayer(player,LangDict.getString("roulette.noRouletteStart") + minutesLeft + LangDict.getString("roulette.noRouletteEnd"), ChatColor.RED);
         }
     }
 

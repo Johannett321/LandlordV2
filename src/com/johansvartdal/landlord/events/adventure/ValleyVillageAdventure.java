@@ -26,7 +26,7 @@ public class ValleyVillageAdventure extends AdventureEvent{
 
     @Override
     protected void showWelcomeMessage() {
-        God.speak(LangDict.getString("solvheimWelcomeStart") + excursionMinutes + LangDict.getString("solvheimWelcomeEnd"));
+        God.speak(LangDict.getString("events.solvheim.welcomeStart") + excursionMinutes + LangDict.getString("events.solvheim.welcomeEnd"));
     }
 
     @Override

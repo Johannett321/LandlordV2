@@ -37,7 +37,7 @@ public class GameJustStarted {
             Main.playerDataManager.getPlayerData((Player) players[i]).setHome(location);
 
             // show title
-            currentPlayer.sendTitle(LangDict.getString("welcomeTitle") + ChatColor.DARK_PURPLE + "Landlord", ChatColor.RED + "V2");
+            currentPlayer.sendTitle(LangDict.getString("events.preparations.welcomeTitle") + ChatColor.DARK_PURPLE + "Landlord", ChatColor.RED + "V2");
 
             // give players ice
             ItemStack iceBlocks = new ItemStack(Material.ICE);

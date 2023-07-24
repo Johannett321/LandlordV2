@@ -87,9 +87,9 @@ public abstract class ArenaFightEvent extends LandlordEvent {
 
         // inform players
         if (remainingWaves.size() < getWaves().length) {
-            God.speak(LangDict.getString("nextWave30Sec"));
+            God.speak(LangDict.getString("events.arenaFight.nextWave30Sec"));
         }else {
-            God.speak(LangDict.getString("firstWave30Sec"));
+            God.speak(LangDict.getString("events.arenaFight.firstWave30Sec"));
         }
 
         // add loop repeater
@@ -107,7 +107,7 @@ public abstract class ArenaFightEvent extends LandlordEvent {
     private void allWavesCompleted() {
         // celebrate players
         SpecialEffects.blastFireworks(fireworkLocation, 5);
-        God.speak(LangDict.getString("wellDoneArena"));
+        God.speak(LangDict.getString("events.arenaFight.wellDoneArena"));
 
         // end event
         Bukkit.getScheduler().runTaskLater(plugin, () -> {

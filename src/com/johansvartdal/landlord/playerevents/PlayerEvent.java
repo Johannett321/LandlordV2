@@ -61,7 +61,7 @@ public abstract class PlayerEvent {
         long current = System.currentTimeMillis();
 
         if (scheduledEndTime <= current) {
-            return LangDict.getString("about0Sec");
+            return LangDict.getString("events.preparations.about0Sec");
         }
 
         long timeLeftSeconds = (scheduledEndTime-current)/1000;
