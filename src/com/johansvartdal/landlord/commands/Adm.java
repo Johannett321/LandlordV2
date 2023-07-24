@@ -13,6 +13,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
@@ -49,6 +50,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "testtreasury");
             Tools.printMenuOption(player, "/adm", "forcelvl1");
             Tools.printMenuOption(player, "/adm", "testjail");
+            Tools.printMenuOption(player, "/adm", "copybook");
             return true;
         }
 
@@ -96,8 +98,29 @@ public class Adm implements CommandExecutor {
             LevelManager.startLevel1();
         }else if (strings[0].equals("testjail")) {
             JailManager.sendToJail(plugin, player, LangDict.getString("playerEvents.jail.jailReasonTax"), LangDict.getString("playerEvents.jail.jailOutTax"), 60);
+        }else if (strings[0].equals("copybook")) {
+            copyBook(player);
         }
         return true;
+    }
+
+    private void copyBook(Player player) {
+        ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
+        if (!itemInMainHand.getType().equals(Material.BOOK)) {
+            Tools.tellPlayer(new ErrorChat(), player, "This is not a book");
+            return;
+        }
+
+        BookMeta bookMeta = (BookMeta) itemInMainHand.getItemMeta();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < bookMeta.getPageCount(); i++) {
+            if (i > 0) {
+                stringBuilder.append("\n\n\n\n\n\n\n");
+            }
+            stringBuilder.append(bookMeta.getPage(i));
+        }
+
+        Tools.write("Books/Book" + System.currentTimeMillis(), stringBuilder.toString());
     }
 
     boolean dayLocked = false;

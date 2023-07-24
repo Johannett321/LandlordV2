@@ -8,6 +8,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 
+import static com.johansvartdal.landlord.Tools.errorLog;
+
 public class LangDict {
 
     public static final String CURRENCY = "currency";
@@ -37,7 +39,7 @@ public class LangDict {
         if (customLanguage != null) {
             currentLanguage = customLanguage;
         }else {
-            System.out.println("Could not find language with languageCode: " + languageCode + ". Using english instead");
+            errorLog("Could not find language with languageCode: " + languageCode + ". Using english instead");
             currentLanguage = english;
         }
     }
