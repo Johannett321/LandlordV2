@@ -19,7 +19,7 @@ public abstract class AdventureEvent extends LandlordEvent {
 
     @Override
     public void startEvent() {
-        God.speak(LangDict.getString("getReadyExcursion"));
+        God.speak(LangDict.getString("events.excursion.getReadyExcursion"));
         scheduleExcursionStart();
     }
 
@@ -28,7 +28,7 @@ public abstract class AdventureEvent extends LandlordEvent {
         if (Properties.DEBUG_MODE) {
             startEventInSeconds = 35;
         }
-        Tools.performTaskAfterCountdown(this::startExcursion, LangDict.getString("excursionIn"), startEventInSeconds);
+        Tools.performTaskAfterCountdown(this::startExcursion, LangDict.getString("events.excursion.excursionIn"), startEventInSeconds);
     }
 
     @Override
@@ -52,9 +52,9 @@ public abstract class AdventureEvent extends LandlordEvent {
     protected void scheduleEndEvent(int inMinutes) {
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             Tools.performTaskAfterCountdown(() -> {
-                God.speak(LangDict.getString("excursionEnd"));
+                God.speak(LangDict.getString("events.excursion.excursionEnd"));
                 endEvent(false);
-            }, LangDict.getString("excursionEndIn"), 60);
+            }, LangDict.getString("events.excursion.excursionEndIn"), 60);
         }, Tools.secToTicks(60*inMinutes-60));
     }
 

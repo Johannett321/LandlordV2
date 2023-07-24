@@ -40,13 +40,13 @@ public class Landlord implements CommandExecutor {
 
             // check if game is already running
             if (Main.properties.gameHasStarted()) {
-                commandSender.sendMessage(LangDict.getString("gameAlreadyRunning"));
+                commandSender.sendMessage(LangDict.getString("events.preparations.gameAlreadyRunning"));
                 return true;
             }
 
             // make sure player has already configured the game
             if (player.getWorld().equals(Bukkit.getWorld("lladv"))) {
-                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("youMustConfigFirst"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("events.preparations.youMustConfigFirst"), ChatColor.RED);
                 return true;
             }
 
@@ -72,10 +72,10 @@ public class Landlord implements CommandExecutor {
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
-                Tools.broadcastMessage(opPlayer.getDisplayName()+ LangDict.getString("isNowLookingForLoc"), new Player[]{opPlayer});
+                Tools.broadcastMessage(opPlayer.getDisplayName()+ LangDict.getString("events.preparations.isNowLookingForLoc"), new Player[]{opPlayer});
 
-                Tools.tellPlayer(opPlayer, LangDict.getString("pleaseFindLoc"));
-                Tools.tellPlayer(opPlayer, LangDict.getString("runLandlordStart"));
+                Tools.tellPlayer(opPlayer, LangDict.getString("events.preparations.pleaseFindLoc"));
+                Tools.tellPlayer(opPlayer, LangDict.getString("events.preparations.runLandlordStart"));
                 opPlayer.setGameMode(GameMode.SPECTATOR);
             }
         }, Tools.secToTicks(2));

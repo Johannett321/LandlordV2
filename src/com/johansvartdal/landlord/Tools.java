@@ -312,9 +312,9 @@ public class Tools {
 
     public static String getTextTimeSeconds(int timeLeftSeconds) {
         if (timeLeftSeconds >= 60) {
-            return timeLeftSeconds/60 + LangDict.getString("minutes");
+            return timeLeftSeconds/60 + LangDict.getString("generalSentenceParts.minutes");
         }else {
-            return timeLeftSeconds + LangDict.getString("seconds");
+            return timeLeftSeconds + LangDict.getString("generalSentenceParts.seconds");
         }
     }
 

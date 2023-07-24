@@ -95,7 +95,7 @@ public class Adm implements CommandExecutor {
         }else if (strings[0].equals("forcelvl1")) {
             LevelManager.startLevel1();
         }else if (strings[0].equals("testjail")) {
-            JailManager.sendToJail(plugin, player, LangDict.getString("jailReasonTax"), LangDict.getString("jailOutTax"), 60);
+            JailManager.sendToJail(plugin, player, LangDict.getString("playerEvents.jail.jailReasonTax"), LangDict.getString("playerEvents.jail.jailOutTax"), 60);
         }
         return true;
     }

@@ -105,7 +105,7 @@ public class Main extends JavaPlugin implements Listener {
 		LanController.initiate();
 
 		// inform players about server restart
-		Tools.broadcastMessage(LangDict.getString("serverRestarted"), ChatColor.GREEN);
+		Tools.broadcastMessage(LangDict.getString("info.serverRestarted"), ChatColor.GREEN);
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class Main extends JavaPlugin implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		// inform player about debug mode
 		if (Properties.DEBUG_MODE) {
-			Tools.tellPlayer(event.getPlayer(), LangDict.getString("debugWarning"), ChatColor.RED);
+			Tools.tellPlayer(event.getPlayer(), LangDict.getString("info.debugWarning"), ChatColor.RED);
 		}
 
 		// make sure player is not flying unless allowed to
@@ -181,7 +181,7 @@ public class Main extends JavaPlugin implements Listener {
 		// create the playerdata file
 		PlayerData playerData = new PlayerData(event.getPlayer().getWorld(), event.getPlayer());
 		playerDataManager.addNewPlayer(playerData);
-		event.setJoinMessage(ChatColor.DARK_PURPLE + LangDict.getString("god") + ChatColor.WHITE + " " + LangDict.getString("newCitizen") + event.getPlayer().getDisplayName());
+		event.setJoinMessage(ChatColor.DARK_PURPLE + LangDict.getString("god") + ChatColor.WHITE + " " + LangDict.getString("joinMessages.newCitizen") + event.getPlayer().getDisplayName());
 
 		// teleport to start location
 		Bukkit.getScheduler().runTaskLater(this, ()-> {
@@ -191,7 +191,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		// inform OP about commands
 		if (event.getPlayer().isOp()) {
-			Tools.tellPlayer(event.getPlayer(), LangDict.getString("runLandlordConfigCmd"));
+			Tools.tellPlayer(event.getPlayer(), LangDict.getString("events.preparations.runLandlordConfigCmd"));
 		}
 
 		// give player playguide

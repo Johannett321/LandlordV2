@@ -48,10 +48,10 @@ public class Home implements CommandExecutor {
         if (location.getBlock().getType() != Material.AIR || headLocation.getBlock().getType() != Material.AIR) {
             Location tallestStandingPoint = new Location(Bukkit.getWorld("world"), location.getX(), location.getY(), location.getZ());
             teleportTo = Tools.highestStandingPoint(tallestStandingPoint);
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("obstructedHome"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("home.obstructedHome"), ChatColor.RED);
         }
         player.teleport(teleportTo);
-        Tools.tellPlayer(player, LangDict.getString("teleportedHome"));
+        Tools.tellPlayer(player, LangDict.getString("home.teleportedHome"));
 
         // set game mode
         player.setGameMode(GameMode.SURVIVAL);

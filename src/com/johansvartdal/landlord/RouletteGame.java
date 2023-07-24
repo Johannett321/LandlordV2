@@ -107,12 +107,12 @@ public class RouletteGame {
         }
         if (openForJoin) {
             if (Bank.playerCanAfford(player, LevelManager.getRouletteGamePrice())) {
-                Bank.withdrawPlayer(LangDict.getString("aRouletteTicket"), player, LevelManager.getRouletteGamePrice());
+                Bank.withdrawPlayer(LangDict.getString("banking.aRouletteTicket"), player, LevelManager.getRouletteGamePrice());
                 RouletteGame.rouletteGamePlayers.add(player);
                 Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("roulette.justJoinedRoulette"));
                 Tools.tellPlayer(player,LangDict.getString("roulette.rouletteJoinMessage"), ChatColor.GREEN);
             }else {
-                Tools.tellPlayer(player,LangDict.getString("cannotAfford") + LangDict.getString("aRouletteTicket") + LangDict.getString("for") + LevelManager.getRouletteGamePrice() + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("plusTax"), ChatColor.RED);
+                Tools.tellPlayer(player,LangDict.getString("cannotAfford") + LangDict.getString("banking.aRouletteTicket") + LangDict.getString("sellItem.for") + LevelManager.getRouletteGamePrice() + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("plusTax"), ChatColor.RED);
             }
 
         }else {

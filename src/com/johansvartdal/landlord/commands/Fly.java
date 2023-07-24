@@ -42,7 +42,7 @@ public class Fly implements CommandExecutor {
 
 		// print fly menu
 		if (args.length == 0) {
-			Tools.printMenuHeader(player, LangDict.getString("flyCommand"));
+			Tools.printMenuHeader(player, LangDict.getString("playerEvents.fly.flyCommand"));
 			Tools.printMenuOption(player, "/fly", "now");
 			Tools.printMenuOption(player, "/fly", "end");
 			Tools.printMenuOption(player, "/fly", "info");
@@ -65,7 +65,7 @@ public class Fly implements CommandExecutor {
 
 	private void showInfoMenu(Player player) {
 		Tools.printMenuHeader(player, "FLY INFO");
-		Tools.printMenuOption(player, LangDict.getString("pricePerMin"), StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString(LangDict.CURRENCY));
+		Tools.printMenuOption(player, LangDict.getString("playerEvents.fly.pricePerMin"), StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString(LangDict.CURRENCY));
 	}
 
 	private void attemptFlying(Player player) {
@@ -77,13 +77,13 @@ public class Fly implements CommandExecutor {
 
 		// can player afford
 		if (!Bank.playerCanAfford(player, StaticValues.FLYING_PRICE_PER_MINUTE)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + LangDict.getString("flying")
-					+ LangDict.getString("for") + StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString("banking.currency"));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + LangDict.getString("playerEvents.fly.flying")
+					+ LangDict.getString("sellItem.for") + StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString("banking.currency"));
 			return;
 		}
 
 		// start flying event
-		Bank.withdrawPlayer(LangDict.getString("paidForFlying"), player, StaticValues.FLYING_PRICE_PER_MINUTE);
+		Bank.withdrawPlayer(LangDict.getString("playerEvents.fly.paidForFlying"), player, StaticValues.FLYING_PRICE_PER_MINUTE);
 		PlayerEventManager.startPlayerEvent(new FlyingEvent(plugin, player));
 	}
 
@@ -96,11 +96,11 @@ public class Fly implements CommandExecutor {
 		}
 
 		if (player.isFlying()) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("landBeforeEndFlight"));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("playerEvents.fly.landBeforeEndFlight"));
 		}
 
 		// end flight and inform player
 		flyingEvent.endEvent();
-		Tools.tellPlayer(player, LangDict.getString("flightTurnedOff"), ChatColor.YELLOW);
+		Tools.tellPlayer(player, LangDict.getString("playerEvents.fly.flightTurnedOff"), ChatColor.YELLOW);
 	}
 }

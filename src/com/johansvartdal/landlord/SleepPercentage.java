@@ -46,7 +46,7 @@ public class SleepPercentage {
             world.setTime(0);
             world.setStorm(false);
         }else if (playersSleeping > 0) {
-            Tools.broadcastMessage(playersSleeping + "/" + sleepersNeeded + LangDict.getString("playersAreSleeping"));
+            Tools.broadcastMessage(playersSleeping + "/" + sleepersNeeded + LangDict.getString("info.playersAreSleeping"));
         }
     }
 }

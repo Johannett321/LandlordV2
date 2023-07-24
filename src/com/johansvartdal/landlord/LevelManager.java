@@ -75,7 +75,7 @@ public class LevelManager {
         acceptedPlayers.clear();
 
         // run upgrade and inform
-        Tools.broadcastMessage(LangDict.getString("townJustUpgraded") + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
+        Tools.broadcastMessage(LangDict.getString("donate.townJustUpgraded") + currentLevel.getDisplayLevelNumber() + "!", ChatColor.GREEN);
         currentLevel.justUpgraded();
 
         // save
@@ -145,7 +145,7 @@ public class LevelManager {
         }
 
         if (remainingText.isEmpty()) {
-            return LangDict.getString("none");
+            return LangDict.getString("generalSentenceParts.none");
         }
 
         return remainingText.toString();
@@ -157,14 +157,14 @@ public class LevelManager {
 
     public static void forceUpgrade(Player player) {
         if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
-            Tools.tellPlayer(player, LangDict.getString("cannotForceUpWithoutAllItems"), ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("upgrade.cannotForceUpWithoutAllItems"), ChatColor.RED);
             return;
         }
         checkIfUpgradeShouldBeScheduled(true);
     }
 
     public static void playerAcceptsUpgrade(Player player) {
-        God.speak(LangDict.getString("citizens") + player.getDisplayName() + LangDict.getString("justAcceptedUp"));
+        God.speak(LangDict.getString("upgrade.citizens") + player.getDisplayName() + LangDict.getString("upgrade.justAcceptedUp"));
         acceptedPlayers.add(player.getDisplayName());
 
         checkIfUpgradeShouldBeScheduled(false);

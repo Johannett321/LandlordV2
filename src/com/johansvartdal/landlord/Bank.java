@@ -29,10 +29,10 @@ public class Bank {
         taxBank += tax;
 
         // inform player
-        Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + amount +
-                LangDict.getString(LangDict.CURRENCY) + LangDict.getString("for") + youJustPaidFor + " + " +
+        Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + amount +
+                LangDict.getString(LangDict.CURRENCY) + LangDict.getString("sellItem.for") + youJustPaidFor + " + " +
                 tax + LangDict.getString("banking.currency") + " (" + getWithdrawTaxPercentDisplay()
-                + "%)"+ LangDict.getString("inTax"), ChatColor.GRAY);
+                + "%)"+ LangDict.getString("banking.inTax"), ChatColor.GRAY);
 
         // withdraw player and save
         Main.playerDataManager.getPlayerData(player).withdrawBalance(amount + tax);
@@ -50,11 +50,11 @@ public class Bank {
         if (amount - tax <= 0) {
             tax = 0;
         }else {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") +
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") +
                     tax +
                     LangDict.getString("banking.currency") +
                     " (" + getDepositTaxPercentDisplayForPlayer(player) +
-                    "%)" + LangDict.getString("inTax"));
+                    "%)" + LangDict.getString("banking.inTax"));
         }
         Main.playerDataManager.getPlayerData(player).depositBalance(amount - tax);
         save();
@@ -192,7 +192,7 @@ public class Bank {
         int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
 
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("inWealthTax"));
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("banking.inWealthTax"));
         }
     }
 
@@ -203,7 +203,7 @@ public class Bank {
 
         // pay it
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("inPropertyTax") + StaticValues.CHUNK_TAX + ")");
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("banking.inPropertyTax") + StaticValues.CHUNK_TAX + ")");
         }
     }
 
@@ -218,7 +218,7 @@ public class Bank {
             withdrawPlayerWithoutTax(player, bal);
             taxBank += bal;
 
-            JailManager.sendToJail(plugin, player, LangDict.getString("jailReasonTax"), LangDict.getString("jailOutTax"), 60*4);
+            JailManager.sendToJail(plugin, player, LangDict.getString("playerEvents.jail.jailReasonTax"), LangDict.getString("playerEvents.jail.jailOutTax"), 60*4);
             save();
             return false;
         }

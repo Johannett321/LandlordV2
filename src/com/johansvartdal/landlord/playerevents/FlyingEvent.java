@@ -15,13 +15,13 @@ public class FlyingEvent extends PlayerEvent {
 
     @Override
     public void start() {
-        Tools.tellPlayer(player, LangDict.getString("whoahFlying"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.fly.whoahFlying"), ChatColor.GREEN);
         player.setAllowFlight(true);
         player.setFlying(true);
 
         // tell how to stop
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            Tools.tellPlayer(player, LangDict.getString("turnOffFlightInstructions"), ChatColor.YELLOW);
+            Tools.tellPlayer(player, LangDict.getString("playerEvents.fly.turnOffFlightInstructions"), ChatColor.YELLOW);
         }, Tools.secToTicks(5));
 
         scheduleAutoEnd();
@@ -60,11 +60,11 @@ public class FlyingEvent extends PlayerEvent {
 
     private void attemptReloadEvent() {
         if (!Bank.playerCanAfford(player, getExtensionPrice())) {
-            Tools.tellPlayer(player, LangDict.getString("cannotAffordExtendFlight"), ChatColor.RED);
+            Tools.tellPlayer(player, LangDict.getString("playerEvents.fly.cannotAffordExtendFlight"), ChatColor.RED);
             endEvent();
             return;
         }
-        Bank.withdrawPlayer(LangDict.getString("extendingFlight"), player, getExtensionPrice());
+        Bank.withdrawPlayer(LangDict.getString("playerEvents.fly.extendingFlight"), player, getExtensionPrice());
         scheduleAutoEnd();
     }
 
@@ -75,6 +75,6 @@ public class FlyingEvent extends PlayerEvent {
 
     @Override
     public String getTitle() {
-        return LangDict.getString("flying");
+        return LangDict.getString("playerEvents.fly.flying");
     }
 }

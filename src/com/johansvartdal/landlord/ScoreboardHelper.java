@@ -40,7 +40,7 @@ public class ScoreboardHelper {
             setTitle(LangDict.getString("events.preparations.preparations"));
             objective.setDisplayName(LangDict.getString("events.preparations.preparations"));
         }else {
-            setTitle(LangDict.getString("scoreboardSeason") + LevelManager.getCurrentDisplaySeasonNum() + " " + LangDict.getString("scoreboardLevel") + (LevelManager.getCurrentDisplayLevelNum()));
+            setTitle(LangDict.getString("upgrade.scoreboardSeason") + LevelManager.getCurrentDisplaySeasonNum() + " " + LangDict.getString("upgrade.scoreboardLevel") + (LevelManager.getCurrentDisplayLevelNum()));
         }
 
         scheduleNewRefresh(objective);
@@ -62,7 +62,7 @@ public class ScoreboardHelper {
     }
 
     public void refreshMoney(Objective objective) {
-        Score bankBalance = objective.getScore(ChatColor.AQUA + LangDict.getString("governmentBank"));
+        Score bankBalance = objective.getScore(ChatColor.AQUA + LangDict.getString("banking.governmentBank"));
         bankBalance.setScore(Bank.getBankBalance());
 
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -96,7 +96,7 @@ public class ScoreboardHelper {
     }
 
     public void warnNewLevel(int newSeason, int newLevel) {
-        setTitle(LangDict.getString("scoreboardSeason") + newSeason + " " + LangDict.getString("scoreboardLevel") + newLevel);
+        setTitle(LangDict.getString("upgrade.scoreboardSeason") + newSeason + " " + LangDict.getString("upgrade.scoreboardLevel") + newLevel);
         ArrayList<ItemStack> requiredItems = LevelManager.getRequiredItemsForNextLevel();
 
         for (int i = 0; i < requiredItems.size(); i++) {

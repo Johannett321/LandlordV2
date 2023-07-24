@@ -28,13 +28,13 @@ public class EmissionTax implements Listener {
 
             if (!Bank.playerCanAffordTaxFree(player, StaticValues.EMISSION_TAX)) {
                 event.setCancelled(true);
-                JailManager.sendToJail(plugin, player, LangDict.getString("jailReasonEmissionTax"), LangDict.getString("jailOutReasonEmissionTax"), 60*2);
+                JailManager.sendToJail(plugin, player, LangDict.getString("playerEvents.jail.jailReasonEmissionTax"), LangDict.getString("playerEvents.jail.jailOutReasonEmissionTax"), 60*2);
                 return;
             }
 
             // actually withdraw
             Bank.withdrawPlayerWithoutTax(player, StaticValues.EMISSION_TAX);
-            Tools.tellPlayer(player, LangDict.getString("youJustPaid") + StaticValues.EMISSION_TAX + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("inEmissionTax"), ChatColor.GRAY);
+            Tools.tellPlayer(player, LangDict.getString("banking.youJustPaid") + StaticValues.EMISSION_TAX + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.inEmissionTax"), ChatColor.GRAY);
         }
     }
 }

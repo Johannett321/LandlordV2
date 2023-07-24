@@ -19,11 +19,11 @@ public class LangDict {
 
     public static final String TREASURY_SENTINEL = "treasury.treasurySentinel";
     public static final String WELCOME_TITLE = "welcomeTitle";
-    public static final String WELCOME_HOME = "welcomeHome";
-    public static final String EVENT_CANCELLED_SERVER_RESTART = "eventCancelledServerRestart";
+    public static final String WELCOME_HOME = "info.welcomeHome";
+    public static final String EVENT_CANCELLED_SERVER_RESTART = "events.excursion.eventCancelledServerRestart";
     public static final String YOU_CANNOT_AFFORD_ = "cannotAfford";
     public static final String YOU_NEED = "generalSentenceParts.youNeed";
-    public static final String END_FLIGHT_FIRST = "endFlightFirst";
+    public static final String END_FLIGHT_FIRST = "playerEvents.fly.endFlightFirst";
 
     public static String languageCode = null;
 
@@ -78,12 +78,12 @@ public class LangDict {
     public static void attemptChangeLanguage(Player player, String langCode) {
         JSONObject loadedLang = loadLanguage(langCode);
         if (loadedLang == null) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotFindLanguage") + langCode);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("commandResponses.errorMessages.cannotFindLanguage") + langCode);
             return;
         }
 
         currentLanguage = loadedLang;
 
-        Tools.broadcastMessage(LangDict.getString("langChangedTo") + LangDict.getString("language"));
+        Tools.broadcastMessage(LangDict.getString("commandResponses.successMessages.langChangedTo") + LangDict.getString("language"));
     }
 }

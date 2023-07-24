@@ -36,7 +36,7 @@ public class ValleyVillageAdventure extends AdventureEvent{
 
     @Override
     protected String getWelcomeTitle() {
-        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Solvheim " + LangDict.getString("village");
+        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Solvheim " + LangDict.getString("generalSentenceParts.village");
     }
 
     @Override

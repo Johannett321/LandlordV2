@@ -55,14 +55,14 @@ public class Sell implements CommandExecutor {
         BuySellManager.AmountWorth currentWorth = BuySellManager.getItemValue(itemStack.getType());
         if (currentWorth.getWorth() == 0) {
             Tools.printMenuHeader(player, "INFO");
-            Tools.printMenuOption(player, "Error:", LangDict.getString("itemCannotBeSold"));
+            Tools.printMenuOption(player, "Error:", LangDict.getString("sellItem.itemCannotBeSold"));
             return;
         }
 
         Tools.printMenuHeader(player, "INFO");
-        Tools.printMenuOption(player, LangDict.getString("item"), itemStack.getType().name());
-        Tools.printMenuOption(player, LangDict.getString("currentValue"), String.valueOf(currentWorth.getWorth()));
-        Tools.printMenuOption(player, LangDict.getString("requiredAmount"), String.valueOf(currentWorth.getAmountNeeded()));
+        Tools.printMenuOption(player, LangDict.getString("sellItem.item"), itemStack.getType().name());
+        Tools.printMenuOption(player, LangDict.getString("sellItem.currentValue"), String.valueOf(currentWorth.getWorth()));
+        Tools.printMenuOption(player, LangDict.getString("sellItem.requiredAmount"), String.valueOf(currentWorth.getAmountNeeded()));
         Tools.printMenuOption(player, LangDict.getString("banking.currentVAT"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
     }
 
@@ -72,19 +72,19 @@ public class Sell implements CommandExecutor {
 
         if (itemType == Material.PAPER) {
             // STOCK!!!
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotSellStock"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("sellItem.cannotSellStock"), ChatColor.RED);
             return;
         }
 
         BuySellManager.AmountWorth amountWorth = BuySellManager.getItemValue(itemType);
 
         if (amountWorth.getWorth() == 0) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("itemCannotBeSold"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("sellItem.itemCannotBeSold"), ChatColor.RED);
             return;
         }
 
         if (itemStack.getAmount() < amountWorth.getAmountNeeded()) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.toSell"), ChatColor.RED);
             return;
         }
 
@@ -92,7 +92,7 @@ public class Sell implements CommandExecutor {
         player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount()-amountWorth.getAmountNeeded());
         Bank.depositPlayer(player, amountWorth.getWorth());
 
-        Tools.tellPlayer(player, LangDict.getString("youJustSold") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("for") + amountWorth.getWorth() + LangDict.getString("banking.currency"));
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.for") + amountWorth.getWorth() + LangDict.getString("banking.currency"));
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 
@@ -122,13 +122,13 @@ public class Sell implements CommandExecutor {
         }
 
         if (amountSold == 0) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.toSell"), ChatColor.RED);
             return;
         }
 
         // TELL PLAYER
         Bank.depositPlayer(player, amountToDeposit);
-        Tools.tellPlayer(player, LangDict.getString("youJustSold") + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + LangDict.getString("for") + (amountSold * amountWorth.getWorth()), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + LangDict.getString("sellItem.for") + (amountSold * amountWorth.getWorth()), ChatColor.GREEN);
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 }

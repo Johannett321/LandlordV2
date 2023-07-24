@@ -41,7 +41,7 @@ public class Visit implements CommandExecutor {
 
         // display commands
         if (args.length < 1) {
-            Tools.printMenuHeader(player, LangDict.getString("commands"));
+            Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
             Tools.printMenuOption(player, "/visit", "accept");
             Tools.printMenuOption(player, "/visit", "reject");
             Tools.printMenuOption(player, "/visit", "[username]");
@@ -65,7 +65,7 @@ public class Visit implements CommandExecutor {
 
         // make sure player exists
         if (teleportTo == null) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("couldNotFindPlayer") + teleportToString, ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("visit.couldNotFindPlayer") + teleportToString, ChatColor.RED);
             return true;
         }
 

@@ -44,13 +44,13 @@ private Main plugin;
 
 		// Check if player has  already collected today
 		if (currentTime < streakCollectOpens) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("bonusCollectedAlready"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("bonus.bonusCollectedAlready"), ChatColor.RED);
 			return true;
 		}
 
 		// Check if player was too late
 		if (currentTime > deadline && deadline != 0) {
-			Tools.tellPlayer(player, LangDict.getString("lostBonus") + multiplier + "X!", ChatColor.RED);
+			Tools.tellPlayer(player, LangDict.getString("bonus.lostBonus") + multiplier + "X!", ChatColor.RED);
 		}
 
 		// start new streak if we should
@@ -82,7 +82,7 @@ private Main plugin;
 
 		// Deposit and tell player about it
 		Bank.depositPlayer(player, dailyBonus*yesterdaysMultiplier);
-		Tools.tellPlayer(player, LangDict.getString("justCollectedBonus") + todaysBonus + LangDict.getString(LangDict.CURRENCY));
+		Tools.tellPlayer(player, LangDict.getString("bonus.justCollectedBonus") + todaysBonus + LangDict.getString(LangDict.CURRENCY));
 		Main.playerDataManager.getPlayerData(player).updateStreak(streakCollectOpens, deadline, yesterdaysMultiplier);
 	}
 }

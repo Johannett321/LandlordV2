@@ -52,15 +52,15 @@ public abstract class Level implements LevelInterface {
 
                 if (required > 0) {
                     remainingItems.get(i).setAmount(required);
-                    Tools.tellPlayer(new InfoChat(), player, LangDict.getString("youJustDonated") + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("toCommunity"), ChatColor.GREEN);
+                    Tools.tellPlayer(new InfoChat(), player, LangDict.getString("donate.youJustDonated") + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("donate.toCommunity"), ChatColor.GREEN);
                 }else {
                     Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_GUITAR);
                     remainingItems.remove(i);
 
                     if (remainingItems.size() == 0) {
-                        God.speak(LangDict.getString("itemDonationsComplete"));
+                        God.speak(LangDict.getString("donate.itemDonationsComplete"));
                     }else {
-                        God.speak(player.getDisplayName() + LangDict.getString("justDonated") + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("toCommunity"));
+                        God.speak(player.getDisplayName() + LangDict.getString("donate.justDonated") + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("donate.toCommunity"));
                     }
                 }
 

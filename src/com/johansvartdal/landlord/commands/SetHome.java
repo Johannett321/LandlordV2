@@ -29,14 +29,14 @@ public class SetHome implements CommandExecutor {
         Location currentLocation = player.getLocation();
 
         if (!Main.playerDataManager.getPlayerData(player).ownsChunk(currentLocation.getChunk())) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("onlySetHomeInHomeChunk"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("home.onlySetHomeInHomeChunk"), ChatColor.RED);
             return true;
         }
 
         currentLocation.setX(currentLocation.getX());
         currentLocation.setZ(currentLocation.getZ());
         Main.playerDataManager.getPlayerData(player).setHome(currentLocation);
-        Tools.tellPlayer(player, LangDict.getString("homeUpdated"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("home.homeUpdated"), ChatColor.GREEN);
         return true;
     }
 }

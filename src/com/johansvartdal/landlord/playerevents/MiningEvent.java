@@ -64,11 +64,11 @@ public class MiningEvent extends PlayerEvent {
 
     @Override
     public String getTitle() {
-        return LangDict.getString("mining");
+        return LangDict.getString("playerEvents.mining.title");
     }
 
     public void warnOneMinLeft() {
-        Tools.tellPlayer(player, LangDict.getString("wildEnding1Min"), ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEnding1Min"), ChatColor.YELLOW);
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
@@ -78,7 +78,7 @@ public class MiningEvent extends PlayerEvent {
     }
 
     public void warnTenSecLeft() {
-        Tools.tellPlayer(player, LangDict.getString("wildEnding10Sec"), ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEnding10Sec"), ChatColor.YELLOW);
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
@@ -127,11 +127,11 @@ public class MiningEvent extends PlayerEvent {
                     strikes += 1;
 
                     if (strikes > 2) {
-                        Tools.tellPlayer(player, LangDict.getString("heightLimitTooMuch"), ChatColor.RED);
+                        Tools.tellPlayer(player, LangDict.getString("playerEvents.mining.heightLimitTooMuch"), ChatColor.RED);
                         endEvent();
                         return;
                     }else {
-                        Tools.tellPlayer(player, LangDict.getString("mineGetDown") + strikes + "/3)", ChatColor.RED);
+                        Tools.tellPlayer(player, LangDict.getString("playerEvents.mining.mineGetDown") + strikes + "/3)", ChatColor.RED);
                     }
                 }
 

@@ -48,9 +48,9 @@ public class BuyChunk implements CommandExecutor {
 
 		// INFO ABOUT CHUNKS
 		if (args[0].equals("info")) {
-			Tools.printMenuHeader(player, LangDict.getString("chunkInfo"));
-			Tools.printMenuOption(player, LangDict.getString("chunkPoints"), String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
-			Tools.printMenuOption(player, LangDict.getString("priceOfNextChunk"), chunkPurchasePrice + LangDict.getString("banking.currency") + " + tax");
+			Tools.printMenuHeader(player, LangDict.getString("chunks.chunkInfo"));
+			Tools.printMenuOption(player, LangDict.getString("chunks.chunkPoints"), String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
+			Tools.printMenuOption(player, LangDict.getString("chunks.priceOfNextChunk"), chunkPurchasePrice + LangDict.getString("banking.currency") + " + tax");
 			return true;
 		}
 
@@ -71,13 +71,13 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure player can afford with ChunkPoints
 		if (!Main.playerDataManager.getPlayerData(player).hasChunkPoints()) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("noChunkPointsLeft"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("chunks.noChunkPointsLeft"), ChatColor.RED);
 			return true;
 		}
 
 		// Make sure player can afford it
 		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + chunkPurchasePrice + LangDict.getString("banking.currency") + LangDict.getString("toPurchaseAChunk"));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + chunkPurchasePrice + LangDict.getString("banking.currency") + LangDict.getString("chunks.toPurchaseAChunk"));
 			return true;
 		}
 
@@ -87,7 +87,7 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure the chunk is available for purchase
 		if (!ChunkBuilder.chunkIsAvailableForPurchaseBy(player, chunkAtDirection)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotPurchaseThisChunk"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("chunks.cannotPurchaseThisChunk"), ChatColor.RED);
 			return true;
 		}
 
@@ -96,14 +96,14 @@ public class BuyChunk implements CommandExecutor {
 		 */
 
 		// Withdraw player
-		Bank.withdrawPlayer(LangDict.getString("aChunk"), player, chunkPurchasePrice);  // money
+		Bank.withdrawPlayer(LangDict.getString("chunks.aChunk"), player, chunkPurchasePrice);  // money
 		Main.playerDataManager.getPlayerData(player).withdrawChunkPoint();  // chunk points
 
 		// Unlock chunk using the animation
 		playEffectAndUnlock(player, direction);
 
 		// Inform everyone
-		Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("justBoughtAChunk"), new Player[]{player});
+		Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("chunks.justBoughtAChunk"), new Player[]{player});
 		return true;
 	}
 

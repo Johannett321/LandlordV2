@@ -54,13 +54,13 @@ public class TreasuryCommand implements CommandExecutor {
         if (args.length == 0) {
             // thise player is chancellor
             if (Bank.playerIsTreasuryChancellor(player)) {
-                Tools.printMenuHeader(player, LangDict.getString("commands"));
+                Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
                 Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + hastePrice + LangDict.getString(LangDict.CURRENCY) + ")");
                 Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + withdrawPrice + LangDict.getString(LangDict.CURRENCY) + ")");
                 return true;
             }
 
-            Tools.printMenuHeader(player, LangDict.getString("commands"));
+            Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
 
             // chancellor is chosen
             if (Bank.aTreasuryChancellorIsChosen()) {

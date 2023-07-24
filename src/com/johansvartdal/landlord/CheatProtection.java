@@ -55,7 +55,7 @@ public class CheatProtection {
             // make sure player owns the chunk
             if (!Main.playerDataManager.getPlayerData(player).ownsChunk(player.getLocation().getChunk())) {
                 Location homeLoc = Main.playerDataManager.getPlayerData(player).getHomeLocation();
-                Tools.tellPlayer(player, LangDict.getString("cheatProtectionOutsideChunk"), ChatColor.YELLOW);
+                Tools.tellPlayer(player, LangDict.getString("cheatProtection.cheatProtectionOutsideChunk"), ChatColor.YELLOW);
                 player.teleport(homeLoc);
             }
         }

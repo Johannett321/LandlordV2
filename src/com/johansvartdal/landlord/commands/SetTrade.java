@@ -38,7 +38,7 @@ public class SetTrade implements CommandExecutor {
 
         // make sure in trade
         if (!Main.tradeCenter.getLocation().getChunk().equals(player.getLocation().getChunk())) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("tradeCommandOnlyInTrade"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("trade.tradeCommandOnlyInTrade"), ChatColor.RED);
             return true;
         }
 
@@ -49,7 +49,7 @@ public class SetTrade implements CommandExecutor {
         }
 
         Main.tradeCenter.setLocation(player.getLocation());
-        Tools.tellPlayer(player, LangDict.getString("tradeUpdated"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("trade.tradeUpdated"), ChatColor.GREEN);
         return true;
     }
 }

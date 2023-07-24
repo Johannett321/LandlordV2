@@ -67,7 +67,7 @@ public class NetherWildernessEvent extends PlayerEvent{
 
     @Override
     public void onWarningEventShouldCancel() {
-        Tools.tellPlayer(player, LangDict.getString("wildEnding10Sec"), ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEnding10Sec"), ChatColor.YELLOW);
 
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
@@ -85,6 +85,6 @@ public class NetherWildernessEvent extends PlayerEvent{
 
     @Override
     public String getTitle() {
-        return LangDict.getString("wildernessNether");
+        return LangDict.getString("playerEvents.wilderness.wildernessNether");
     }
 }

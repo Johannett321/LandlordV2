@@ -45,7 +45,7 @@ public class SendHome implements CommandExecutor {
             }
 
             if(!Main.playerDataManager.getPlayerData(owningPlayer).ownsChunk(player.getLocation().getChunk())) {
-                Tools.tellPlayer(new ErrorChat(), owningPlayer, LangDict.getString("playerNotInChunk"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), owningPlayer, LangDict.getString("visit.playerNotInChunk"), ChatColor.RED);
                 return;
             }
 
@@ -53,11 +53,11 @@ public class SendHome implements CommandExecutor {
             player.teleport(homeLoc);
             player.setGameMode(GameMode.SURVIVAL);
 
-            Tools.tellPlayer(owningPlayer, LangDict.getString("playerSentHome"), ChatColor.GREEN);
-            Tools.tellPlayer(player, LangDict.getString("sentHomeByOwner"), ChatColor.RED);
+            Tools.tellPlayer(owningPlayer, LangDict.getString("visit.playerSentHome"), ChatColor.GREEN);
+            Tools.tellPlayer(player, LangDict.getString("visit.sentHomeByOwner"), ChatColor.RED);
             return;
         }
 
-        Tools.tellPlayer(new ErrorChat(), owningPlayer, LangDict.getString("couldNotFindPlayer") + playerName, ChatColor.RED);
+        Tools.tellPlayer(new ErrorChat(), owningPlayer, LangDict.getString("visit.couldNotFindPlayer") + playerName, ChatColor.RED);
     }
 }

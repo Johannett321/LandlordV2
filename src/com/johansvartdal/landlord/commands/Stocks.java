@@ -39,7 +39,7 @@ public class Stocks implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            Tools.printMenuHeader(player, LangDict.getString("commands"));
+            Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
             Tools.printMenuOption(player, "/stocks", "buy [stockname] [amount]");
             Tools.printMenuOption(player, "/stocks", "sell [stockname]");
             Tools.printMenuOption(player, "/stocks", "info [stockname]");
@@ -130,7 +130,7 @@ public class Stocks implements CommandExecutor {
         Bank.depositPlayerWithoutTax(player, sellPrice + platformFee);
 
         Tools.tellPlayer(player, LangDict.getString("stocks.justPaidPlatformFee") + platformFee + LangDict.getString("banking.currency") + " (3%)");
-        Tools.tellPlayer(player, LangDict.getString("youJustSold") + sellAmount + " " + displayName + LangDict.getString("for") + sellPrice + LangDict.getString("banking.currency"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + sellAmount + " " + displayName + LangDict.getString("sellItem.for") + sellPrice + LangDict.getString("banking.currency"), ChatColor.GREEN);
         player.getInventory().getItemInMainHand().setAmount(0);
     }
 
@@ -182,8 +182,8 @@ public class Stocks implements CommandExecutor {
 
         Tools.printMenuHeader(player, "INFO");
         Tools.printMenuOption(player, LangDict.getString("stocks.stock"), stock.getDisplayName() + " (" + stock.getID() + ")");
-        Tools.printMenuOption(player, LangDict.getString("description"), stock.getDescription());
-        Tools.printMenuOption(player, LangDict.getString("currentValue"), price + LangDict.getString("banking.currency") + LangDict.getString("stocks.perStock"));
+        Tools.printMenuOption(player, LangDict.getString("generalSentenceParts.description"), stock.getDescription());
+        Tools.printMenuOption(player, LangDict.getString("sellItem.currentValue"), price + LangDict.getString("banking.currency") + LangDict.getString("stocks.perStock"));
 
         int worthAt1 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60));
         int worthAt2 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*2));

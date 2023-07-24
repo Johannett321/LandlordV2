@@ -17,19 +17,19 @@ public class HasteEvent extends LandlordEvent {
 
     @Override
     public void startEvent() {
-        God.speak(LangDict.getString("hasteInOneMinute"));
+        God.speak(LangDict.getString("events.haste.hasteInOneMinute"));
         Tools.performTaskAfterCountdown(this::applyEffect, "Haste will begin in", 60);
     }
 
     @Override
     public void endEvent(Boolean cancelled) {
         super.endEvent(cancelled);
-        God.speak(LangDict.getString("lotOfProgress"));
+        God.speak(LangDict.getString("events.haste.lotOfProgress"));
     }
 
     private void applyEffect() {
         Tools.playSoundForEveryone(Sound.BLOCK_BEACON_ACTIVATE);
-        God.speak(LangDict.getString("hasteBegin"));
+        God.speak(LangDict.getString("events.haste.hasteBegin"));
         for (Player player : Bukkit.getOnlinePlayers()) {
             givePlayerHaste(player);
         }

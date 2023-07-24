@@ -27,7 +27,7 @@ public class Upgrade implements CommandExecutor {
 		Player player = (Player) sender;
 
 		if (args.length == 0) {
-			Tools.printMenuHeader(player, LangDict.getString("commands"));
+			Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
 			Tools.printMenuOption(player, "/upgrade", "info");
 			Tools.printMenuOption(player, "/upgrade", "accept");
 			if (player.isOp()) {
@@ -37,13 +37,13 @@ public class Upgrade implements CommandExecutor {
 		}
 
 		if (args[0].equals("info")) {
-			Tools.printMenuHeader(player, LangDict.getString("upgradeInfo"));
-			Tools.printMenuOption(player, LangDict.getString("currentLevel"), String.valueOf(LevelManager.getCurrentDisplayLevelNum()));
-			Tools.printMenuOption(player, LangDict.getString("donationsRemaining"), LevelManager.getRemainingItemsText());
-			Tools.printMenuOption(player, LangDict.getString("playersAccepted"), LevelManager.getAcceptedPlayersText());
+			Tools.printMenuHeader(player, LangDict.getString("upgrade.upgradeInfo"));
+			Tools.printMenuOption(player, LangDict.getString("upgrade.currentLevel"), String.valueOf(LevelManager.getCurrentDisplayLevelNum()));
+			Tools.printMenuOption(player, LangDict.getString("upgrade.donationsRemaining"), LevelManager.getRemainingItemsText());
+			Tools.printMenuOption(player, LangDict.getString("upgrade.playersAccepted"), LevelManager.getAcceptedPlayersText());
 		}else if (args[0].equals("accept")) {
 			if (LevelManager.playerHasAccepted(player)) {
-				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("alreadyAccepted"));
+				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("upgrade.alreadyAccepted"));
 				return true;
 			}
 

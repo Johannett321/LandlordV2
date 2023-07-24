@@ -1,12 +1,16 @@
 {
   "language": "Norsk (Bokmål)",
-
   "god": "[The Landlord]",
 
   "generalSentenceParts": {
-    "youNeed": "Du trenger "
+    "youNeed": "Du trenger ",
+    "description": "Beskrivelse:",
+    "village": "landsby",
+    "none": "Ingen",
+    "commands": "KOMMANDOER",
+    "minutes": " minutt(er)",
+    "seconds": " sekund(er)"
   },
-
   "commandResponses": {
     "errorMessages": {
       "cmdNotNow": "Du kan ikke utføre denne kommandoen nå",
@@ -14,15 +18,26 @@
       "youAreNotAllowed": "Du har ikke tilgang til denne kommandoen",
       "invalidCommandUse": "Ugyldig bruk av kommando",
       "cannotUseOnYourself": "Du kan ikke bruke denne kommandoen på deg selv",
-      "notAvailableRN": "Ikke tilgjengelig for øyeblikket"
+      "notAvailableRN": "Ikke tilgjengelig for øyeblikket",
+      "cannotFindLanguage": "Finner ikke språk med språk-kode: "
+    },
+    "successMessages": {
+      "langChangedTo": "Språket ble endret til "
     }
   },
-
-  "none": "Ingen",
-  "debugWarning": "ADVARSEL: DEBUG-MODUS AKTIVERT!",
-  "serverRestarted": "Serveren restartet nettop!",
-
+  "info": {
+    "debugWarning": "ADVARSEL: DEBUG-MODUS AKTIVERT!",
+    "serverRestarted": "Serveren restartet nettop!",
+    "playersAreSleeping": " spiller(e) sover",
+    "welcomeHome": "Velkommen hjem",
+    "teleportedBackToEvent": "Du er blitt teleportert tilbake til eventet"
+  },
+  "cheatProtection": {
+    "cheatProtectionOutsideChunk": "Du ble sendt hjem fordi det ble oppdaget at du var utenfor dine egne chunks",
+    "cheatProtectionEnterNether": "Bruk '/wilderness nether' for å komme deg til nether"
+  },
   "banking": {
+    "governmentBank": "Statskassen",
     "currency": "kr",
     "balance": "Saldo",
     "currentIncomeTax": "Nåværende inntektsskatt:",
@@ -31,13 +46,19 @@
     "currentBalance": "Nåværende saldo:",
     "cannotAfford": "Du har ikke råd til ",
     "plusTax": " + skatt",
-    "justBought": "Du kjøpte nettopp "
+    "justBought": "Du kjøpte nettopp ",
+
+    "youJustPaid": "Du betalte nettopp ",
+    "forThisCommand": " + skatt for denne kommandoen",
+    "inPropertyTax": " i eiendomsskatt (antall eide chunks * ",
+    "inTax": " i skatt",
+    "inWealthTax": " i formuesskatt",
+    "forCapturing": " for å fange et dyr",
+    "inEmissionTax": " i miljøskatt",
+    "aRouletteTicket": "en roulett-billett"
   },
-
-  "cannotFindLanguage": "Finner ikke språk med språk-kode: ",
-  "langChangedTo": "Språket ble endret til ",
-
   "joinMessages": {
+    "newCitizen": "En ny borger har ankommet! Gi en varm velkomst til ",
     "citizenJoinStart": "En borger ved navn ",
     "citizenJoinEnd": " har vendt tilbake!",
     "citizenLeaveStart": "Ånei! En borger med navn ",
@@ -45,37 +66,38 @@
     "gameAlreadyRunningJoinMessage": "Du kan ikke bli med. Spillet er allerede i gang",
     "gameFull": "Beklager, maks antall spillere er nådd"
   },
-
-  "chunkInfo": "CHUNK INFORMASJON",
-  "chunkPoints": "Chunk-poeng:",
-  "priceOfNextChunk": "Pris på neste chunk:",
-  "noChunkPointsLeft": "Du har ikke flere chunk-poeng igjen",
-  "toPurchaseAChunk": " + skatt for å kjøpe en ny chunk",
-  "cannotPurchaseThisChunk": "Du kan ikke kjøpe denne chunken",
-  "aChunk": "en chunk",
-  "justBoughtAChunk": " kjøpte akkurat en ny chunk!",
-
-  "toCapture": " for å fange et dyr",
-  "toCaptureVillager": " for å fange en villager",
-  "captureGetCloser": "Du må komme nærmere dyret",
-  "cannotCaptureAnimal": "Dette dyret kan ikke bli fanget",
-
-  "bonusCollectedAlready": "Du har allerede samlet inn din bonus i dag",
-  "lostBonus": "Å nei! Du mistet akkurat bonusen din på ",
-  "justCollectedBonus": "Du samlet nettopp inn din daglige bonus på ",
-
-  "aMagicSpell": "sort magi",
-  "playerPaidForSpell": " har betalt for sort magi!",
-
-  "teleportedHome": "Du har på magisk vis blitt teleportert hjem!",
-  "onlySetHomeInHomeChunk": "Du kan bare sette hjem-posisjonen din i en chunk du eier",
-  "homeUpdated": "Hjem-posisjonen din ble oppdatert!",
-  "obstructedHome": "En blokk er i veien på hjemadressen din. Vennligst sett en ny en med '/sethome'",
-
-  "tradeCommandOnlyInTrade": "Trade-posisjonen må være innenfor trade-chunken",
-  "tradeUpdated": "Trade-posisjonen ble oppdatert!",
-  "teleportTrade": "Du ble på magisk vis teleportert til trade",
-
+  "chunks": {
+    "chunkInfo": "CHUNK INFORMASJON",
+    "chunkPoints": "Chunk-poeng:",
+    "priceOfNextChunk": "Pris på neste chunk:",
+    "noChunkPointsLeft": "Du har ikke flere chunk-poeng igjen",
+    "toPurchaseAChunk": " + skatt for å kjøpe en ny chunk",
+    "cannotPurchaseThisChunk": "Du kan ikke kjøpe denne chunken",
+    "aChunk": "en chunk",
+    "justBoughtAChunk": " kjøpte akkurat en ny chunk!"
+  },
+  "capture": {
+    "toCapture": " for å fange et dyr",
+    "toCaptureVillager": " for å fange en villager",
+    "captureGetCloser": "Du må komme nærmere dyret",
+    "cannotCaptureAnimal": "Dette dyret kan ikke bli fanget"
+  },
+  "bonus": {
+    "bonusCollectedAlready": "Du har allerede samlet inn din bonus i dag",
+    "lostBonus": "Å nei! Du mistet akkurat bonusen din på ",
+    "justCollectedBonus": "Du samlet nettopp inn din daglige bonus på "
+  },
+  "home": {
+    "teleportedHome": "Du har på magisk vis blitt teleportert hjem!",
+    "onlySetHomeInHomeChunk": "Du kan bare sette hjem-posisjonen din i en chunk du eier",
+    "homeUpdated": "Hjem-posisjonen din ble oppdatert!",
+    "obstructedHome": "En blokk er i veien på hjemadressen din. Vennligst sett en ny en med '/sethome'"
+  },
+  "trade": {
+    "tradeCommandOnlyInTrade": "Trade-posisjonen må være innenfor trade-chunken",
+    "tradeUpdated": "Trade-posisjonen ble oppdatert!",
+    "teleportTrade": "Du ble på magisk vis teleportert til trade"
+  },
   "treasury": {
     "treasurySentinel": "Statsforvalteren",
     "treasuryVotingHall": "Statsforvaltningens Stemmehall",
@@ -100,21 +122,19 @@
     "treasuryVoteInfo": "Hvis du vil avgi en stemme, vennligst skriv '/treasury vote [brukernavn]'",
     "roleDecidingSoon": "Rollen vil snart bli bestemt!"
   },
-
-  "upgradeInfo": "OPPGRADERINGSINFO",
-  "currentLevel": "Nåværende level: ",
-  "donationsRemaining": "Gjenstående donasjoner: ",
-  "playersAccepted": "Spillere som har akseptert: ",
-  "alreadyAccepted": "Du har allerede akseptert",
-  "citizens": "Borgere, ",
-  "justAcceptedUp": " aksepterte nettopp oppgraderingen!",
-  "cannotForceUpWithoutAllItems": "Du kan ikke tvinge oppgradering uten at alle gjenstandene er samlet",
-  "notRequiredForUpgrade": "Denne gjenstanden er ikke nødvendig for oppgradering",
-  "scoreboardSeason": "Sesong ",
-  "scoreboardLevel": "Level ",
-
-  "commands": "KOMMANDOER",
-
+  "upgrade": {
+    "upgradeInfo": "OPPGRADERINGSINFO",
+    "currentLevel": "Nåværende level: ",
+    "donationsRemaining": "Gjenstående donasjoner: ",
+    "playersAccepted": "Spillere som har akseptert: ",
+    "alreadyAccepted": "Du har allerede akseptert",
+    "citizens": "Borgere, ",
+    "justAcceptedUp": " aksepterte nettopp oppgraderingen!",
+    "cannotForceUpWithoutAllItems": "Du kan ikke tvinge oppgradering uten at alle gjenstandene er samlet",
+    "notRequiredForUpgrade": "Denne gjenstanden er ikke nødvendig for oppgradering",
+    "scoreboardSeason": "Sesong ",
+    "scoreboardLevel": "Level "
+  },
   "visit": {
     "toVisit": " for å besøke noen",
     "waitingForReply": "Du venter nå på at ",
@@ -127,37 +147,64 @@
     "youPaidTheHost": ". Du betalte verten ",
     "noVisitRequests": "Du har ingen besøksforespørsler",
     "willNotBeVisiting": " kommer ikke til å besøke deg!",
-    "notAllowedToVisit": "Du fikk ikke lov til å besøke "
+    "notAllowedToVisit": "Du fikk ikke lov til å besøke ",
+
+    "playerNotInChunk": "Spilleren er ikke innenfor en av dine chunks",
+    "playerSentHome": "Spilleren ble sendt hjem",
+    "sentHomeByOwner": "Du ble sendt hjem av verten",
+    "couldNotFindPlayer": "Kunne ikke finne spilleren: "
   },
+  "playerEvents": {
+    "jail": {
+      "jailTitle": "fengsel",
+      "youHaveBeenSentToJailBecause": "Du er blitt sendt til fengsel fordi ",
+      "sentenceTime": " Straffelengde: ",
+      "jailReasonTax": "du ikke hadde råd til å betale skatten din!",
+      "jailOutTax": "Du er ute! Pass på å ha nok penger neste gang!",
+      "jailReasonEmissionTax": "du ikke hadde råd til å betale miljøskatten mens du utvinnet kull!",
+      "jailOutReasonEmissionTax": "Du er ute! Pass på å ha nok penger neste gang du utvinner mineraler!"
+    },
+    "fly": {
+      "flying": "flyeffekten",
+      "flyCommand": "FLY KOMMANDOER",
+      "paidForFlying": "fly-engenskaper",
+      "endFlightFirst": "Skriv '/fly end' først",
+      "extendingFlight": "å utvide flyeffekten",
+      "pricePerMin": "Pris per minutt:",
+      "whoahFlying": "WOW! Du kan fly jo!",
+      "turnOffFlightInstructions": "Kjør '/fly end' for å avslutte flyturen",
+      "cannotAffordExtendFlight": "Du ble nødt til å lande, da du ikke hadde råd til å fly mer",
+      "landBeforeEndFlight": "Vennligst land før du skriver denne kommandoen!",
+      "flightTurnedOff": "Flyeffekten ble skrudd av"
+    },
+    "wilderness": {
+      "title": "et eventyr",
+      "toAccessWilderness": " for å dra på eventyr",
+      "welcomeToWild": "Velkommen til villmarken. Du har 7 minutter før dine ",
+      "expires": " utløper!",
+      "toExtendThisJourney": " for å forlenge eventyret",
+      "wildernessMine": "et gruveeventyr",
+      "welcomeToWildMine": "Velkommen til gruven. Du har 45 minutter før dine ",
+      "wildernessNether": "et nethereventyr",
+      "welcomeWildNether": "Velkommen til nether. Du har 7 minutter før dine ",
+      "wildernessExtension": "utvidelse av eventyr",
+      "extended": "Forlenget ",
+      "youHave": "Du har ",
+      "leftOfWildTime": " igjen av ditt eventyr",
 
-  "jail": "fengsel",
-  "flying": "flyeffekten",
-  "flyCommand": "FLY KOMMANDOER",
-  "paidForFlying": "fly-engenskaper",
-  "endFlightFirst": "Skriv '/fly end' først",
-  "extendingFlight": "å utvide flyeffekten",
-  "pricePerMin": "Pris per minutt:",
-  "whoahFlying": "WOW! Du kan fly jo!",
-  "turnOffFlightInstructions": "Kjør '/fly end' for å avslutte flyturen",
-  "cannotAffordExtendFlight": "Du ble nødt til å lande, da du ikke hadde råd til å fly mer",
-  "landBeforeEndFlight": "Vennligst land før du skriver denne kommandoen!",
-  "flightTurnedOff": "Flyeffekten ble skrudd av",
-  "mining": "gruve-eventyret",
-
-  "toAccessWilderness": " for å dra på eventyr",
-  "wilderness": "et eventyr",
-  "welcomeToWild": "Velkommen til villmarken. Du har 7 minutter før dine ",
-  "expires": " utløper!",
-  "toExtendThisJourney": " for å forlenge eventyret",
-  "wildernessMine": "et gruveeventyr",
-  "welcomeToWildMine": "Velkommen til gruven. Du har 45 minutter før dine ",
-  "wildernessNether": "et nethereventyr",
-  "welcomeWildNether": "Velkommen til nether. Du har 7 minutter før dine ",
-  "wildernessExtension": "utvidelse av eventyr",
-  "extended": "Forlenget ",
-  "youHave": "Du har ",
-  "leftOfWildTime": " igjen av ditt eventyr",
-
+      "wildEnding1Min": "Ditt villmarkseventyr avsluttes om 1 minutt",
+      "wildEnding10Sec": "Ditt villmarkseventyr avsluttes om 10 sekunder"
+    },
+    "mining": {
+      "title": "gruve-eventyret",
+      "heightLimitTooMuch": "Det holder! Du overskred høydegrensen tre ganger! Du ble derfor sendt hjem!",
+      "mineGetDown": "KOM DEG NED UMIDDELBART! Du overskrider høydegrensen! (advarsel "
+    },
+    "day": {
+      "aMagicSpell": "sort magi",
+      "playerPaidForSpell": " har betalt for sort magi!"
+    }
+  },
   "itemRent": {
     "rentableItems": "LEIE-MENY",
     "everyTwoMinutes": " (hvert 2. minutt)",
@@ -175,43 +222,24 @@
     "renewingRented": "fornyelse av en leid ",
     "deliveredBackRented": "Du leverte tilbake en leid "
   },
-
-  "gameAlreadyRunning": "Spillet er allerede i gang!",
-  "youMustConfigFirst": "Du må kjøre '/landlord config' før du kan kjøre denne kommandoen",
-  "isNowLookingForLoc": " leter nå etter et passende sted for spillet. Vær tålmodig!",
-  "pleaseFindLoc": "Du er nå i spectator-mode. Vennligst finn et sted du ønsker å starte spillet",
-  "runLandlordStart": "Når du er klar, kjør '/landlord start'",
-
-  "itemCannotBeSold": "Gjenstanden kan ikke selges",
-  "cannotSellStock": "Du kan ikke selge denne gjenstanden. Hvis det er en aksje, bruk '/stocks sell [stockname]'",
-  "item": "Gjenstand:",
-  "currentValue": "Nåværende verdi:",
-  "requiredAmount": "For antall:",
-  "toSell": " for å selge.",
-  "youJustSold": "Du har nettopp solgt ",
-  "for": " for ",
-  "with": " med ",
-
-  "youJustPaid": "Du betalte nettopp ",
-  "forThisCommand": " + skatt for denne kommandoen",
-  "inPropertyTax": " i eiendomsskatt (antall eide chunks * ",
-  "inTax": " i skatt",
-  "inWealthTax": " i formuesskatt",
-  "forCapturing": " for å fange et dyr",
-  "inEmissionTax": " i miljøskatt",
-  "aRouletteTicket": "en roulett-billett",
-
-  "playerNotInChunk": "Spilleren er ikke innenfor en av dine chunks",
-  "playerSentHome": "Spilleren ble sendt hjem",
-  "sentHomeByOwner": "Du ble sendt hjem av verten",
-  "couldNotFindPlayer": "Kunne ikke finne spilleren: ",
-
-  "justDonated": " har nettopp donert de siste ",
-  "youJustDonated": "Du donerte nettop ",
-  "toCommunity": " til samfunnet!",
-  "itemDonationsComplete": "Meget bra! Du har fullført alle gjenstandene for dette nivået. Kjør '/upgrade accept' for å gå videre til neste nivå",
-  "townJustUpgraded": "Gratulerer! Byen ble nettopp oppgradert til nivå ",
-
+  "sellItem": {
+    "itemCannotBeSold": "Gjenstanden kan ikke selges",
+    "cannotSellStock": "Du kan ikke selge denne gjenstanden. Hvis det er en aksje, bruk '/stocks sell [stockname]'",
+    "item": "Gjenstand:",
+    "currentValue": "Nåværende verdi:",
+    "requiredAmount": "For antall:",
+    "toSell": " for å selge.",
+    "youJustSold": "Du har nettopp solgt ",
+    "for": " for ",
+    "with": " med "
+  },
+  "donate": {
+    "justDonated": " har nettopp donert de siste ",
+    "youJustDonated": "Du donerte nettop ",
+    "toCommunity": " til samfunnet!",
+    "itemDonationsComplete": "Meget bra! Du har fullført alle gjenstandene for dette nivået. Kjør '/upgrade accept' for å gå videre til neste nivå",
+    "townJustUpgraded": "Gratulerer! Byen ble nettopp oppgradert til nivå "
+  },
   "roulette": {
     "rouletteBegin": "Det er tid for en ny roulette! Kjør '/joinroulette' for en sjanse til å vinne ",
     "rouletteEnding30": "Rouletten vil snart avsluttes. Vinneren blir kunngjort om 30 sekunder!",
@@ -224,23 +252,6 @@
     "noRouletteStart": "Det er ingen spill som går for øyeblikket. Neste roulette vil være om ",
     "noRouletteEnd": " minutter"
   },
-
-  "governmentBank": "Statskassen",
-
-  "youHaveBeenSentToJailBecause": "Du er blitt sendt til fengsel fordi ",
-  "sentenceTime": " Straffelengde: ",
-  "jailReasonTax": "du ikke hadde råd til å betale skatten din!",
-  "jailOutTax": "Du er ute! Pass på å ha nok penger neste gang!",
-  "jailReasonEmissionTax": "du ikke hadde råd til å betale miljøskatten mens du utvinnet kull!",
-  "jailOutReasonEmissionTax": "Du er ute! Pass på å ha nok penger neste gang du utvinner mineraler!",
-
-  "cheatProtectionOutsideChunk": "Du ble sendt hjem fordi det ble oppdaget at du var utenfor dine egne chunks",
-  "cheatProtectionEnterNether": "Bruk '/wilderness nether' for å komme deg til nether",
-
-  "playersAreSleeping": " spiller(e) sover",
-  "minutes": " minutt(er)",
-  "seconds": " sekund(er)",
-
   "levelBooks": {
     "level2": {
       "page1": "Eyyy, så spennende! Din første byoppgradering! Hver gang byen din går opp et nivå, vil noe skje. Denne gangen låste du opp en funksjon som kalles roulette. Hver time kjører en roulette. Rouletten gir deg en mulighet til å vinne en premie. Imidlertid er det en deltakeravgift for å delta. Du vil bli varslet før en roulette er i ferd med å starte",
@@ -255,12 +266,15 @@
       "page2": "Hvis du vil prøve det, bruk '/wilderness' for litt frisk luft."
     }
   },
-
-  "welcomeHome": "Velkommen hjem",
-  "teleportedBackToEvent": "Du er blitt teleportert tilbake til eventet",
-
   "events": {
     "preparations": {
+      "gameAlreadyRunning": "Spillet er allerede i gang!",
+      "runLandlordConfigCmd": "Når alle har blitt med, kjør kommandoen '/landlord config' for å finne et passende sted å starte spillet",
+      "youMustConfigFirst": "Du må kjøre '/landlord config' før du kan kjøre denne kommandoen",
+      "isNowLookingForLoc": " leter nå etter et passende sted for spillet. Vær tålmodig!",
+      "pleaseFindLoc": "Du er nå i spectator-mode. Vennligst finn et sted du ønsker å starte spillet",
+      "runLandlordStart": "Når du er klar, kjør '/landlord start'",
+
       "welcomeMessage": "Velkommen til Landlord, borgere! Dere har 5 minutter før dere alle blir låst inne i deres chunks, bruk tiden klokt!",
       "welcomeTitle": "Velkommen til ",
       "preparations": "FORBEREDELSER",
@@ -289,32 +303,21 @@
       "firstWave30Sec": "Den første bølgen starter om 30 sekunder! Sov i en seng før kampen begynner",
       "wellDoneArena": "Bra gjort! Du har fullført en Arenakamp!",
       "hasBegun": " har begynt!"
+    },
+    "excursion": {
+      "getReadyExcursion": "Gjør deg klar, en utflukt vil begynne om 5 minutter!",
+      "excursionIn": "Utflukten starter om",
+      "excursionEnd": "Dessverre har utflukten kommet til en slutt. Velkommen tilbake hjem",
+      "excursionEndIn": "Utflukten slutter om",
+      "eventCancelledServerRestart": "Eventet ble avbrutt på grunn av en serveromstart"
+    },
+    "haste": {
+      "hasteInOneMinute": "En ordre er plassert fra statsforvalteren! Alle skal motta haste om 1 minutt.",
+      "lotOfProgress": "Phew! Det var mye fremgang på kort tid",
+      "hasteBegin": "La haste begynne! Dere har 3 minutter",
+      "effectWillEndIn": "Haste-effekten vil slutte om"
     }
   },
-
-  "newCitizen": "En ny borger har ankommet! Gi en varm velkomst til ",
-  "runLandlordConfigCmd": "Når alle har blitt med, kjør kommandoen '/landlord config' for å finne et passende sted å starte spillet",
-
-  "getReadyExcursion": "Gjør deg klar, en utflukt vil begynne om 5 minutter!",
-  "excursionIn": "Utflukten starter om",
-  "excursionEnd": "Dessverre har utflukten kommet til en slutt. Velkommen tilbake hjem",
-  "excursionEndIn": "Utflukten slutter om",
-  "eventCancelledServerRestart": "Eventet ble avbrutt på grunn av en serveromstart",
-
-  "village": "landsby",
-
-  "hasteInOneMinute": "En ordre er plassert fra statsforvalteren! Alle skal motta haste om 1 minutt.",
-  "lotOfProgress": "Phew! Det var mye fremgang på kort tid",
-  "hasteBegin": "La haste begynne! Dere har 3 minutter",
-  "effectWillEndIn": "Haste-effekten vil slutte om",
-
-  "wildEnding1Min": "Ditt villmarkseventyr avsluttes om 1 minutt",
-  "wildEnding10Sec": "Ditt villmarkseventyr avsluttes om 10 sekunder",
-  "heightLimitTooMuch": "Det holder! Du overskred høydegrensen tre ganger! Du ble derfor sendt hjem!",
-  "mineGetDown": "KOM DEG NED UMIDDELBART! Du overskrider høydegrensen! (advarsel ",
-
-  "description": "Beskrivelse:",
-
   "stocks": {
     "stocksTitle": "Aksjer",
     "stock": "Aksje:",

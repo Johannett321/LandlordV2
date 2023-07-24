@@ -32,7 +32,7 @@ private Main plugin;
 		ItemStack itemInMainHand = player.getInventory().getItemInMainHand();
 
 		if (!LevelManager.itemRequiredForUpgrade(itemInMainHand)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("notRequiredForUpgrade"), ChatColor.RED);
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("upgrade.notRequiredForUpgrade"), ChatColor.RED);
 			return true;
 		}
 
