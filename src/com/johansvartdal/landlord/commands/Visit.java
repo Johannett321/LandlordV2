@@ -77,7 +77,7 @@ public class Visit implements CommandExecutor {
 
         // make sure visitor can afford
         if (!Bank.playerCanAfford(player, StaticValues.VISIT_PRICE)) {
-            Tools.tellPlayer(new ErrorChat(), player,LangDict.getString(LangDict.YOU_NEED) + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("visit.toVisit"), ChatColor.RED);
+            Bank.tellPlayerTheyNeed(player, StaticValues.VISIT_PRICE, LangDict.getString("visit.toVisit"));
             return true;
         }
 
@@ -108,7 +108,7 @@ public class Visit implements CommandExecutor {
 
             // make sure visitor can still afford
             if (!Bank.playerCanAfford(wantsVisits.get(i).visitor, StaticValues.VISIT_PRICE)) {
-                Tools.tellPlayer(new ErrorChat(), player,LangDict.getString(LangDict.YOU_NEED) + StaticValues.VISIT_PRICE + LangDict.getString("plusTax") + LangDict.getString("visit.toVisit"), ChatColor.RED);
+                Bank.tellPlayerTheyNeed(player, StaticValues.VISIT_PRICE, LangDict.getString("visit.toVisit"));
                 return;
             }
 

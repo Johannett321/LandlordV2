@@ -82,30 +82,40 @@ public class Stocks implements CommandExecutor {
             return;
         }
 
+        // Calculate stock price
         int amount = Integer.parseInt(args[2]);
         int price = stock.getCurrentPrice();
-        int totalPrice = price*amount;
+        int sumStockPrices = price*amount;
 
+        // Set platform fee. (Min 5kr, max 3%)
+        int platformFee = (int) (sumStockPrices*0.03);
+        if (platformFee < 5) {
+            platformFee = 5;
+        }
+
+        // Total price
+        int totalPrice = sumStockPrices + platformFee;
+
+        // Can player afford it
         if (!Bank.playerCanAffordTaxFree(player, totalPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString("plusTax"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.inclPlatform"), ChatColor.RED);
             return;
         }
 
-        int platformFee = (int) (totalPrice*0.03);
-        Tools.tellPlayer(new BankChat(), player, LangDict.getString("stocks.justPaidPlatformFee") + platformFee + LangDict.getString("banking.currency") + " (3%)");
-        Bank.withdrawPlayerWithoutTax(player, totalPrice + platformFee);
+        // Withdraw the player
+        Bank.withdrawPlayerWithoutTax(player, totalPrice);
 
+        // Create the stock item
         ItemStack itemStack = new ItemStack(Material.PAPER);
         itemStack.setAmount(amount);
-
         ItemMeta meta = itemStack.getItemMeta();
         meta.addEnchant(Enchantment.MENDING, 1, false);
         meta.setDisplayName(stockName);
-
         itemStack.setItemMeta(meta);
-        player.getInventory().addItem(itemStack);
 
-        Tools.tellPlayer(player, LangDict.getString("justBought") + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString("banking.currency"), ChatColor.GREEN);
+        // Give the stock item to the player
+        player.getInventory().addItem(itemStack);
+        Tools.tellPlayer(player, LangDict.getString("justBought") + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.inclPlatform"), ChatColor.GREEN);
     }
 
     private void sellStocks(Player player) {
@@ -127,10 +137,10 @@ public class Stocks implements CommandExecutor {
         int sellPrice = pricePerStock*sellAmount;
         int platformFee = (int) (sellPrice*0.03);
 
-        Bank.depositPlayerWithoutTax(player, sellPrice + platformFee);
+        Bank.depositPlayerWithoutTax(player, sellPrice);
+        Bank.withdrawPlayerWithoutTax(player, platformFee);
 
-        Tools.tellPlayer(player, LangDict.getString("stocks.justPaidPlatformFee") + platformFee + LangDict.getString("banking.currency") + " (3%)");
-        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + sellAmount + " " + displayName + LangDict.getString("sellItem.for") + sellPrice + LangDict.getString("banking.currency"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + sellAmount + " " + displayName + LangDict.getString("sellItem.for") + sellPrice + LangDict.getString("banking.currency") + LangDict.getString("stocks.andPaid") + platformFee + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.inPlatformFee"), ChatColor.GREEN);
         player.getInventory().getItemInMainHand().setAmount(0);
     }
 

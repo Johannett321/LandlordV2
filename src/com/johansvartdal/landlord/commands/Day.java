@@ -13,11 +13,9 @@ import org.bukkit.entity.Player;
 
 public class Day implements CommandExecutor {
 
-	private Main plugin;
-	private int commandPrice = 100; // TODO Denne må ha en ny pris
+	private int commandPrice = 14990;
 	
 	public Day(Main plugin) {
-		this.plugin = plugin;
 		plugin.getCommand("day").setExecutor(this);;
 	}
 
@@ -30,16 +28,19 @@ public class Day implements CommandExecutor {
 
 		Player player = (Player) sender;
 
+		// Has feature been unlocked yet?
 		if (!LevelManager.featureUnlocked("day")) {
 			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
 			return true;
 		}
 
+		// Can player afford
 		if (!Bank.playerCanAfford(player, commandPrice)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + commandPrice + LangDict.getString("banking.currency") + LangDict.getString("banking.forThisCommand"), ChatColor.RED);
+			Bank.tellPlayerTheyNeed(player, commandPrice, LangDict.getString("banking.forThisCommand"));
 			return true;
 		}
 
+		// Withdraw the player
 		Bank.withdrawPlayer(LangDict.getString("playerEvents.day.aMagicSpell"), player, commandPrice);
 
 		World world = player.getWorld();

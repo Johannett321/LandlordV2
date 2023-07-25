@@ -86,7 +86,9 @@ public class RouletteGame {
     }
 
     public void announceWinner() {
+        // close joining
         openForJoin = false;
+
         Random random = new Random();
         int randomInt = random.nextInt(rouletteGamePlayers.size() + 1);
 
@@ -104,6 +106,9 @@ public class RouletteGame {
         Tools.playSoundForSinglePlayer(winner, Sound.ENTITY_PLAYER_LEVELUP);
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK, new Player[]{winner});
         winner.getInventory().addItem(itemStack);
+
+        // Reset list of players who joined
+        rouletteGamePlayers.clear();
     }
 
     public static void addToGame(Player player) {

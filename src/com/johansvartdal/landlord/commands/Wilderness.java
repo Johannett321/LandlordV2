@@ -85,7 +85,7 @@ public class Wilderness implements CommandExecutor {
         }
 
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.toAccessWilderness"), ChatColor.RED);
+            Bank.tellPlayerTheyNeed(player, wildernessPrice, LangDict.getString("playerEvents.wilderness.toAccessWilderness"));
             return;
         }
 
@@ -98,21 +98,25 @@ public class Wilderness implements CommandExecutor {
     private void attemptMineWilderness(Player player) {
         int minePrice = StaticValues.MINING_PRICE;
 
+        // Make sure mining is unlocked
         if (!LevelManager.featureUnlocked("wildmining")) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
             return;
         }
 
+        // Make sure player is not in a player event
         if (PlayerEventManager.playerIsInEvent(player)) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
 
+        // Make sure player can afford
         if (!Bank.playerCanAfford(player, minePrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + minePrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.toAccessWilderness"), ChatColor.RED);
+            Bank.tellPlayerTheyNeed(player, minePrice, LangDict.getString("playerEvents.wilderness.toAccessWilderness"));
             return;
         }
 
+        // Withdraw and start mining event
         Bank.withdrawPlayer(LangDict.getString("playerEvents.wilderness.wildernessMine"), player, minePrice);
         Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.welcomeToWildMine") + minePrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.expires"), ChatColor.GREEN);
         MiningEvent event = new MiningEvent(plugin, player);
@@ -132,7 +136,7 @@ public class Wilderness implements CommandExecutor {
             return;
         }
         if (!Bank.playerCanAfford(player, wildernessPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.toAccessWilderness"), ChatColor.RED);
+            Bank.tellPlayerTheyNeed(player, wildernessPrice, LangDict.getString("playerEvents.wilderness.toAccessWilderness"));
             return;
         }
 
@@ -154,7 +158,7 @@ public class Wilderness implements CommandExecutor {
         // get wilderness price, and make sure player can afford
         int extensionPrice = event.getExtensionPrice();
         if (!Bank.playerCanAfford(player, extensionPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + extensionPrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.toExtendThisJourney"), ChatColor.RED);
+            Bank.tellPlayerTheyNeed(player, extensionPrice, LangDict.getString("playerEvents.wilderness.toExtendThisJourney"));
             return;
         }
 

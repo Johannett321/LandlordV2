@@ -84,7 +84,7 @@ public class Sell implements CommandExecutor {
         }
 
         if (itemStack.getAmount() < amountWorth.getAmountNeeded()) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED_) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.toSell"), ChatColor.RED);
             return;
         }
 
@@ -122,7 +122,7 @@ public class Sell implements CommandExecutor {
         }
 
         if (amountSold == 0) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.toSell"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED_) + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.toSell"), ChatColor.RED);
             return;
         }
 

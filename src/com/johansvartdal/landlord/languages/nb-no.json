@@ -49,12 +49,12 @@
     "justBought": "Du kjøpte nettopp ",
 
     "youJustPaid": "Du betalte nettopp ",
-    "forThisCommand": " + skatt for denne kommandoen",
+    "forThisCommand": "for denne kommandoen",
     "inPropertyTax": " i eiendomsskatt (antall eide chunks * ",
     "inTax": " i skatt",
     "inVat": " MVA",
     "inWealthTax": " i formuesskatt",
-    "forCapturing": " for å fange et dyr",
+    "forCapturing": "for å fange et dyr",
     "inEmissionTax": " i miljøskatt",
     "aRouletteTicket": "en roulett-billett"
   },
@@ -72,14 +72,14 @@
     "chunkPoints": "Chunk-poeng:",
     "priceOfNextChunk": "Pris på neste chunk:",
     "noChunkPointsLeft": "Du har ikke flere chunk-poeng igjen",
-    "toPurchaseAChunk": " + skatt for å kjøpe en ny chunk",
+    "toPurchaseAChunk": "for å kjøpe en ny chunk",
     "cannotPurchaseThisChunk": "Du kan ikke kjøpe denne chunken",
     "aChunk": "en chunk",
     "justBoughtAChunk": " kjøpte akkurat en ny chunk!"
   },
   "capture": {
-    "toCapture": " for å fange et dyr",
-    "toCaptureVillager": " for å fange en villager",
+    "toCapture": "for å fange et dyr",
+    "toCaptureVillager": "for å fange en villager",
     "captureGetCloser": "Du må komme nærmere dyret",
     "cannotCaptureAnimal": "Dette dyret kan ikke bli fanget"
   },
@@ -137,7 +137,7 @@
     "scoreboardLevel": "Level "
   },
   "visit": {
-    "toVisit": " for å besøke noen",
+    "toVisit": "for å besøke noen",
     "waitingForReply": "Du venter nå på at ",
     "toReply": " svarer.",
     "newVisitRequest": "Du har en ny besøksforespørsel fra ",
@@ -180,10 +180,10 @@
     },
     "wilderness": {
       "title": "et eventyr",
-      "toAccessWilderness": " for å dra på eventyr",
+      "toAccessWilderness": "for å dra på eventyr",
       "welcomeToWild": "Velkommen til villmarken. Du har 7 minutter før dine ",
       "expires": " utløper!",
-      "toExtendThisJourney": " for å forlenge eventyret",
+      "toExtendThisJourney": "for å forlenge eventyret",
       "wildernessMine": "et gruveeventyr",
       "welcomeToWildMine": "Velkommen til gruven. Du har 45 minutter før dine ",
       "wildernessNether": "et nethereventyr",
@@ -327,6 +327,9 @@
     "values1To4Mins": "Verdier (1, 2, 3, 4) min:",
     "values15To60Mins": "Verdier (15, 30, 45, 60) min:",
     "platformFee": "Plattformavgift:",
+    "inclPlatform": " (Inkl. plattformavgift på 3%)",
+    "andPaid": " og betalte ",
+    "inPlatformFee": " i plattformavgift (3%)",
 
     "blockbnb": "En utleietjeneste hvor du kan betale for å overnatte. De er kjent for sine små plasser, da hver leilighet kun er en block stor.",
     "cakefarm": "CakeFarm inc planter frø i håp om at de en dag vil vokse til en kake. De har for øyeblikket tusenvis av frø, som de ivrig venter på å forvandle til kaker.",

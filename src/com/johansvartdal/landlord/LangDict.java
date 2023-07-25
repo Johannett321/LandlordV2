@@ -25,7 +25,7 @@ public class LangDict {
     public static final String WELCOME_HOME = "info.welcomeHome";
     public static final String EVENT_CANCELLED_SERVER_RESTART = "events.excursion.eventCancelledServerRestart";
     public static final String YOU_CANNOT_AFFORD_ = "banking.cannotAfford";
-    public static final String YOU_NEED = "generalSentenceParts.youNeed";
+    public static final String YOU_NEED_ = "generalSentenceParts.youNeed";
     public static final String END_FLIGHT_FIRST = "playerEvents.fly.endFlightFirst";
     public static final String _IN_VAT = "banking.inVat";
 

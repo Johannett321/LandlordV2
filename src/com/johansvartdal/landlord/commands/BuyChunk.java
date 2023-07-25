@@ -7,10 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.material.Directional;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 
 public class BuyChunk implements CommandExecutor {
 
@@ -77,7 +75,7 @@ public class BuyChunk implements CommandExecutor {
 
 		// Make sure player can afford it
 		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED) + chunkPurchasePrice + LangDict.getString("banking.currency") + LangDict.getString("chunks.toPurchaseAChunk"));
+			Bank.tellPlayerTheyNeed(player, chunkPurchasePrice, LangDict.getString("chunks.toPurchaseAChunk"));
 			return true;
 		}
 

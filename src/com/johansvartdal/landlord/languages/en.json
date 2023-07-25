@@ -50,7 +50,7 @@
     "justBought": "You just bought ",
 
     "youJustPaid": "You just paid ",
-    "forThisCommand": " + tax for this command",
+    "forThisCommand": "for this command",
     "inPropertyTax": " in property tax (number of owned chunks * ",
     "inTax": " in tax",
     "inVat": " in VAT",
@@ -73,14 +73,14 @@
     "chunkPoints": "Chunk points:",
     "priceOfNextChunk": "Price of next chunk:",
     "noChunkPointsLeft": "You don't have any chunk points left",
-    "toPurchaseAChunk": " + tax to purchase a new chunk",
+    "toPurchaseAChunk": "to purchase a new chunk",
     "cannotPurchaseThisChunk": "You cannot purchase this chunk",
     "aChunk": "a chunk",
     "justBoughtAChunk": " just bought a new chunk!"
   },
   "capture": {
-    "toCapture": " to capture an animal",
-    "toCaptureVillager": " to capture a villager",
+    "toCapture": "to capture an animal",
+    "toCaptureVillager": "to capture a villager",
     "captureGetCloser": "You have to get closer to the animal",
     "cannotCaptureAnimal": "This animal cannot be captured"
   },
@@ -138,7 +138,7 @@
     "scoreboardLevel": "Level "
   },
   "visit":{
-    "toVisit": " to visit someone",
+    "toVisit": "to visit someone",
     "waitingForReply": "You are now waiting for ",
     "toReply": " to reply.",
     "newVisitRequest": "You have a new visit request from ",
@@ -181,10 +181,10 @@
     },
     "wilderness": {
       "title": "wilderness",
-      "toAccessWilderness": " to access wilderness",
+      "toAccessWilderness": "to access wilderness",
       "welcomeToWild": "Welcome to the wilderness. You have 7 minutes before your ",
       "expires": " expires!",
-      "toExtendThisJourney": " to extend this journey",
+      "toExtendThisJourney": "to extend this journey",
       "wildernessMine": "wilderness (mine)",
       "welcomeToWildMine": "Welcome to the mine. You have 45 minutes before your ",
       "wildernessNether": "wilderness (nether)",
@@ -340,6 +340,9 @@
     "values1To4Mins": "Values (1, 2, 3, 4) mins:",
     "values15To60Mins": "Values (15, 30, 45, 60) mins:",
     "platformFee": "Platform-fee:",
+    "inclPlatform": " (incl. platform fee of 3%)",
+    "andPaid": " and paid ",
+    "inPlatformFee": " in platform fee (3%)",
 
     "blockbnb": "A rental service where you can pay to stay for the night. They are known for their small space, as every apartment is only one block.",
     "cakefarm": "The CakeFarm inc plant seeds in a hope that they one day will grow into a cake. They currently possess thousands of seeds, which they are eagerly waiting to transform into cakes.",

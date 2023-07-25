@@ -1,7 +1,6 @@
 package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.chatentities.BankChat;
-import com.johansvartdal.landlord.chatentities.ChatEntity;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Bukkit;
@@ -22,17 +21,31 @@ public class Bank {
     }
 
     public static String tellPlayerCannotAfford(Player player, String theProduct, int price) {
-        int taxAmount = getTaxForPrice(price);
+        int vatAmount = getTaxForPrice(price);
         Tools.tellPlayer(new ErrorChat(), player,
                 LangDict.getString(LangDict.YOU_CANNOT_AFFORD_)
                         + theProduct + LangDict.getString("sellItem.for")
                         + price
                         + LangDict.getString(LangDict.CURRENCY)
                         + " + "
-                        + taxAmount
+                        + vatAmount
                         + LangDict.getString(LangDict.CURRENCY)
                         + LangDict.getString(LangDict._IN_VAT),
                 ChatColor.RED);
+        return "";
+    }
+
+    public static String tellPlayerTheyNeed(Player player, int price, String forWhat) {
+        int vatAmount = getTaxForPrice(price);
+        Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED_) +
+                price +
+                LangDict.getString(LangDict.CURRENCY) +
+                " + " +
+                vatAmount +
+                LangDict.getString(LangDict.CURRENCY) +
+                LangDict.getString(LangDict.CURRENCY) +
+                LangDict.getString("banking.inVat") + " " +
+                forWhat, ChatColor.RED);
         return "";
     }
 
