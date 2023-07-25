@@ -9,7 +9,9 @@
     "none": "None",
     "commands": "COMMANDS",
     "minutes": " minute(s)",
-    "seconds": " second(s)"
+    "seconds": " second(s)",
+    "warningChat": "WARNING",
+    "itemDroppedWarning": "An attempt was made to give you an item, but due to insufficient space in your inventory, it had to be dropped on the ground."
   },
   "commandResponses": {
     "errorMessages":{
@@ -19,7 +21,8 @@
       "invalidCommandUse": "Invalid use of command",
       "cannotUseOnYourself": "You cannot use this command on yourself",
       "notAvailableRN": "Not available at the moment",
-      "cannotFindLanguage": "Cannot find language with code: "
+      "cannotFindLanguage": "Cannot find language with code: ",
+      "tooPoorForCommand": "You are too poor for this command"
     },
     "successMessages": {
       "langChangedTo": "The language was changed to ",
@@ -205,6 +208,13 @@
     "day": {
       "aMagicSpell": "a magic spell",
       "playerPaidForSpell": " has paid for a magic spell!"
+    },
+    "lounge": {
+      "title": "lounge",
+      "loungeCommand": "LOUNGE COMMANDS",
+      "whatIsIt": "What is it?",
+      "description": "The lounge is a place where VIP / HIGH END people can relax. There is free entrance, no poor people, free drinks and food",
+      "cooldown": "Sorry, the lounge has a cooldown of 20 minutes after each use"
     }
   },
   "itemRent": {

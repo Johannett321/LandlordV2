@@ -55,7 +55,7 @@ public class LevelManager {
         // receive book
         if (currentLevel.getBook() != null) {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                player.getInventory().addItem(currentLevel.getBook().produceAndGetBook());
+                Tools.givePlayerItemOrDrop(player, currentLevel.getBook().produceAndGetBook(), true);
             }
         }
 
@@ -84,7 +84,7 @@ public class LevelManager {
         // receive book
         if (currentLevel.getBook() != null) {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                player.getInventory().addItem(currentLevel.getBook().produceAndGetBook());
+                Tools.givePlayerItemOrDrop(player, currentLevel.getBook().produceAndGetBook(), true);
             }
         }
 

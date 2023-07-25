@@ -40,8 +40,7 @@ public abstract class RentableItem implements Listener {
 
         // give item to player
         rentedItem = modifyCraftedItem(craftItem());
-
-        player.getInventory().addItem(rentedItem);
+        Tools.givePlayerItemOrDrop(player, rentedItem, true);
 
         // schedule renewal
         scheduleRenewal();

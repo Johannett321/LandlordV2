@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.chatentities.WarningChat;
 import com.johansvartdal.landlord.commands.*;
 import com.johansvartdal.landlord.lan.LanController;
 import com.johansvartdal.landlord.playerevents.JailEvent;
@@ -116,20 +117,34 @@ public class Main extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onPlayerChat(PlayerChatEvent event) {
-		if (Bank.playerIsTreasuryChancellor(event.getPlayer())) {
+		// Get the player
+		Player chattingPlayer = event.getPlayer();
+		PlayerData chattingPlayerData = playerDataManager.getPlayerData(chattingPlayer);
+
+		// Theme the players message
+		if (Bank.playerIsTreasuryChancellor(chattingPlayer)) { // treasury chancellor
 			event.setCancelled(true);
-			for(Player player: Bukkit.getOnlinePlayers()) {
-				player.sendMessage(ChatColor.DARK_GREEN + "[" + LangDict.getString(LangDict.TREASURY_SENTINEL) + "] " + ChatColor.WHITE + event.getMessage());
+			for(Player onlinePlayer: Bukkit.getOnlinePlayers()) {
+				onlinePlayer.sendMessage(ChatColor.DARK_GREEN + "[" + LangDict.getString(LangDict.TREASURY_SENTINEL) + "] " + ChatColor.WHITE + event.getMessage());
 			}
-		}else if (event.getPlayer().getDisplayName().equalsIgnoreCase("johannett321")) {
+		}else if (chattingPlayer.getDisplayName().equalsIgnoreCase("johannett321")) { // Creator
 			event.setCancelled(true);
-			for(Player player: Bukkit.getOnlinePlayers()) {
-				player.sendMessage(ChatColor.DARK_GREEN + "[DEV] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
+			for(Player onlinePlayer: Bukkit.getOnlinePlayers()) {
+				if (Properties.DEBUG_MODE) {
+					onlinePlayer.sendMessage(ChatColor.DARK_GREEN + "[DEV] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
+				}else {
+					onlinePlayer.sendMessage(ChatColor.DARK_GREEN + "[CREATOR] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
+				}
 			}
-		}else if (event.getPlayer().getDisplayName().equalsIgnoreCase("karafo")) {
+		}else if (chattingPlayer.getDisplayName().equalsIgnoreCase("karafo")) { // Builder
 			event.setCancelled(true);
-			for(Player player: Bukkit.getOnlinePlayers()) {
-				player.sendMessage(ChatColor.GREEN + "[BUILDER]" + ChatColor.WHITE + " <Karafo> " + event.getMessage());
+			for(Player onlinePlayer: Bukkit.getOnlinePlayers()) {
+				onlinePlayer.sendMessage(ChatColor.GREEN + "[BUILDER]" + ChatColor.WHITE + " <Karafo> " + event.getMessage());
+			}
+		}else if (chattingPlayerData.isHighEnd()) {
+			event.setCancelled(true);
+			for(Player onlinePlayer: Bukkit.getOnlinePlayers()) {
+				onlinePlayer.sendMessage(ChatColor.GOLD + "[VIP]" + ChatColor.WHITE + " <" + chattingPlayer.getDisplayName() + "> " + event.getMessage());
 			}
 		}
 	}
@@ -138,7 +153,7 @@ public class Main extends JavaPlugin implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		// inform player about debug mode
 		if (Properties.DEBUG_MODE) {
-			Tools.tellPlayer(event.getPlayer(), LangDict.getString("info.debugWarning"), ChatColor.RED);
+			Tools.tellPlayer(new WarningChat(), event.getPlayer(), LangDict.getString("info.debugWarning"), ChatColor.RED);
 		}
 
 		// make sure player is not flying unless allowed to
@@ -239,6 +254,6 @@ public class Main extends JavaPlugin implements Listener {
 		playguide.addPage("&2How to play - Selling items&0 \nThe command '&3/sell now&0' allow you to sell the current item in your hand. Do '&3/sell info&0' to check the item's current value. The value will change over time, so one may wait selling till the item has a greater value.");
 		playguide.addPage("&2How to play - Roulette game&0 \nOnce every hour, a new game of Roulette will start. To join the game, type '&3/joinroulette&0' before the time limit. The roulette is not activated before getting to a certain level.");
 
-		player.getInventory().addItem(playguide.produceAndGetBook());
+		Tools.givePlayerItemOrDrop(player, playguide.produceAndGetBook(), true);
 	}
 }

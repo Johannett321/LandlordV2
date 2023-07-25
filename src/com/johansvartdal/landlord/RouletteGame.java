@@ -105,7 +105,7 @@ public class RouletteGame {
         Tools.broadcastMessage(ChatColor.GREEN +  LangDict.getString("roulette.rouletteWinner") + winner.getDisplayName());
         Tools.playSoundForSinglePlayer(winner, Sound.ENTITY_PLAYER_LEVELUP);
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK, new Player[]{winner});
-        winner.getInventory().addItem(itemStack);
+        Tools.givePlayerItemOrDrop(winner, itemStack, true);
 
         // Reset list of players who joined
         rouletteGamePlayers.clear();

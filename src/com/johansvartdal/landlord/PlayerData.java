@@ -238,4 +238,12 @@ public class PlayerData {
         availableChunkPoints--;
         save();
     }
+
+    /**
+     * Checks if the player is seen as a high end player. That is players with a balance above 50.000kr.
+     * @return True if they are VIP.
+     */
+    public boolean isHighEnd() {
+        return currentBalance >= 50000;
+    }
 }

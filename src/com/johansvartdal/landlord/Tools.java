@@ -2,6 +2,7 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.chatentities.ChatEntity;
 import com.johansvartdal.landlord.chatentities.InfoChat;
+import com.johansvartdal.landlord.chatentities.WarningChat;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -19,6 +20,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.johansvartdal.landlord.ItemGivenAction.dropped;
 
 public class Tools {
 
@@ -252,6 +255,34 @@ public class Tools {
         location.setX(location.getX() + 0.5);
         location.setZ(location.getZ() + 0.5);
         return location;
+    }
+
+    /**
+     * Puts the given item in the players inventory. If the inventory is full, the item will be
+     * thrown out instead
+     * @param player
+     * @param itemStack
+     * @return ItemGivenAction If the item was successfully added to inventory or dropped.
+     */
+    public static ItemGivenAction givePlayerItemOrDrop(Player player, ItemStack itemStack, boolean informIfDropped) {
+        // Give player item, and drop if there are no space in inventory
+        HashMap<Integer, ItemStack> itemsThatDidntFit = player.getInventory().addItem(itemStack);
+        for (ItemStack itemThatDidntFit: itemsThatDidntFit.values()) {
+            player.getWorld().dropItem(player.getLocation().add(0,1,0), itemThatDidntFit);
+        }
+
+        // Check if there were any dropped items
+        if (itemsThatDidntFit.size() > 0 ) {
+            debugLog("Attempted to give player an item, but there was not enough space in the inventory." +
+                    "The item was therefore dropped on the ground instead. Item: " + itemStack.getItemMeta().getDisplayName());
+
+            // Tell player about the dropped item if it should be done
+            if (informIfDropped) {
+                Tools.tellPlayer(new WarningChat(), player, LangDict.getString("generalSentenceParts.itemDroppedWarning"));
+            }
+            return ItemGivenAction.dropped;
+        }
+        return ItemGivenAction.success;
     }
 
     public static void playSoundForEveryone(Sound sound) {

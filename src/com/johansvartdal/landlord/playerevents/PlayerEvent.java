@@ -31,7 +31,7 @@ public abstract class PlayerEvent {
 
         PlayerEventManager.notifyEventEnd(this);
     }
-    public abstract int getLengthOfEventInSeconds();
+    public abstract Integer getLengthOfEventInSeconds();
     public abstract boolean playerTPAwayAllowed();
     public abstract void onWarningEventShouldCancel();
 

@@ -90,7 +90,7 @@ public class Wilderness implements CommandExecutor {
         }
 
         Bank.withdrawPlayer(LangDict.getString("playerEvents.wilderness.title"), player, wildernessPrice);
-        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.welcomeToWild") + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.expires"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.welcomeToWild") + wildernessPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("playerEvents.wilderness.expires"), ChatColor.GREEN);
         WildernessEvent event = new WildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -118,7 +118,7 @@ public class Wilderness implements CommandExecutor {
 
         // Withdraw and start mining event
         Bank.withdrawPlayer(LangDict.getString("playerEvents.wilderness.wildernessMine"), player, minePrice);
-        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.welcomeToWildMine") + minePrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.expires"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.welcomeToWildMine") + minePrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("playerEvents.wilderness.expires"), ChatColor.GREEN);
         MiningEvent event = new MiningEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -141,7 +141,7 @@ public class Wilderness implements CommandExecutor {
         }
 
         Bank.withdrawPlayer(LangDict.getString("playerEvents.wilderness.wildernessNether"), player, wildernessPrice);
-        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.welcomeWildNether") + wildernessPrice + LangDict.getString("banking.currency") + LangDict.getString("playerEvents.wilderness.expires"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.welcomeWildNether") + wildernessPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("playerEvents.wilderness.expires"), ChatColor.GREEN);
         NetherWildernessEvent event = new NetherWildernessEvent(plugin, player);
         PlayerEventManager.startPlayerEvent(event);
     }
@@ -165,7 +165,7 @@ public class Wilderness implements CommandExecutor {
         // perform purchase
         Bank.withdrawPlayer(LangDict.getString("playerEvents.wilderness.wildernessExtension"), player, extensionPrice);
         event.extend();
-        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.extended") + event.getTitle() + LangDict.getString("sellItem.with") + event.getTextTimeLeft() + LangDict.getString("sellItem.for") + extensionPrice + LangDict.getString("banking.currency"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.extended") + event.getTitle() + LangDict.getString("sellItem.with") + event.getTextTimeLeft() + LangDict.getString("sellItem.for") + extensionPrice + LangDict.getString(LangDict.CURRENCY), ChatColor.GREEN);
     }
 
     private void time(Player player) {

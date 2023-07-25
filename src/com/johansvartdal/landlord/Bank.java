@@ -85,7 +85,7 @@ public class Bank {
         }else {
             Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") +
                     tax +
-                    LangDict.getString("banking.currency") +
+                    LangDict.getString(LangDict.CURRENCY) +
                     " (" + getDepositTaxPercentDisplayForPlayer(player) +
                     "%)" + LangDict.getString("banking.inTax"), ChatColor.GRAY);
         }
@@ -225,7 +225,7 @@ public class Bank {
         int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
 
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("banking.inWealthTax"));
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.inWealthTax"));
         }
     }
 
@@ -236,7 +236,7 @@ public class Bank {
 
         // pay it
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString("banking.currency") + LangDict.getString("banking.inPropertyTax") + StaticValues.CHUNK_TAX + ")");
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.inPropertyTax") + StaticValues.CHUNK_TAX + ")");
         }
     }
 

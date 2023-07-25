@@ -48,7 +48,7 @@ public class BuyChunk implements CommandExecutor {
 		if (args[0].equals("info")) {
 			Tools.printMenuHeader(player, LangDict.getString("chunks.chunkInfo"));
 			Tools.printMenuOption(player, LangDict.getString("chunks.chunkPoints"), String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
-			Tools.printMenuOption(player, LangDict.getString("chunks.priceOfNextChunk"), chunkPurchasePrice + LangDict.getString("banking.currency") + " + tax");
+			Tools.printMenuOption(player, LangDict.getString("chunks.priceOfNextChunk"), chunkPurchasePrice + LangDict.getString(LangDict.CURRENCY) + " + tax");
 			return true;
 		}
 

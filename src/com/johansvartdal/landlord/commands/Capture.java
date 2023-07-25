@@ -92,7 +92,7 @@ public class Capture implements CommandExecutor {
         }
 
         // add the item
-        player.getInventory().addItem(items);
+        Tools.givePlayerItemOrDrop(player, items, true);
 
         // withdraw
         Bank.withdrawPlayer(LangDict.getString("banking.forCapturing"), player, priceToWithdraw);

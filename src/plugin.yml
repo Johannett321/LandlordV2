@@ -74,3 +74,6 @@ commands:
   rent:
     description: Allows you to rent something
     usage: /rent [ name ]
+  lounge:
+    description: If you are a VIP, you already know what this command is about.
+    usage: /lounge [ now | info ]

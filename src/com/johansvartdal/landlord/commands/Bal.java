@@ -30,7 +30,7 @@ public class Bal implements CommandExecutor {
 		Tools.printMenuOption(player, LangDict.getString("banking.currentIncomeTax"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
 		Tools.printMenuOption(player, LangDict.getString("banking.currentVAT"), Bank.getWithdrawTaxPercentDisplay() + "%");
 		Tools.printMenuOption(player, LangDict.getString("banking.currentWealthTax"), Bank.getWealthTaxPercentDisplayForPlayer(player) + "%");
-		Tools.printMenuOption(player, LangDict.getString("banking.currentBalance"), Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString("banking.currency"));
+		Tools.printMenuOption(player, LangDict.getString("banking.currentBalance"), Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString(LangDict.CURRENCY));
 		return true;
 	}
 }

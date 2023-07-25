@@ -107,7 +107,7 @@ public class Adm implements CommandExecutor {
         }else if (strings[0].equals("testlangfallback")) {
             Tools.tellPlayer(player, LangDict.getString("commandResponses.successMessages.onlyEnglish"));
             Level3 level3 = new Level3(plugin);
-            player.getInventory().addItem(level3.getBook().produceAndGetBook());
+            Tools.givePlayerItemOrDrop(player, level3.getBook().produceAndGetBook(), true);
         }
         return true;
     }

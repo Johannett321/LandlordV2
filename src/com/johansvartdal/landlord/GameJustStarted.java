@@ -42,7 +42,7 @@ public class GameJustStarted {
             // give players ice
             ItemStack iceBlocks = new ItemStack(Material.ICE);
             iceBlocks.setAmount(2);
-            currentPlayer.getInventory().addItem(iceBlocks);
+            Tools.givePlayerItemOrDrop(currentPlayer, iceBlocks, true);
         }
     }
 

@@ -9,7 +9,9 @@
     "none": "Ingen",
     "commands": "KOMMANDOAR",
     "minutes": " minutt(er)",
-    "seconds": " sekund(er)"
+    "seconds": " sekund(er)",
+    "warningChat": "ADVARSEL",
+    "itemDroppedWarning": "Ein gjenstand blei forsøkt gjeve til deg, men på grunn av utilstrekkeleg plass i inventaret ditt, måtte det kastast på bakken."
   },
   "commandResponses": {
     "errorMessages": {
@@ -19,7 +21,8 @@
       "invalidCommandUse": "Ugyldig bruk av kommando",
       "cannotUseOnYourself": "Du kan ikkje bruke denne kommandoen på deg sjølv",
       "notAvailableRN": "Ikkje tilgjengeleg akkurat no",
-      "cannotFindLanguage": "Finn ikkje språk med språkkode: "
+      "cannotFindLanguage": "Finn ikkje språk med språkkode: ",
+      "tooPoorForCommand": "Du er dessverre ikkje rik nok for denne kommandoen"
     },
     "successMessages": {
       "langChangedTo": "Språket vart endra til "
@@ -204,6 +207,13 @@
     "day": {
       "aMagicSpell": "svart magi",
       "playerPaidForSpell": " har betalt for svart magi!"
+    },
+    "lounge": {
+      "title": "lounge",
+      "loungeCommand": "LOUNGE KOMMANDOAR",
+      "whatIsIt": "Kva er det?",
+      "description": "Loungen er eit sted der VIP / HIGH END-personar kan slappe av. Det er gratis inngang, ingen fattige menneske, gratis drikke og mat",
+      "cooldown": "Beklager, loungen har ei cooldown på 20 minutt etter kvar bruk"
     }
   },
   "itemRent": {
