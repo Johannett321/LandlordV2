@@ -18,12 +18,12 @@ public class Level6 extends Level{
     public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 
-        requiredItems.add(new ItemStack(Material.COBBLESTONE, 64 * Main.properties.getNumberOfPlayers()));
-
+        requiredItems.add(new ItemStack(Material.ANDESITE, 64 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LEAVES, 64 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.SUGAR, 448 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.BIRCH_LOG, 64 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.SNOWBALL, 8 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.COCOA_BEANS, 64 * Main.properties.getNumberOfPlayers()));
 
         return requiredItems;
     }

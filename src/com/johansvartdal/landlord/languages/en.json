@@ -53,6 +53,7 @@
     "forThisCommand": " + tax for this command",
     "inPropertyTax": " in property tax (number of owned chunks * ",
     "inTax": " in tax",
+    "inVat": " in VAT",
     "inWealthTax": " in wealth tax",
     "forCapturing": "capturing an animal",
     "inEmissionTax": " in emission tax",

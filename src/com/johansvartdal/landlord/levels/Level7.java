@@ -25,7 +25,6 @@ public class Level7 extends Level{
         requiredItems.add(new ItemStack(Material.WHEAT, 160 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LEAVES, 140 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.COOKED_COD, 4 * Main.properties.getNumberOfPlayers()));
-
         return requiredItems;
     }
 
@@ -36,7 +35,7 @@ public class Level7 extends Level{
 
     @Override
     public int getRouletteGamePrice() {
-        return 700;
+        return 600;
     }
 
     @Override

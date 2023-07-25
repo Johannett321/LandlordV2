@@ -9,6 +9,7 @@ import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import com.johansvartdal.landlord.events.taxevents.HasteEvent;
 import com.johansvartdal.landlord.levels.Level;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 
 public class LandlordEventManager {
 

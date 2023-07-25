@@ -2,6 +2,7 @@ package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.chatentities.BankChat;
 import com.johansvartdal.landlord.chatentities.ChatEntity;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,6 +21,25 @@ public class Bank {
         return Main.playerDataManager.getPlayerData(player).canAfford(price + tax);
     }
 
+    public static String tellPlayerCannotAfford(Player player, String theProduct, int price) {
+        int taxAmount = getTaxForPrice(price);
+        Tools.tellPlayer(new ErrorChat(), player,
+                LangDict.getString(LangDict.YOU_CANNOT_AFFORD_)
+                        + theProduct + LangDict.getString("sellItem.for")
+                        + price
+                        + LangDict.getString(LangDict.CURRENCY)
+                        + " + "
+                        + taxAmount
+                        + LangDict.getString(LangDict.CURRENCY)
+                        + LangDict.getString(LangDict._IN_VAT),
+                ChatColor.RED);
+        return "";
+    }
+
+    public static int getTaxForPrice(int price) {
+        return calculateWithdrawTaxAmount(price);
+    }
+
     public static boolean playerCanAffordTaxFree(Player player, int price) {
         return Main.playerDataManager.getPlayerData(player).canAfford(price);
     }
@@ -32,7 +52,7 @@ public class Bank {
         Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + amount +
                 LangDict.getString(LangDict.CURRENCY) + LangDict.getString("sellItem.for") + youJustPaidFor + " + " +
                 tax + LangDict.getString(LangDict.CURRENCY) + " (" + getWithdrawTaxPercentDisplay()
-                + "%)"+ LangDict.getString("banking.inTax"), ChatColor.GRAY);
+                + "%)"+ LangDict.getString("banking.inVat"), ChatColor.GRAY);
 
         // withdraw player and save
         Main.playerDataManager.getPlayerData(player).withdrawBalance(amount + tax);

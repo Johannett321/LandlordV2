@@ -87,7 +87,7 @@ public class Stocks implements CommandExecutor {
         int totalPrice = price*amount;
 
         if (!Bank.playerCanAffordTaxFree(player, totalPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("cannotAfford") + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString("plusTax"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString("plusTax"), ChatColor.RED);
             return;
         }
 

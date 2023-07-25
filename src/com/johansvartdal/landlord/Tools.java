@@ -260,6 +260,16 @@ public class Tools {
         }
     }
 
+    public static void playSoundForEveryone(Sound sound, Player[] excludePlayers) {
+        for(Player player : Bukkit.getOnlinePlayers()){
+            player.playSound(player, sound, 1, 0);
+        }
+    }
+
+    public static void playSoundForSinglePlayer(Player player, Sound sound) {
+        player.playSound(player, sound, 1, 0);
+    }
+
     public static void tellPlayer(CommandSender player, String message, ChatColor chatColor) {
         if (player instanceof Player) {
             tellPlayer((Player) player, message, chatColor);

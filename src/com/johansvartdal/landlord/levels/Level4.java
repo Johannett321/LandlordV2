@@ -18,36 +18,16 @@ public class Level4 extends Level{
 
         requiredItems.add(new ItemStack(Material.COBBLESTONE, 192 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.PUMPKIN_SEEDS, 64 * Main.properties.getNumberOfPlayers()));
-        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 144 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 256 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LEAVES, 144 * Main.properties.getNumberOfPlayers()));
-
-        // COPPER ORE
-        // DIORITE?
-        // Deepslate fant jeg under Y0
-        // TUFF fant jeg veldig dypt! -45Y
-        // cocoa beans
-        // milk bucket
-
-        // -------- FRA NETHER -----------
-        // warped nylium (grass)
-        // warped stem (trestamme blå)
-        // warped wart block (Leaves til blått tre)
-        // warped fungus (blomst fra nether)
-        // crimson fungus (annen blomst fra nether)
-        // shroomlights (glowstone lignende fra forest i nether)
-
-        // [rød nether]
-        // weeping wine (henger ned fra taket, er rød og dropper weeping wine
-
-        // [dark biome] (skjelden tror jeg)
-        // basalt (grå stein lignende blokk)
-        // blackstone (sort, og ganske vanlig i dark biome. En hel blokk)
+        requiredItems.add(new ItemStack(Material.DIORITE, 128 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.DEEPSLATE, 90 * Main.properties.getNumberOfPlayers()));
         return requiredItems;
     }
 
     @Override
     public void justUpgraded() {
-
+        God.speak(LangDict.getString("levelBooks.level4.godSpeak"));
     }
 
     @Override

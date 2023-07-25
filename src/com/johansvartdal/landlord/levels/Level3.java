@@ -20,6 +20,7 @@ public class Level3 extends Level{
         requiredItems.add(new ItemStack(Material.SUGAR, 448 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.SUGAR_CANE, 203 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LOG, 176 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.COPPER_INGOT, 19 * Main.properties.getNumberOfPlayers()));
 
         return requiredItems;
     }
