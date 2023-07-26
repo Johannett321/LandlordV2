@@ -59,7 +59,7 @@ public class PageHome extends HttpServlet {
         StringBuilder formatted = new StringBuilder();
         ArrayList<ItemStack> remainingItems = currentLevel.getRemainingItemsForNextLevel();
         for (ItemStack itemStack : remainingItems) {
-            formatted.append("<div class='row'><div class='col-md-6'>" + itemStack.getItemMeta().getDisplayName() + "</div>" + "<div class='col-md-6'>" + itemStack.getAmount() + "</div></div>");
+            formatted.append("<div class='row'><div class='col-md-6'>" + itemStack.getType().name().toLowerCase() + "</div>" + "<div class='col-md-6'>" + itemStack.getAmount() + "</div></div>");
         }
 
         return formatted;

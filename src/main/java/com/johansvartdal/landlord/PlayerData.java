@@ -18,7 +18,7 @@ public class PlayerData {
     @Getter @Setter
     private String status;
     @Getter private int balance = 0;
-    @Getter private Location currentHomeLocation;
+    @Getter private Location homeLocation;
     @Getter private final String username;
     @Getter private int chunkPoints = 0;
     @Getter private int streakMultiplier = 0;
@@ -57,8 +57,8 @@ public class PlayerData {
         status = LangDict.getString("playerStatus.home");
     }
 
-    public void setCurrentHomeLocation(Location location) {
-        currentHomeLocation = location;
+    public void setHomeLocation(Location location) {
+        homeLocation = location;
         save();
     }
 
@@ -139,13 +139,13 @@ public class PlayerData {
         jsonObject.put("streakCollectDeadline", streakCollectDeadline);
         jsonObject.put("streakCollectOpens", streakCollectOpens);
 
-        if (currentHomeLocation != null) {
+        if (homeLocation != null) {
             JSONObject homeJsonObj = new JSONObject();
-            homeJsonObj.put("x", currentHomeLocation.getX());
-            homeJsonObj.put("y", currentHomeLocation.getY());
-            homeJsonObj.put("z", currentHomeLocation.getZ());
-            homeJsonObj.put("yaw", currentHomeLocation.getYaw());
-            homeJsonObj.put("pitch", currentHomeLocation.getPitch());
+            homeJsonObj.put("x", homeLocation.getX());
+            homeJsonObj.put("y", homeLocation.getY());
+            homeJsonObj.put("z", homeLocation.getZ());
+            homeJsonObj.put("yaw", homeLocation.getYaw());
+            homeJsonObj.put("pitch", homeLocation.getPitch());
             jsonObject.put("Home", homeJsonObj);
         }
 
@@ -176,9 +176,9 @@ public class PlayerData {
             float homePitch = (float) homePitchD;
             debugLog(username + "'s home address: " + homeX + ":" + homeY + ":" + homeZ + ":" + homeYawD + ":" + homePitchD + ":" + homeYaw + ":" + homePitch);
 
-            currentHomeLocation = new Location(mainWorld, homeX, homeY, homeZ);
-            currentHomeLocation.setYaw(homeYaw);
-            currentHomeLocation.setPitch(homePitch);
+            homeLocation = new Location(mainWorld, homeX, homeY, homeZ);
+            homeLocation.setYaw(homeYaw);
+            homeLocation.setPitch(homePitch);
         }else {
             debugLog("No Home data found for player. Must be a new player");
         }

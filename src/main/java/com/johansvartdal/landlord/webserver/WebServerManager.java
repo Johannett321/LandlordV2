@@ -43,10 +43,6 @@ public class WebServerManager {
                 "font-family: Arial, sans-serif; " +
                 "background-color: #282c34; " +
                 "color: #61dafb; " +
-                "display: flex; " +
-                "justify-content: center; " +
-                "align-items: center; " +
-                "height: 100vh; " +
                 "margin: 0; " +
                 "}" +
                 "</style>");
