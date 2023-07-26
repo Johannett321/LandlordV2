@@ -24,7 +24,7 @@ public class LanAudioController {
     public void playAudioFile(String audioFilePath, AudioLayer layer) {
         try {
             //read audio data file
-            InputStream audioSrc = getClass().getResourceAsStream("rawaudio/" + audioFilePath);
+            InputStream audioSrc = getClass().getResourceAsStream("/rawaudio/" + audioFilePath);
 
             //add buffer for mark/reset support
             InputStream bufferedIn = new BufferedInputStream(audioSrc);

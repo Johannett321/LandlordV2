@@ -8,8 +8,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 
-import static com.johansvartdal.landlord.Tools.debugLog;
-import static com.johansvartdal.landlord.Tools.errorLog;
+import static com.johansvartdal.landlord.Tools.*;
 
 public class LangDict {
 
@@ -36,6 +35,9 @@ public class LangDict {
 
     public static void loadLanguage() {
         english = loadLanguage("en");
+        if (english == null) {
+            fatalLog("Could not load languages!");
+        }
 
         JSONObject customLanguage = loadLanguage(languageCode);
         if (customLanguage != null) {
@@ -51,7 +53,7 @@ public class LangDict {
 
         JSONParser jsonParser = new JSONParser();
         try {
-            InputStream in = LangDict.class.getResourceAsStream("languages/" + languageName + ".json");
+            InputStream in = LangDict.class.getResourceAsStream("/languages/" + languageName + ".json");
             if (in == null) {
                 return null;
             }
@@ -69,6 +71,9 @@ public class LangDict {
     }
 
     private static String getStringFromLanguage(String stringName, JSONObject language) {
+        if (currentLanguage == null) {
+            return stringName;
+        }
         JSONObject navigator = language;
         String[] keys = stringName.split("\\.");
 
