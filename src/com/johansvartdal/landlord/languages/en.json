@@ -214,7 +214,8 @@
       "loungeCommand": "LOUNGE COMMANDS",
       "whatIsIt": "What is it?",
       "description": "The lounge is a place where VIP / HIGH END people can relax. There is free entrance, no poor people, free drinks and food",
-      "cooldown": "Sorry, the lounge has a cooldown of 20 minutes after each use"
+      "cooldown": "Sorry, the lounge has a cooldown of 20 minutes after each use",
+      "welcomeToLounge": "Welcome to the lounge. Take a drink, have som snacks and chill!"
     }
   },
   "itemRent": {

@@ -22,6 +22,8 @@ public class LoungeEvent extends PlayerEvent {
     @Override
     public void start() {
         player.teleport(loungeLocation);
+
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.lounge.welcomeToLounge"));
     }
 
     @Override

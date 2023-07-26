@@ -213,7 +213,8 @@
       "loungeCommand": "LOUNGE KOMMANDOAR",
       "whatIsIt": "Kva er det?",
       "description": "Loungen er eit sted der VIP / HIGH END-personar kan slappe av. Det er gratis inngang, ingen fattige menneske, gratis drikke og mat",
-      "cooldown": "Beklager, loungen har ei cooldown på 20 minutt etter kvar bruk"
+      "cooldown": "Beklager, loungen har ei cooldown på 20 minutt etter kvar bruk",
+      "welcomeToLounge": "Velkommen til loungen. Ta ein drink, et litt snacks og slapp av!"
     }
   },
   "itemRent": {
