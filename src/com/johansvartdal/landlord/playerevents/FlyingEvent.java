@@ -44,7 +44,7 @@ public class FlyingEvent extends PlayerEvent {
     }
 
     @Override
-    public int getLengthOfEventInSeconds() {
+    public Integer getLengthOfEventInSeconds() {
         return 60;
     }
 

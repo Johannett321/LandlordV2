@@ -33,7 +33,7 @@ public class JailEvent extends PlayerEvent {
     }
 
     @Override
-    public int getLengthOfEventInSeconds() {
+    public Integer getLengthOfEventInSeconds() {
         return jailSeconds;
     }
 

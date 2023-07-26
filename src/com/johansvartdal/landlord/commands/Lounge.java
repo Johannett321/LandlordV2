@@ -18,7 +18,8 @@ public class Lounge implements CommandExecutor {
 
 	private Main plugin;
 
-	ArrayList<LoungeVisit> cooldown;
+	ArrayList<LoungeVisit> cooldown = new ArrayList<>();
+
 	private class LoungeVisit {
 		Player player;
 		long visitTimeMillis;

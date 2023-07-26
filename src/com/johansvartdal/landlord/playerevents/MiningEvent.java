@@ -28,7 +28,7 @@ public class MiningEvent extends PlayerEvent {
     }
 
     @Override
-    public int getLengthOfEventInSeconds() {
+    public Integer getLengthOfEventInSeconds() {
         if (Properties.DEBUG_MODE) {
             return 15;
         }else {

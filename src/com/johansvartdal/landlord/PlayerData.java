@@ -244,6 +244,9 @@ public class PlayerData {
      * @return True if they are VIP.
      */
     public boolean isHighEnd() {
+        if (Properties.DEBUG_MODE) {
+            return true;
+        }
         return currentBalance >= 50000;
     }
 }

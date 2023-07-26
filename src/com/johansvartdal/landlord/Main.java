@@ -94,6 +94,7 @@ public class Main extends JavaPlugin implements Listener {
 		new ChangeLanguage(this);
 		new Fly(this);
 		new Rent(this);
+		new Lounge(this);
 
 		Bank.startTaxCollector(this);
 
