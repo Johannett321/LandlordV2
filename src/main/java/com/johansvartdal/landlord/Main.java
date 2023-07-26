@@ -158,33 +158,38 @@ public class Main extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
+		Player joinedPlayer = event.getPlayer();
+
 		// inform player about debug mode
 		if (Properties.DEBUG_MODE) {
-			Tools.tellPlayer(new WarningChat(), event.getPlayer(), LangDict.getString("info.debugWarning"), ChatColor.RED);
+			Tools.tellPlayer(new WarningChat(), joinedPlayer, LangDict.getString("info.debugWarning"), ChatColor.RED);
 		}
 
 		// make sure player is not flying unless allowed to
-		if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
+		if (joinedPlayer.getGameMode() == GameMode.SURVIVAL || joinedPlayer.getGameMode() == GameMode.ADVENTURE) {
 			// end current flight
-			if (event.getPlayer().isFlying()) {
-				event.getPlayer().setFlying(false);
+			if (joinedPlayer.isFlying()) {
+				joinedPlayer.setFlying(false);
 
 				// add slow falling, so player doesn't hurt
 				PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(20), 6);
-				event.getPlayer().addPotionEffect(potionEffect);
+				joinedPlayer.addPotionEffect(potionEffect);
 			}
 
 			// disapprove flight
-			if (event.getPlayer().getAllowFlight()) {
-				event.getPlayer().setAllowFlight(false);
+			if (joinedPlayer.getAllowFlight()) {
+				joinedPlayer.setAllowFlight(false);
 			}
 		}
 
 		// check if it is a returning player
-		if (playerDataManager.playerExists(event.getPlayer())) {
+		if (playerDataManager.playerExists(joinedPlayer)) {
 			event.setJoinMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("joinMessages.citizenJoinStart") + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + LangDict.getString("joinMessages.citizenJoinEnd"));
 			return;
 		}
+
+		// update status of joined player
+		playerDataManager.getPlayerData(joinedPlayer).setStatus(LangDict.getString("playerStatus.home"));
 
 		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
 

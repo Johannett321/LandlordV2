@@ -350,10 +350,12 @@
     "netherexpress": "En bedrift kjent for mye raskere leveringstid på grunn av deres bruk av nether-portaler. Ettersom hvert skritt i Nether tilsvarer 16 skritt i Overworld, er leveringstidene deres praktisk talt uslåelige."
   },
   "webserver": {
-    "players": "Players",
-    "remainingItems": "Remaining items:"
+    "players": "Spillere",
+    "remainingItems": "Gjenstående gjenstander:",
+    "preparationsPageNotAvailable": "Denne siden er ikke tilgjengelig under forberedelser"
   },
   "playerStatus": {
-    "home": "Hjemme"
+    "home": "Hjemme",
+    "offline": "Frakoblet"
   }
 }

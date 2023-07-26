@@ -19,12 +19,12 @@ public class PageHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        resp.getWriter().println(WebServerManager.getSiteHeader() +
-                "<h2>" + LangDict.getString("webserver.players") + "</h2>" + getListOfPlayers() +
-                "<br/>" +
-                "<br/>" +
-                "<h2>" + LangDict.getString("webserver.remainingItems") + "</h2>" + getListOfRequiredItems() +
-                WebServerManager.getSiteEnding());
+        if (!Main.properties.gameHasStarted()) {
+            resp.getWriter().println(WebServerManager.getSiteHeader() + "<h1>" + LangDict.getString("webserver.preparationsPageNotAvailable") + "</h1>" + WebServerManager.getSiteEnding());
+            return;
+        }
+
+        resp.getWriter().println(Tools.readInternal("/web/home.html"));
     }
 
     /**

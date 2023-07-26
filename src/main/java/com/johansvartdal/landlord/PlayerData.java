@@ -54,7 +54,7 @@ public class PlayerData {
         this.username = username;
         this.mainWorld = mainWorld;
 
-        status = LangDict.getString("playerStatus.home");
+        status = LangDict.getString("playerStatus.offline");
     }
 
     public void setHomeLocation(Location location) {
