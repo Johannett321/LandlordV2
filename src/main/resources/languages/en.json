@@ -364,9 +364,11 @@
   },
   "webserver": {
     "players": "Players",
-    "remainingItems": "Remaining items:"
+    "remainingItems": "Remaining items:",
+    "preparationsPageNotAvailable": "This page is not available during preparations"
   },
   "playerStatus": {
-    "home": "At home"
+    "home": "At home",
+    "offline": "Offline"
   }
 }

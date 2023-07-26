@@ -350,10 +350,12 @@
     "netherexpress": "Ei bedrift kjend for mykje raskare leveringstid på grunn av deira bruk av nether-portalane. Med kvart steg i Nether tilsvarar 16 steg i Overworld, er leveringstidene deira praktisk talt uslåelige."
   },
   "webserver": {
-    "players": "Players",
-    "remainingItems": "Remaining items:"
+    "players": "Spelarar",
+    "remainingItems": "Gjenståande gjenstander:",
+    "preparationsPageNotAvailable": "Denne sida er ikkje tilgjengeleg under førebuingar"
   },
   "playerStatus": {
-    "home": "Heime"
+    "home": "Heime",
+    "offline": "Fråkopla"
   }
 }
