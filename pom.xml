@@ -77,7 +77,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>org.eclipse.jetty</pattern>
-                                    <shadedPattern>com.myplugin.shaded.jetty</shadedPattern>
+                                    <shadedPattern>com.johansvartdal.landlord.shaded.jetty</shadedPattern>
                                 </relocation>
                             </relocations>
                             <filters>
