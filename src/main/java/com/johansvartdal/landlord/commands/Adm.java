@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
+import com.johansvartdal.landlord.chatentities.RouletteChat;
 import com.johansvartdal.landlord.events.Preparations;
 import com.johansvartdal.landlord.events.TestEvent;
 import com.johansvartdal.landlord.events.adventure.IcyHillsEvent;
@@ -55,6 +56,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "testjail");
             Tools.printMenuOption(player, "/adm", "copybook");
             Tools.printMenuOption(player, "/adm", "testlangfallback");
+            Tools.printMenuOption(player, "/adm", "roulettechat");
             return true;
         }
 
@@ -108,6 +110,11 @@ public class Adm implements CommandExecutor {
             Tools.tellPlayer(player, LangDict.getString("commandResponses.successMessages.onlyEnglish"));
             Level3 level3 = new Level3(plugin);
             Tools.givePlayerItemOrDrop(player, level3.getBook().produceAndGetBook(), true);
+        }else if (strings[0].equals("roulettechat")) {
+            Tools.tellPlayer(new RouletteChat(), player, "This is a test rouletteMessage");
+            Bukkit.getScheduler().runTaskLater(plugin, ()-> {
+                Tools.tellPlayer(new RouletteChat(), player, "And this is a colored one", ChatColor.GREEN);
+            }, Tools.secToTicks(3));
         }
         return true;
     }

@@ -368,7 +368,20 @@
     "preparationsPageNotAvailable": "This page is not available during preparations"
   },
   "playerStatus": {
+    "status": "Player status",
+
     "home": "At home",
-    "offline": "Offline"
+    "offline": "Offline",
+    "inJail": "In jail",
+    "inLounge": "In lounge",
+    "mining": "Mining",
+    "inNether": "Exploring nether",
+    "inWild": "Exploring the wild",
+    "inTrade": "Trading",
+    "visiting": "Visiting ",
+    "excursion": "On an excursion",
+    "arena": "Fighting in arena",
+    "mystery": "Solving mysteries",
+    "treasuryVoting": "Voting"
   }
 }

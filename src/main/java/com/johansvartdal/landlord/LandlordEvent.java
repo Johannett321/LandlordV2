@@ -65,6 +65,11 @@ public abstract class LandlordEvent implements LandlordEventInterface {
     }
 
     public void teleportAllPlayersBack() {
+        // update their status
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
+        }
+
         // if no previous locations were saved
         if (previousLocations.size() == 0) {
             for (Player player : Bukkit.getOnlinePlayers()) {

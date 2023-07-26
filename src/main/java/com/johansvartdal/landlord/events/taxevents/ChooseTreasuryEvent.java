@@ -29,7 +29,14 @@ public class ChooseTreasuryEvent extends LandlordEvent {
     public void startEvent() {
         saveAllPrevLocs();
         teleportALlPlayersToEvent();
+        updatePlayerStatuses();
         resumeFromHere();
+    }
+
+    private void updatePlayerStatuses() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.treasuryVoting"));
+        }
     }
 
     private void resumeFromHere() {

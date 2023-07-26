@@ -97,6 +97,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Fly(this);
 		new Rent(this);
 		new Lounge(this);
+		new Status(this);
 
 		Bank.startTaxCollector(this);
 
@@ -182,14 +183,14 @@ public class Main extends JavaPlugin implements Listener {
 			}
 		}
 
+		// update status of joined player
+		PlayerDataManager.updatePlayerStatus(joinedPlayer, LangDict.getString("playerStatus.home"));
+
 		// check if it is a returning player
 		if (playerDataManager.playerExists(joinedPlayer)) {
 			event.setJoinMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("joinMessages.citizenJoinStart") + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + LangDict.getString("joinMessages.citizenJoinEnd"));
 			return;
 		}
-
-		// update status of joined player
-		playerDataManager.getPlayerData(joinedPlayer).setStatus(LangDict.getString("playerStatus.home"));
 
 		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
 
@@ -227,26 +228,29 @@ public class Main extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onPlayerLeave(PlayerQuitEvent event){
-		event.setQuitMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("joinMessages.citizenLeaveStart") + ChatColor.DARK_AQUA + event.getPlayer().getDisplayName() + ChatColor.GOLD + LangDict.getString("joinMessages.citizenLeaveEnd"));
+		Player leavingPlayer = event.getPlayer();
+		event.setQuitMessage(ChatColor.GREEN + "[INFO] " + ChatColor.GOLD + LangDict.getString("joinMessages.citizenLeaveStart") + ChatColor.DARK_AQUA + leavingPlayer.getDisplayName() + ChatColor.GOLD + LangDict.getString("joinMessages.citizenLeaveEnd"));
+
+		// update status of player
+		PlayerDataManager.updatePlayerStatus(leavingPlayer, LangDict.getString("playerStatus.offline"));
 
 		// Player is in jail
-		if (PlayerEventManager.getEventForPlayer(event.getPlayer()) instanceof JailEvent) {
+		if (PlayerEventManager.getEventForPlayer(leavingPlayer) instanceof JailEvent) {
 			debugLog("A player in jail just left!");
 			return;
 		}
 
-		if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
-			if (event.getPlayer().isFlying()) {
+		if (leavingPlayer.getGameMode() == GameMode.SURVIVAL || leavingPlayer.getGameMode() == GameMode.ADVENTURE) {
+			if (leavingPlayer.isFlying()) {
 
 				// add slow falling, so player doesn't hurt when flight is ended
 				PotionEffect potionEffect = new PotionEffect(PotionEffectType.SLOW_FALLING, (int) Tools.secToTicks(20), 6);
-				event.getPlayer().addPotionEffect(potionEffect);
+				leavingPlayer.addPotionEffect(potionEffect);
 			}
 		}
 
 		// end player event
-		// TODO: Hva hvis eventet er jailevent?
-		PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(event.getPlayer());
+		PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(leavingPlayer);
 		if (playerEvent != null) {
 			playerEvent.endEvent();
 		}

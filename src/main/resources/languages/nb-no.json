@@ -355,7 +355,20 @@
     "preparationsPageNotAvailable": "Denne siden er ikke tilgjengelig under forberedelser"
   },
   "playerStatus": {
+    "status": "Spiller status",
+
     "home": "Hjemme",
-    "offline": "Frakoblet"
+    "offline": "Frakoblet",
+    "inJail": "I fengsel",
+    "inLounge": "I loungen",
+    "mining": "Miner",
+    "inNether": "Utforsker nether",
+    "inWild": "Utforsker villmarken",
+    "inTrade": "Trader",
+    "visiting": "På besøk hos ",
+    "excursion": "På en utflukt",
+    "arena": "Kjemper i arenaen",
+    "mystery": "Løser mysterier",
+    "treasuryVoting": "Stemmer"
   }
 }

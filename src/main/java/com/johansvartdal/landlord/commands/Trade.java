@@ -39,6 +39,9 @@ public class Trade implements CommandExecutor {
         Location location = Main.tradeCenter.getLocation();
         location = Tools.highestStandingPoint(location);
         player.teleport(location);
+
+        // update status & tell player
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.inTrade"));
         Tools.tellPlayer(player, LangDict.getString("trade.teleportTrade"));
         return true;
     }

@@ -42,9 +42,16 @@ public abstract class ArenaFightEvent extends LandlordEvent {
         // teleport all players to event
         saveAllPrevLocs();
         teleportAllPlayersToEventLocation();
+        updateAllPlayerStatuses();
 
         // start waves
         runWaveLoop();
+    }
+
+    private void updateAllPlayerStatuses() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.arena"));
+        }
     }
 
     @Override

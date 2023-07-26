@@ -40,9 +40,16 @@ public abstract class AdventureEvent extends LandlordEvent {
     public void startExcursion() {
         saveAllPrevLocs();
         teleportAllPlayersToEvent();
+        updateAllPlayerStatuses();
         showWelcomeMessage();
         showTitle();
         scheduleEndEvent(getExcursionMinutes());
+    }
+
+    private void updateAllPlayerStatuses() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.excursion"));
+        }
     }
 
     private void showTitle() {

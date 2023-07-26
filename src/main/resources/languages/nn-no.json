@@ -355,7 +355,20 @@
     "preparationsPageNotAvailable": "Denne sida er ikkje tilgjengeleg under førebuingar"
   },
   "playerStatus": {
+    "status": "Spelar status",
+
     "home": "Heime",
-    "offline": "Fråkopla"
+    "offline": "Fråkopla",
+    "inJail": "I fengsel",
+    "inLounge": "I loungen",
+    "mining": "Gravar",
+    "inNether": "Utforskar nether",
+    "inWild": "Utforskar villmarka",
+    "inTrade": "Trader",
+    "visiting": "På besøk hos ",
+    "excursion": "På ein utflukt",
+    "arena": "Kjempar i arenaen",
+    "mystery": "Løyser mysterium",
+    "treasuryVoting": "Røystar"
   }
 }

@@ -1,5 +1,7 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.chatentities.ErrorChat;
+import com.johansvartdal.landlord.chatentities.RouletteChat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -51,7 +53,7 @@ public class RouletteGame {
         openForJoin = true;
         itemStack = getRandomItemStack();
 
-        Tools.broadcastMessage(LangDict.getString("roulette.rouletteBegin") + itemStack.getAmount() + " " + itemStack.getType().name());
+        Tools.broadcastMessage(new RouletteChat(), LangDict.getString("roulette.rouletteBegin") + itemStack.getAmount() + " " + itemStack.getType().name());
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK);
         Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_BELL);
 
@@ -64,7 +66,7 @@ public class RouletteGame {
     }
 
     public void thirtySecsLeft() {
-        Tools.broadcastMessage(ChatColor.YELLOW + LangDict.getString("roulette.rouletteEnding30"));
+        Tools.broadcastMessage(new RouletteChat(), LangDict.getString("roulette.rouletteEnding30"));
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK);
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
@@ -75,7 +77,7 @@ public class RouletteGame {
     }
 
     public void fiveSecsLeft() {
-        Tools.broadcastMessage(ChatColor.YELLOW + LangDict.getString("roulette.rouletteEnding5"));
+        Tools.broadcastMessage(new RouletteChat(), LangDict.getString("roulette.rouletteEnding5"));
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK);
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
@@ -94,7 +96,7 @@ public class RouletteGame {
 
         // No-one won
         if (randomInt >= rouletteGamePlayers.size()) {
-            Tools.broadcastMessage(ChatColor.RED + LangDict.getString("roulette.rouletteNoWinner"));
+            Tools.broadcastMessage(new RouletteChat(), ChatColor.RED + LangDict.getString("roulette.rouletteNoWinner"));
             rouletteGamePlayers.clear();
             return;
         }
@@ -102,7 +104,7 @@ public class RouletteGame {
         Player winner = rouletteGamePlayers.get(randomInt);
 
         // Announce winner
-        Tools.broadcastMessage(ChatColor.GREEN +  LangDict.getString("roulette.rouletteWinner") + winner.getDisplayName());
+        Tools.broadcastMessage(new RouletteChat(), ChatColor.GREEN +  LangDict.getString("roulette.rouletteWinner") + winner.getDisplayName());
         Tools.playSoundForSinglePlayer(winner, Sound.ENTITY_PLAYER_LEVELUP);
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK, new Player[]{winner});
         Tools.givePlayerItemOrDrop(winner, itemStack, true);
@@ -117,14 +119,14 @@ public class RouletteGame {
             Calendar calendar = Calendar.getInstance();
             int minute = calendar.get(Calendar.MINUTE);
             int minutesLeft = 60-minute;
-            Tools.tellPlayer(player,LangDict.getString("roulette.noRouletteStart") + minutesLeft + LangDict.getString("roulette.noRouletteEnd"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player,LangDict.getString("roulette.noRouletteStart") + minutesLeft + LangDict.getString("roulette.noRouletteEnd"));
             return;
         }
 
         // Don't join twice
         for (Player player1:rouletteGamePlayers) {
             if (player.getUniqueId().toString().equals(player1.getUniqueId().toString())) {
-                Tools.tellPlayer(player, LangDict.getString("roulette.rouletteJoinTwice"), ChatColor.RED);
+                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("roulette.rouletteJoinTwice"));
                 return;
             }
         }
@@ -138,8 +140,8 @@ public class RouletteGame {
         // Withdraw player and join
         Bank.withdrawPlayer(LangDict.getString("banking.aRouletteTicket"), player, LevelManager.getRouletteGamePrice());
         RouletteGame.rouletteGamePlayers.add(player);
-        Tools.broadcastMessage(player.getDisplayName() + LangDict.getString("roulette.justJoinedRoulette"), new Player[]{player});
-        Tools.tellPlayer(player,LangDict.getString("roulette.rouletteJoinMessage"), ChatColor.GREEN);
+        Tools.broadcastMessage(new RouletteChat(), player.getDisplayName() + LangDict.getString("roulette.justJoinedRoulette"), new Player[]{player});
+        Tools.tellPlayer(new RouletteChat(), player, LangDict.getString("roulette.rouletteJoinMessage"), ChatColor.GREEN);
     }
 
     private ItemStack getRandomItemStack() {

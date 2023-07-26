@@ -23,6 +23,8 @@ public class LoungeEvent extends PlayerEvent {
     public void start() {
         player.teleport(loungeLocation);
 
+        // update status & tell player
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.inLounge"));
         Tools.tellPlayer(player, LangDict.getString("playerEvents.lounge.welcomeToLounge"));
     }
 
@@ -41,6 +43,9 @@ public class LoungeEvent extends PlayerEvent {
         super.endEvent();
 
         player.teleport(locationBeforeEvent);
+
+        // update status & tell player
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
         Tools.tellPlayer(player, LangDict.getString(LangDict.WELCOME_HOME));
     }
 

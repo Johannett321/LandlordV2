@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.events.mystery;
 
-import com.johansvartdal.landlord.LandlordEvent;
-import com.johansvartdal.landlord.LangDict;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -42,8 +39,15 @@ public abstract class MysteryEvent extends LandlordEvent {
     @Override
     public void startEvent() {
         teleportAllPlayersToEvent();
+        updatePlayerStatuses();
         showWelcomeMessage();
         setExitLocationListener(getExitLocationArea());
+    }
+
+    private void updatePlayerStatuses() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.mystery"));
+        }
     }
 
     private void setExitLocationListener(LocationArea locationArea) {

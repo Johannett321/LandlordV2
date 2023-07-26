@@ -304,6 +304,21 @@ public class Tools {
 
     public static void playSoundForEveryone(Sound sound, Player[] excludePlayers) {
         for(Player player : Bukkit.getOnlinePlayers()){
+            if (excludePlayers != null) {
+                // check if player should be excluded from sound
+                boolean playerShouldBeExcluded = false;
+                for (Player excludedPlayer : excludePlayers) {
+                    if (excludedPlayer.equals(player)) {
+                        playerShouldBeExcluded = true;
+                        break;
+                    }
+                }
+
+                // exclude player if so
+                if (playerShouldBeExcluded) {
+                    continue;
+                }
+            }
             player.playSound(player, sound, 1, 0);
         }
     }

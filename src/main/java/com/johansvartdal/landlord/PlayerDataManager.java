@@ -80,4 +80,8 @@ public class PlayerDataManager {
     public void givePlayerChunkPoints(Player player, int amount) {
         getPlayerData(player).addChunkPoints(amount);
     }
+
+    public static void updatePlayerStatus(Player player, String newStatus) {
+        Main.playerDataManager.getPlayerData(player).setStatus(newStatus);
+    }
 }

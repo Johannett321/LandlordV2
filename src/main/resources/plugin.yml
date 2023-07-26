@@ -77,3 +77,6 @@ commands:
   lounge:
     description: If you are a VIP, you already know what this command is about.
     usage: /lounge [ now | info ]
+  status:
+    description: See the current status of all players
+    usage: /status

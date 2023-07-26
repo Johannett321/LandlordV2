@@ -23,6 +23,7 @@ public class JailEvent extends PlayerEvent {
     @Override
     public void start() {
         Tools.tellPlayer(player, LangDict.getString("playerEvents.jail.youHaveBeenSentToJailBecause") + jailReason + LangDict.getString("playerEvents.jail.sentenceTime") + (jailSeconds/60) + LangDict.getString("generalSentenceParts.minutes"), ChatColor.RED);
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.inJail"));
 
         Location jailLocation = new Location(Bukkit.getWorld("lladv"), 203.5, 74, -146.5);
         jailLocation.setPitch(11);
@@ -52,6 +53,8 @@ public class JailEvent extends PlayerEvent {
             return;
         }
 
+        // update status & tell player
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
         if (endMessage != null) {
             Tools.tellPlayer(player1, endMessage, ChatColor.GREEN);
         }

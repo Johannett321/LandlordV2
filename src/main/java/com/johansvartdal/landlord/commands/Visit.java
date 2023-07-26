@@ -126,14 +126,15 @@ public class Visit implements CommandExecutor {
             }
 
             // withdraw player
-            Bank.withdrawPlayer("a visit", player, StaticValues.VISIT_PRICE);
-            Bank.depositPlayer(player, StaticValues.VISIT_PRICE);
+            Bank.withdrawPlayer("a visit", wantsVisits.get(i).visitor, StaticValues.VISIT_PRICE);
+            Bank.depositPlayer(wantsVisits.get(i).host, StaticValues.VISIT_PRICE);
 
             // perform teleportation
             wantsVisits.get(i).visitor.setGameMode(GameMode.ADVENTURE);
             wantsVisits.get(i).visitor.teleport(wantsVisits.get(i).host);
 
             // inform
+            PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.visiting" + wantsVisits.get(i).host.getDisplayName()));
             Tools.tellPlayer(wantsVisits.get(i).host, wantsVisits.get(i).visitor.getDisplayName() + LangDict.getString("visit.isNowVisiting") + StaticValues.VISIT_PRICE + LangDict.getString("visit.asAVisitFee"), ChatColor.GREEN);
             Tools.tellPlayer(wantsVisits.get(i).visitor,LangDict.getString("visit.youAreNowVisiting") + wantsVisits.get(i).host.getDisplayName() + LangDict.getString("visit.youPaidTheHost") + StaticValues.VISIT_PRICE + LangDict.getString("visit.asAVisitFee"), ChatColor.GREEN);
 
@@ -141,7 +142,7 @@ public class Visit implements CommandExecutor {
             wantsVisits.remove(i);
             return;
         }
-        Tools.tellPlayer(player,LangDict.getString("visit.noVisitRequests"), ChatColor.RED);
+        Tools.tellPlayer(new ErrorChat(), player,LangDict.getString("visit.noVisitRequests"), ChatColor.RED);
     }
 
     private void rejectVisit(Player player) {
@@ -152,7 +153,7 @@ public class Visit implements CommandExecutor {
                 return;
             }
         }
-        Tools.tellPlayer(player,LangDict.getString("visit.noVisitRequests"), ChatColor.RED);
+        Tools.tellPlayer(new ErrorChat(), player,LangDict.getString("visit.noVisitRequests"), ChatColor.RED);
     }
 
     private class WantsVisit {

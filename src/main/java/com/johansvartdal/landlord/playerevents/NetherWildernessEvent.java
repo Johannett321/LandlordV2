@@ -1,9 +1,6 @@
 package com.johansvartdal.landlord.playerevents;
 
-import com.johansvartdal.landlord.LangDict;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
-import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -20,6 +17,9 @@ public class NetherWildernessEvent extends PlayerEvent{
     public void start() {
         Location location = getPossibleSpawnLocation();
         player.teleport(location);
+
+        // update status
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.inNether"));
 
         scheduleAutoEnd();
     }
@@ -53,6 +53,9 @@ public class NetherWildernessEvent extends PlayerEvent{
     public void endEvent() {
         super.endEvent();
         player.teleport(locationBeforeEvent);
+
+        // update status
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
     }
 
     @Override

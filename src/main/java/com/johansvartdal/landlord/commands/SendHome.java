@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.PlayerDataManager;
 import com.johansvartdal.landlord.Tools;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.Bukkit;
@@ -44,15 +45,18 @@ public class SendHome implements CommandExecutor {
                 continue;
             }
 
+            // make sure the player that will be sent home is actually on a visit to the commanding player
             if(!Main.playerDataManager.getPlayerData(owningPlayer).ownsChunk(player.getLocation().getChunk())) {
                 Tools.tellPlayer(new ErrorChat(), owningPlayer, LangDict.getString("visit.playerNotInChunk"), ChatColor.RED);
                 return;
             }
 
+            // perform teleportation
             Location homeLoc = Main.playerDataManager.getPlayerData(player).getHomeLocation();
             player.teleport(homeLoc);
             player.setGameMode(GameMode.SURVIVAL);
 
+            PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
             Tools.tellPlayer(owningPlayer, LangDict.getString("visit.playerSentHome"), ChatColor.GREEN);
             Tools.tellPlayer(player, LangDict.getString("visit.sentHomeByOwner"), ChatColor.RED);
             return;

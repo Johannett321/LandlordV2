@@ -51,6 +51,9 @@ public class Home implements CommandExecutor {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("home.obstructedHome"), ChatColor.RED);
         }
         player.teleport(teleportTo);
+
+        // update status & tell player
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
         Tools.tellPlayer(player, LangDict.getString("home.teleportedHome"));
 
         // set game mode

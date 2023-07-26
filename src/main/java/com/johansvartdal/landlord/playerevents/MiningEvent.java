@@ -21,9 +21,17 @@ public class MiningEvent extends PlayerEvent {
     @Override
     public void start() {
         scheduleAutoEnd();
+
+        // get the location
         Location miningStartLoc = getRandomLocationWithoutLava();
+
+        // update status & tell player
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.mining"));
+
+        // teleport player there
         player.teleport(miningStartLoc);
 
+        // height checker
         scheduleHeightChecker();
     }
 
@@ -49,6 +57,9 @@ public class MiningEvent extends PlayerEvent {
         }
 
         player.teleport(locationBeforeEvent);
+
+        // update status & tell player
+        PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
         Tools.tellPlayer(player, LangDict.getString(LangDict.WELCOME_HOME));
     }
 
