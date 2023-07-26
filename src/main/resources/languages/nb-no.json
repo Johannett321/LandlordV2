@@ -22,7 +22,8 @@
       "cannotUseOnYourself": "Du kan ikke bruke denne kommandoen på deg selv",
       "notAvailableRN": "Ikke tilgjengelig for øyeblikket",
       "cannotFindLanguage": "Finner ikke språk med språk-kode: ",
-      "tooPoorForCommand": "Du er dessverre ikke rik nok for denne kommandoen"
+      "tooPoorForCommand": "Du er dessverre ikke rik nok for denne kommandoen",
+      "cmdOnlyInWilderness": "Denne kommandoen kan bare brukes i villmarken"
     },
     "successMessages": {
       "langChangedTo": "Språket ble endret til "

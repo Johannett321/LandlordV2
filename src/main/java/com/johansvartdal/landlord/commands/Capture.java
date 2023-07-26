@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.LevelManager;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
+import com.johansvartdal.landlord.playerevents.WildernessEvent;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -35,6 +36,12 @@ public class Capture implements CommandExecutor {
         // Make sure the command has been unlocked
         if (!LevelManager.featureUnlocked("capture")) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED), ChatColor.RED);
+            return true;
+        }
+
+        // make sure the player is in wilderness. Should not be able to capture animal anywhere else
+        if (!(PlayerEventManager.getEventForPlayer(player) instanceof WildernessEvent)) {
+            Tools.tellPlayer(new ErrorChat(), player, "commandResponses.errorMessages.cmdOnlyInWilderness");
             return true;
         }
 

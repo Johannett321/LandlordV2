@@ -22,7 +22,8 @@
       "cannotUseOnYourself": "You cannot use this command on yourself",
       "notAvailableRN": "Not available at the moment",
       "cannotFindLanguage": "Cannot find language with code: ",
-      "tooPoorForCommand": "You are too poor for this command"
+      "tooPoorForCommand": "You are too poor for this command",
+      "cmdOnlyInWilderness": "This command can only be used in wilderness"
     },
     "successMessages": {
       "langChangedTo": "The language was changed to ",
