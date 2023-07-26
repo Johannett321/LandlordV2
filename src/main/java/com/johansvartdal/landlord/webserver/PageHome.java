@@ -24,44 +24,6 @@ public class PageHome extends HttpServlet {
             return;
         }
 
-        resp.getWriter().println(Tools.readInternal("/web/home.html"));
-    }
-
-    /**
-     * Get a list of players, their money and if they are online
-     * @return A StringBuilder with a HTML element.
-     */
-    private StringBuilder getListOfPlayers() {
-        // Get list of playerdata
-        StringBuilder listOfPlayers = new StringBuilder();
-        ArrayList<PlayerData> listOfPlayerData = Main.playerDataManager.getPlayerDataList();
-
-        // Create the list
-        for (PlayerData playerData: listOfPlayerData) {
-            String playerOnlineInfo = "";
-            Player player = Bukkit.getPlayer(playerData.getUsername());
-
-            // Check if player is online
-            if (player != null && player.isOnline()) {
-                playerOnlineInfo = "online-player";
-            }
-
-            // Add the player to the return element
-            listOfPlayers.append("<div class='row'><div class='col-md-4 " + playerOnlineInfo + "'>" + playerData.getUsername() + "</div><div class='col-md-4'>" + playerData.getStatus() + "</div><div class='col-md-4'>" + playerData.getBalance() + "</div></div>");
-        }
-
-        return listOfPlayers;
-    }
-
-    private StringBuilder getListOfRequiredItems() {
-        Level currentLevel = LevelManager.getCurrentLevel();
-
-        StringBuilder formatted = new StringBuilder();
-        ArrayList<ItemStack> remainingItems = currentLevel.getRemainingItemsForNextLevel();
-        for (ItemStack itemStack : remainingItems) {
-            formatted.append("<div class='row'><div class='col-md-6'>" + itemStack.getType().name().toLowerCase() + "</div>" + "<div class='col-md-6'>" + itemStack.getAmount() + "</div></div>");
-        }
-
-        return formatted;
+        resp.getWriter().println(Tools.readInternal("web/home.html"));
     }
 }

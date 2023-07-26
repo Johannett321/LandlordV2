@@ -16,6 +16,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -249,6 +250,16 @@ public class Tools {
             return meta.getDisplayName().toLowerCase();
         }
         return stack.getType().name().toLowerCase();
+    }
+
+    public static String formatNumberToMoney(int number) {
+        DecimalFormat formatter = new DecimalFormat("#.000");
+
+        if (number >= 1000) {
+            return formatter.format((double) number / 1000) + LangDict.getString(LangDict.CURRENCY);
+        } else {
+            return number + LangDict.getString(LangDict.CURRENCY);
+        }
     }
 
     public static Location middlePointBlock(Location location) {

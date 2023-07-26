@@ -10,8 +10,116 @@
 </head>
 <body>
 
-<h1>Number of players:</h1>
-<div id="num-players"></div>
+<style>
+    body {
+        padding: 20px;
+        background-color: #221919;
+        color: #645252;
+    }
+
+    h2 {
+        text-align: center;
+        color: #645252;
+        font-weight: 900;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .bottom-row {
+        margin-top: 100px;
+    }
+
+    .box {
+        margin-top: 20px;
+        background-color: #191111;
+        border-radius: 22px;
+        padding: 20px;
+    }
+
+    .numPlayers {
+        text-align: center;
+    }
+
+    #numPlayers {
+        font-size: 8em;
+    }
+
+    .list {
+        font-size: 1.3em;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+</style>
+
+<div class="logo">
+    <img src="/logo/"/>
+</div>
+
+<div class="numPlayers">
+    <h1>There are currently</h1>
+    <div id="numPlayers"></div>
+    <h1>players online</h1>
+</div>
+
+<div class="bottom-row row">
+    <div class="col-md-3">
+        <div class="box">
+            <h2>Season <span id="season"></span> Level <span id="level"></span></h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Item</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>Amount</h3>
+                </div>
+            </div>
+            <div class="list" id="remainingItems">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+        <div class="box">
+            <h2>Player status</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Player</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>Status</h3>
+                </div>
+            </div>
+            <div class="list" id="playerStatuses">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        <div class="box">
+            <h2>Bank info</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Player</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>Balance</h3>
+                </div>
+            </div>
+            <div class="list" id="playerBanks">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -25,7 +133,14 @@
                 const response = await fetch('/homedata/');
                 const data = await response.json();
                 // Assuming 'dataElement' is an ID for the element where data should be placed
-                document.getElementById('dataElement').textContent = data["numPlayers"];
+                document.getElementById('numPlayers').textContent = data["numPlayers"];
+                document.getElementById('season').textContent = data["season"];
+                document.getElementById('level').textContent = data["level"];
+
+                clearData();
+                populateRow(document.getElementById('remainingItems'), data["remainingItems"]);
+                populateRow(document.getElementById('playerStatuses'), data["playerStatuses"]);
+                populateRow(document.getElementById('playerBanks'), data["playerBanks"]);
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -33,9 +148,39 @@
 
         fetchData(); // Call the function once when the page loads
 
-        // Then call it again every minute
-        setInterval(fetchData, 60000);
+        // Then call it again every 5 seconds
+        setInterval(fetchData, 5000);
     };
+
+    function clearData() {
+        document.getElementById('remainingItems').innerHTML  = '';
+        document.getElementById('playerStatuses').innerHTML  = '';
+        document.getElementById('playerBanks').innerHTML  = '';
+    }
+
+    function populateRow(holder, data) {
+        for (let i = 0; i < data.length; i++) {
+            // row
+            const row = document.createElement("div");
+            row.classList.add("row");
+
+            // key col
+            const key = document.createElement("div");
+            key.innerText = data[i]["key"];
+            key.classList.add("col-md-6")
+            key.classList.add("text-center")
+
+            // value col
+            const value = document.createElement("div");
+            value.innerText = data[i]["value"];
+            value.classList.add("col-md-6");
+            value.classList.add("text-center")
+
+            row.appendChild(key);
+            row.appendChild(value);
+            holder.appendChild(row);
+        }
+    }
 </script>
 </body>
 </html>

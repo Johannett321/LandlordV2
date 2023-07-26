@@ -18,6 +18,7 @@ public class WebServerManager {
         // Add your servlets here
         context.addServlet(new ServletHolder(new PageHome()),"/");
         context.addServlet(new ServletHolder(new HomeDataSupplier()), "/homedata/");
+        context.addServlet(new ServletHolder(new LogoSupplier()), "/logo/");
 
         try {
             server.start();
