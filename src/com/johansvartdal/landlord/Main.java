@@ -6,6 +6,7 @@ import com.johansvartdal.landlord.lan.LanController;
 import com.johansvartdal.landlord.playerevents.JailEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import com.johansvartdal.landlord.renting.RentManager;
+import com.johansvartdal.landlord.webserver.WebServerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -37,6 +38,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static Configurator configurator;
 	public static TradeCenter tradeCenter;
 	public static PlayerDataManager playerDataManager;
+	public static WebServerManager webServerManager;
 	
 	@Override
 	public void onEnable() {
@@ -103,6 +105,9 @@ public class Main extends JavaPlugin implements Listener {
 		// Event
 		LandlordEventManager.loadEventIfAny(this);
 
+		// Start webserver
+		webServerManager = new WebServerManager();
+
 		// Only for LAN
 		LanController.initiate();
 
@@ -114,6 +119,7 @@ public class Main extends JavaPlugin implements Listener {
 	public void onDisable() {
 		PlayerEventManager.forceEndAllEvents();
 		RentManager.forceEndAllRents();
+		webServerManager.stopServer();
 	}
 
 	@EventHandler
