@@ -47,7 +47,7 @@ public class PageHome extends HttpServlet {
             }
 
             // Add the player to the return element
-            listOfPlayers.append("<div class='row'><div class='col-md-6 " + playerOnlineInfo + "'>" + playerData.getUsername() + "</div>" + "<div class='col-md-6'>" + playerData.getBalance() + "</div></div>");
+            listOfPlayers.append("<div class='row'><div class='col-md-4 " + playerOnlineInfo + "'>" + playerData.getUsername() + "</div><div class='col-md-4'>" + playerData.getStatus() + "</div><div class='col-md-4'>" + playerData.getBalance() + "</div></div>");
         }
 
         return listOfPlayers;

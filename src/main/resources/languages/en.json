@@ -365,5 +365,8 @@
   "webserver": {
     "players": "Players",
     "remainingItems": "Remaining items:"
+  },
+  "playerStatus": {
+    "home": "At home"
   }
 }

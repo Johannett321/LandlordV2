@@ -35,7 +35,7 @@ public class SetHome implements CommandExecutor {
 
         currentLocation.setX(currentLocation.getX());
         currentLocation.setZ(currentLocation.getZ());
-        Main.playerDataManager.getPlayerData(player).setHome(currentLocation);
+        Main.playerDataManager.getPlayerData(player).setCurrentHomeLocation(currentLocation);
         Tools.tellPlayer(player, LangDict.getString("home.homeUpdated"), ChatColor.GREEN);
         return true;
     }

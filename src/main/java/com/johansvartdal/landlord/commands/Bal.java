@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import java.util.ArrayList;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.InfoChat;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,6 +28,11 @@ public class Bal implements CommandExecutor {
 
 		Player player = (Player) sender;
 		Tools.printMenuHeader(player, LangDict.getString("banking.balance"));
+
+		// Print high end info if relevant
+		if (Main.playerDataManager.getPlayerData(player).isHighEnd()) {
+			Tools.printMenuOption(player, "VIP", "You are seen as HIGH END");
+		}
 		Tools.printMenuOption(player, LangDict.getString("banking.currentIncomeTax"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
 		Tools.printMenuOption(player, LangDict.getString("banking.currentVAT"), Bank.getWithdrawTaxPercentDisplay() + "%");
 		Tools.printMenuOption(player, LangDict.getString("banking.currentWealthTax"), Bank.getWealthTaxPercentDisplayForPlayer(player) + "%");

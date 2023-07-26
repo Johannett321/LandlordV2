@@ -1,5 +1,7 @@
 package com.johansvartdal.landlord;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,17 +15,18 @@ import static com.johansvartdal.landlord.Tools.*;
 
 public class PlayerData {
 
-    private int currentBalance = 0;
-    private int availableChunkPoints = 0;
-    private int streakMultiplier = 0;
-    private long streakCollectDeadline = 0;
-    private long streakCollectOpens = 0;
-    private final String username;
-    private Location home;
-    private ArrayList<int[]> ownedChunks = new ArrayList<>();
+    @Getter @Setter
+    private String status;
+    @Getter private int balance = 0;
+    @Getter private Location currentHomeLocation;
+    @Getter private final String username;
+    @Getter private int chunkPoints = 0;
+    @Getter private int streakMultiplier = 0;
+    @Getter private ArrayList<int[]> ownedChunks = new ArrayList<>();
+    @Getter private long streakCollectDeadline = 0;
+    @Getter private long streakCollectOpens = 0;
 
     private final World mainWorld;
-
 
     /**
      * WARNING: Only use this method for the first time the user joins the server. It sets a starting balance.
@@ -33,11 +36,12 @@ public class PlayerData {
     public PlayerData(World mainWorld, Player player) {
         this.username = player.getName();
         this.mainWorld = mainWorld;
-        currentBalance = StaticValues.PLAYERS_STARTING_BALANCE;
+        balance = StaticValues.PLAYERS_STARTING_BALANCE;
         if (Properties.DEBUG_MODE) {
-            currentBalance = 10000000;
-            availableChunkPoints = 100;
+            balance = 10000000;
+            chunkPoints = 100;
         }
+        status = LangDict.getString("playerStatus.home");
         save();
     }
 
@@ -49,10 +53,12 @@ public class PlayerData {
     public PlayerData(World mainWorld, String username) {
         this.username = username;
         this.mainWorld = mainWorld;
+
+        status = LangDict.getString("playerStatus.home");
     }
 
-    public void setHome(Location location) {
-        home = location;
+    public void setCurrentHomeLocation(Location location) {
+        currentHomeLocation = location;
         save();
     }
 
@@ -63,28 +69,20 @@ public class PlayerData {
     }
 
     public boolean canAfford(int price) {
-        if (currentBalance >= price) {
+        if (balance >= price) {
             return true;
         }
         return false;
     }
 
     public void withdrawBalance(int amount) {
-        currentBalance -= amount;
+        balance -= amount;
         save();
     }
 
     public void depositBalance(int amount) {
-        currentBalance += amount;
+        balance += amount;
         save();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public ArrayList<int[]> getOwnedChunks() {
-        return ownedChunks;
     }
 
     public boolean ownsChunk(Chunk chunk) {
@@ -101,7 +99,7 @@ public class PlayerData {
     }
 
     public boolean hasChunkPoints() {
-        return availableChunkPoints > 0;
+        return chunkPoints > 0;
     }
 
     private JSONArray ownedChunksAsJSONArray() {
@@ -134,20 +132,20 @@ public class PlayerData {
     public void save() {
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put("Balance", currentBalance);
-        jsonObject.put("AvailableChunkPoints", availableChunkPoints);
+        jsonObject.put("Balance", balance);
+        jsonObject.put("AvailableChunkPoints", chunkPoints);
         jsonObject.put("OwnedChunks", ownedChunksAsJSONArray());
         jsonObject.put("streakMultiplier", streakMultiplier);
         jsonObject.put("streakCollectDeadline", streakCollectDeadline);
         jsonObject.put("streakCollectOpens", streakCollectOpens);
 
-        if (home != null) {
+        if (currentHomeLocation != null) {
             JSONObject homeJsonObj = new JSONObject();
-            homeJsonObj.put("x", home.getX());
-            homeJsonObj.put("y", home.getY());
-            homeJsonObj.put("z", home.getZ());
-            homeJsonObj.put("yaw", home.getYaw());
-            homeJsonObj.put("pitch", home.getPitch());
+            homeJsonObj.put("x", currentHomeLocation.getX());
+            homeJsonObj.put("y", currentHomeLocation.getY());
+            homeJsonObj.put("z", currentHomeLocation.getZ());
+            homeJsonObj.put("yaw", currentHomeLocation.getYaw());
+            homeJsonObj.put("pitch", currentHomeLocation.getPitch());
             jsonObject.put("Home", homeJsonObj);
         }
 
@@ -164,8 +162,8 @@ public class PlayerData {
         }
 
         // Balance
-        currentBalance = (int) ((long) obj.get("Balance"));
-        availableChunkPoints = (int) ((long)obj.get("AvailableChunkPoints"));
+        balance = (int) ((long) obj.get("Balance"));
+        chunkPoints = (int) ((long)obj.get("AvailableChunkPoints"));
 
         // Home location
         if (obj.containsKey("Home")) {
@@ -178,9 +176,9 @@ public class PlayerData {
             float homePitch = (float) homePitchD;
             debugLog(username + "'s home address: " + homeX + ":" + homeY + ":" + homeZ + ":" + homeYawD + ":" + homePitchD + ":" + homeYaw + ":" + homePitch);
 
-            home = new Location(mainWorld, homeX, homeY, homeZ);
-            home.setYaw(homeYaw);
-            home.setPitch(homePitch);
+            currentHomeLocation = new Location(mainWorld, homeX, homeY, homeZ);
+            currentHomeLocation.setYaw(homeYaw);
+            currentHomeLocation.setPitch(homePitch);
         }else {
             debugLog("No Home data found for player. Must be a new player");
         }
@@ -194,32 +192,8 @@ public class PlayerData {
         ownedChunks = convertToOwnedChunks((JSONArray) obj.get("OwnedChunks"));
     }
 
-    public Location getHomeLocation() {
-        return home;
-    }
-
-    public int getBalance() {
-        return currentBalance;
-    }
-
-    public int getChunkPoints() {
-        return availableChunkPoints;
-    }
-
     public int getChunkPurchasePrice() {
         return ownedChunks.size()*5000;
-    }
-
-    public int getStreakMultiplier() {
-        return streakMultiplier;
-    }
-
-    public long getStreakCollectDeadline() {
-        return streakCollectDeadline;
-    }
-
-    public long getStreakCollectOpens() {
-        return streakCollectOpens;
     }
 
     public void updateStreak(long streakCollectOpens, long deadline, int multiplier) {
@@ -230,12 +204,12 @@ public class PlayerData {
     }
 
     public void addChunkPoints(int amount) {
-        availableChunkPoints += amount;
+        chunkPoints += amount;
         save();
     }
 
     public void withdrawChunkPoint() {
-        availableChunkPoints--;
+        chunkPoints--;
         save();
     }
 
@@ -247,6 +221,6 @@ public class PlayerData {
         if (Properties.DEBUG_MODE) {
             return true;
         }
-        return currentBalance >= 50000;
+        return balance >= 50000;
     }
 }

@@ -34,7 +34,7 @@ public class GameJustStarted {
             // teleport players home
             currentPlayer.teleport(location);
             currentPlayer.setBedSpawnLocation(location, true);
-            Main.playerDataManager.getPlayerData((Player) players[i]).setHome(location);
+            Main.playerDataManager.getPlayerData((Player) players[i]).setCurrentHomeLocation(location);
 
             // show title
             currentPlayer.sendTitle(LangDict.getString("events.preparations.welcomeTitle") + ChatColor.DARK_PURPLE + "Landlord", ChatColor.RED + "V2");
