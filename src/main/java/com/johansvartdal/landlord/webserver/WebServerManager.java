@@ -18,7 +18,10 @@ public class WebServerManager {
         // Add your servlets here
         context.addServlet(new ServletHolder(new PageHome()),"/");
         context.addServlet(new ServletHolder(new HomeDataSupplier()), "/homedata/");
+
+        // images
         context.addServlet(new ServletHolder(new LogoSupplier()), "/logo/");
+        context.addServlet(new ServletHolder(new FaviconSupplier()), "/favicon/");
 
         try {
             server.start();
