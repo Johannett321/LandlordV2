@@ -348,5 +348,9 @@
     "golddiggers": "GoldDiggers er et gullgruvefirma som kun ansetter kvinner for å jobbe i gruvene deres. De er kjent for å bare gå forbi alle diamanter de finner, ettersom de bare graver etter gull.",
     "minedonalds": "En hurtigmatrestaurant for gruvearbeidere som har tilbrakt en lang dag i det dype mørket. De er mest kjent for deres 'Creeper Crunch Burgere', 'Ender Pommes Frites' og 'Lava Shakes'",
     "netherexpress": "En bedrift kjent for mye raskere leveringstid på grunn av deres bruk av nether-portaler. Ettersom hvert skritt i Nether tilsvarer 16 skritt i Overworld, er leveringstidene deres praktisk talt uslåelige."
+  },
+  "webserver": {
+    "players": "Players",
+    "remainingItems": "Remaining items:"
   }
 }

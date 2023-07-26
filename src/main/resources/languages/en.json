@@ -361,5 +361,9 @@
     "golddiggers": "GoldDiggers is a gold mining company that only hire women for working in their mines. They are known for just walking past all diamonds they find, as they only mine gold.",
     "minedonalds": "A fast food restaurant for miners who have spent a long day in the deep dark. They are most famous for their 'Creeper Crunch Burgers', 'Ender Fries' and 'Lava Shakes'",
     "netherexpress": "A business known for a much faster delivery time due to their use of nether portals. As each step in the Nether equaling 16 steps in the Overworld, their delivery times are practically unbeatable."
+  },
+  "webserver": {
+    "players": "Players",
+    "remainingItems": "Remaining items:"
   }
 }

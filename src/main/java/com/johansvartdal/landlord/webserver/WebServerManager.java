@@ -32,4 +32,32 @@ public class WebServerManager {
             e.printStackTrace();
         }
     }
+
+    protected static StringBuilder getSiteHeader() {
+        StringBuilder siteHeader = new StringBuilder();
+        siteHeader.append("<html>");
+        siteHeader.append("<head>");
+        siteHeader.append("<style>" +
+                "body { " +
+                "font-family: Arial, sans-serif; " +
+                "background-color: #282c34; " +
+                "color: #61dafb; " +
+                "display: flex; " +
+                "justify-content: center; " +
+                "align-items: center; " +
+                "height: 100vh; " +
+                "margin: 0; " +
+                "}" +
+                "</style>");
+        siteHeader.append("</head>");
+        siteHeader.append("<body>");
+        return siteHeader;
+    }
+
+    protected static StringBuilder getSiteEnding() {
+        StringBuilder siteEnding = new StringBuilder();
+        siteEnding.append("</body>");
+        siteEnding.append("</html>");
+        return siteEnding;
+    }
 }
