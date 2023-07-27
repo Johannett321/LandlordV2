@@ -23,8 +23,8 @@
       "notAvailableRN": "Not available at the moment",
       "cannotFindLanguage": "Cannot find language with code: ",
       "tooPoorForCommand": "You are too poor for this command",
-      "cmdOnlyInWilderness": "This command can only be used in wilderness"
-    },
+      "cmdOnlyInWilderness": "This command can only be used in wilderness",
+      "upgradePlayerInEvent": "A player is currently engaged in an event that must conclude before upgrading can proceed. Please ensure that all players are at home and idle before attempting to reissue the command."    },
     "successMessages": {
       "langChangedTo": "The language was changed to ",
       "onlyEnglish": "Language fallback is working correctly!"
@@ -35,7 +35,8 @@
     "serverRestarted": "Server just restarted!",
     "playersAreSleeping": " player(s) are sleeping",
     "welcomeHome": "Welcome home",
-    "teleportedBackToEvent": "You have been teleported back to the event"
+    "teleportedBackToEvent": "You have been teleported back to the event",
+    "alphaBuild": "You are currently using an early access version of Landlord V2, which is in its alpha stage. Please bear in mind that you may encounter bugs or other issues that we intend to fix prior to the official release. We highly encourage you to report any bugs you come across."
   },
   "cheatProtection": {
     "cheatProtectionOutsideChunk": "You were sent home as it was detected that you were outside your own chunks",

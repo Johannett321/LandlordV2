@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.chatentities.InfoChat;
 import com.johansvartdal.landlord.chatentities.WarningChat;
 import com.johansvartdal.landlord.commands.*;
 import com.johansvartdal.landlord.lan.LanController;
@@ -160,6 +161,11 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player joinedPlayer = event.getPlayer();
+
+		// TODO: FJERN DETTE (Info om alpha versjon)
+		if (!Properties.DEBUG_MODE) {
+			Tools.tellPlayer(new InfoChat(), joinedPlayer, LangDict.getString("info.alphaBuild"), ChatColor.RED);
+		}
 
 		// inform player about debug mode
 		if (Properties.DEBUG_MODE) {

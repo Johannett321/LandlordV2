@@ -29,8 +29,8 @@ public class Fly implements CommandExecutor {
 			return true;
 		}
 
-		// game state normal
-		if (Tools.stateNotNormal(player)) {
+		// game state normal && check if player is jailed
+		if (Tools.stateNotNormal(player) || JailManager.playerIsInJail(player)) {
 			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
 			return true;
 		}

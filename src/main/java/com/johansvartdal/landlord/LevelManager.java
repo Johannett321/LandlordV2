@@ -1,9 +1,8 @@
 package com.johansvartdal.landlord;
 
-import com.johansvartdal.landlord.lan.AudioLayer;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.lan.LanController;
 import com.johansvartdal.landlord.levels.*;
-import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -120,8 +119,12 @@ public class LevelManager {
     }
 
     public static void donateItem(Player player, ItemStack itemStack) {
-        currentLevel.donateItem(player, itemStack);
-        checkIfUpgradeShouldBeScheduled(false);
+        UpgradeDecision upgradeDecision = getUpgradeStatus();
+        switch (upgradeDecision) {
+            case UPGRADE, NOT_ENOUGH_ITEMS, NOT_EVERYONE_HAS_ACCEPTED -> currentLevel.donateItem(player, itemStack);
+            case PLAYER_IN_EVENT -> Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("commandResponses.errorMessages.upgradePlayerInEvent"));
+            case GAME_STATE_NOT_NORMAL -> Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
+        }
         save();
     }
 
@@ -160,14 +163,28 @@ public class LevelManager {
             Tools.tellPlayer(player, LangDict.getString("upgrade.cannotForceUpWithoutAllItems"), ChatColor.RED);
             return;
         }
-        checkIfUpgradeShouldBeScheduled(true);
+        proceedToNextLevel();
     }
 
-    public static void playerAcceptsUpgrade(Player player) {
+    public static void playerAcceptsUpgrade(Player playerThatAccepted) {
+        UpgradeDecision upgradeDecision = getUpgradeStatus();
+        switch (upgradeDecision) {
+            case NOT_EVERYONE_HAS_ACCEPTED, NOT_ENOUGH_ITEMS -> informAboutAcceptionFromPlayer(playerThatAccepted);
+            case UPGRADE -> proceedToNextLevelAndInformAbout(playerThatAccepted);
+            case PLAYER_IN_EVENT -> Tools.tellPlayer(new ErrorChat(), playerThatAccepted, LangDict.getString("commandResponses.errorMessages.upgradePlayerInEvent"));
+            case GAME_STATE_NOT_NORMAL -> Tools.tellPlayer(new ErrorChat(), playerThatAccepted, LangDict.getString(LangDict.CMD_NOT_NOW));
+        }
+    }
+
+    private static void proceedToNextLevelAndInformAbout(Player acceptingPlayer) {
+        informAboutAcceptionFromPlayer(acceptingPlayer);
+        proceedToNextLevel();
+    }
+
+    private static void informAboutAcceptionFromPlayer(Player player) {
+        // tell the world that the player accepted
         God.speak(LangDict.getString("upgrade.citizens") + player.getDisplayName() + LangDict.getString("upgrade.justAcceptedUp"));
         acceptedPlayers.add(player.getDisplayName());
-
-        checkIfUpgradeShouldBeScheduled(false);
     }
 
     public static boolean playerHasAccepted(Player player) {
@@ -177,16 +194,36 @@ public class LevelManager {
         return false;
     }
 
-    private static void checkIfUpgradeShouldBeScheduled(boolean force) {
+    private enum UpgradeDecision {
+        PLAYER_IN_EVENT,
+        GAME_STATE_NOT_NORMAL,
+        NOT_ENOUGH_ITEMS,
+        NOT_EVERYONE_HAS_ACCEPTED,
+        UPGRADE
+    }
+
+    private static UpgradeDecision getUpgradeStatus() {
         // make sure no items remain
         if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
-            return;
+            return UpgradeDecision.NOT_ENOUGH_ITEMS;
         }
 
-        // proceed if everyone accepted or force is true
-        if (acceptedPlayers.size() >= Main.playerDataManager.getPlayerDataList().size() ||  force) {
-            proceedToNextLevel();
+        // make sure everyone has accepted
+        if (acceptedPlayers.size() < Main.playerDataManager.getPlayerDataList().size()) {
+            return UpgradeDecision.NOT_EVERYONE_HAS_ACCEPTED;
         }
+
+        // make sure there is no global event
+        if (Main.properties.gameStateIsNormal()) {
+            return UpgradeDecision.GAME_STATE_NOT_NORMAL;
+        }
+
+        // check if any player is in event
+        if (PlayerEventManager.anyPlayersInEvent()) {
+            return UpgradeDecision.PLAYER_IN_EVENT;
+        }
+
+        return UpgradeDecision.UPGRADE;
     }
 
     public static void load() {

@@ -47,6 +47,18 @@ public class Lounge implements CommandExecutor {
 			return true;
 		}
 
+		// make sure visitor is not in event that can't cancel
+		PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(player);
+		if (playerEvent != null) {
+			// can tp away?
+			if (!playerEvent.playerTPAwayAllowed()) {
+				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
+			}
+
+			// end event
+			playerEvent.endEvent();
+		}
+
 		// invalid format
 		if (args.length > 1) {
 			return false;

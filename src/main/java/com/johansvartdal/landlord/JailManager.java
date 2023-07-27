@@ -27,4 +27,8 @@ public class JailManager {
         }
         PlayerEventManager.startPlayerEvent(jailEvent);
     }
+
+    public static boolean playerIsInJail(Player player) {
+        return PlayerEventManager.getEventForPlayer(player) instanceof JailEvent;
+    }
 }

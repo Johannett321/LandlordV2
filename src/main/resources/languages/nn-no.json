@@ -23,7 +23,8 @@
       "notAvailableRN": "Ikkje tilgjengeleg akkurat no",
       "cannotFindLanguage": "Finn ikkje språk med språkkode: ",
       "tooPoorForCommand": "Du er dessverre ikkje rik nok for denne kommandoen",
-      "cmdOnlyInWilderness": "Denne kommandoen kan berre brukast i villmarka"
+      "cmdOnlyInWilderness": "Denne kommandoen kan berre brukast i villmarka",
+      "upgradePlayerInEvent": "Ein spelar er for tida i eit event som må avsluttast før oppgraderinga kan fortsetje. Sørg for at alle spelarane er heime og uvirksame før du prøver å gi kommandoen på nytt."
     },
     "successMessages": {
       "langChangedTo": "Språket vart endra til "
@@ -34,7 +35,8 @@
     "serverRestarted": "Serveren vart nyleg restarta!",
     "playersAreSleeping": " spelar(ar) søv",
     "welcomeHome": "Velkommen heim",
-    "teleportedBackToEvent": "Du er blitt teleportert tilbake til eventet"
+    "teleportedBackToEvent": "Du er blitt teleportert tilbake til eventet",
+    "alphaBuild": "Du brukar no ein tidleg tilgangsversjon av Landlord V2, som er i alfastadiet. Ver venleg å ha i tankane at du kan støyta på feil eller andre problem som vi har til hensikt å fikse før den offisielle lanseringa. Vi oppfordrar deg sterkt til å rapportere eventuelle feil du kjem over."
   },
   "cheatProtection": {
     "cheatProtectionOutsideChunk": "Du blei sendt heim fordi det blei oppdaga at du var utanfor dine eigne chunks",
