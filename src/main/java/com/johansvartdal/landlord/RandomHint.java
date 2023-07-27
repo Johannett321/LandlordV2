@@ -51,6 +51,7 @@ public class RandomHint {
         hints.add("'/home' will almost always take you home. Almost...");
         hints.add("Do you want to build something cool, or just trade with someone? Do '/trade'");
         hints.add("Did you know you could find a better spot for your home? Do '/sethome' somewhere else inside your chunk");
+        hints.add("If you get enough money, you may visit the lounge");
 
         hints.add("Landlord supports up to 8 players!");
         hints.add("Did you know the Landlord plugin was developed by Johan Svartdal?");

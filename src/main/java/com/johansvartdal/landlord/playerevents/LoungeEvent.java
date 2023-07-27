@@ -5,7 +5,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.Jukebox;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Random;
@@ -13,10 +16,19 @@ import java.util.Random;
 public class LoungeEvent extends PlayerEvent {
 
     Location loungeLocation;
+    Location jukeboxLocation;
+    Jukebox jukebox;
 
     public LoungeEvent(Main plugin, Player player) {
         super(plugin, player);
-        loungeLocation = new Location(Bukkit.getWorld("lladv"), 200, 200, 200); // TODO: Get location of lounge
+        // define jukebox
+        jukeboxLocation = new Location(Bukkit.getWorld("lladv"), 101, 69, -875);
+        jukebox = (Jukebox) jukeboxLocation.getBlock().getState();
+
+        // define spawn location
+        loungeLocation = new Location(Bukkit.getWorld("lladv"), 107, 68, -871);
+        loungeLocation.setYaw(63);
+        loungeLocation.setPitch(0);
     }
 
     @Override
@@ -26,6 +38,17 @@ public class LoungeEvent extends PlayerEvent {
         // update status & tell player
         PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.inLounge"));
         Tools.tellPlayer(player, LangDict.getString("playerEvents.lounge.welcomeToLounge"));
+
+        // play lounge music
+        playLoungeMusic();
+    }
+
+    private void playLoungeMusic() {
+        if (!jukebox.isPlaying()) {
+            ItemStack record = new ItemStack(Material.MUSIC_DISC_STAL);
+            jukebox.setRecord(record);
+            jukebox.update();
+        }
     }
 
     @Override
