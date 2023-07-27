@@ -169,7 +169,7 @@ public class LevelManager {
     public static void playerAcceptsUpgrade(Player playerThatAccepted) {
         UpgradeDecision upgradeDecision = getUpgradeStatus();
         switch (upgradeDecision) {
-            case NOT_EVERYONE_HAS_ACCEPTED, NOT_ENOUGH_ITEMS -> informAboutAcceptionFromPlayer(playerThatAccepted);
+            case NOT_EVERYONE_HAS_ACCEPTED, NOT_ENOUGH_ITEMS -> informAboutAcceptanceFromPlayer(playerThatAccepted);
             case UPGRADE -> proceedToNextLevelAndInformAbout(playerThatAccepted);
             case PLAYER_IN_EVENT -> Tools.tellPlayer(new ErrorChat(), playerThatAccepted, LangDict.getString("commandResponses.errorMessages.upgradePlayerInEvent"));
             case GAME_STATE_NOT_NORMAL -> Tools.tellPlayer(new ErrorChat(), playerThatAccepted, LangDict.getString(LangDict.CMD_NOT_NOW));
@@ -177,11 +177,11 @@ public class LevelManager {
     }
 
     private static void proceedToNextLevelAndInformAbout(Player acceptingPlayer) {
-        informAboutAcceptionFromPlayer(acceptingPlayer);
+        informAboutAcceptanceFromPlayer(acceptingPlayer);
         proceedToNextLevel();
     }
 
-    private static void informAboutAcceptionFromPlayer(Player player) {
+    private static void informAboutAcceptanceFromPlayer(Player player) {
         // tell the world that the player accepted
         God.speak(LangDict.getString("upgrade.citizens") + player.getDisplayName() + LangDict.getString("upgrade.justAcceptedUp"));
         acceptedPlayers.add(player.getDisplayName());
