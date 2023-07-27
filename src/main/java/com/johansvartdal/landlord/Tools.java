@@ -195,7 +195,7 @@ public class Tools {
             if (excludePlayers != null) {
                 boolean playerShouldBeExcluded = false;
                 for (Player excludedPlayer : excludePlayers) {
-                    if (player.equals(excludedPlayer)) {
+                    if (player.getUniqueId().equals(excludedPlayer.getUniqueId())) {
                         playerShouldBeExcluded = true;
                     }
                 }
@@ -308,7 +308,7 @@ public class Tools {
                 // check if player should be excluded from sound
                 boolean playerShouldBeExcluded = false;
                 for (Player excludedPlayer : excludePlayers) {
-                    if (excludedPlayer.equals(player)) {
+                    if (excludedPlayer.getUniqueId().equals(player.getUniqueId())) {
                         playerShouldBeExcluded = true;
                         break;
                     }

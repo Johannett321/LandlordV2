@@ -2,28 +2,25 @@ package com.johansvartdal.landlord.playerevents;
 
 import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Jukebox;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitTask;
-
-import java.util.Random;
 
 public class LoungeEvent extends PlayerEvent {
 
     Location loungeLocation;
     Location jukeboxLocation;
-    Jukebox jukebox;
+    Block jukeboxBlock;
 
     public LoungeEvent(Main plugin, Player player) {
         super(plugin, player);
         // define jukebox
         jukeboxLocation = new Location(Bukkit.getWorld("lladv"), 101, 69, -875);
-        jukebox = (Jukebox) jukeboxLocation.getBlock().getState();
+        jukeboxBlock = jukeboxLocation.getBlock();
 
         // define spawn location
         loungeLocation = new Location(Bukkit.getWorld("lladv"), 107, 68, -871);
@@ -41,14 +38,42 @@ public class LoungeEvent extends PlayerEvent {
 
         // play lounge music
         playLoungeMusic();
+
+        // give player food and drink
+        ItemStack snacks = new ItemStack(Material.COOKIE);
+        snacks.setAmount(3);
+        ItemStack drinks = new ItemStack(Material.POTION);
+        drinks.setAmount(2);
+        Tools.givePlayerItemOrDrop(player, snacks, true);
+        Tools.givePlayerItemOrDrop(player, drinks, true);
     }
 
     private void playLoungeMusic() {
-        if (!jukebox.isPlaying()) {
-            ItemStack record = new ItemStack(Material.MUSIC_DISC_STAL);
-            jukebox.setRecord(record);
-            jukebox.update();
+        BlockState blockState = jukeboxBlock.getState();
+        if (!(blockState instanceof Jukebox)) {
+            createJukeboxAndPlaySong(Material.MUSIC_DISC_STAL);
+            return;
         }
+
+        Jukebox jukebox = (Jukebox) jukeboxBlock.getState();
+        if (!jukebox.isPlaying()) {
+            createJukeboxAndPlaySong(Material.MUSIC_DISC_STAL);
+        }
+    }
+
+    private void resetJukebox() {
+        jukeboxBlock.setType(Material.AIR);
+    }
+
+    private void createJukeboxAndPlaySong(Material disc) {
+        // Place a new Jukebox
+        jukeboxBlock.setType(Material.JUKEBOX);
+
+        // Insert the record
+        Jukebox jukebox = (Jukebox) jukeboxBlock.getState();
+        ItemStack record = new ItemStack(disc);
+        jukebox.setRecord(record);
+        jukebox.update();
     }
 
     @Override
@@ -65,11 +90,12 @@ public class LoungeEvent extends PlayerEvent {
     public void endEvent() {
         super.endEvent();
 
+        resetJukebox();
+
         player.teleport(locationBeforeEvent);
 
         // update status & tell player
         PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
-        Tools.tellPlayer(player, LangDict.getString(LangDict.WELCOME_HOME));
     }
 
     @Override

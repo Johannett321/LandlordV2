@@ -2,10 +2,9 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
-import com.johansvartdal.landlord.playerevents.FlyingEvent;
 import com.johansvartdal.landlord.playerevents.LoungeEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
-import org.bukkit.ChatColor;
+import lombok.AllArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,6 +19,7 @@ public class Lounge implements CommandExecutor {
 
 	ArrayList<LoungeVisit> cooldown = new ArrayList<>();
 
+	@AllArgsConstructor
 	private class LoungeVisit {
 		Player player;
 		long visitTimeMillis;
@@ -45,18 +45,6 @@ public class Lounge implements CommandExecutor {
 		if (Tools.stateNotNormal(player)) {
 			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
 			return true;
-		}
-
-		// make sure visitor is not in event that can't cancel
-		PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(player);
-		if (playerEvent != null) {
-			// can tp away?
-			if (!playerEvent.playerTPAwayAllowed()) {
-				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
-			}
-
-			// end event
-			playerEvent.endEvent();
 		}
 
 		// invalid format
@@ -89,10 +77,17 @@ public class Lounge implements CommandExecutor {
 	}
 
 	private void attemptLounge(Player player) {
-		// check if player is in event
-		if (PlayerEventManager.playerIsInEvent(player)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
-			return;
+		// make sure player is not in event that can't cancel
+		PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(player);
+		if (playerEvent != null) {
+			// can tp away or already in lounge?
+			if (!playerEvent.playerTPAwayAllowed() || playerEvent instanceof LoungeEvent) {
+				Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
+				return;
+			}
+
+			// end event
+			playerEvent.endEvent();
 		}
 
 		// check cooldown
@@ -103,6 +98,8 @@ public class Lounge implements CommandExecutor {
 
 		// player is not in cooldown. Take him to the lounge
 		PlayerEventManager.startPlayerEvent(new LoungeEvent(plugin, player));
+		LoungeVisit loungeVisit = new LoungeVisit(player, System.currentTimeMillis());
+		cooldown.add(loungeVisit);
 	}
 
 	private boolean isPlayerInCooldown(Player player) {
@@ -117,7 +114,7 @@ public class Lounge implements CommandExecutor {
 			}
 
 			// check if this player in cooldown is the player that issued the command
-			if (loungeVisit.player.equals(player)) {
+			if (loungeVisit.player.getUniqueId().equals(player.getUniqueId())) {
 				return true;
 			}
 		}

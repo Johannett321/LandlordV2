@@ -2,6 +2,7 @@ package com.johansvartdal.landlord;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -221,6 +222,15 @@ public class PlayerData {
         if (Properties.DEBUG_MODE) {
             return true;
         }
-        return balance >= 50000;
+        switch (LevelManager.getCurrentDisplaySeasonNum()) {
+            case 1 -> {
+                return balance >= 50000;
+            }case 2 -> {
+                return balance >= 100000;
+            }case 3 -> {
+                return balance >= 125000;
+            }
+        }
+        return false;
     }
 }

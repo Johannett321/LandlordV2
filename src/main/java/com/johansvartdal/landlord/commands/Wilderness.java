@@ -150,7 +150,8 @@ public class Wilderness implements CommandExecutor {
         PlayerEvent event = PlayerEventManager.getEventForPlayer(player);
 
         // make sure event is not null
-        if (event == null) {
+        // make sure player actually is in wilderness
+        if (!(event instanceof WildernessEvent)) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
@@ -169,7 +170,10 @@ public class Wilderness implements CommandExecutor {
     }
 
     private void time(Player player) {
-        if (!PlayerEventManager.playerIsInEvent(player)) {
+        PlayerEvent playerEvent = PlayerEventManager.getEventForPlayer(player);
+
+        // make sure player actually is in wilderness
+        if (!(playerEvent instanceof WildernessEvent)) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }

@@ -55,7 +55,7 @@ public class RouletteGame {
 
         Tools.broadcastMessage(new RouletteChat(), LangDict.getString("roulette.rouletteBegin") + itemStack.getAmount() + " " + itemStack.getType().name());
         Tools.playSoundForEveryone(Sound.BLOCK_LEVER_CLICK);
-        Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_BELL);
+        Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_HARP);
 
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override

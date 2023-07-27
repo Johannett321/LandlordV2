@@ -5,6 +5,8 @@ import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
@@ -77,24 +79,56 @@ public class Bank {
     }
 
     public static void depositPlayer(Player player, int amount) {
-        int tax = calculateDepositTaxAmount(player, amount);
-        taxBank += tax;
+        PlayerData playerData = Main.playerDataManager.getPlayerData(player);
 
+        // store if player was high end so we can compare
+        boolean wasHighEnd = playerData.isHighEnd();
+
+        // calculate tax amount
+        int tax = calculateDepositTaxAmount(player, amount);
+
+        // if the taxed amount for some reason is less than 0. This shouldn't happen.
         if (amount - tax <= 0) {
             tax = 0;
-        }else {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") +
-                    tax +
-                    LangDict.getString(LangDict.CURRENCY) +
-                    " (" + getDepositTaxPercentDisplayForPlayer(player) +
-                    "%)" + LangDict.getString("banking.inTax"), ChatColor.GRAY);
+            return;
         }
-        Main.playerDataManager.getPlayerData(player).depositBalance(amount - tax);
+
+        // add amount to treasury
+        taxBank += tax;
+
+        // add amount to player bank
+        playerData.depositBalance(amount - tax);
+
+        // inform player
+        Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") +
+                tax +
+                LangDict.getString(LangDict.CURRENCY) +
+                " (" + getDepositTaxPercentDisplayForPlayer(player) +
+                "%)" + LangDict.getString("banking.inTax"), ChatColor.GRAY);
+
+        // player just became high, we should tell him
+        if (!wasHighEnd && playerData.isHighEnd()) {
+            Tools.tellPlayer(new BankChat(), player, "You just received high end status. You now have access to the lounge. Do /lounge info to read more", ChatColor.GOLD);
+            Tools.playSoundForSinglePlayer(player, Sound.BLOCK_NOTE_BLOCK_BELL);
+        }
+
         save();
     }
 
     public static void depositPlayerWithoutTax(Player player, int amount) {
+        PlayerData playerData = Main.playerDataManager.getPlayerData(player);
+
+        // store if player was high end so we can compare
+        boolean wasHighEnd = playerData.isHighEnd();
+
+        // deposit the amount
         Main.playerDataManager.getPlayerData(player).depositBalance(amount);
+
+        // player just became high, we should tell him
+        if (!wasHighEnd && playerData.isHighEnd()) {
+            Tools.tellPlayer(new BankChat(), player, "You just received high end status. You now have access to the lounge. Do /lounge info to read more", ChatColor.GOLD);
+            Tools.playSoundForSinglePlayer(player, Sound.BLOCK_NOTE_BLOCK_BELL);
+        }
     }
 
     public static int getPlayerBalance(Player player) {
