@@ -12,6 +12,8 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.johansvartdal.landlord.Tools.debugLog;
+
 public class LevelManager {
 
     private static Main plugin;
@@ -284,11 +286,8 @@ public class LevelManager {
 
     public static int getCurrentDisplaySeasonNum() {
         if (currentLevel == null) {
-            System.out.println("Warning! Seasong is 0");
+            debugLog("Warning! Season is 0");
             return 0;
-        }
-        if (Properties.DEBUG_MODE) {
-            System.out.println("Returning season: " + currentLevel.getDisplaySeasonNumber());
         }
         return currentLevel.getDisplaySeasonNumber();
     }

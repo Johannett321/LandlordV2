@@ -58,6 +58,8 @@ public class S2Level1 extends Level{
         // Glowstone
         // En eller annen farget concrete powder som lages fra en farge du får av dyr (for eksempel svart)
         // Waxed copper block (Lages fra honning og kobber)
+        // Block of bamboo
+        // Cherry planks?
 
 
         // -------- FRA NETHER -----------
