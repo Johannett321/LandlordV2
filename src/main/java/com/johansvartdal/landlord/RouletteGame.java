@@ -148,7 +148,7 @@ public class RouletteGame {
     private ItemStack getRandomItemStack() {
         ItemStack itemStack = null;
         Random random = new Random();
-        int randomInt = random.nextInt(41);
+        int randomInt = random.nextInt(42);
 
         switch (randomInt) {
             case 0 -> {
@@ -300,6 +300,9 @@ public class RouletteGame {
             }case 40 -> {
                 itemStack = new ItemStack(Material.NAME_TAG);
                 itemStack.setAmount(1);
+            }case 41 -> {
+                itemStack = new ItemStack(Material.FIREWORK_ROCKET);
+                itemStack.setAmount(32);
             }
         }
         return itemStack;
