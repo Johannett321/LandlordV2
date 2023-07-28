@@ -2,16 +2,14 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
 import lombok.NonNull;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.ArrayList;
 
-public class Level1 extends Level {
+public class S1Level1 extends Level {
 
-    public Level1(Main plugin) {
+    public S1Level1(Main plugin) {
         super(plugin, 1, 1);
     }
 

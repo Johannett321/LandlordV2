@@ -19,7 +19,6 @@ public class S2Level1 extends Level{
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 
         //TODO NOT DONE!!
-        requiredItems.add(new ItemStack(Material.COBBLESTONE, 300 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.GRANITE, 100 * Main.properties.getNumberOfPlayers()));
 
         requiredItems.add(new ItemStack(Material.SUGAR_CANE, 240 * Main.properties.getNumberOfPlayers()));

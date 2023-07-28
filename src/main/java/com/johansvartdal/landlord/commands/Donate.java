@@ -3,7 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
-import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

@@ -1,13 +1,10 @@
 package com.johansvartdal.landlord.renting;
 
-import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class RentableShovel extends RentableItem {
 

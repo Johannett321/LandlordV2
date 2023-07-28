@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.events;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.lan.AudioLayer;
 import com.johansvartdal.landlord.lan.LanController;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;

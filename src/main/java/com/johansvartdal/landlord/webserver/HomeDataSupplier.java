@@ -1,6 +1,6 @@
 package com.johansvartdal.landlord.webserver;
 
-import com.johansvartdal.landlord.LevelManager;
+import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.PlayerData;
 import com.johansvartdal.landlord.Tools;

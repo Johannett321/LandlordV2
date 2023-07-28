@@ -2,7 +2,6 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.InfoChat;
-import lombok.NonNull;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

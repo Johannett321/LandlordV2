@@ -7,9 +7,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-public class Level2 extends Level{
+public class S1Level2 extends Level{
 
-    public Level2(Main plugin) {
+    public S1Level2(Main plugin) {
         super(plugin, 1, 2);
     }
 

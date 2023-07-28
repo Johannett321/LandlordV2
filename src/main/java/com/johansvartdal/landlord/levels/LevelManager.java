@@ -1,8 +1,8 @@
-package com.johansvartdal.landlord;
+package com.johansvartdal.landlord.levels;
 
+import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.lan.LanController;
-import com.johansvartdal.landlord.levels.*;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -35,11 +35,11 @@ public class LevelManager {
 
     public static void populateLevels() {
         allLevels = new Level[] {
-                new Level1(plugin),
-                new Level2(plugin),
-                new Level3(plugin),
-                new Level4(plugin),
-                new Level5(plugin)
+                new S1Level1(plugin),
+                new S1Level2(plugin),
+                new S1Level3(plugin),
+                new S1Level4(plugin),
+                new S1Level5(plugin)
         };
     }
 

@@ -5,14 +5,13 @@ import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-public class Level5 extends Level{
+public class S1Level5 extends Level{
 
-    public Level5(Main plugin) {
+    public S1Level5(Main plugin) {
         super(plugin, 1, 5);
     }
 

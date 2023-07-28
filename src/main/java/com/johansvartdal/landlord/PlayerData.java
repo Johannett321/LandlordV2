@@ -1,8 +1,8 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.levels.LevelManager;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;

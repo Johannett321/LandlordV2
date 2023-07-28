@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.chatentities.HintChat;
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
