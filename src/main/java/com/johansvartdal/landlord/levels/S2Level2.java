@@ -21,7 +21,7 @@ public class S2Level2 extends Level{
         //TODO NOT DONE!!
         requiredItems.add(new ItemStack(Material.FLINT, 34 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.POINTED_DRIPSTONE, 23 * Main.properties.getNumberOfPlayers()));
-        // CHERRY: requiredItems.add(new ItemStack(Material.CHERRY_LOG, 23 * Main.properties.getNumberOfPlayers()));
+        CHERRY: requiredItems.add(new ItemStack(Material.CHERRY_LOG, 23 * Main.properties.getNumberOfPlayers()));
 
 
         requiredItems.add(new ItemStack(Material.KELP, 64 * Main.properties.getNumberOfPlayers()));
