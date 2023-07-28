@@ -18,7 +18,6 @@ public class S2Level1 extends Level{
     public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
         ArrayList<ItemStack> requiredItems = new ArrayList<>();
 
-        //TODO NOT DONE!!
         requiredItems.add(new ItemStack(Material.TUFF, 40 * Main.properties.getNumberOfPlayers()));
 
         requiredItems.add(new ItemStack(Material.POTATO, 240 * Main.properties.getNumberOfPlayers()));
@@ -32,48 +31,6 @@ public class S2Level1 extends Level{
 
         requiredItems.add(new ItemStack(Material.EGG, 24));
         requiredItems.add(new ItemStack(Material.WHITE_WOOL, 21 * Main.properties.getNumberOfPlayers()));
-
-
-        // COPPER ORE
-        // TUFF fant jeg veldig dypt! -45Y. Denne er ganske vanlig.
-        // Pointed dripstone
-        // Dripstone block
-        // Melons
-        // Potatoes
-        // Carrots
-        // Grisekjøtt
-        // Bambus
-        // Sand
-        // clay
-        // Spruce logs (mange)
-        // Raw cod, Raw salmon (kanskje cooked)
-        // Blomster (poppy)
-        // Hay bales
-        // Barrels
-        // Redstone
-        // Honeycomb block
-        // Turtle egg
-        // Glowstone
-        // En eller annen farget concrete powder som lages fra en farge du får av dyr (for eksempel svart)
-        // Waxed copper block (Lages fra honning og kobber)
-        // Block of bamboo
-        // Cherry planks?
-
-
-        // -------- FRA NETHER -----------
-        // warped nylium (grass) (KREVER SILK TOUCH)
-        // warped stem (trestamme blå)
-        // warped wart block (Leaves til blått tre)
-        // warped fungus (blomst fra nether)
-        // crimson fungus (annen blomst fra nether)
-        // shroomlights (glowstone lignende fra forest i nether)
-
-        // [rød nether]
-        // weeping wine (henger ned fra taket, er rød og dropper weeping wine
-
-        // [dark biome] (skjelden tror jeg)
-        // basalt (grå stein lignende blokk)
-        // blackstone (sort, og ganske vanlig i dark biome. En hel blokk)
         return requiredItems;
     }
 
