@@ -186,6 +186,8 @@
     },
     "wilderness": {
       "title": "eit eventyr",
+      "price": "Pris:",
+      "every": "kvart ",
       "toAccessWilderness": "for å dra på eventyr",
       "welcomeToWild": "Velkommen til villmarka. Du har 7 minutt før dine ",
       "expires": " går ut!",
@@ -251,6 +253,7 @@
   "donate": {
     "justDonated": " har nettopp donert dei siste ",
     "youJustDonated": "Du donerte nettop ",
+    "onDonation": " donerte nettop ",
     "toCommunity": " til samfunnet!",
     "itemDonationsComplete": "Svært bra! Du har fullført alle gjenstandane for dette nivået. Køyr '/upgrade accept' for å gå vidare til neste nivå",
     "townJustUpgraded": "Gratulerer! Byen blei nettopp oppgradert til nivå "

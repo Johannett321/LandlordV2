@@ -197,7 +197,7 @@ public class TreasuryCommand implements CommandExecutor {
             int price = Main.properties.getNumberOfPlayers() * withdrawalAmountPerPlayer + fee;
 
             // can treasury afford it?
-            if (!Bank.treasuryCanAfford(withdrawalAmountPerPlayer)) {
+            if (!Bank.treasuryCanAfford(price)) {
                 Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.treasuryCannotAffordWithdrawal") + price + LangDict.getString(LangDict.CURRENCY));
                 return true;
             }

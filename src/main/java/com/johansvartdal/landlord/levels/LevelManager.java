@@ -39,7 +39,25 @@ public class LevelManager {
                 new S1Level2(plugin),
                 new S1Level3(plugin),
                 new S1Level4(plugin),
-                new S1Level5(plugin)
+                new S1Level5(plugin),
+                new S1Level6(plugin),
+                new S1Level7(plugin),
+                new S1Level8(plugin),
+                new S1Level9(plugin),
+                new S2Level1(plugin),
+                new S2Level2(plugin),
+                new S2Level3(plugin),
+                new S2Level4(plugin),
+                new S2Level5(plugin),
+                new S2Level6(plugin),
+                new S2Level7(plugin),
+                new S2Level8(plugin),
+                new S2Level9(plugin),
+                new S3Level1(plugin),
+                new S3Level2(plugin),
+                new S3Level3(plugin),
+                new S3Level4(plugin),
+                new S3Level5(plugin),
         };
     }
 
@@ -211,12 +229,12 @@ public class LevelManager {
         }
 
         // make sure everyone has accepted
-        if (acceptedPlayers.size() < Main.playerDataManager.getPlayerDataList().size()) {
+        if (acceptedPlayers.size() < Main.playerDataManager.getPlayerDataList().size()-1) {
             return UpgradeDecision.NOT_EVERYONE_HAS_ACCEPTED;
         }
 
         // make sure there is no global event
-        if (Main.properties.gameStateIsNormal()) {
+        if (!Main.properties.gameStateIsNormal()) {
             return UpgradeDecision.GAME_STATE_NOT_NORMAL;
         }
 

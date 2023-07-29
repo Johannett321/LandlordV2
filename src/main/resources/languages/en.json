@@ -186,6 +186,8 @@
     },
     "wilderness": {
       "title": "wilderness",
+      "price": "Price:",
+      "every": "every ",
       "toAccessWilderness": "to access wilderness",
       "welcomeToWild": "Welcome to the wilderness. You have 7 minutes before your ",
       "expires": " expires!",
@@ -251,6 +253,7 @@
   "donate": {
     "justDonated": " just donated the last ",
     "youJustDonated": "You just donated ",
+    "onDonation": " just donated ",
     "toCommunity": " to the community!",
     "itemDonationsComplete": "Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level",
     "townJustUpgraded": "Congratulations! The town was just upgraded to level "

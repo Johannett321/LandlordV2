@@ -47,6 +47,7 @@ public class Wilderness implements CommandExecutor {
             Tools.printMenuOption(player, "/wilderness", "mine");
             Tools.printMenuOption(player, "/wilderness", "time");
             Tools.printMenuOption(player, "/wilderness", "extend");
+            Tools.printMenuOption(player, "/wilderness", "info");
             return true;
         }
 
@@ -59,16 +60,31 @@ public class Wilderness implements CommandExecutor {
         // command args
         if (args[0].equals("world")) {
             attemptWorldWilderness(player);
+            return true;
         }else if (args[0].equals("nether")) {
             attemptNetherWilderness(player);
+            return true;
         }else if (args[0].equals("mine")) {
             attemptMineWilderness(player);
+            return true;
         }else if (args[0].equals("extend")) {
             extendWilderness(player);
+            return true;
         }else if (args[0].equals("time")) {
             time(player);
+            return true;
+        }else if (args[0].equals("info")) {
+            Tools.printMenuHeader(player, "Wilderness info");
+            Tools.printMenuOption(player, LangDict.getString("playerEvents.wilderness.price") + " (world)", LevelManager.getWildernessPrice() + LangDict.getString(LangDict.CURRENCY) + " (" + LangDict.getString("playerEvents.wilderness.every") + 7 + LangDict.getString("generalSentenceParts.minutes") + ")");
+            if (LevelManager.featureUnlocked("wildnether")) {
+                Tools.printMenuOption(player, LangDict.getString("playerEvents.wilderness.price") + " (nether)", LevelManager.getNetherWildernessPrice() + LangDict.getString(LangDict.CURRENCY) + " (" + LangDict.getString("playerEvents.wilderness.every") + 7 + LangDict.getString("generalSentenceParts.minutes") + ")");
+            }
+            if (LevelManager.featureUnlocked("wildmining")) {
+                Tools.printMenuOption(player, LangDict.getString("playerEvents.wilderness.price") + " (mine)", StaticValues.MINING_PRICE + LangDict.getString(LangDict.CURRENCY) + " (" + LangDict.getString("playerEvents.wilderness.every") + 45 + LangDict.getString("generalSentenceParts.minutes") + ")");
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void attemptWorldWilderness(Player player) {

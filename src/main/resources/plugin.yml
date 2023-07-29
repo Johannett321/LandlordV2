@@ -3,7 +3,7 @@ version: 2.0
 author: Johan Svartdal
 main: com.johansvartdal.landlord.Main
 description: Landlord plugin.
-api-version: 1.19
+api-version: '1.20'
 
 commands:
   buychunk:

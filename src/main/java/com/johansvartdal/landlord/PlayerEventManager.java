@@ -45,7 +45,7 @@ public class PlayerEventManager {
     }
 
     public static boolean anyPlayersInEvent() {
-        return playerEvents.size() == 0;
+        return playerEvents.size() != 0;
     }
 
     public static PlayerEvent getEventForPlayer(Player player) {
