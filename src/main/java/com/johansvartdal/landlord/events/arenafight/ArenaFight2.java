@@ -5,11 +5,10 @@ import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
-import org.json.simple.JSONObject;
 
-public class ArenaFight1 extends ArenaFightEvent {
+public class ArenaFight2 extends ArenaFightEvent {
 
-    public ArenaFight1(Main plugin) {
+    public ArenaFight2(Main plugin) {
         super(plugin);
     }
 

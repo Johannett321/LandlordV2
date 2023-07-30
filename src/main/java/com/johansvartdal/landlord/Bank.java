@@ -10,6 +10,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
+import java.util.Properties;
 import java.util.Random;
 
 public class Bank {
@@ -241,6 +242,10 @@ public class Bank {
         int minute = random.nextInt(30) + 45;
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            if (!Main.properties.gameHasStarted()) {
+                startTaxCollector(plugin);
+                return;
+            }
             // collect tax
             for (Player player : Bukkit.getOnlinePlayers()) {
                 payWealthTaxForPlayer(plugin, player);

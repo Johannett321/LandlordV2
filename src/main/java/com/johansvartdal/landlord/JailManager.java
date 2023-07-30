@@ -12,6 +12,10 @@ public class JailManager {
     }
 
     public static void sendToJail(Main plugin, Player player, String reason, String endReason, int jailSeconds) {
+        if (!Main.properties.gameStateIsNormal()) {
+            debugLog("A player was not sent to jail due to a global event currently happening.");
+            return;
+        }
         if (PlayerEventManager.playerIsInEvent(player)) {
             // don't send to jail twice
             if (PlayerEventManager.getEventForPlayer(player) instanceof JailEvent) {
