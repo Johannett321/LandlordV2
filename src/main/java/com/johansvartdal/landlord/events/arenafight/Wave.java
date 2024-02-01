@@ -49,11 +49,9 @@ public class Wave {
         this.plugin = plugin;
 
         // blindness
-        if (Properties.DEBUG_MODE) {
-            giveBlindnessToEveryone();
-        }
+        giveBlindnessToEveryone();
 
-        Tools.broadcastMessage("Wave " + (waveDisplayNumber) + LangDict.getString("events.arenaFight.hasBegun"), ChatColor.RED);
+        Tools.broadcastMessage(LangDict.getString("events.arenaFight.wave_") + (waveDisplayNumber) + LangDict.getString("events.arenaFight.hasBegun"), ChatColor.RED);
         loopWaveSteps();
     }
 
@@ -70,12 +68,9 @@ public class Wave {
         }
 
         waveSteps.get(0).doThisWhenCompleted(() -> {
-            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                @Override
-                public void run() {
-                    waveSteps.remove(waveSteps.get(0));
-                    loopWaveSteps();
-                }
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                waveSteps.remove(waveSteps.get(0));
+                loopWaveSteps();
             }, Tools.secToTicks(sleepSecsBetweenSteps));
         });
 
@@ -113,7 +108,7 @@ public class Wave {
             return true;
         }
 
-        if (System.currentTimeMillis() > lastChangeInLivingEntities + 1000 * 15) {
+        if (System.currentTimeMillis() > lastChangeInLivingEntities + 1000 * 90) {
             // make sure we have progress
             if (lastCheckLivingEntities == currentLivingEntities) {
                 lastChangeInLivingEntities = 0;

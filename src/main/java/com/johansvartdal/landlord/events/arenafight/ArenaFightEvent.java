@@ -134,6 +134,8 @@ public abstract class ArenaFightEvent extends LandlordEvent {
         // kill all mobs
         Tools.killAllMobsInWorld(Bukkit.getWorld("lladv"));
 
+        //TODO: Sett respawn location til players igjen til HOME location. Playersa har jo sovet i ArenaFighten.
+
         Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART), ChatColor.RED);
         endEvent(true);
     }
