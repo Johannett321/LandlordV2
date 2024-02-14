@@ -27,7 +27,8 @@
         },
         "successMessages": {
             "langChangedTo": "The language was changed to ",
-            "onlyEnglish": "Language fallback is working correctly!"
+            "onlyEnglish": "Language fallback is working correctly!",
+            "playerAdded": " can now join the game to claim a chunk!"
         }
     },
     "info": {
@@ -61,7 +62,11 @@
         "inWealthTax": " in wealth tax",
         "forCapturing": "capturing an animal",
         "inEmissionTax": " in emission tax",
-        "aRouletteTicket": "a roulette ticket"
+        "aRouletteTicket": "a roulette ticket",
+        "amountTooLow": "Amount too low: ",
+        "moneyTransferServices": "Money transfer services",
+        "justTransferred": " just transferred ",
+        "toYourAccount": " to your account"
     },
     "joinMessages": {
         "newCitizen": "A new citizen has arrived! Please welcome ",

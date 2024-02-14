@@ -19,7 +19,7 @@ commands:
     usage: /claimbonus
   landlord:
     description: Start the game
-    usage: /landlord [ start ]
+    usage: /landlord <command>
   trade:
     description: Teleports to the trading area
     usage: /trade

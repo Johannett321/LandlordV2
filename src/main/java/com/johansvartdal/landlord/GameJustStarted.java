@@ -18,33 +18,37 @@ public class GameJustStarted {
     public void doStart() {
         LevelManager.populateLevels();
         Main.tradeCenter.build();
-        Chunk centerChunk = Main.tradeCenter.getLocation().getChunk();
 
         Player[] players = plugin.getServer().getOnlinePlayers().toArray(new Player[0]);
 
         for (int i = 0; i < players.length; i ++) {
             Player currentPlayer = players[i];
-            int[] chunkPosition = getXZChunkPosition(i, centerChunk);
-            Chunk playerChunk = mainWorld.getChunkAt(chunkPosition[0], chunkPosition[1]);
-            ChunkBuilder.createChunk(players[i], mainWorld, playerChunk);
-
-            Location location = new Location(mainWorld, playerChunk.getX()*16+8, 319, playerChunk.getZ()*16+8);
-            location = Tools.middlePointBlock(location);
-            location = Tools.highestStandingPoint(location);
-
-            // teleport players home
-            currentPlayer.teleport(location);
-            currentPlayer.setBedSpawnLocation(location, true);
-            Main.playerDataManager.getPlayerData((Player) players[i]).setHomeLocation(location);
-
-            // show title
-            currentPlayer.sendTitle(LangDict.getString("events.preparations.welcomeTitle") + ChatColor.DARK_PURPLE + "Landlord", ChatColor.RED + "V2");
-
-            // give players ice
-            ItemStack iceBlocks = new ItemStack(Material.ICE);
-            iceBlocks.setAmount(2);
-            Tools.givePlayerItemOrDrop(currentPlayer, iceBlocks, true);
+            setupForPlayer(currentPlayer, i);
         }
+    }
+
+    public void setupForPlayer(Player player, int chunkNumber) {
+        Chunk centerChunk = Main.tradeCenter.getLocation().getChunk();
+        int[] chunkPosition = getXZChunkPosition(chunkNumber, centerChunk);
+        Chunk playerChunk = mainWorld.getChunkAt(chunkPosition[0], chunkPosition[1]);
+        ChunkBuilder.createChunk(player, mainWorld, playerChunk);
+
+        Location location = new Location(mainWorld, playerChunk.getX()*16+8, 319, playerChunk.getZ()*16+8);
+        location = Tools.middlePointBlock(location);
+        location = Tools.highestStandingPoint(location);
+
+        // teleport players home
+        player.teleport(location);
+        player.setBedSpawnLocation(location, true);
+        Main.playerDataManager.getPlayerData((Player) player).setHomeLocation(location);
+
+        // show title
+        player.sendTitle(LangDict.getString("events.preparations.welcomeTitle") + ChatColor.DARK_PURPLE + "Landlord", ChatColor.RED + "V2");
+
+        // give players ice
+        ItemStack iceBlocks = new ItemStack(Material.ICE);
+        iceBlocks.setAmount(2);
+        Tools.givePlayerItemOrDrop(player, iceBlocks, true);
     }
 
     private int[] getXZChunkPosition(int playerNumber, Chunk centerChunk) {

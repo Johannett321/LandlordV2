@@ -27,6 +27,7 @@ public class LangDict {
     public static final String YOU_NEED_ = "generalSentenceParts.youNeed";
     public static final String END_FLIGHT_FIRST = "playerEvents.fly.endFlightFirst";
     public static final String _IN_VAT = "banking.inVat";
+    public static final String _PLUS_TAX = "banking.plusTax";
 
     public static String languageCode = null;
 

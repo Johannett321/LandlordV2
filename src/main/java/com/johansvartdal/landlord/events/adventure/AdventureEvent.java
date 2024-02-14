@@ -25,7 +25,7 @@ public abstract class AdventureEvent extends LandlordEvent {
 
     private void scheduleExcursionStart() {
         int startEventInSeconds = 60*5;
-        if (Properties.DEBUG_MODE) {
+        if (Properties.DEV_CHEAT_MODE) {
             startEventInSeconds = 35;
         }
         Tools.performTaskAfterCountdown(this::startExcursion, LangDict.getString("events.excursion.excursionIn"), startEventInSeconds);

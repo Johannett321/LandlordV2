@@ -2,7 +2,6 @@ package com.johansvartdal.landlord;
 
 import org.json.simple.JSONObject;
 
-import java.io.File;
 import java.io.Serializable;
 
 public class Properties implements Serializable {
@@ -15,7 +14,7 @@ public class Properties implements Serializable {
     }
 
     private GameState currentGameState = GameState.NOT_STARTED;
-    public static final boolean DEBUG_MODE = true;
+    public static final boolean DEV_CHEAT_MODE = false;
     public static final boolean DEBUG_LOGGING = true;
 
     public Properties() {

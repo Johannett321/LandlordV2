@@ -32,6 +32,9 @@ public class CustomConfig {
             case "LANGUAGE":
                 LangDict.languageCode = value;
                 break;
+            default:
+                shutdownServer();
+                break;
         }
     }
 

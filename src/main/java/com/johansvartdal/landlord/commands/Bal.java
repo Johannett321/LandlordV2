@@ -3,7 +3,9 @@ package com.johansvartdal.landlord.commands;
 import java.util.ArrayList;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.chatentities.InfoChat;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +14,7 @@ import org.bukkit.entity.Player;
 
 public class Bal implements CommandExecutor {
 	
-	private Main plugin;
+	private final Main plugin;
 	
 	public Bal(Main plugin) {
 		this.plugin = plugin;
@@ -27,6 +29,11 @@ public class Bal implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
+		if (!plugin.properties.gameHasStarted()) {
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("commandResponses.errorMessages.cmdNotNow"), ChatColor.RED);
+			return true;
+		}
+
 		Tools.printMenuHeader(player, LangDict.getString("banking.balance"));
 
 		// Print high end info if relevant

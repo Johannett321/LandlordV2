@@ -37,7 +37,7 @@ public class MiningEvent extends PlayerEvent {
 
     @Override
     public Integer getLengthOfEventInSeconds() {
-        if (Properties.DEBUG_MODE) {
+        if (Properties.DEV_CHEAT_MODE) {
             return 15;
         }else {
             return 60*45;

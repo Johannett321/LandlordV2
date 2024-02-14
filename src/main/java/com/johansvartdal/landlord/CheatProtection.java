@@ -27,7 +27,7 @@ public class CheatProtection {
     }
 
     public void checkPlayerLocations() {
-        if (Properties.DEBUG_MODE) {
+        if (Properties.DEV_CHEAT_MODE) {
             return;
         }
 

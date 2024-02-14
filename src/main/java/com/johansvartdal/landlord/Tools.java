@@ -10,7 +10,6 @@ import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -18,11 +17,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 import java.util.stream.Collectors;
-
-import static com.johansvartdal.landlord.ItemGivenAction.dropped;
 
 public class Tools {
 
@@ -40,7 +35,7 @@ public class Tools {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             return reader.lines().collect(Collectors.joining(System.lineSeparator()));
         } catch (IOException e) {
-            if (Properties.DEBUG_MODE) e.printStackTrace();
+            if (Properties.DEBUG_LOGGING) e.printStackTrace();
         }
         return null;
     }
@@ -149,7 +144,7 @@ public class Tools {
             //Read JSON file
             return (JSONObject) jsonParser.parse(reader);
         } catch (IOException | ParseException e) {
-            if (Properties.DEBUG_MODE) System.out.println("ERROR: Cannot find file: " + fileName);
+            if (Properties.DEBUG_LOGGING) System.out.println("ERROR: Cannot find file: " + fileName);
         }
         return null;
     }
@@ -160,8 +155,9 @@ public class Tools {
             //We can write any JSONArray or JSONObject instance to the file
             file.write(object.toJSONString());
             file.flush();
+            System.out.println("Just saved file (" + fileName + "): " + object.toJSONString());
         } catch (IOException e) {
-            if (Properties.DEBUG_MODE) System.out.println("ERROR: Failed to save json to file: " + fileName);
+            if (Properties.DEBUG_LOGGING) System.out.println("ERROR: Failed to save json to file: " + fileName);
         }
     }
 

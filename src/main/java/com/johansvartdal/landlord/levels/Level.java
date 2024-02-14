@@ -53,7 +53,7 @@ public abstract class Level implements LevelInterface {
                 if (required > 0) {
                     remainingItems.get(i).setAmount(required);
                     Tools.tellPlayer(new InfoChat(), player, LangDict.getString("donate.youJustDonated") + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("donate.toCommunity"), ChatColor.GREEN);
-                    Tools.broadcastMessage(new InfoChat(), player.getDisplayName() + "donate.onDonation" + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack), ChatColor.GRAY, new Player[]{player});
+                    Tools.broadcastMessage(new InfoChat(), player.getDisplayName() + LangDict.getString("donate.onDonation") + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack), ChatColor.GRAY, new Player[]{player});
                 }else {
                     Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_GUITAR);
                     remainingItems.remove(i);

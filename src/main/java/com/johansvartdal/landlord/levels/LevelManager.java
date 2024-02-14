@@ -122,7 +122,7 @@ public class LevelManager {
     }
 
     public static void forceProceedToNextLevel() {
-        if (!Properties.DEBUG_MODE) {
+        if (!Properties.DEV_CHEAT_MODE) {
             return;
         }
         proceedToNextLevel();
@@ -272,7 +272,7 @@ public class LevelManager {
             JSONObject object = new JSONObject();
             object.put("material", itemStack.getType().toString());
             object.put("amount", itemStack.getAmount());
-            if (Properties.DEBUG_MODE) {
+            if (Properties.DEBUG_LOGGING) {
                 System.out.println("Adding: " + object.toJSONString());
             }
             jsonArray.add(object);
@@ -383,6 +383,7 @@ public class LevelManager {
         // season 1
         featureLevels.put("roulette", new LvlSeasonRelation(1,2));
         featureLevels.put("rent_basic_tool", new LvlSeasonRelation(1,2));
+        featureLevels.put("pay", new LvlSeasonRelation(1,3));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
         featureLevels.put("visit", new LvlSeasonRelation(1,7));
@@ -400,7 +401,7 @@ public class LevelManager {
 
     public static boolean featureUnlocked(String featureName) {
         // always allow while in DEBUG MODE
-        if (Properties.DEBUG_MODE) {
+        if (Properties.DEV_CHEAT_MODE) {
             return true;
         }
 

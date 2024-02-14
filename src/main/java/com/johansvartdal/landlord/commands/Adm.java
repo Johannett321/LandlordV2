@@ -32,7 +32,7 @@ public class Adm implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
-        if (!player.isOp() || !Properties.DEBUG_MODE) {
+        if (!player.isOp() || !Properties.DEV_CHEAT_MODE) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
             return true;
         }

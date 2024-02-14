@@ -26,7 +26,8 @@
             "upgradePlayerInEvent": "Ein spelar er for tida i eit event som må avsluttast før oppgraderinga kan fortsetje. Sørg for at alle spelarane er heime og uvirksame før du prøver å gi kommandoen på nytt."
         },
         "successMessages": {
-            "langChangedTo": "Språket vart endra til "
+            "langChangedTo": "Språket vart endra til ",
+            "playerAdded": " kan nå bli med i spelet!"
         }
     },
     "info": {

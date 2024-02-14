@@ -26,7 +26,8 @@
             "upgradePlayerInEvent": "En spiller er for øyeblikket i et event som må avsluttes før oppgradering kan fortsette. Vennligst sørg for at alle spillere er hjemme og inaktive før du forsøker å utstede kommandoen på nytt."
         },
         "successMessages": {
-            "langChangedTo": "Språket ble endret til "
+            "langChangedTo": "Språket ble endret til ",
+            "playerAdded": " kan nå joine spillet!"
         }
     },
     "info": {
@@ -67,7 +68,7 @@
         "citizenJoinStart": "En borger ved navn ",
         "citizenJoinEnd": " har vendt tilbake!",
         "citizenLeaveStart": "Ånei! En borger med navn ",
-        "citizenLeaveEnd": " har nettop forlatt oss!",
+        "citizenLeaveEnd": " har nettopp forlatt oss!",
         "gameAlreadyRunningJoinMessage": "Du kan ikke bli med. Spillet er allerede i gang",
         "gameFull": "Beklager, maks antall spillere er nådd"
     },
@@ -248,8 +249,8 @@
     },
     "donate": {
         "justDonated": " har nettopp donert de siste ",
-        "youJustDonated": "Du donerte nettop ",
-        "onDonation": " donerte nettop ",
+        "youJustDonated": "Du donerte nettopp ",
+        "onDonation": " donerte nettopp ",
         "toCommunity": " til samfunnet!",
         "itemDonationsComplete": "Meget bra! Du har fullført alle gjenstandene for dette nivået. Kjør '/upgrade accept' for å gå videre til neste nivå",
         "townJustUpgraded": "Gratulerer! Byen ble nettopp oppgradert til nivå "
@@ -334,7 +335,7 @@
         "stock": "Aksje:",
         "stocksFor": " askjer for ",
         "couldNotFindStockWithName": "Kunne ikke finne aksje med navn ",
-        "justPaidPlatformFee": "Du betalte nettop en plattformavgift på ",
+        "justPaidPlatformFee": "Du betalte nettopp en plattformavgift på ",
         "stocksInvalid": "Disse aksjene er ugyldige!",
         "perStock": " per aksje",
         "values1To4Mins": "Verdier (1, 2, 3, 4) min:",

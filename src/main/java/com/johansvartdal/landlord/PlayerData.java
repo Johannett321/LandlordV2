@@ -35,10 +35,12 @@ public class PlayerData {
      * @param player The player that just joined
      */
     public PlayerData(World mainWorld, Player player) {
+        if (Properties.DEBUG_LOGGING) System.out.println("Creating playerdata for " + player.getDisplayName());
+        
         this.username = player.getName();
         this.mainWorld = mainWorld;
         balance = StaticValues.PLAYERS_STARTING_BALANCE;
-        if (Properties.DEBUG_MODE) {
+        if (Properties.DEV_CHEAT_MODE) {
             balance = 10000000;
             chunkPoints = 100;
         }
@@ -219,7 +221,7 @@ public class PlayerData {
      * @return True if they are VIP.
      */
     public boolean isHighEnd() {
-        if (Properties.DEBUG_MODE) {
+        if (Properties.DEV_CHEAT_MODE) {
             return true;
         }
         switch (LevelManager.getCurrentDisplaySeasonNum()) {

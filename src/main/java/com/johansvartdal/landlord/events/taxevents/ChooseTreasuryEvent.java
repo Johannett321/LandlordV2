@@ -42,7 +42,7 @@ public class ChooseTreasuryEvent extends LandlordEvent {
     private void resumeFromHere() {
         informPlayers();
         int decisionTime = 120;
-        if (Properties.DEBUG_MODE) {
+        if (Properties.DEV_CHEAT_MODE) {
             decisionTime = 10;
         }
         Tools.performTaskAfterCountdown(this::getMostVoted, LangDict.getString("treasury.treasuryDecidingIn"), decisionTime);

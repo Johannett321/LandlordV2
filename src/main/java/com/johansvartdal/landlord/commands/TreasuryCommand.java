@@ -45,7 +45,7 @@ public class TreasuryCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         // check if unlocked
-        if (!LevelManager.featureUnlocked("treasury") && !Properties.DEBUG_MODE) {
+        if (!LevelManager.featureUnlocked("treasury") && !Properties.DEV_CHEAT_MODE) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_UNLOCKED));
             return true;
         }
@@ -145,7 +145,7 @@ public class TreasuryCommand implements CommandExecutor {
     }
 
     private void voteForPlayer(Player player, String voteUsername) {
-        if (voteUsername.equalsIgnoreCase(player.getDisplayName()) && !Properties.DEBUG_MODE) {
+        if (voteUsername.equalsIgnoreCase(player.getDisplayName()) && !Properties.DEV_CHEAT_MODE) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CANNOT_USE_ON_YOURSELF), ChatColor.RED);
             return;
         }

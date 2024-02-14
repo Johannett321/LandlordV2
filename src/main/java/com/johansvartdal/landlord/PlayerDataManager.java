@@ -81,7 +81,17 @@ public class PlayerDataManager {
         getPlayerData(player).addChunkPoints(amount);
     }
 
+    public static String getPlayerStatus(Player player) {
+        PlayerData playerData = Main.playerDataManager.getPlayerData(player);
+        return playerData.getStatus();
+    }
+
     public static void updatePlayerStatus(Player player, String newStatus) {
-        Main.playerDataManager.getPlayerData(player).setStatus(newStatus);
+        PlayerData playerData = Main.playerDataManager.getPlayerData(player);
+        if (playerData != null) {
+            playerData.setStatus(newStatus);
+        }else {
+            System.out.println("Attempted to set status of player, but PlayerData was null for player: " + player.getDisplayName());
+        }
     }
 }

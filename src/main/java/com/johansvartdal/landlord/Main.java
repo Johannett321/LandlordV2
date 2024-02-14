@@ -32,6 +32,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static TradeCenter tradeCenter;
 	public static PlayerDataManager playerDataManager;
 	public static WebServerManager webServerManager;
+	private static Landlord landlord;
 	
 	@Override
 	public void onEnable() {
@@ -50,6 +51,7 @@ public class Main extends JavaPlugin implements Listener {
 		properties.load();
 		new CheatProtection(this);
 		new SleepPercentage(this);
+		new AFKDetector(this);
 		LangDict.loadLanguage();
 		Bank.load();
 		StockManager.loadStocks();
@@ -67,7 +69,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		// COMMANDS
 		new Sell(this);
-		new Landlord(this);
+		landlord = new Landlord(this);
 		new BuyChunk(this);
 		new Day(this);
 		new DailyBonus(this);
@@ -131,11 +133,16 @@ public class Main extends JavaPlugin implements Listener {
 		}else if (chattingPlayer.getDisplayName().equalsIgnoreCase("johannett321")) { // Creator
 			event.setCancelled(true);
 			for(Player onlinePlayer: Bukkit.getOnlinePlayers()) {
-				if (Properties.DEBUG_MODE) {
+				if (Properties.DEV_CHEAT_MODE) {
 					onlinePlayer.sendMessage(ChatColor.DARK_GREEN + "[DEV] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
 				}else {
 					onlinePlayer.sendMessage(ChatColor.DARK_GREEN + "[CREATOR] " + ChatColor.WHITE + "<Johannett321> " + event.getMessage());
 				}
+			}
+		}else if (chattingPlayer.getDisplayName().equalsIgnoreCase("karafo")) { // Builder
+			event.setCancelled(true);
+			for(Player onlinePlayer: Bukkit.getOnlinePlayers()) {
+				onlinePlayer.sendMessage(ChatColor.GREEN + "[BUILDER]" + ChatColor.WHITE + " <Karafo> " + event.getMessage());
 			}
 		}else if (chattingPlayer.getDisplayName().equalsIgnoreCase("karafo")) { // Builder
 			event.setCancelled(true);
@@ -155,12 +162,12 @@ public class Main extends JavaPlugin implements Listener {
 		Player joinedPlayer = event.getPlayer();
 
 		// TODO: FJERN DETTE (Info om alpha versjon)
-		if (!Properties.DEBUG_MODE) {
+		if (!Properties.DEV_CHEAT_MODE) {
 			Tools.tellPlayer(new InfoChat(), joinedPlayer, LangDict.getString("info.alphaBuild"), ChatColor.RED);
 		}
 
 		// inform player about debug mode
-		if (Properties.DEBUG_MODE) {
+		if (Properties.DEV_CHEAT_MODE) {
 			Tools.tellPlayer(new WarningChat(), joinedPlayer, LangDict.getString("info.debugWarning"), ChatColor.RED);
 		}
 
@@ -193,7 +200,7 @@ public class Main extends JavaPlugin implements Listener {
 		// ------- ONLY RUN IF PLAYER JOINS FOR THE FIRST TIME --------
 
 		// kick player if game already running
-		if (properties.gameHasStarted()) {
+		if (properties.gameHasStarted() && !landlord.playerHasBeenAllowed(joinedPlayer)) {
 			event.getPlayer().kickPlayer(LangDict.getString("joinMessages.gameAlreadyRunningJoinMessage"));
 			return;
 		}
@@ -209,19 +216,28 @@ public class Main extends JavaPlugin implements Listener {
 		playerDataManager.addNewPlayer(playerData);
 		event.setJoinMessage(ChatColor.DARK_PURPLE + LangDict.getString("god") + ChatColor.WHITE + " " + LangDict.getString("joinMessages.newCitizen") + event.getPlayer().getDisplayName());
 
-		// teleport to start location
-		Bukkit.getScheduler().runTaskLater(this, ()-> {
-			event.getPlayer().teleport(StaticValues.GAME_START_LOCATION);
-		}, Tools.secToTicks(1));
+		if (!properties.gameHasStarted()) {
+			// teleport to start location
+			Bukkit.getScheduler().runTaskLater(this, ()-> {
+				event.getPlayer().teleport(StaticValues.GAME_START_LOCATION);
+			}, Tools.secToTicks(5));
 
-
-		// inform OP about commands
-		if (event.getPlayer().isOp()) {
-			Tools.tellPlayer(event.getPlayer(), LangDict.getString("events.preparations.runLandlordConfigCmd"));
+			// inform OP about commands
+			if (event.getPlayer().isOp()) {
+				Tools.tellPlayer(event.getPlayer(), LangDict.getString("events.preparations.runLandlordConfigCmd"));
+			}
 		}
 
 		// give player playguide
 		givePlayGuide(event.getPlayer());
+
+		// if the game has started and it is a new player, create it's chunk and things...
+		if (properties.gameHasStarted()) {
+			Bukkit.getScheduler().runTaskLater(this, ()-> {
+				Tools.tellPlayer(new WarningChat(), joinedPlayer, "Please stand by!");
+				new GameJustStarted(this, Bukkit.getWorlds().get(0)).setupForPlayer(joinedPlayer, properties.getNumberOfPlayers());
+			}, Tools.secToTicks(3));
+		}
 	}
 
 	@EventHandler
@@ -237,6 +253,8 @@ public class Main extends JavaPlugin implements Listener {
 			debugLog("A player in jail just left!");
 			return;
 		}
+
+		/* ---------- EVERYTHING BELOW DOES NOT RUN IF PLAYER IS IN JAIL ---------- */
 
 		if (leavingPlayer.getGameMode() == GameMode.SURVIVAL || leavingPlayer.getGameMode() == GameMode.ADVENTURE) {
 			if (leavingPlayer.isFlying()) {

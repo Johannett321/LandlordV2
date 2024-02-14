@@ -20,8 +20,8 @@ public class Preparations extends LandlordEvent {
 
     @Override
     public void startEvent() {
-        if (Properties.DEBUG_MODE) {
-            countdown(5);
+        if (Properties.DEV_CHEAT_MODE) {
+            Bukkit.getScheduler().runTaskLater(plugin, this::startPrep, Tools.secToTicks(5));
             return;
         }
 
@@ -60,12 +60,15 @@ public class Preparations extends LandlordEvent {
             }
         }.runTaskLater(plugin, Tools.secToTicks(1));
 
+        int timeBeforeNextMessage = 2*60; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
         new BukkitRunnable() {
             @Override
             public void run() {
                 threeMinutesLeft();
             }
-        }.runTaskLater(plugin, Tools.secToTicks(2*60));
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
     }
 
     private void changeWeatherGood() {
@@ -89,62 +92,80 @@ public class Preparations extends LandlordEvent {
         God.speak("3 " + LangDict.getString("events.preparations.minutesRemaining"));
         God.speak(LangDict.getString("events.preparations.secondListOfHelpful"));
 
+        int timeBeforeNextMessage = 60; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
         new BukkitRunnable() {
             @Override
             public void run() {
                 twoMinutesLeft();
             }
-        }.runTaskLater(plugin, Tools.secToTicks(60));
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
     }
 
     private void twoMinutesLeft() {
+        int timeBeforeNextMessage = 60; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
         God.speak("2 " + LangDict.getString("events.preparations.minutesRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
                 oneMinuteLeft();
             }
-        }.runTaskLater(plugin, Tools.secToTicks(60));
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
     }
 
     private void oneMinuteLeft() {
+        int timeBeforeNextMessage = 30; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
         God.speak("1 " + LangDict.getString("events.preparations.minutesRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
                 thirtySecondsLeft();
             }
-        }.runTaskLater(plugin, Tools.secToTicks(30));
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
     }
 
     private void thirtySecondsLeft() {
+        int timeBeforeNextMessage = 15; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
         God.speak("30 " + LangDict.getString("events.preparations.secondsRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
                 fifteenSecondsLeft();
             }
-        }.runTaskLater(plugin, Tools.secToTicks(15));
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
     }
 
     private void fifteenSecondsLeft() {
+        int timeBeforeNextMessage = 5; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
         God.speak("15 " + LangDict.getString("events.preparations.secondsRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
                 tenSecondsLeft();
             }
-        }.runTaskLater(plugin, Tools.secToTicks(5));
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
     }
 
     private void tenSecondsLeft() {
+        int timeBeforeNextMessage = 5; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
         God.speak("10 " + LangDict.getString("events.preparations.secondsRemaining"));
         new BukkitRunnable() {
             @Override
             public void run() {
                 countdown(5);
             }
-        }.runTaskLater(plugin, Tools.secToTicks(5));
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
     }
 
     private void countdown(int count) {
