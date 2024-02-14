@@ -80,3 +80,9 @@ commands:
   status:
     description: See the current status of all players
     usage: /status
+  pay:
+    description: Pay another player
+    usage: /pay <username> <amount>
+  chunkguard:
+    description: Keeps your chunks loaded for you
+    usage: /chunkguard

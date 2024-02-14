@@ -32,6 +32,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static TradeCenter tradeCenter;
 	public static PlayerDataManager playerDataManager;
 	public static WebServerManager webServerManager;
+	public static ChunkGuardManager chunkGuardManager;
 	private static Landlord landlord;
 	
 	@Override
@@ -93,6 +94,10 @@ public class Main extends JavaPlugin implements Listener {
 		new Rent(this);
 		new Lounge(this);
 		new Status(this);
+		new Pay(this);
+		new ChunkGuard(this);
+
+		chunkGuardManager = new ChunkGuardManager(this);
 
 		Bank.startTaxCollector(this);
 

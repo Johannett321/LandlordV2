@@ -72,27 +72,22 @@ public class AFKDetector {
 
     private void checkAfks() {
         // remove logged out players
-        if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected num of players online: " + detectedPlayerLocations.size());
         detectedPlayerLocations.removeIf(detectedPlayerLocation -> Bukkit.getPlayer(detectedPlayerLocation.playerUUID) == null);
-        if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected num of players online: " + detectedPlayerLocations.size());
 
         // loop through existing players and check if AFK
         for (DetectedPlayerLocation detectedPlayerLocation : detectedPlayerLocations) {
             Player player = Bukkit.getPlayer(detectedPlayerLocation.playerUUID);
             // make sure player is still online
             if (player == null || !player.isOnline()) {
-                if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected that player is no longer online: " + detectedPlayerLocation.playerUUID);
                 return;
             }
 
             // update location if it's not the same
             if (!detectedPlayerLocation.locationIsSimilar(player.getLocation())) {
                 detectedPlayerLocation.updateLocation(player.getLocation());
-                if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected that player has moved: " + detectedPlayerLocation.playerUUID);
 
                 // was player AFK when updating position? If so, update status to home
                 if (detectedPlayerLocation.isAFK()) {
-                    if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected that A PLAYER WAS AFK, BUT NOW MOVED: " + detectedPlayerLocation.playerUUID);
                     PlayerDataManager.updatePlayerStatus(player, LangDict.getString("playerStatus.home"));
                     detectedPlayerLocation.setAFK(false);
                 }
@@ -100,7 +95,6 @@ public class AFKDetector {
 
             // if location has been similar for three minutes, set AFK
             if (System.currentTimeMillis() - detectedPlayerLocation.getLastUpdated() > 1000*60*3) {
-                if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected that player is AFK: " + detectedPlayerLocation.playerUUID);
                 PlayerDataManager.updatePlayerStatus(player, "AFK");
                 detectedPlayerLocation.setAFK(true);
             }
@@ -113,13 +107,10 @@ public class AFKDetector {
                 if (detectedPlayerLocation.getPlayerUUID().equals(player.getUniqueId())) {
                     found = true;
                     break;
-                }else {
-                    if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected player: " + player.getUniqueId() + ", which did not match: " + detectedPlayerLocation.playerUUID);
                 }
             }
 
             if (!found) {
-                if (Properties.DEBUG_LOGGING) System.out.println("AFKChecker detected that a player has joined!: " + player.getUniqueId());
                 DetectedPlayerLocation detectedPlayerLocation = new DetectedPlayerLocation(player, player.getLocation());
                 detectedPlayerLocations.add(detectedPlayerLocation);
             }

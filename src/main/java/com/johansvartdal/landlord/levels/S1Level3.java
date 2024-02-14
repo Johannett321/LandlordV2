@@ -18,7 +18,7 @@ public class S1Level3 extends Level{
 
         requiredItems.add(new ItemStack(Material.COBBLESTONE, 210 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.SUGAR, 448 * Main.properties.getNumberOfPlayers()));
-        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 203 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 357 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LOG, 176 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.COPPER_INGOT, 19 * Main.properties.getNumberOfPlayers()));
 
@@ -45,6 +45,7 @@ public class S1Level3 extends Level{
         Book book = new Book("S1L3");
         book.addPage(LangDict.getString("levelBooks.level3.page1"));
         book.addPage(LangDict.getString("levelBooks.level3.page2"));
+        book.addPage(LangDict.getString("levelBooks.level3.page3"));
         book.addPage(LangDict.getString("levelBooks.endSignature"));
         return book;
     }

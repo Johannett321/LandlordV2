@@ -21,9 +21,11 @@ public class PlayerData {
     @Getter private int balance = 0;
     @Getter private Location homeLocation;
     @Getter private final String username;
+    @Getter private int chunkGuardCoins = 0;
     @Getter private int chunkPoints = 0;
     @Getter private int streakMultiplier = 0;
     @Getter private ArrayList<int[]> ownedChunks = new ArrayList<>();
+    @Getter private ArrayList<int[]> guardedChunks = new ArrayList<>();
     @Getter private long streakCollectDeadline = 0;
     @Getter private long streakCollectOpens = 0;
 
@@ -43,6 +45,7 @@ public class PlayerData {
         if (Properties.DEV_CHEAT_MODE) {
             balance = 10000000;
             chunkPoints = 100;
+            chunkGuardCoins = 10000;
         }
         status = LangDict.getString("playerStatus.home");
         save();
@@ -105,9 +108,9 @@ public class PlayerData {
         return chunkPoints > 0;
     }
 
-    private JSONArray ownedChunksAsJSONArray() {
+    private JSONArray chunksAsJSONArray(ArrayList<int[]> chunks) {
         JSONArray ownedChunksArray = new JSONArray();
-        for (int[] intArray : ownedChunks) {
+        for (int[] intArray : chunks) {
             JSONArray innerArray = new JSONArray();
             for (int value : intArray) {
                 innerArray.add(value);
@@ -117,19 +120,19 @@ public class PlayerData {
         return ownedChunksArray;
     }
 
-    private ArrayList<int[]> convertToOwnedChunks(JSONArray arr) {
-        ArrayList<int[]> ownedChunks = new ArrayList<>();
+    private ArrayList<int[]> JSONToChunkArray(JSONArray arr) {
+        ArrayList<int[]> chunks = new ArrayList<>();
         if (arr == null) {
-            return ownedChunks;
+            return chunks;
         }
 
         for (int i = 0; i < arr.size(); i++) {
             JSONArray currentChunk = (JSONArray) arr.get(i);
 
             int[] currentOwned = new int[]{(int)(long) currentChunk.get(0), (int)(long) currentChunk.get(1)};
-            ownedChunks.add(currentOwned);
+            chunks.add(currentOwned);
         }
-        return ownedChunks;
+        return chunks;
     }
 
     public void save() {
@@ -137,7 +140,9 @@ public class PlayerData {
 
         jsonObject.put("Balance", balance);
         jsonObject.put("AvailableChunkPoints", chunkPoints);
-        jsonObject.put("OwnedChunks", ownedChunksAsJSONArray());
+        jsonObject.put("OwnedChunks", chunksAsJSONArray(ownedChunks));
+        jsonObject.put("GuardedChunks", chunksAsJSONArray(guardedChunks));
+        jsonObject.put("ChunkGuardCoins", chunkGuardCoins);
         jsonObject.put("streakMultiplier", streakMultiplier);
         jsonObject.put("streakCollectDeadline", streakCollectDeadline);
         jsonObject.put("streakCollectOpens", streakCollectOpens);
@@ -192,7 +197,11 @@ public class PlayerData {
         streakCollectOpens = (long) obj.get("streakCollectOpens");
 
         // Chunks owned
-        ownedChunks = convertToOwnedChunks((JSONArray) obj.get("OwnedChunks"));
+        ownedChunks = JSONToChunkArray((JSONArray) obj.get("OwnedChunks"));
+        guardedChunks = JSONToChunkArray((JSONArray) obj.get("GuardedChunks"));
+        if (obj.containsKey("ChunkGuardCoins")) {
+            chunkGuardCoins = (int) ((long) obj.get("ChunkGuardCoins"));
+        }
     }
 
     public int getChunkPurchasePrice() {
@@ -234,5 +243,35 @@ public class PlayerData {
             }
         }
         return false;
+    }
+
+    /**
+     * Save a chunk as a force loaded chunk. This method will NOT force load it. Just save it as one.
+     * @param chunk
+     */
+    public void chunkGuardWatchChunk(Chunk chunk) {
+        guardedChunks.add(new int[]{chunk.getX(),chunk.getZ()});
+        save();
+    }
+
+    /**
+     * Stop watching a chunk. The chunk will no saved as a force loaded chunk. It does not unload it however
+     * @param chunk
+     */
+    public void chunkGuardStopWatchingChunk(Chunk chunk) {
+        int chunkX = chunk.getX();
+        int chunkZ = chunk.getZ();
+        guardedChunks.removeIf(chunkPos -> chunkPos[0] == chunkX && chunkPos[1] == chunkZ);
+        save();
+    }
+
+    public void withdrawChunkGuardCoins(int amount) {
+        chunkGuardCoins -= amount;
+        save();
+    }
+
+    public void depositChunkGuardCoins(int amount) {
+        chunkGuardCoins += amount;
+        save();
     }
 }

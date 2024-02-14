@@ -39,7 +39,8 @@ public class Pay implements CommandExecutor {
 
 		// make sure format is correct
 		if (args.length != 2) {
-			Tools.tellPlayer(new ErrorChat(), player, "/pay <username> <amount>");
+			Tools.printMenuHeader(player, "PAY");
+			Tools.printMenuOption(player, "/pay", "<username> <amount>");
 			return true;
 		}
 
@@ -67,7 +68,7 @@ public class Pay implements CommandExecutor {
 
 		// actually transfer
 		Player receivingPlayer = Bukkit.getPlayer(username);
-		Bank.withdrawPlayer("banking.moneyTransferServices", player, amount);
+		Bank.withdrawPlayer(LangDict.getString("banking.moneyTransferServices"), player, amount);
 		Bank.depositPlayerWithoutTax(receivingPlayer, Main.playerDataManager.getPlayerData(username), amount);
 		Tools.tellPlayer(new BankChat(), receivingPlayer, player.getDisplayName() + LangDict.getString("banking.justTransferred") + amount + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.toYourAccount"));
 		return true;

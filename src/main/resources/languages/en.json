@@ -7,8 +7,10 @@
         "village": "village",
         "none": "None",
         "commands": "COMMANDS",
+        "hours": " hour(s)",
         "minutes": " minute(s)",
         "seconds": " second(s)",
+        "perHour": " per hour",
         "warningChat": "WARNING",
         "itemDroppedWarning": "An attempt was made to give you an item, but due to insufficient space in your inventory, it had to be dropped on the ground."
     },
@@ -23,6 +25,7 @@
             "cannotFindLanguage": "Cannot find language with code: ",
             "tooPoorForCommand": "You are too poor for this command",
             "cmdOnlyInWilderness": "This command can only be used in wilderness",
+            "onlyWithinOwnChunk": "This command can only be used within one of your own chunks",
             "upgradePlayerInEvent": "A player is currently engaged in an event that must conclude before upgrading can proceed. Please ensure that all players are at home and idle before attempting to reissue the command."
         },
         "successMessages": {
@@ -86,6 +89,10 @@
         "cannotPurchaseThisChunk": "You cannot purchase this chunk",
         "aChunk": "a chunk",
         "justBoughtAChunk": " just bought a new chunk!"
+    },
+    "chunkGuard": {
+        "iWillProtect": "I will protect your chunk sir!",
+        "noLongerProtect": "I will stop protecting your chunk sir!"
     },
     "capture": {
         "toCapture": "to capture an animal",
@@ -284,8 +291,9 @@
         },
         "level3": {
             "godSpeak": "Congratzzz! A new level is a new book, read the book in your inventory please",
-            "page1": "Sweet! You've made it to level 3. That means you're rewarded your third chunk point! Just remember that you pay tax for every chunk you own. You don't have to use the chunk point. However, if you decide to use it. Build something smart on it. Something that can make you even more money. Other...",
-            "page2": "than that, there's not much more to level 3. No more features or anything. Sounds quite boring, doesn't it? Well, the next one will be big. I promise!"
+            "page1": "Sweet! You've made it to level 3. That means you're rewarded your second chunk point! Just remember that you pay tax for every chunk you own. You don't have to use the chunk point. However, if you decide to use it. Build something clever on it. Something that can make you even more money.",
+            "page2": "--------Pay--------\nYou now have the ability to pay another player. This can be achieved by executing the command\n/pay <username> <amount>\n\n Keep in mind that you pay tax for this as well!",
+            "page3": "Other than that, there's not much more to level 3. No more features or anything. Sounds quite boring, doesn't it? Well, the next one will be big. I promise!"
         },
         "level4": {
             "godSpeak": "Congratulations! Please read the book i wrote about this level. I got big news!",

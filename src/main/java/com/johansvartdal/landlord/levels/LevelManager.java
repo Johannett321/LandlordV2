@@ -386,6 +386,7 @@ public class LevelManager {
         featureLevels.put("pay", new LvlSeasonRelation(1,3));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
+        featureLevels.put("chunkguard", new LvlSeasonRelation(1,6));
         featureLevels.put("visit", new LvlSeasonRelation(1,7));
         featureLevels.put("rent_diamond_tools", new LvlSeasonRelation(1,7));
         featureLevels.put("wildnether", new LvlSeasonRelation(1,9));

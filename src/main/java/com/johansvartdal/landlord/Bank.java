@@ -25,8 +25,18 @@ public class Bank {
      * @return boolean value where true means can afford.
      */
     public static boolean playerCanAfford(Player player, int price) {
+        return playerCanAfford(Main.playerDataManager.getPlayerData(player), price);
+    }
+
+    /**
+     * Checks if the player can afford the amount + tax
+     * @param playerData the player to withdraw
+     * @param price the amount to withdraw
+     * @return boolean value where true means can afford.
+     */
+    public static boolean playerCanAfford(PlayerData playerData, int price) {
         int tax = calculateWithdrawTaxAmount(price);
-        return Main.playerDataManager.getPlayerData(player).canAfford(price + tax);
+        return playerData.canAfford(price + tax);
     }
 
     public static String tellPlayerCannotAfford(Player player, String theProduct, int price) {
@@ -68,16 +78,20 @@ public class Bank {
 
     public static void withdrawPlayer(String youJustPaidFor, Player player, int amount) {
         int tax = calculateWithdrawTaxAmount(amount);
-        taxBank += tax;
-
         // inform player
         Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + amount +
                 LangDict.getString(LangDict.CURRENCY) + LangDict.getString("sellItem.for") + youJustPaidFor + " + " +
                 tax + LangDict.getString(LangDict.CURRENCY) + " (" + getWithdrawTaxPercentDisplay()
                 + "%)"+ LangDict.getString("banking.inVat"), ChatColor.GRAY);
+        withdrawPlayer(Main.playerDataManager.getPlayerData(player), amount);
+    }
+
+    public static void withdrawPlayer(PlayerData playerData, int amount) {
+        int tax = calculateWithdrawTaxAmount(amount);
+        taxBank += tax;
 
         // withdraw player and save
-        Main.playerDataManager.getPlayerData(player).withdrawBalance(amount + tax);
+        playerData.withdrawBalance(amount + tax);
         save();
     }
 
