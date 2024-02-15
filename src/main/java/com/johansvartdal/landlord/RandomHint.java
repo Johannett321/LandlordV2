@@ -43,7 +43,7 @@ public class RandomHint {
     private ArrayList<String> getStandardHints() {
         ArrayList<String> hints = new ArrayList<>();
         hints.add("Some of the items that can be sold: " + BuySellManager.getSellableItemsHint());
-        hints.add("The items you will need the most of for upgrading your town, is sugar_canes and cobblestone");
+        hints.add("The items you will need the most of for upgrading your town is sugar_canes and cobblestone");
         hints.add("By typing '/buychunk info', you can see how many chunks you can claim");
         hints.add("Type '/bal' to see your current tax and fortune");
         hints.add("The value of items change during the day. By typing '/sell info', you can monitor the price, and sell when it's worth the most");
@@ -52,7 +52,8 @@ public class RandomHint {
         hints.add("'/home' will almost always take you home. Almost...");
         hints.add("Do you want to build something cool, or just trade with someone? Do '/trade'");
         hints.add("Did you know you could find a better spot for your home? Do '/sethome' somewhere else inside your chunk");
-        hints.add("If you get enough money, you may visit the lounge");
+        hints.add("If you get enough money, you get VIP status and may visit the lounge");
+        hints.add("It may be strategic to keep items in chests rather than selling it. The value of materials and goods increase and decrease all the time. Also, too much wealth leads to wealth tax");
 
         hints.add("Landlord supports up to 8 players!");
         hints.add("Did you know the Landlord plugin was developed by Johan Svartdal?");
@@ -82,16 +83,19 @@ public class RandomHint {
         if (LevelManager.featureUnlocked("roulette")) {
             hints.add("By typing /joinroulette, you can see how much time is left before the next round of roulette");
             hints.add("Every full hour there is a roulette game where you can win lots of items. Do /joinroulette to take part");
+            hints.add("Some of the items you can win in roulette may have enchantments");
         }
 
         if (LevelManager.featureUnlocked("rent_basic_tool")) {
             hints.add("Tired of your slow pickaxe? Try '/rent pickaxe', and see both the speed and the number of diamonds increase!");
             hints.add("Need some wood? Do '/rent axe' before you chop down your next tree");
+            hints.add("The cost of renting a pickaxe to expand a farm, can often be profitable after only a few hours, due to the increasing size of the farm");
+            hints.add("Found diamonds? Rent a pickaxe before you mine it! Rented pickaxes have a fortune enchantment");
         }
 
         if (LevelManager.featureUnlocked("visit")) {
             hints.add("The command /visit allows you to visit other players for a visit fee of " + StaticValues.VISIT_PRICE + LangDict.getString(LangDict.CURRENCY));
-            hints.add("Someone not following your rules inside your property? Send them home with '/sendhome [ USERNAME ]'");
+            hints.add("Someone not following your rules while visiting you? Send them home with '/sendhome [ USERNAME ]'");
         }
 
         if (LevelManager.featureUnlocked("fly")) {
@@ -99,7 +103,7 @@ public class RandomHint {
         }
 
         if (LevelManager.featureUnlocked("day")) {
-            hints.add("Do '/day' to get rid of the rain, change the time to day");
+            hints.add("Do '/day' to get rid of the rain and change the time to day");
         }
 
         if (LevelManager.featureUnlocked("stocks")) {
@@ -120,6 +124,15 @@ public class RandomHint {
 
         if (LevelManager.featureUnlocked("wildmining")) {
             hints.add("A great way to mine, is doing '/wilderness mine'. It will give you 45 minutes of non-stop mining for only " + StaticValues.MINING_PRICE + LangDict.getString(LangDict.CURRENCY));
+        }
+
+        if (LevelManager.featureUnlocked("capture")) {
+            hints.add("Most friendly mobs can be captured. Maybe a panda could be a cool pet?");
+            hints.add("The capture command will capture the animal closest to you");
+        }
+
+        if (LevelManager.featureUnlocked("pay")) {
+            hints.add("Does someone owe you money? They can pay back using /pay <username> <amount>");
         }
 
         return hints;

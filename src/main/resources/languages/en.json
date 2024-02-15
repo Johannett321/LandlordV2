@@ -299,7 +299,11 @@
             "godSpeak": "Congratulations! Please read the book i wrote about this level. I got big news!",
             "page1": "Oh wow! Your town is rocking level 4. This is amazing! I promised you something big for this town upgrade. I wasn't lying. You unlocked a feature called \"wilderness\". This feature allows you to get out of your town for a short period of time. During that time, you are not restricted by the...",
             "page2": "size of your own chunk, and can explore the wilderness.",
-            "page3": "---- Wilderness ----\nWilderness allows you to be teleported outside your chunk to the free open world for a short period of time. To see the available commands, do /wilderness"
+            "page3": "---- Wilderness ----\nWilderness allows you to be teleported outside your chunk to the free open world for a short period of time. It is not free however. To see the available commands, do /wilderness"
+        },
+        "level5": {
+            "godSpeak": "Oh wow, level 5!",
+            "page1": "Oh wow! Your town is rocking level 5. This is amazing! I promised you something big for this town upgrade. I wasn't lying. You unlocked a feature called \"wilderness\". This feature allows you to get out of your town for a short period of time. During that time, you are not restricted by the..."
         },
         "endSignature": "\n\n\n\n\n\n\n\n\n\n\n\n# Signature #\n- The Landlord"
     },

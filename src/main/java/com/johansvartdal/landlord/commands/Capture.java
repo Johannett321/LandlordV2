@@ -65,7 +65,7 @@ public class Capture implements CommandExecutor {
             }
         }
 
-        if (near.size() == 0) {
+        if (near.isEmpty()) {
             Tools.tellPlayer(player, LangDict.getString("capture.captureGetCloser"), ChatColor.RED);
             return true;
         }
@@ -86,6 +86,32 @@ public class Capture implements CommandExecutor {
             items = new ItemStack(Material.SQUID_SPAWN_EGG);
         }else if (near.get(entityIndexLowest).getType() == EntityType.BEE) {
             items = new ItemStack(Material.BEE_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.CAT) {
+            items = new ItemStack(Material.CAT_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.OCELOT) {
+            items = new ItemStack(Material.OCELOT_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.DOLPHIN) {
+            items = new ItemStack(Material.DOLPHIN_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.HORSE) {
+            items = new ItemStack(Material.HORSE_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.CAMEL) {
+            items = new ItemStack(Material.CAMEL_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.DONKEY) {
+            items = new ItemStack(Material.DONKEY_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.FROG) {
+            items = new ItemStack(Material.FROG_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.TURTLE) {
+            items = new ItemStack(Material.TURTLE_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.GOAT) {
+            items = new ItemStack(Material.GOAT_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.PANDA) {
+            items = new ItemStack(Material.PANDA_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.RABBIT) {
+            items = new ItemStack(Material.RABBIT_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.PARROT) {
+            items = new ItemStack(Material.PARROT_SPAWN_EGG);
+        }else if (near.get(entityIndexLowest).getType() == EntityType.WOLF) {
+            items = new ItemStack(Material.WOLF_SPAWN_EGG);
         }else if (near.get(entityIndexLowest).getType() == EntityType.VILLAGER) {
             if (Bank.playerCanAfford(player, StaticValues.VILLAGER_CAPTURE_PRICE)) {
                 items = new ItemStack(Material.VILLAGER_SPAWN_EGG);
