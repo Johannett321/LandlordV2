@@ -1,15 +1,24 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.CropState;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.world.ChunkLoadEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
-public class ChunkGuardManager {
+public class ChunkGuardManager{
 
     private static ArrayList<Chunk> guardedChunks = new ArrayList<>();
+    private final Random random = new Random();
 
     private Main plugin;
 
@@ -18,33 +27,89 @@ public class ChunkGuardManager {
         doLoop();
     }
 
+    /**
+     * Loops a chunkGuard iteration
+     */
     private void doLoop () {
+        int iterationTime = 60*20;
+        if (Properties.DEV_CHEAT_MODE) {
+            iterationTime = 30;
+        }
+
         chunkGuardLoopIteration();
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             doLoop();
-        }, Tools.secToTicks(60*60)); // 1h
+        }, Tools.secToTicks(iterationTime)); // 20 minutes
     }
 
+    /**
+     * Single chunk loop iteration
+     */
     private void chunkGuardLoopIteration() {
         if (Properties.DEBUG_LOGGING) {
             System.out.println("Chunkguard running iteration");
         }
 
-        unloadAllGuardedChunks();
-        reloadGuardedChunksList();
-        protectGuardedChunks();
+        // make sure chunkGuard is unlocked before looping
+        if (LevelManager.featureUnlocked("chunkguard")) {
+            reloadGuardedChunksList();
+            loopOverChunks();
+        }
     }
 
     /**
-     * Sets all chunks to force loaded: false
+     * Loops over all chunks
      */
-    private void unloadAllGuardedChunks() {
-        for (Chunk chunk : guardedChunks) {
-            if (Properties.DEBUG_LOGGING) {
-                System.out.println("Unloading chunk: " + chunk.getX() + ":" + chunk.getZ());
+    private void loopOverChunks() {
+        if (Properties.DEBUG_LOGGING) System.out.println("Currently protected chunks: " + guardedChunks.size());
+        for (Chunk chunk: guardedChunks) {
+            if (Properties.DEBUG_LOGGING) System.out.println("Protecting chunk at: " + chunk.getX() + ":" + chunk.getZ());
+
+            loopOverBlocksInChunk(chunk);
+        }
+    }
+
+    /**
+     * Loops over all blocks within the chunk
+     * @param chunk
+     */
+    private void loopOverBlocksInChunk(Chunk chunk) {
+        int chunkX = chunk.getX()*16;
+        int chunkZ = chunk.getZ()*16;
+
+        for (int y = -64; y <= 318; y++) {
+            for (int x = chunkX; x < chunkX + 16; x++) {
+                for (int z = chunkZ; z < chunkZ + 16; z++) {
+                    attemptGrowBlock(chunk.getWorld().getBlockAt(x, y, z));
+                }
             }
-            chunk.setForceLoaded(false);
-            chunk.removePluginChunkTicket(plugin);
+        }
+    }
+
+    /**
+     * Attempts to grow the given block
+     * @param block
+     */
+    private void attemptGrowBlock(Block block) {
+        // Can the block grow?
+        if (!(block.getBlockData() instanceof Ageable)) {
+            return;
+        }
+
+        // make sure not already fully grown
+        Ageable blockData = (Ageable) block.getBlockData();
+        if (blockData.getAge() == blockData.getMaximumAge()) {
+            return;
+        }
+
+        // actually grow it
+        if (random.nextFloat() < 0.8) {
+            int currentAge = blockData.getAge();
+            blockData.setAge(currentAge + 1);
+            block.setBlockData(blockData);
+            System.out.println("Grew block at: " + block.getX() + ":" + block.getY() + ":" + block.getZ() + ", to age: " + blockData.getAge());
+        }else {
+            System.out.println("Did not grow block at position: " + block.getX() + ":" + block.getY() + ":" + block.getZ() + ", with age: " + blockData.getAge());
         }
     }
 
@@ -53,6 +118,7 @@ public class ChunkGuardManager {
      */
     private void reloadGuardedChunksList() {
         guardedChunks.clear();
+        if (Properties.DEBUG_LOGGING) System.out.println("Checking which chunks to protect");
 
         ArrayList<PlayerData> playerDatas = Main.playerDataManager.getPlayerDataList();
         for (PlayerData playerData : playerDatas) {
@@ -64,23 +130,44 @@ public class ChunkGuardManager {
             }
 
             // actually mark protected
-            withdrawPlayer(playerData, getChunkProtectionPrice(chunks.length));
+            if (!Properties.DEV_CHEAT_MODE) {
+                withdrawPlayer(playerData, getChunkProtectionPrice(chunks.length));
+            }
             guardedChunks.addAll(Arrays.stream(chunks).toList());
+
+            if (Properties.DEBUG_LOGGING) System.out.println("Player: " + playerData.getUsername() + " will have: " + chunks.length + " chunks protected!");
         }
     }
 
     /**
-     * Loops through guarded chunks and sets them to force loaded
+     * Registers the chunk as protected, and protects it immediately if the player can afford it.
+     * @param player
+     * @param chunk
      */
-    private void protectGuardedChunks() {
-        for (Chunk chunk : guardedChunks) {
-            if (Properties.DEBUG_LOGGING) {
-                System.out.println("Setting chunk as force loaded: " + chunk.getX() + ":" + chunk.getZ());
-            }
-            chunk.setForceLoaded(true);
-            chunk.addPluginChunkTicket(plugin);
+    public void startProtectingChunk(Player player, Chunk chunk) {
+        PlayerData playerData = Main.playerDataManager.getPlayerData(player);
+        getNumOfChunksProtectedForPlayer(player);
+        playerData.chunkGuardWatchChunk(chunk);
+
+
+        // set to force loaded if player can afford
+        if (playerCanAfford(playerData, getChunkProtectionPrice(1))) {
+            withdrawPlayer(playerData, getChunkProtectionPrice(1));
+            guardedChunks.add(chunk);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     private Chunk[] chunkPosToChunks(ArrayList<int[]> chunkPos) {
         Chunk[] chunks = new Chunk[chunkPos.size()];
@@ -107,26 +194,6 @@ public class ChunkGuardManager {
      */
     public boolean isChunkProtected(Chunk chunk) {
         return guardedChunks.contains(chunk);
-    }
-
-    /**
-     * Registers the chunk as protected, and protects it immediately if the player can afford it.
-     * @param player
-     * @param chunk
-     */
-    public void startProtectingChunk(Player player, Chunk chunk) {
-        PlayerData playerData = Main.playerDataManager.getPlayerData(player);
-        getNumOfChunksProtectedForPlayer(player);
-        playerData.chunkGuardWatchChunk(chunk);
-
-
-        // set to force loaded if player can afford
-        if (playerCanAfford(playerData, getChunkProtectionPrice(1))) {
-            withdrawPlayer(playerData, getChunkProtectionPrice(1));
-            guardedChunks.add(chunk);
-            chunk.setForceLoaded(true);
-            chunk.addPluginChunkTicket(plugin);
-        }
     }
 
     public int getNumOfChunksProtectedForPlayer(Player player) {
@@ -158,9 +225,6 @@ public class ChunkGuardManager {
         // actually mark protected
         withdrawPlayer(playerData, getChunkProtectionPrice(chunks.length));
         guardedChunks.addAll(Arrays.stream(chunks).toList());
-
-        // actually protect the guarded chunks!
-        protectGuardedChunks();
     }
 
     public int getCurrentBalanceForPlayer(Player player) {
@@ -169,8 +233,6 @@ public class ChunkGuardManager {
 
     public void stopWatchingChunk(PlayerData playerData, Chunk chunk) {
         playerData.chunkGuardStopWatchingChunk(chunk);
-        chunk.setForceLoaded(false);
-        chunk.removePluginChunkTicket(plugin);
         guardedChunks.removeIf(chunk1 -> chunk1.getX() == chunk.getX() && chunk1.getZ() == chunk.getZ());
     }
 }
