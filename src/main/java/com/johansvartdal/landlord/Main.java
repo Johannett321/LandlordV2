@@ -173,7 +173,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		// inform player about debug mode
 		if (Properties.DEV_CHEAT_MODE) {
-			Tools.tellPlayer(new WarningChat(), joinedPlayer, LangDict.getString("info.debugWarning"), ChatColor.RED);
+			Tools.tellPlayer(new WarningChat(), joinedPlayer, LangDict.getString("info.devCheatWarning"), ChatColor.RED);
 		}
 
 		// make sure player is not flying unless allowed to

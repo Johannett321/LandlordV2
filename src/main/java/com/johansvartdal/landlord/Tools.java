@@ -155,7 +155,7 @@ public class Tools {
             //We can write any JSONArray or JSONObject instance to the file
             file.write(object.toJSONString());
             file.flush();
-            System.out.println("Just saved file (" + fileName + "): " + object.toJSONString());
+            if (Properties.DEBUG_LOGGING) System.out.println("Just saved file (" + fileName + "): " + object.toJSONString());
         } catch (IOException e) {
             if (Properties.DEBUG_LOGGING) System.out.println("ERROR: Failed to save json to file: " + fileName);
         }

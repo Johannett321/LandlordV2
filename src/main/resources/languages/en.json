@@ -35,7 +35,7 @@
         }
     },
     "info": {
-        "debugWarning": "WARNING: DEBUG MODE ENABLED!",
+        "devCheatWarning": "WARNING: DEV CHEAT MODE ENABLED!",
         "serverRestarted": "Server just restarted!",
         "playersAreSleeping": " player(s) are sleeping",
         "welcomeHome": "Welcome home",

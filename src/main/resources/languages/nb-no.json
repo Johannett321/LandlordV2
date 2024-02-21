@@ -31,7 +31,7 @@
         }
     },
     "info": {
-        "debugWarning": "ADVARSEL: DEBUG-MODUS AKTIVERT!",
+        "devCheatWarning": "ADVARSEL: DEV-CHEAT MODUS AKTIVERT!",
         "serverRestarted": "Serveren restartet nettop!",
         "playersAreSleeping": " spiller(e) sover",
         "welcomeHome": "Velkommen hjem",
