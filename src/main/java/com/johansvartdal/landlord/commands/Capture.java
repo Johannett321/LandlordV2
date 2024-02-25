@@ -41,7 +41,7 @@ public class Capture implements CommandExecutor {
 
         // make sure the player is in wilderness. Should not be able to capture animal anywhere else
         if (!(PlayerEventManager.getEventForPlayer(player) instanceof WildernessEvent)) {
-            Tools.tellPlayer(new ErrorChat(), player, "commandResponses.errorMessages.cmdOnlyInWilderness");
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("commandResponses.errorMessages.cmdOnlyInWilderness"));
             return true;
         }
 

@@ -76,6 +76,7 @@
         "chunkInfo": "CHUNK INFORMASJON",
         "chunkPoints": "Chunk-poeng:",
         "priceOfNextChunk": "Pris på neste chunk:",
+        "currentlyOwned": "Du eier:",
         "noChunkPointsLeft": "Du har ikkje fleire chunk-poeng att",
         "toPurchaseAChunk": "for å kjøpe ein ny chunk",
         "cannotPurchaseThisChunk": "Du kan ikkje kjøpe denne chunken",
@@ -198,8 +199,7 @@
             "extended": "Forlenga ",
             "youHave": "Du har ",
             "leftOfWildTime": " att av ditt eventyr",
-            "wildEnding1Min": "Ditt villmarkseventyr avsluttast om 1 minutt",
-            "wildEnding10Sec": "Ditt villmarkseventyr avsluttast om 10 sekund"
+            "wildEndingIn": "Ditt villmarkseventyr avsluttast om "
         },
         "mining": {
             "title": "gruve-eventyret",

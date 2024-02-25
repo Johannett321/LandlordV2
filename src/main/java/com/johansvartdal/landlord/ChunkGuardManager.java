@@ -101,7 +101,12 @@ public class ChunkGuardManager{
      * Loops over all protected chunks, and checks if they should be cached. Caches if they should
      */
     private void runCacheIteration() {
-        Long growStartTime;
+        // make sure chunkGuard is unlocked before looping
+        if (!LevelManager.featureUnlocked("chunkguard")) {
+            return;
+        }
+
+        long growStartTime;
         if (Properties.DEBUG_LOGGING) {
             growStartTime = System.nanoTime();
             System.out.println("ChunkGuard starting cache mission at: " + growStartTime);
@@ -113,7 +118,7 @@ public class ChunkGuardManager{
 
         lastCacheTime = System.currentTimeMillis();
 
-        if (Properties.DEBUG_LOGGING) System.out.println("ChunkGuard cache mission completed at: " + System.nanoTime() + ". Took: " + (System.nanoTime() - growStartTime) + " nano(s)!");
+        if (Properties.DEBUG_LOGGING) System.out.println("ChunkGuard cache mission completed at: " + System.nanoTime() + ". Took: " + (System.nanoTime() - growStartTime) + " nano(s)! Guarded chunks: " + guardedChunks.size());
     }
 
     /**
@@ -121,20 +126,20 @@ public class ChunkGuardManager{
      */
     private void runGrowIteration() {
         // make sure chunkGuard is unlocked before looping
-        if (LevelManager.featureUnlocked("chunkguard")) {
-
-            Long growStartTime;
-            if (Properties.DEBUG_LOGGING) {
-                growStartTime = System.nanoTime();
-                System.out.println("ChunkGuard starting grow mission at: " + growStartTime);
-            }
-
-            // actually do the cache loop
-            loopOverCachedBlocks();
-
-            if (Properties.DEBUG_LOGGING) System.out.println("ChunkGuard grow mission completed at: " + System.nanoTime() + ". Took: " + (System.nanoTime() - growStartTime) + " nano(s)!");
-
+        if (!LevelManager.featureUnlocked("chunkguard")) {
+            return;
         }
+
+        Long growStartTime;
+        if (Properties.DEBUG_LOGGING) {
+            growStartTime = System.nanoTime();
+            System.out.println("ChunkGuard starting grow mission at: " + growStartTime);
+        }
+
+        // actually do the cache loop
+        loopOverCachedBlocks();
+
+        if (Properties.DEBUG_LOGGING) System.out.println("ChunkGuard grow mission completed at: " + System.nanoTime() + ". Took: " + (System.nanoTime() - growStartTime) + " nano(s)!");
     }
 
     /**
@@ -224,7 +229,7 @@ public class ChunkGuardManager{
         for (CachedBlock cachedBlock: cachedPotentiallyGrowable){
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(cachedBlock.getGuardedChunk().getPlayerData().getUsername());
 
-            if (offlinePlayer.isOnline() && cachedBlock.getBlock().getLocation().distance(offlinePlayer.getPlayer().getLocation()) < 120) {
+            if (offlinePlayer.isOnline() && cachedBlock.getBlock().getLocation().distance(offlinePlayer.getPlayer().getLocation()) < 128) {
                 continue;
             }
 
@@ -578,12 +583,28 @@ public class ChunkGuardManager{
     }
 
     /**
+     * Checks if a chunk is current guarded, meaning things will grow
+     * @param chunk the chunk
+     * @return true if protected
+     */
+    public boolean isChunkCurrentlyProtected(Chunk chunk) {
+        return guardedChunks.stream().anyMatch(guardedChunk -> guardedChunk.getChunk().equals(chunk));
+    }
+
+    /**
      * Checks if a chunk is guarded
      * @param chunk the chunk
      * @return true if protected
      */
-    public boolean isChunkProtected(Chunk chunk) {
-        return guardedChunks.contains(chunk);
+    public boolean isChunkProtectedByPlayer(Player player, Chunk chunk) {
+        ArrayList<int[]> playersGuardedChunks = Main.playerDataManager.getPlayerData(player).getGuardedChunks();
+        if (Properties.DEBUG_LOGGING) {
+            System.out.println("--- Currently protected chunks by " + player.getDisplayName() + ": ---");
+            playersGuardedChunks.forEach(protectedChunk -> {
+                System.out.println(protectedChunk[0] + ":" + protectedChunk[1]);
+            });
+        }
+        return playersGuardedChunks.stream().anyMatch(protectedChunk -> chunk.getX() == protectedChunk[0] && chunk.getZ() == protectedChunk[1]);
     }
 
     public int getNumOfChunksProtectedForPlayer(Player player) {
@@ -591,7 +612,7 @@ public class ChunkGuardManager{
     }
 
     public boolean playerCanAfford(PlayerData playerData, int amount) {
-        return playerData.getChunkGuardCoins() > amount;
+        return playerData.getChunkGuardCoins() >= amount;
     }
 
     public void withdrawPlayer(PlayerData playerData, int amount) {

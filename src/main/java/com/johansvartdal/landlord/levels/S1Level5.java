@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Book;
 import com.johansvartdal.landlord.LandlordEvent;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
 import org.bukkit.Material;
@@ -21,6 +22,7 @@ public class S1Level5 extends Level{
 
         requiredItems.add(new ItemStack(Material.COBBLESTONE, 128 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.CACTUS, 50 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.WHEAT, 80 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.LAVA_BUCKET, 2));
         requiredItems.add(new ItemStack(Material.IRON_BLOCK, 2 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.POPPY, 8 * Main.properties.getNumberOfPlayers()));
@@ -45,6 +47,8 @@ public class S1Level5 extends Level{
 
     @Override
     public Book getBook() {
-        return null;
+        Book book = new Book("S1L5");
+        book.addPage(LangDict.getString("levelBooks.endSignature"));
+        return book;
     }
 }

@@ -45,6 +45,10 @@ public class RouletteGame {
     private void checkIfGameShouldBeRunning() {
         Calendar calendar = Calendar.getInstance();
         int minute = calendar.get(Calendar.MINUTE);
+        if (minute != 0 && openForJoin) {
+            openForJoin = false;
+        }
+
         if (minute == 0 && !openForJoin && Main.properties.gameStateIsNormal() && LevelManager.featureUnlocked("roulette")) {
             runRouletteGame();
         }

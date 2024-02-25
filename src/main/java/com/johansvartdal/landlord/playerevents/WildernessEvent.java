@@ -45,15 +45,30 @@ public class WildernessEvent extends PlayerEvent{
 
     @Override
     public void onWarningEventShouldCancel() {
-        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEnding10Sec"), ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEndingIn") + 1 + LangDict.getString("generalSentenceParts.minutes"), ChatColor.YELLOW);
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, this::thirtySecLeft, Tools.secToTicks(30));
+    }
 
-        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
-            public void run() {
-                Tools.tellPlayer(player, LangDict.getString(LangDict.WELCOME_HOME));
-                endEvent();
-            }
-        }, Tools.secToTicks(10));
+    public void thirtySecLeft() {
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEndingIn") + 30 + LangDict.getString("generalSentenceParts.seconds"), ChatColor.YELLOW);
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, this::tenSecLeft, Tools.secToTicks(20));
+    }
+
+    public void tenSecLeft() {
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEndingIn") + 10 + LangDict.getString("generalSentenceParts.seconds"), ChatColor.YELLOW);
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, () -> countdownTillEnd(5), Tools.secToTicks(5));
+    }
+
+    public void countdownTillEnd(int num) {
+        if (num <= 0) {
+            endEvent();
+            return;
+        }
+
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEndingIn") + num + LangDict.getString("generalSentenceParts.seconds"), ChatColor.YELLOW);
+        eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            countdownTillEnd(num-1);
+        }, Tools.secToTicks(1));
     }
 
     @Override

@@ -10,7 +10,7 @@ import org.bukkit.Location;
 
 public class ValleyVillageAdventure extends AdventureEvent{
 
-    private final Location advLocation = new Location(Bukkit.getWorld("world"), 528, 68 ,-893);
+    private final Location advLocation = new Location(Bukkit.getWorld("adv"), 528, 68 ,-893);
     private final int excursionMinutes = 10;
 
     public ValleyVillageAdventure(Main plugin) {

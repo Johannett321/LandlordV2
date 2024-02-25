@@ -57,7 +57,9 @@ public class SpecialEffects {
     }
 
     public static void blastFireworks(int howMany) {
-        Location initial = Main.tradeCenter.getLocation();
+        Location tradeLocation = Main.tradeCenter.getLocation();
+
+        Location initial = new Location(tradeLocation.getWorld(), tradeLocation.getX(), tradeLocation.getY(), tradeLocation.getZ());
         initial.setX((initial.getChunk().getX()*16)+8);
         initial.setZ((initial.getChunk().getZ()*16)+8);
         initial.setY(Tools.highestStandingPoint(initial).getY() + 10);

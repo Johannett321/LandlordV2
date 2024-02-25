@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 import static com.johansvartdal.landlord.Tools.debugLog;
 
@@ -138,16 +139,6 @@ public class LevelManager {
         return false;
     }
 
-    public static void donateItem(Player player, ItemStack itemStack) {
-        UpgradeDecision upgradeDecision = getUpgradeStatus();
-        switch (upgradeDecision) {
-            case UPGRADE, NOT_ENOUGH_ITEMS, NOT_EVERYONE_HAS_ACCEPTED -> currentLevel.donateItem(player, itemStack);
-            case PLAYER_IN_EVENT -> Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("commandResponses.errorMessages.upgradePlayerInEvent"));
-            case GAME_STATE_NOT_NORMAL -> Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
-        }
-        save();
-    }
-
     public static String getRemainingItemsText() {
         StringBuilder remainingText = new StringBuilder();
 
@@ -179,7 +170,7 @@ public class LevelManager {
     }
 
     public static void forceUpgrade(Player player) {
-        if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
+        if (!currentLevel.getRemainingItemsForNextLevel().isEmpty()) {
             Tools.tellPlayer(player, LangDict.getString("upgrade.cannotForceUpWithoutAllItems"), ChatColor.RED);
             return;
         }
@@ -214,7 +205,21 @@ public class LevelManager {
         return false;
     }
 
-    private enum UpgradeDecision {
+    public static int getAmountRequiredForItem(Material type) {
+        ItemStack itemStack = getRemainingItem(type);
+        if (itemStack != null) {
+            return itemStack.getAmount();
+        }
+        return 0;
+    }
+
+    public static void updateRequiredAmountForItem(Material type, int newRequired) {
+        System.out.println("Step2: " + type.name());
+        getCurrentLevel().updateRequiredItem(type, newRequired);
+        save();
+    }
+
+    public enum UpgradeDecision {
         PLAYER_IN_EVENT,
         GAME_STATE_NOT_NORMAL,
         NOT_ENOUGH_ITEMS,
@@ -222,7 +227,7 @@ public class LevelManager {
         UPGRADE
     }
 
-    private static UpgradeDecision getUpgradeStatus() {
+    public static UpgradeDecision getUpgradeStatus() {
         // make sure no items remain
         if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
             return UpgradeDecision.NOT_ENOUGH_ITEMS;
@@ -388,16 +393,18 @@ public class LevelManager {
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
         featureLevels.put("chunkguard", new LvlSeasonRelation(1,6));
         featureLevels.put("visit", new LvlSeasonRelation(1,7));
-        featureLevels.put("rent_diamond_tools", new LvlSeasonRelation(1,7));
+        featureLevels.put("wildmining", new LvlSeasonRelation(1,8));
         featureLevels.put("wildnether", new LvlSeasonRelation(1,9));
 
         // season 2
-        featureLevels.put("stocks", new LvlSeasonRelation(2,1));
-        featureLevels.put("rent_turtle_shell", new LvlSeasonRelation(2,2));
-        featureLevels.put("rent_elytra", new LvlSeasonRelation(2,2));
-        featureLevels.put("wildmining", new LvlSeasonRelation(2,3));
-        featureLevels.put("fly", new LvlSeasonRelation(2,5));
-        featureLevels.put("day", new LvlSeasonRelation(2,7));
+        featureLevels.put("rent_diamond_tools", new LvlSeasonRelation(1,1));
+        featureLevels.put("stocks", new LvlSeasonRelation(2,2));
+        featureLevels.put("rent_turtle_shell", new LvlSeasonRelation(2,4));
+        featureLevels.put("rent_elytra", new LvlSeasonRelation(2,5));
+        featureLevels.put("fly", new LvlSeasonRelation(2,7));
+        featureLevels.put("day", new LvlSeasonRelation(2,9));
+
+        // season 3
     }
 
     public static boolean featureUnlocked(String featureName) {

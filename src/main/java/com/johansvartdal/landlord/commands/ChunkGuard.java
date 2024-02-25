@@ -72,7 +72,18 @@ public class ChunkGuard implements CommandExecutor {
 	}
 
 	private void printChunkGuardInfo(Player player) {
-		boolean chunkIsProtected = Main.chunkGuardManager.isChunkProtected(player.getLocation().getChunk());
+		boolean chunkIsProtectedByPlayer = Main.chunkGuardManager.isChunkProtectedByPlayer(player, player.getLocation().getChunk());
+		boolean chunkIsCurrentlyProtected = Main.chunkGuardManager.isChunkCurrentlyProtected(player.getLocation().getChunk());
+
+		String protectionStatus = "UNPROTECTED";
+		if (chunkIsCurrentlyProtected && chunkIsProtectedByPlayer) {
+			protectionStatus = "protected";
+		}else if (chunkIsCurrentlyProtected) {
+			protectionStatus = "unprotection pending...";
+		}else if (chunkIsProtectedByPlayer) {
+			protectionStatus = "protection pending...";
+		}
+
 		int singleChunkPrice = Main.chunkGuardManager.getChunkProtectionPrice(1);
 		int numOfGuardedChunks = Main.chunkGuardManager.getNumOfChunksProtectedForPlayer(player);
 		int amountPerHour = singleChunkPrice * numOfGuardedChunks;
@@ -83,13 +94,17 @@ public class ChunkGuard implements CommandExecutor {
 			remainingProtection = currentBalance / (numOfGuardedChunks * singleChunkPrice);
 		}
 
+		if (chunkIsCurrentlyProtected) {
+			remainingProtection += 1;
+		}
+
 		Tools.printMenuHeader(player, "CHUNKGUARD INFO");
-		Tools.printMenuOption(player, "This chunk:", chunkIsProtected ? "protected" : "UNPROTECTED"); // either UNPROTECTED or protected
+		Tools.printMenuOption(player, "This chunk:", protectionStatus); // either UNPROTECTED or protected
 		Tools.printMenuOption(player, "Protected chunks:", String.valueOf(numOfGuardedChunks));
 		Tools.printMenuOption(player, "Price per chunk:", singleChunkPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("generalSentenceParts.perHour")); // self explaining
 		Tools.printMenuOption(player, "Current amount per hour:", amountPerHour + LangDict.getString(LangDict.CURRENCY)); // current cost per hour
 		Tools.printMenuOption(player, "Balance:", currentBalance + LangDict.getString(LangDict.CURRENCY)); // how much money is set in
-		Tools.printMenuOption(player, "Remaining protection:", remainingProtection + LangDict.getString("generalSentenceParts.hours")); // how many hours
+		Tools.printMenuOption(player, "Remaining protection:", (remainingProtection) + LangDict.getString("generalSentenceParts.hours")); // how many hours
 	}
 
 	private void protectChunk(Player player) {

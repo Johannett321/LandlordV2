@@ -38,9 +38,9 @@ public class MiningEvent extends PlayerEvent {
     @Override
     public Integer getLengthOfEventInSeconds() {
         if (Properties.DEV_CHEAT_MODE) {
-            return 15;
+            return 15; // 15 seconds
         }else {
-            return 60*45;
+            return 60*45; // 45 minutes
         }
     }
 
@@ -103,7 +103,7 @@ public class MiningEvent extends PlayerEvent {
         int randomNum = random.nextInt(100000);
         randomNum += 100000;
 
-        Location location = new Location(Bukkit.getWorld("world"), randomNum+5, 12, randomNum+5);
+        Location location = new Location(Bukkit.getWorld("world"), randomNum+5, -53, randomNum+5);
         for (int x = randomNum; x < randomNum+11; x++) {
             for (int y = 11; y < 15; y++) {
                 for (int z = randomNum; z < randomNum+11; z++) {
@@ -116,7 +116,7 @@ public class MiningEvent extends PlayerEvent {
                     }
 
                     // make sure ground is not lava
-                    if (y == 11 || y == 14) {
+                    if (y == -54 || y == -51) {
                         clearBlock.getBlock().setType(Material.STONE);
                     }else {
                         clearBlock.getBlock().setType(Material.AIR);
@@ -131,24 +131,21 @@ public class MiningEvent extends PlayerEvent {
     int strikes = 0;
 
     private void scheduleHeightChecker() {
-        heightChecker = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-            @Override
-            public void run() {
-                if (player.getLocation().getY() > 16) {
-                    strikes += 1;
+        heightChecker = Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            if (player.getLocation().getY() > 16) {
+                strikes += 1;
 
-                    if (strikes > 2) {
-                        Tools.tellPlayer(player, LangDict.getString("playerEvents.mining.heightLimitTooMuch"), ChatColor.RED);
-                        endEvent();
-                        return;
-                    }else {
-                        Tools.tellPlayer(player, LangDict.getString("playerEvents.mining.mineGetDown") + strikes + "/3)", ChatColor.RED);
-                    }
+                if (strikes > 2) {
+                    Tools.tellPlayer(player, LangDict.getString("playerEvents.mining.heightLimitTooMuch"), ChatColor.RED);
+                    endEvent();
+                    return;
+                }else {
+                    Tools.tellPlayer(player, LangDict.getString("playerEvents.mining.mineGetDown") + strikes + "/3)", ChatColor.RED);
                 }
-
-                // reschedule
-                scheduleHeightChecker();
             }
+
+            // reschedule
+            scheduleHeightChecker();
         }, Tools.secToTicks(10));
     }
 }

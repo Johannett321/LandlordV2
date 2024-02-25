@@ -2,18 +2,22 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.InfoChat;
+import lombok.Setter;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public abstract class Level implements LevelInterface {
 
     protected Main plugin;
     private final int seasonNumber;
     private final int levelNumber;
+    @Setter
     private ArrayList<ItemStack> remainingItems;
 
 
@@ -36,44 +40,23 @@ public abstract class Level implements LevelInterface {
         return levelNumber;
     }
 
-    public void donateItem(Player player, ItemStack itemStack) {
-        for (int i = 0; i < remainingItems.size(); i++) {
-            if (remainingItems.get(i).getType() == itemStack.getType()) {
-                int onHand = itemStack.getAmount();
-                int required = remainingItems.get(i).getAmount();
-
-                if (onHand >= required) {
-                    onHand -= required;
-                    required = 0;
-                }else {
-                    required -= onHand;
-                    onHand = 0;
-                }
-
-                if (required > 0) {
-                    remainingItems.get(i).setAmount(required);
-                    Tools.tellPlayer(new InfoChat(), player, LangDict.getString("donate.youJustDonated") + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("donate.toCommunity"), ChatColor.GREEN);
-                    Tools.broadcastMessage(new InfoChat(), player.getDisplayName() + LangDict.getString("donate.onDonation") + itemStack.getAmount() + " " + Tools.getDisplayNameOfItem(itemStack), ChatColor.GRAY, new Player[]{player});
-                }else {
-                    Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_GUITAR);
-                    remainingItems.remove(i);
-
-                    if (remainingItems.size() == 0) {
-                        God.speak(LangDict.getString("donate.itemDonationsComplete"));
-                    }else {
-                        God.speak(player.getDisplayName() + LangDict.getString("donate.justDonated") + Tools.getDisplayNameOfItem(itemStack) + LangDict.getString("donate.toCommunity"));
-                    }
-                }
-
-                player.getInventory().getItemInMainHand().setAmount(onHand);
-                LevelManager.save();
-                break;
-            }
+    public void updateRequiredItem(Material type, int newRequired) {
+        System.out.println("Step3: " + type.name());
+        Optional<ItemStack> optionalItemStack = remainingItems.stream().filter(itemStack -> itemStack.getType().equals(type)).findFirst();
+        if (optionalItemStack.isEmpty()) {
+            System.out.println("Cannot find " + type.name() + " in required items!");
+            return;
         }
-    }
 
-    public void setRemainingItems(ArrayList<ItemStack> remainingItems) {
-        this.remainingItems = remainingItems;
+        // remove if 0 or less
+        if (newRequired <= 0) {
+            System.out.println("Removing " + type.name() + " as last was filled!");
+            remainingItems.remove(optionalItemStack.get());
+            return;
+        }
+
+        // update amount
+        optionalItemStack.get().setAmount(newRequired);
     }
 
     public int getDisplaySeasonNumber() {

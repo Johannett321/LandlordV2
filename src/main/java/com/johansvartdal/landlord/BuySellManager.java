@@ -57,6 +57,7 @@ public class BuySellManager {
             case COBBLESTONE: return new AmountWorth(64, 150, 1);
             case DIRT: return new AmountWorth(64, 220, 19);
             case TUFF:
+            case BASALT:
             case COBBLED_DEEPSLATE: return new AmountWorth(64, 180, 1);
             case FLINT:
             case GRAVEL:
@@ -136,7 +137,7 @@ public class BuySellManager {
             case DIAMOND: return new AmountWorth(1, 2000, 23);
             case GOLD_INGOT:
             case IRON_INGOT: return new AmountWorth(16, 1500, 24);
-            case CHARCOAL:
+            case CHARCOAL: return new AmountWorth(64, 950, 25);
             case COAL: return new AmountWorth(16, 800, 25);
             case GLOWSTONE_DUST:
             case REDSTONE:

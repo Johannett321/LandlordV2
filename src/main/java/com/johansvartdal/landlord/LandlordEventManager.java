@@ -9,8 +9,10 @@ import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import com.johansvartdal.landlord.events.taxevents.HasteEvent;
 import com.johansvartdal.landlord.levels.Level;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.bukkit.Bukkit;
 
+@Slf4j
 public class LandlordEventManager {
 
     @Getter
@@ -22,37 +24,26 @@ public class LandlordEventManager {
         }
 
         String eventType = Tools.read("runningEventType.txt");
-        System.out.println("Event: " + eventType);
+        if (Properties.DEBUG_LOGGING) System.out.println("Event that should be resumed: " + eventType);
         if (eventType == null) {
             return;
         }
 
-        LandlordEvent event = null;
+        LandlordEvent event = switch (eventType) {
+            case "ArenaFight" -> new ArenaFight1(plugin);
+            case "Preparations" -> new Preparations(plugin);
+            case "TestEvent" -> new TestEvent(plugin);
+            case "Adventure" -> new ValleyVillageAdventure(plugin);
+            case "Mystery" -> new Mystery1(plugin);
+            case "TaxEvent" -> new HasteEvent(plugin);
+            case "VoteForTreasury" -> new ChooseTreasuryEvent(plugin);
+            default -> null;
+        };
 
-        switch (eventType) {
-            case "ArenaFight":
-                event = new ArenaFight1(plugin);
-                break;
-            case "Preparations":
-                event = new Preparations(plugin);
-                break;
-            case "TestEvent":
-                event = new TestEvent(plugin);
-                break;
-            case "Adventure":
-                event = new ValleyVillageAdventure(plugin);
-                break;
-            case "Mystery":
-                event = new Mystery1(plugin);
-                break;
-            case "TaxEvent":
-                event = new HasteEvent(plugin);
-                break;
-            case "VoteForTreasury":
-                event = new ChooseTreasuryEvent(plugin);
-                break;
+        if (event == null) {
+            log.error("An event was running, but could not be resumed: " + eventType);
+            return;
         }
-
         resumeEvent(event);
     }
 

@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Book;
 import com.johansvartdal.landlord.LandlordEvent;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -51,6 +52,8 @@ public class S1Level9 extends Level{
 
     @Override
     public Book getBook() {
-        return null;
+        Book book = new Book("S1L9");
+        book.addPage(LangDict.getString("levelBooks.endSignature"));
+        return book;
     }
 }

@@ -84,6 +84,7 @@
         "chunkInfo": "CHUNK INFO",
         "chunkPoints": "Chunk points:",
         "priceOfNextChunk": "Price of next chunk:",
+        "currentlyOwned": "Currently own:",
         "noChunkPointsLeft": "You don't have any chunk points left",
         "toPurchaseAChunk": "to purchase a new chunk",
         "cannotPurchaseThisChunk": "You cannot purchase this chunk",
@@ -210,8 +211,7 @@
             "extended": "Extended ",
             "youHave": "You have ",
             "leftOfWildTime": " left of your wilderness time",
-            "wildEnding1Min": "Wilderness will end in 1 minute",
-            "wildEnding10Sec": "Wilderness will end in 10 seconds"
+            "wildEndingIn": "Wilderness will end in "
         },
         "mining": {
             "title": "mining",
