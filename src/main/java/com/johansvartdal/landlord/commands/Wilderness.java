@@ -172,7 +172,7 @@ public class Wilderness implements CommandExecutor {
 
         // make sure event is not null
         // make sure player actually is in wilderness
-        if (!(event instanceof WildernessEvent)) {
+        if (!(event instanceof WildernessEvent) && !(event instanceof NetherWildernessEvent) && !(event instanceof MiningEvent)) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
             return;
         }
