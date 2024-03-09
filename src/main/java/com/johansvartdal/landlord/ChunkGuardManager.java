@@ -279,7 +279,9 @@ public class ChunkGuardManager{
         // set to force loaded if player can afford
         if (playerCanAfford(playerData, getChunkProtectionPrice(1))) {
             withdrawPlayer(playerData, getChunkProtectionPrice(1));
-            guardedChunks.add(new GuardedChunk(chunk, playerData));
+            GuardedChunk guardedChunk = new GuardedChunk(chunk, playerData);
+            guardedChunks.add(guardedChunk);
+            cacheMissionLoopOverChunkBlocks(guardedChunk);
         }
     }
 
@@ -628,14 +630,24 @@ public class ChunkGuardManager{
 
         Chunk[] chunks = chunkPosToChunks(playerData.getGuardedChunks());
 
-        // make sure player can afford
-        if (!playerCanAfford(playerData, getChunkProtectionPrice(chunks.length))) {
-            return;
-        }
+        // attempt protect chunks
+        for (Chunk chunk : chunks) {
+            // make sure chunk is not already protected
+            if (guardedChunks.stream().anyMatch(guardedChunk -> guardedChunk.getChunk().getX() == chunk.getX() && guardedChunk.getChunk().getZ() == chunk.getZ())) {
+                continue;
+            }
 
-        // actually mark protected
-        withdrawPlayer(playerData, getChunkProtectionPrice(chunks.length));
-        Arrays.stream(chunks).toList().forEach(chunk -> guardedChunks.add(new GuardedChunk(chunk, playerData)));
+            // make sure player can afford
+            if (!playerCanAfford(playerData, getChunkProtectionPrice(1))) {
+                return;
+            }
+
+            // protect it
+            withdrawPlayer(playerData, getChunkProtectionPrice(1));
+            GuardedChunk guardedChunk = new GuardedChunk(chunk, playerData);
+            guardedChunks.add(guardedChunk);
+            cacheMissionLoopOverChunkBlocks(guardedChunk);
+        }
     }
 
     public int getCurrentBalanceForPlayer(Player player) {

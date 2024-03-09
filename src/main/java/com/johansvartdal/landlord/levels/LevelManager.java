@@ -116,10 +116,13 @@ public class LevelManager {
 
         // effects
         SpecialEffects.blastFireworks(6);
-        LanController.getLightsController().playLevelUpEffect();
+        Tools.playSoundForEveryone(Sound.UI_TOAST_CHALLENGE_COMPLETE);
 
         // start event if any
         LandlordEventManager.notifyLevelReached(currentLevel);
+
+        // play lights
+        LanController.getLightsController().playLevelUpEffect();
     }
 
     public static void forceProceedToNextLevel() {

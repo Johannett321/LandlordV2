@@ -40,10 +40,11 @@ public class Bal implements CommandExecutor {
 		if (Main.playerDataManager.getPlayerData(player).isHighEnd()) {
 			Tools.printMenuOption(player, "VIP", "You are seen as HIGH END");
 		}
+		Tools.printMenuOption(player, LangDict.getString("banking.currentBalance"), Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString(LangDict.CURRENCY));
 		Tools.printMenuOption(player, LangDict.getString("banking.currentIncomeTax"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
 		Tools.printMenuOption(player, LangDict.getString("banking.currentVAT"), Bank.getWithdrawTaxPercentDisplay() + "%");
 		Tools.printMenuOption(player, LangDict.getString("banking.currentWealthTax"), Bank.getWealthTaxPercentDisplayForPlayer(player) + "%");
-		Tools.printMenuOption(player, LangDict.getString("banking.currentBalance"), Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString(LangDict.CURRENCY));
+		Tools.printMenuOption(player, LangDict.getString("banking.currentPropertyTax"), Bank.getPropertyTaxForPlayer(player)+ LangDict.getString(LangDict.CURRENCY));
 		return true;
 	}
 }

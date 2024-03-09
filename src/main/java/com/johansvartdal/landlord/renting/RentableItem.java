@@ -53,10 +53,11 @@ public abstract class RentableItem implements Listener {
         ItemMeta itemMeta = rentedItem.getItemMeta();
         if (itemMeta instanceof Damageable damageable) {
             damageable.setDamage(rentedItem.getType().getMaxDurability()/2);
+            rentedItem.setItemMeta(damageable);
         }
 
         // schedule new repair
-        repairLoop = Bukkit.getScheduler().runTaskLater(plugin, this::itemRepairLoop, Tools.secToTicks(10));
+        repairLoop = Bukkit.getScheduler().runTaskLater(plugin, this::itemRepairLoop, Tools.secToTicks(3));
     }
 
     protected ItemStack modifyCraftedItem(ItemStack craftedItem) {

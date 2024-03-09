@@ -125,6 +125,12 @@ public class Visit implements CommandExecutor {
                 playerEvent.endEvent();
             }
 
+            // make sure the player that will be visited actually owns the chunk they are in
+            if(!Main.playerDataManager.getPlayerData(wantsVisits.get(i).host).ownsChunk(player.getLocation().getChunk())) {
+                Tools.tellPlayer(new ErrorChat(), wantsVisits.get(i).host, LangDict.getString("visit.playerNotInChunk"), ChatColor.RED);
+                return;
+            }
+
             // withdraw player
             Bank.withdrawPlayer("a visit", wantsVisits.get(i).visitor, StaticValues.VISIT_PRICE);
             Bank.depositPlayer(wantsVisits.get(i).host, StaticValues.VISIT_PRICE);

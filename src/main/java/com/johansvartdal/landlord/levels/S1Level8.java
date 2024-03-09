@@ -22,7 +22,7 @@ public class S1Level8 extends Level{
         requiredItems.add(new ItemStack(Material.CACTUS, 120 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.COOKED_MUTTON, 20 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.COOKED_CHICKEN, 8 * Main.properties.getNumberOfPlayers()));
-        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 600 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 1200 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.WHEAT, 180 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OBSIDIAN, 16 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.LAVA_BUCKET, 2 * Main.properties.getNumberOfPlayers()));

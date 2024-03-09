@@ -8,6 +8,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import java.util.Random;
+
 public class NetherWildernessEvent extends PlayerEvent{
 
     public NetherWildernessEvent(Main plugin, Player player) {
@@ -26,13 +28,13 @@ public class NetherWildernessEvent extends PlayerEvent{
     }
 
     private Location getPossibleSpawnLocation() {
-        double x = 0.5;
-        double z = 0.5;
+        Random random = new Random();
+        int xz = random.nextInt(100000);
 
-        Location location0 = new Location(Bukkit.getWorld("world_nether"), x, 80, z);
-        Location location1 = new Location(Bukkit.getWorld("world_nether"), x, 81, z);
-        Location location2 = new Location(Bukkit.getWorld("world_nether"), x, 82, z);
-        Location location3 = new Location(Bukkit.getWorld("world_nether"), x, 83, z);
+        Location location0 = new Location(Bukkit.getWorld("world_nether"), xz, 80, xz);
+        Location location1 = new Location(Bukkit.getWorld("world_nether"), xz, 81, xz);
+        Location location2 = new Location(Bukkit.getWorld("world_nether"), xz, 82, xz);
+        Location location3 = new Location(Bukkit.getWorld("world_nether"), xz, 83, xz);
 
         // regen if in lava
         if (location0.getBlock().getType() == Material.LAVA ||

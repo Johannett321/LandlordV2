@@ -152,7 +152,7 @@ public class RouletteGame {
     private ItemStack getRandomItemStack() {
         ItemStack itemStack = null;
         Random random = new Random();
-        int randomInt = random.nextInt(42);
+        int randomInt = random.nextInt(43);
 
         switch (randomInt) {
             case 0 -> {
@@ -307,6 +307,11 @@ public class RouletteGame {
             }case 41 -> {
                 itemStack = new ItemStack(Material.FIREWORK_ROCKET);
                 itemStack.setAmount(32);
+            }case 42 -> {
+                itemStack = new ItemStack(Material.FISHING_ROD);
+                itemStack = getEnchantedItem(itemStack, Enchantment.LUCK, 3);
+                itemStack = getEnchantedItem(itemStack, Enchantment.DURABILITY, 3);
+                itemStack.setAmount(1);
             }
         }
         return itemStack;

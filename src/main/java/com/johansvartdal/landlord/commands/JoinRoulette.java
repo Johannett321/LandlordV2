@@ -19,10 +19,6 @@ public class JoinRoulette implements CommandExecutor {
     public JoinRoulette(Main plugin) {
         this.plugin = plugin;
         plugin.getCommand("joinroulette").setExecutor(this);
-
-        if (LevelManager.getCurrentDisplayLevelNum() <= 3) {
-            new RouletteGame(plugin);
-        }
     }
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {

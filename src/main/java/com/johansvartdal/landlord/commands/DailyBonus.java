@@ -82,7 +82,7 @@ private Main plugin;
 
 		// Deposit and tell player about it
 		Bank.depositPlayer(player, dailyBonus*yesterdaysMultiplier);
-		Tools.tellPlayer(player, LangDict.getString("bonus.justCollectedBonus") + todaysBonus + LangDict.getString(LangDict.CURRENCY));
+		Tools.tellPlayer(player, LangDict.getString("bonus.justCollectedBonus") + todaysBonus + LangDict.getString(LangDict.CURRENCY) + " (" + yesterdaysMultiplier + LangDict.getString("generalSentenceParts.days") + ")");
 		Main.playerDataManager.getPlayerData(player).updateStreak(streakCollectOpens, deadline, yesterdaysMultiplier);
 	}
 }

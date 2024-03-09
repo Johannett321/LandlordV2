@@ -43,8 +43,13 @@ public class Wilderness implements CommandExecutor {
         if (args.length == 0) {
             Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
             Tools.printMenuOption(player, "/wilderness", "world");
-            Tools.printMenuOption(player, "/wilderness", "nether");
-            Tools.printMenuOption(player, "/wilderness", "mine");
+            if (LevelManager.featureUnlocked("wildnether")) {
+                Tools.printMenuOption(player, "/wilderness", "nether");
+            }
+
+            if (LevelManager.featureUnlocked("wildmining")) {
+                Tools.printMenuOption(player, "/wilderness", "mine");
+            }
             Tools.printMenuOption(player, "/wilderness", "time");
             Tools.printMenuOption(player, "/wilderness", "extend");
             Tools.printMenuOption(player, "/wilderness", "info");

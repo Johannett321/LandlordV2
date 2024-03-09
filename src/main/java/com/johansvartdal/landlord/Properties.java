@@ -14,6 +14,8 @@ public class Properties implements Serializable {
     }
 
     private GameState currentGameState = GameState.NOT_STARTED;
+    private long gameInitiallyStartedAt = 0;
+
     public static final boolean DEV_CHEAT_MODE = false;
     public static final boolean DEBUG_LOGGING = true;
 
@@ -46,9 +48,34 @@ public class Properties implements Serializable {
         return Tools.getNumberOfFilesInDirectory("players");
     }
 
+    /**
+     * Returns the number of milliseconds since the game initially started. That means when the user wrote /landlord start
+     * @return
+     */
+    public long getMillisSinceGameInitiallyStarted() {
+        return System.currentTimeMillis() - gameInitiallyStartedAt;
+    }
+
+    /**
+     * Returns the millisecond of when the /landlord start command when executed.
+     * @return
+     */
+    public long getGameInitiallyStartedMillis() {
+        return gameInitiallyStartedAt;
+    }
+
+    public void notifyGameStarted() {
+        if (gameInitiallyStartedAt != 0) {
+            return;
+        }
+        gameInitiallyStartedAt = System.currentTimeMillis();
+        save();
+    }
+
     public void save() {
         JSONObject properties = new JSONObject();
         properties.put("currentGameState", currentGameState.toString());
+        properties.put("gameInitiallyStartedAt", gameInitiallyStartedAt);
         Tools.saveJsonToFile("Properties.json", properties);
     }
 
@@ -56,6 +83,13 @@ public class Properties implements Serializable {
         JSONObject properties = Tools.loadJson("Properties.json");
         if (properties != null) {
             currentGameState = GameState.valueOf((String) properties.get("currentGameState"));
+
+            // set "game initially started at" time.
+            if (properties.containsKey("gameInitiallyStartedAt")) {
+                gameInitiallyStartedAt = (long) properties.get("gameInitiallyStartedAt");
+            }else if (currentGameState != GameState.NOT_STARTED) {
+                gameInitiallyStartedAt = System.currentTimeMillis();
+            }
         }
     }
 }

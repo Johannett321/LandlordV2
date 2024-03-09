@@ -61,6 +61,7 @@ public class Main extends JavaPlugin implements Listener {
 		new EmissionTax(this);
 		RentManager.registerListeners(this);
 		new RandomHint(this);
+		new RouletteGame(this);
 
 
 		tradeCenter = new TradeCenter();

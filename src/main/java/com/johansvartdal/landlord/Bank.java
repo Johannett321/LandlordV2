@@ -5,12 +5,10 @@ import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
-import java.util.Properties;
 import java.util.Random;
 
 public class Bank {
@@ -292,14 +290,24 @@ public class Bank {
     }
 
     private static void payPropertyTaxForPlayer(Main plugin, Player player) {
-        // calculate property tax
-        int chunkPoints = Main.playerDataManager.getPlayerData(player).getOwnedChunks().size();
-        int tax = chunkPoints*StaticValues.CHUNK_TAX;
+        // get the property tax
+        int tax = getPropertyTaxForPlayer(player);
 
         // pay it
         if (payTax(plugin, player, tax)) {
             Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.inPropertyTax") + StaticValues.CHUNK_TAX + ")");
         }
+    }
+
+    /**
+     * calculate property tax
+     * @param player
+     * @return
+     */
+    public static int getPropertyTaxForPlayer(Player player) {
+        int chunkPoints = Main.playerDataManager.getPlayerData(player).getOwnedChunks().size();
+        int tax = chunkPoints*StaticValues.CHUNK_TAX;
+        return tax;
     }
 
     public static boolean payTax(Main plugin, Player player, int tax) {

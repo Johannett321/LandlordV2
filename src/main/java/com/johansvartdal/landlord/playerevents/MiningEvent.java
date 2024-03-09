@@ -79,7 +79,7 @@ public class MiningEvent extends PlayerEvent {
     }
 
     public void warnOneMinLeft() {
-        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEnding1Min"), ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEndingIn") + 1 + LangDict.getString("generalSentenceParts.minutes"), ChatColor.YELLOW);
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
@@ -89,7 +89,7 @@ public class MiningEvent extends PlayerEvent {
     }
 
     public void warnTenSecLeft() {
-        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEnding10Sec"), ChatColor.YELLOW);
+        Tools.tellPlayer(player, LangDict.getString("playerEvents.wilderness.wildEndingIn") + 10 + LangDict.getString("generalSentenceParts.seconds"), ChatColor.YELLOW);
         eventTimerWithAction = Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
             @Override
             public void run() {
@@ -105,7 +105,7 @@ public class MiningEvent extends PlayerEvent {
 
         Location location = new Location(Bukkit.getWorld("world"), randomNum+5, -53, randomNum+5);
         for (int x = randomNum; x < randomNum+11; x++) {
-            for (int y = 11; y < 15; y++) {
+            for (int y = -54; y < -49; y++) {
                 for (int z = randomNum; z < randomNum+11; z++) {
                     Location clearBlock = new Location(location.getWorld(), x, y, z);
 
@@ -116,8 +116,8 @@ public class MiningEvent extends PlayerEvent {
                     }
 
                     // make sure ground is not lava
-                    if (y == -54 || y == -51) {
-                        clearBlock.getBlock().setType(Material.STONE);
+                    if (y == -54 || y == -50) {
+                        clearBlock.getBlock().setType(Material.DEEPSLATE);
                     }else {
                         clearBlock.getBlock().setType(Material.AIR);
                     }

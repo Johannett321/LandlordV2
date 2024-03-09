@@ -42,7 +42,7 @@ public class S1Level5 extends Level{
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
-        return new ValleyVillageAdventure(plugin);
+        return null;
     }
 
     @Override

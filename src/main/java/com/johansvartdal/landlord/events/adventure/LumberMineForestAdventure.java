@@ -1,0 +1,41 @@
+package com.johansvartdal.landlord.events.adventure;
+
+import com.johansvartdal.landlord.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+
+public class LumberMineForestAdventure extends AdventureEvent {
+
+    private final Location advLocation = new Location(Bukkit.getWorld("lladv"), -1106, 70, -2745);
+
+    public LumberMineForestAdventure(Main plugin) {
+        super(plugin);
+        advLocation.setYaw(-180);
+        advLocation.setPitch(0);
+    }
+
+    @Override
+    protected Location getEventSpawnLocation() {
+        return advLocation;
+    }
+
+    @Override
+    protected void showWelcomeMessage() {
+
+    }
+
+    @Override
+    protected int getExcursionMinutes() {
+        return 60;
+    }
+
+    @Override
+    protected String getWelcomeTitle() {
+        return null;
+    }
+
+    @Override
+    protected String getWelcomeSubtitle() {
+        return null;
+    }
+}

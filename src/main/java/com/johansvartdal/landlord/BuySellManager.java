@@ -64,6 +64,7 @@ public class BuySellManager {
             case DIORITE:
             case GRANITE:
             case ANDESITE: return new AmountWorth(64, 200, 2);
+            case OBSIDIAN: return new AmountWorth(16, 300, 2);
 
             // farmable
             case CACTUS: return new AmountWorth(64, 450, 3);

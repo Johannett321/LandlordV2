@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.stocks;
 
 import com.johansvartdal.landlord.LangDict;
+import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 
 public abstract class Stock {
@@ -27,7 +28,8 @@ public abstract class Stock {
         String flow = Tools.readInternal("marketflow/" + flowName + ".csv");
         String[] flowList = flow.split(",");
 
-        long currentMinute = timeMillis/1000/60;
+        long currentMillis = timeMillis - Main.properties.getGameInitiallyStartedMillis();
+        long currentMinute = currentMillis/1000/60;
         long getIndex = currentMinute % flowList.length;
 
         return Double.parseDouble(flowList[(int) getIndex]);

@@ -114,6 +114,8 @@ public class Landlord implements CommandExecutor {
     }
 
     public void startGame(Player player) {
+        Main.properties.notifyGameStarted();
+
         Location location = player.getLocation();
         location.setX(player.getLocation().getChunk().getX()*16+8+0.5);
         location.setY(0);
