@@ -54,6 +54,7 @@ public class BuySellManager {
     public static AmountWorth getItemValue(Material material) {
         switch (material) {
             // solid underground blocks
+            case NETHERRACK: return new AmountWorth(64, 65, 1);
             case COBBLESTONE: return new AmountWorth(64, 150, 1);
             case DIRT: return new AmountWorth(64, 220, 19);
             case TUFF:

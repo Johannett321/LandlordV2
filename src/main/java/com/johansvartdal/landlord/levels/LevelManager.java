@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.levels;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.lan.LanController;
+import com.johansvartdal.landlord.lan.LanLightsController;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -122,7 +123,10 @@ public class LevelManager {
         LandlordEventManager.notifyLevelReached(currentLevel);
 
         // play lights
-        LanController.getLightsController().playLevelUpEffect();
+        LanLightsController lanLightsController = LanController.getLightsController();
+        if (lanLightsController != null) {
+            lanLightsController.playLevelUpEffect();
+        }
     }
 
     public static void forceProceedToNextLevel() {

@@ -25,12 +25,19 @@ public class S2Level1 extends Level{
         requiredItems.add(new ItemStack(Material.SEA_PICKLE, 64 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.PUMPKIN, 64 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.COCOA_BEANS, 256 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.DRIED_KELP_BLOCK, 21 * Main.properties.getNumberOfPlayers()));
 
         requiredItems.add(new ItemStack(Material.OAK_LOG, 176 * Main.properties.getNumberOfPlayers()));
         requiredItems.add(new ItemStack(Material.OAK_LEAVES, 144 * Main.properties.getNumberOfPlayers()));
 
         requiredItems.add(new ItemStack(Material.EGG, 24));
         requiredItems.add(new ItemStack(Material.WHITE_WOOL, 21 * Main.properties.getNumberOfPlayers()));
+
+        requiredItems.add(new ItemStack(Material.GLOWSTONE_DUST, 32 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.CRYING_OBSIDIAN, 3 * Main.properties.getNumberOfPlayers()));
+
+        requiredItems.add(new ItemStack(Material.CRYING_OBSIDIAN, 3 * Main.properties.getNumberOfPlayers()));
+
         return requiredItems;
     }
 
