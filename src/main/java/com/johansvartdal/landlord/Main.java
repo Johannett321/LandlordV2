@@ -9,9 +9,11 @@ import com.johansvartdal.landlord.playerevents.JailEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import com.johansvartdal.landlord.renting.RentManager;
 import com.johansvartdal.landlord.webserver.WebServerManager;
+import lombok.extern.slf4j.Slf4j;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +26,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import static com.johansvartdal.landlord.Tools.debugLog;
 
+@Slf4j
 public class Main extends JavaPlugin implements Listener {
 
 	public static ScoreboardHelper scoreboardHelper;
@@ -115,6 +118,16 @@ public class Main extends JavaPlugin implements Listener {
 
 		// inform players about server restart
 		Tools.broadcastMessage(LangDict.getString("info.serverRestarted"), ChatColor.GREEN);
+
+		Bukkit.getScheduler().runTaskLater(this, () -> {
+			World lladv = Bukkit.getWorld("lladv");
+			if (lladv == null) {
+				log.error("------------------------------------------------------------------");
+				log.error("[LANDLORD] ERROR: COULD NOT FIND LLADV WORLD. SHUTTING DOWN SERVER");
+				log.error("------------------------------------------------------------------");
+				Bukkit.shutdown();
+			}
+		}, Tools.secToTicks(10));
 	}
 
 	@Override

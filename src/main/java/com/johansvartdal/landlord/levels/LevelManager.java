@@ -404,7 +404,8 @@ public class LevelManager {
         featureLevels.put("wildnether", new LvlSeasonRelation(1,9));
 
         // season 2
-        featureLevels.put("rent_diamond_tools", new LvlSeasonRelation(1,1));
+        featureLevels.put("rent_diamond_tools", new LvlSeasonRelation(2,1));
+        featureLevels.put("treasury", new LvlSeasonRelation(2,1));
         featureLevels.put("stocks", new LvlSeasonRelation(2,2));
         featureLevels.put("rent_turtle_shell", new LvlSeasonRelation(2,4));
         featureLevels.put("rent_elytra", new LvlSeasonRelation(2,5));

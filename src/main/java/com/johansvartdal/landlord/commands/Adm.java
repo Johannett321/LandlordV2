@@ -97,7 +97,7 @@ public class Adm implements CommandExecutor {
                 Tools.tellPlayer(player, "Time's up!");
             }, "time left: ", 60);
         }else if (strings[0].equals("haste")) {
-            PotionEffect potionEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, (int) Tools.secToTicks(10), 1);
+            PotionEffect potionEffect = new PotionEffect(PotionEffectType.HASTE, (int) Tools.secToTicks(10), 1);
             player.addPotionEffect(potionEffect);
         }else if (strings[0].equals("testtreasury")) {
             LandlordEventManager.startEvent(new ChooseTreasuryEvent(plugin));

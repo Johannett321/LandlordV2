@@ -21,13 +21,13 @@ public class RentablePickaxe extends RentableItem {
     public ItemStack craftItem() {
         // create itemStack
         ItemStack itemStack = new ItemStack(Material.IRON_PICKAXE);
-        itemStack.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 1);
-        itemStack.addEnchantment(Enchantment.DIG_SPEED, 3);
+        itemStack.addEnchantment(Enchantment.FORTUNE, 1);
+        itemStack.addEnchantment(Enchantment.EFFICIENCY, 3);
 
         if (LevelManager.featureUnlocked("rent_diamond_tools")) {
             itemStack = new ItemStack(Material.DIAMOND_PICKAXE);
-            itemStack.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
-            itemStack.addEnchantment(Enchantment.DIG_SPEED, 4);
+            itemStack.addEnchantment(Enchantment.FORTUNE, 2);
+            itemStack.addEnchantment(Enchantment.EFFICIENCY, 4);
         }
         return itemStack;
     }

@@ -109,8 +109,8 @@ public class ChooseTreasuryEvent extends LandlordEvent {
             player.teleport(treasuryGoldBoxLocation);
 
             // effects
-            player.getWorld().spawnParticle(Particle.SPELL_WITCH, treasuryGoldBoxLocation,100, 2F, 2F, 2F);
-            player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, treasuryGoldBoxLocation,100, 2F, 2F, 2F);
+            player.getWorld().spawnParticle(Particle.WITCH, treasuryGoldBoxLocation,100, 2F, 2F, 2F);
+            player.getWorld().spawnParticle(Particle.SMOKE, treasuryGoldBoxLocation,100, 2F, 2F, 2F);
             Tools.playSoundForEveryone(Sound.ITEM_TOTEM_USE);
             Tools.playSoundForEveryone(Sound.ENTITY_PLAYER_LEVELUP);
 

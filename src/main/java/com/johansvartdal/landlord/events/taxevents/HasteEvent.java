@@ -51,12 +51,12 @@ public class HasteEvent extends LandlordEvent {
     public void resumeEvent() {
         Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART));
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.removePotionEffect(PotionEffectType.FAST_DIGGING);
+            player.removePotionEffect(PotionEffectType.HASTE);
         }
     }
 
     private void givePlayerHaste(Player player) {
-        PotionEffect potionEffect = new PotionEffect(PotionEffectType.FAST_DIGGING, (int) Tools.secToTicks(durationSeconds), 1);
+        PotionEffect potionEffect = new PotionEffect(PotionEffectType.HASTE, (int) Tools.secToTicks(durationSeconds), 1);
         player.addPotionEffect(potionEffect);
     }
 }

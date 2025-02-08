@@ -78,7 +78,7 @@ public abstract class RentableItem implements Listener {
         if (itemMeta != null) {
             craftedItem.setItemMeta(itemMeta);
         }
-        craftedItem.addEnchantment(Enchantment.DURABILITY, 3);
+        craftedItem.addEnchantment(Enchantment.UNBREAKING, 3);
         craftedItem.addEnchantment(Enchantment.VANISHING_CURSE, 1);
         craftedItem.setAmount(1);
         return craftedItem;

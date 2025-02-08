@@ -21,11 +21,11 @@ public class RentableAxe extends RentableItem {
     public ItemStack craftItem() {
         // create itemStack
         ItemStack itemStack = new ItemStack(Material.IRON_AXE);
-        itemStack.addEnchantment(Enchantment.DIG_SPEED, 3);
+        itemStack.addEnchantment(Enchantment.EFFICIENCY, 3);
 
         if (LevelManager.featureUnlocked("rent_diamond_tools")) {
             itemStack = new ItemStack(Material.DIAMOND_AXE);
-            itemStack.addEnchantment(Enchantment.DIG_SPEED, 4);
+            itemStack.addEnchantment(Enchantment.EFFICIENCY, 4);
         }
         return itemStack;
     }

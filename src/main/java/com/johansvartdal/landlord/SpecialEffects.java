@@ -38,7 +38,7 @@ public class SpecialEffects {
                     Location location = chunk.getWorld().getBlockAt(x, y,z).getLocation();
 
                     if (z % smokeNormal == 0 && x % smokeNormal == 0) {
-                        location.getWorld().spawnParticle(Particle.SMOKE_NORMAL,location,20, 0.1F, 1F, 1F);
+                        location.getWorld().spawnParticle(Particle.SMOKE,location,20, 0.1F, 1F, 1F);
                     }
 
                     if (z % endRod == 0 && x % endRod == 0) {
@@ -46,7 +46,7 @@ public class SpecialEffects {
                     }
 
                     if (z % spell == 0 && x % spell == 0) {
-                        location.getWorld().spawnParticle(Particle.SPELL_WITCH,location,20, 0.1F, 1F, 1F);
+                        location.getWorld().spawnParticle(Particle.WITCH,location,20, 0.1F, 1F, 1F);
                     }
 
 
@@ -85,7 +85,7 @@ public class SpecialEffects {
     }
 
     public static void blastOneFireWork(Location where, Color fireworkColor) {
-        Firework fw = (Firework) where.getWorld().spawnEntity(where, EntityType.FIREWORK);
+        Firework fw = (Firework) where.getWorld().spawnEntity(where, EntityType.FIREWORK_ROCKET);
         FireworkMeta fwm = fw.getFireworkMeta();
 
         FireworkEffect effect = FireworkEffect.builder().flicker(true).withColor(fireworkColor).with(FireworkEffect.Type.BALL_LARGE).trail(true).build();

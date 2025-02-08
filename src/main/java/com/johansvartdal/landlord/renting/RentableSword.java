@@ -22,12 +22,12 @@ public class RentableSword extends RentableItem {
         // create elytra
         ItemStack itemStack = new ItemStack(Material.IRON_SWORD);
         itemStack.addEnchantment(Enchantment.KNOCKBACK, 1);
-        itemStack.addEnchantment(Enchantment.DAMAGE_ALL, 2);
+        itemStack.addEnchantment(Enchantment.SHARPNESS, 2);
 
         if (LevelManager.featureUnlocked("rent_diamond_tools")) {
             itemStack = new ItemStack(Material.DIAMOND_SWORD);
             itemStack.addEnchantment(Enchantment.KNOCKBACK, 2);
-            itemStack.addEnchantment(Enchantment.DAMAGE_ALL, 4);
+            itemStack.addEnchantment(Enchantment.SHARPNESS, 4);
         }
         return itemStack;
     }
