@@ -36,6 +36,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static PlayerDataManager playerDataManager;
 	public static WebServerManager webServerManager;
 	public static ChunkGuardManager chunkGuardManager;
+	public static ChestManager chestManager;
 	private static Landlord landlord;
 	
 	@Override

@@ -6,10 +6,12 @@ import com.johansvartdal.landlord.chatentities.WarningChat;
 import org.bukkit.*;
 import org.bukkit.block.Chest;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -473,4 +475,17 @@ public class Tools {
         return numberFormat.format(amount) + " " + LangDict.getString(LangDict.CURRENCY);
     }
 
+    public static ItemStack enchantBook(ItemStack item, Enchantment enchantment, int level) {
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
+        meta.addStoredEnchant(enchantment, level, true);
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    public static ItemStack enchantItem(ItemStack item, Enchantment enchantment, int level) {
+        ItemMeta testEnchantMeta = item.getItemMeta();
+        testEnchantMeta.addEnchant(enchantment, level, true);
+        item.setItemMeta(testEnchantMeta);
+        return item;
+    }
 }

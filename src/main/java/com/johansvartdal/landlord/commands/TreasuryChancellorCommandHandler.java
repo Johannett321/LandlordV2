@@ -1,7 +1,6 @@
 package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
-import com.johansvartdal.landlord.chatentities.BankChat;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.HasteEvent;
 import com.johansvartdal.landlord.levels.LevelManager;
@@ -44,6 +43,8 @@ public class TreasuryChancellorCommandHandler {
             return buyChunkDiscount(player);
         }else if (args[1].equalsIgnoreCase("donations")) {
             return buyDonations(player);
+        }else if (args[1].equalsIgnoreCase("mysterychest")) {
+            return buyMysteryChest(player);
         }
 
         return false;
@@ -66,6 +67,18 @@ public class TreasuryChancellorCommandHandler {
         LevelManager.save();
 
         God.speak(LangDict.getString("treasury.broadcastBoughtDonations"));
+        return true;
+    }
+
+    private boolean buyMysteryChest(Player player) {
+        if (!Bank.treasuryCanAfford(StaticValues.TREASURY_MYSTERY_CHEST_PRICE)) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.treasuryCannotAffordDonations") + Tools.formatCurrency(StaticValues.TREASURY_MYSTERY_CHEST_PRICE));
+            return true;
+        }
+
+        Bank.withdrawTreasury(StaticValues.TREASURY_MYSTERY_CHEST_PRICE);
+
+        Main.chestManager.orderMysteryChestInTrade();
         return true;
     }
 
@@ -125,5 +138,16 @@ public class TreasuryChancellorCommandHandler {
         God.speak(LangDict.getString("treasury.treasuryOrderedWithdrawal") + Tools.formatCurrency(withdrawalAmountPerPlayer) + LangDict.getString("treasury.treasuryWithdrawalUnfortunately") + Tools.formatCurrency(StaticValues.TREASURY_WITHDRAW_PRICE) +
                 LangDict.getString("treasury.lostDuringWithdrawal"));
         return true;
+    }
+
+    public void printAvailableCommands(Player player) {
+        int donationsPrice = StaticValues.TREASURY_DONATIONS_BASE_PRICE + LevelManager.getNumberOfRemainingItemsTotal() * StaticValues.TREASURY_DONATIONS_PRICE_PER_UNIT;
+
+        Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
+        Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_HASTE_PRICE) + ")");
+        Tools.printMenuOption(player, "/treasury", "buy chunkdiscount " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_CHUNK_DISCOUNT_PRICE) + ")");
+        Tools.printMenuOption(player, "/treasury", "buy donations " + ChatColor.GOLD + "(" + Tools.formatCurrency(donationsPrice) + ")");
+        Tools.printMenuOption(player, "/treasury", "buy mysterychest " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_MYSTERY_CHEST_PRICE) + ")");
+        Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_WITHDRAW_PRICE) + ")");
     }
 }

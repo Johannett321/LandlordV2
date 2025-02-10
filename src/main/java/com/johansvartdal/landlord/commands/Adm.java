@@ -71,7 +71,7 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "roulettechat");
             Tools.printMenuOption(player, "/adm", "age");
             Tools.printMenuOption(player, "/adm", "itemsforlevel");
-            Tools.printMenuOption(player, "/adm", "fillchest");
+            Tools.printMenuOption(player, "/adm", "mysterychest");
             return true;
         }
 
@@ -135,21 +135,8 @@ public class Adm implements CommandExecutor {
             Main.chunkGuardManager.attemptGrow(player.getLocation().add(0,-1,0).getBlock());
         }else if (strings[0].equalsIgnoreCase("itemsforlevel")) {
             givePlayerRemainingItems(player);
-        }else if (strings[0].equalsIgnoreCase("fillchest")) {
-            // -183.5, 81.8, 143.56;
-            // -185.5, 81.8, 143.56;
-            // -186.5, 81.8, 143.56;
-            World world = Bukkit.getWorld("world");
-            Chest chest1 = (Chest) new Location(world, -183.5, 81.8, 143.56).getBlock().getState();
-            Chest chest2 = (Chest) new Location(world, -185.5, 81.8, 143.56).getBlock().getState();
-            Chest chest3 = (Chest) new Location(world, -186.5, 81.8, 143.56).getBlock().getState();
-
-            chest1.getBlockInventory().addItem(new ItemStack(Material.WHEAT, 64));
-            chest2.getBlockInventory().addItem(new ItemStack(Material.IRON_INGOT, 3));
-            chest3.getBlockInventory().addItem(new ItemStack(Material.IRON_AXE, 5));
-
-            // world
-
+        }else if (strings[0].equalsIgnoreCase("mysterychest")) {
+            Main.chestManager.orderMysteryChestInTrade();
         }
         return true;
     }

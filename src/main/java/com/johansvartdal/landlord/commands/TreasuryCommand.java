@@ -53,12 +53,7 @@ public class TreasuryCommand implements CommandExecutor {
         if (args.length == 0) {
             // thise player is chancellor
             if (Bank.playerIsTreasuryChancellor(player)) {
-                int donationsPrice = StaticValues.TREASURY_DONATIONS_BASE_PRICE + LevelManager.getNumberOfRemainingItemsTotal() * StaticValues.TREASURY_DONATIONS_PRICE_PER_UNIT;
-                Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
-                Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_HASTE_PRICE) + ")");
-                Tools.printMenuOption(player, "/treasury", "buy chunkdiscount " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_CHUNK_DISCOUNT_PRICE) + ")");
-                Tools.printMenuOption(player, "/treasury", "buy donations " + ChatColor.GOLD + "(" + Tools.formatCurrency(donationsPrice) + ")");
-                Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_WITHDRAW_PRICE) + ")");
+                treasuryChancellorCommandHandler.printAvailableCommands(player);
                 return true;
             }
 

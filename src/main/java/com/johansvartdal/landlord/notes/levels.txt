@@ -7,6 +7,7 @@ Level 2:
 /Renting
 
 Level 3:
+/treasury
 /pay
 
 Level 4:
@@ -16,40 +17,55 @@ Level 5
 /capture
 
 Level 6:
+////Donations
 /chunkguard
 
 Level 7
 /visit
 
 Level 8:
+////ChunkDiscount
 /wilderness mining
 
 Level 9:
+////Withdraw
 /wilderness nether
 
 ----------------------------- Season 2 -----------------------------
 
 Level 1:
+[ VALLEY VILLAGE ADVENTURE ]
+////MysteryChest
 /rent diamond
-/treasury
 
 Level 2:
+[ ARENA FIGHT 1 ]
 /stocks
 
 Level 3:
+[ ICY VILLAGE ADVENTURE ]
+////Haste
 
 Level 4:
+[ ARENA FIGHT 2 ]
 /rent turtle shell
 
 Level 5:
+[ OLE'S HILLSIDE ADVENTURE ]
 /rent elytra
 
 Level 6:
+[ ARENA FIGHT 3 ]
 
 Level 7:
+[ OLE'S CAMP IN FOREST ADVENTURE ]
 /fly
 
+Level 8:
+[ HUGE CAVE ADVENTURE ]
+
 Level 9:
+[ OLE'S SISTE MAP ]
 /day
 
 ----------------------------- Season 3 -----------------------------
@@ -63,3 +79,6 @@ Level 3:
 Level 4:
 
 Level 5:
+
+
+--------------------------- IKKE TILDELT ---------------------------

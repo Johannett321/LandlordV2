@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+import static com.johansvartdal.landlord.Tools.enchantBook;
+import static com.johansvartdal.landlord.Tools.enchantItem;
+
 public class RouletteGame {
 
     private Main plugin;
@@ -196,27 +199,27 @@ public class RouletteGame {
                 itemStack.setAmount(32);
             }case 13 -> {
                 itemStack = new ItemStack(Material.ENCHANTED_BOOK);
-                itemStack = getEnchantedBook(itemStack, Enchantment.UNBREAKING, 2);
+                itemStack = enchantBook(itemStack, Enchantment.UNBREAKING, 2);
                 itemStack.setAmount(1);
             }case 14 -> {
                 itemStack = new ItemStack(Material.ENCHANTED_BOOK);
-                itemStack = getEnchantedBook(itemStack, Enchantment.MENDING, 1);
+                itemStack = enchantBook(itemStack, Enchantment.MENDING, 1);
                 itemStack.setAmount(1);
             }case 15 -> {
                 itemStack = new ItemStack(Material.ENCHANTED_BOOK);
-                itemStack = getEnchantedBook(itemStack, Enchantment.EFFICIENCY, 3);
+                itemStack = enchantBook(itemStack, Enchantment.EFFICIENCY, 3);
                 itemStack.setAmount(1);
             }case 16 -> {
                 itemStack = new ItemStack(Material.ENCHANTED_BOOK);
-                itemStack = getEnchantedBook(itemStack, Enchantment.PROTECTION, 3);
+                itemStack = enchantBook(itemStack, Enchantment.PROTECTION, 3);
                 itemStack.setAmount(1);
             }case 17 -> {
                 itemStack = new ItemStack(Material.ENCHANTED_BOOK);
-                itemStack = getEnchantedBook(itemStack, Enchantment.FORTUNE, 2);
+                itemStack = enchantBook(itemStack, Enchantment.FORTUNE, 2);
                 itemStack.setAmount(1);
             }case 18 -> {
                 itemStack = new ItemStack(Material.ENCHANTED_BOOK);
-                itemStack = getEnchantedBook(itemStack, Enchantment.SILK_TOUCH, 1);
+                itemStack = enchantBook(itemStack, Enchantment.SILK_TOUCH, 1);
                 itemStack.setAmount(1);
             }case 19 -> {
                 itemStack = new ItemStack(Material.DIAMOND_BOOTS);
@@ -244,56 +247,56 @@ public class RouletteGame {
                 itemStack.setAmount(1);
             }case 27 -> {
                 itemStack = new ItemStack(Material.IRON_PICKAXE);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.EFFICIENCY, 4);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.EFFICIENCY, 4);
                 itemStack.setAmount(1);
             }case 28 -> {
                 itemStack = new ItemStack(Material.IRON_PICKAXE);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.FORTUNE, 1);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.FORTUNE, 1);
                 itemStack.setAmount(1);
             }case 29 -> {
                 itemStack = new ItemStack(Material.IRON_SWORD);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.SHARPNESS, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.LOOTING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.SHARPNESS, 3);
+                itemStack = enchantItem(itemStack, Enchantment.LOOTING, 3);
                 itemStack.setAmount(1);
             }case 30 -> {
                 itemStack = new ItemStack(Material.IRON_SHOVEL);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
                 itemStack.setAmount(1);
             }case 31 -> {
                 itemStack = new ItemStack(Material.IRON_AXE);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.EFFICIENCY, 5);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.EFFICIENCY, 5);
                 itemStack.setAmount(1);
             }case 32 -> {
                 itemStack = new ItemStack(Material.IRON_HELMET);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.PROTECTION, 3);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.PROTECTION, 3);
                 itemStack.setAmount(1);
             }case 33 -> {
                 itemStack = new ItemStack(Material.IRON_CHESTPLATE);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.PROTECTION, 3);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.PROTECTION, 3);
                 itemStack.setAmount(1);
             }case 34 -> {
                 itemStack = new ItemStack(Material.IRON_LEGGINGS);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.PROTECTION, 3);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.PROTECTION, 3);
                 itemStack.setAmount(1);
             }case 35 -> {
                 itemStack = new ItemStack(Material.IRON_BOOTS);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.PROTECTION, 3);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.PROTECTION, 3);
                 itemStack.setAmount(1);
             }case 36 -> {
                 itemStack = new ItemStack(Material.SHULKER_SHELL);
                 itemStack.setAmount(2);
             }case 37 -> {
                 itemStack = new ItemStack(Material.ELYTRA);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 2);
-                itemStack = getEnchantedItem(itemStack, Enchantment.MENDING, 1);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 2);
+                itemStack = enchantItem(itemStack, Enchantment.MENDING, 1);
                 itemStack.setAmount(1);
             }case 38 -> {
                 itemStack = new ItemStack(Material.ANCIENT_DEBRIS);
@@ -309,25 +312,12 @@ public class RouletteGame {
                 itemStack.setAmount(32);
             }case 42 -> {
                 itemStack = new ItemStack(Material.FISHING_ROD);
-                itemStack = getEnchantedItem(itemStack, Enchantment.LUCK_OF_THE_SEA, 3);
-                itemStack = getEnchantedItem(itemStack, Enchantment.UNBREAKING, 3);
+                itemStack = enchantItem(itemStack, Enchantment.LUCK_OF_THE_SEA, 3);
+                itemStack = enchantItem(itemStack, Enchantment.UNBREAKING, 3);
                 itemStack.setAmount(1);
             }
         }
         return itemStack;
     }
 
-    public ItemStack getEnchantedBook(ItemStack item, Enchantment enchantment, int level) {
-        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
-        meta.addStoredEnchant(enchantment, level, true);
-        item.setItemMeta(meta);
-        return item;
-    }
-
-    public ItemStack getEnchantedItem(ItemStack item, Enchantment enchantment, int level) {
-        ItemMeta testEnchantMeta = item.getItemMeta();
-        testEnchantMeta.addEnchant(enchantment, level, true);
-        item.setItemMeta(testEnchantMeta);
-        return item;
-    }
 }

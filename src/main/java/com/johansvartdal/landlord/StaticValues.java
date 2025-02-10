@@ -20,5 +20,6 @@ public class StaticValues {
     public static final int TREASURY_WITHDRAW_PRICE = 10000;
     public static final int TREASURY_CHUNK_DISCOUNT_PRICE = 100000;
     public static final int TREASURY_DONATIONS_BASE_PRICE = 15000;
+    public static final int TREASURY_MYSTERY_CHEST_PRICE = 20000;
     public static final int TREASURY_DONATIONS_PRICE_PER_UNIT = 32;
 }
