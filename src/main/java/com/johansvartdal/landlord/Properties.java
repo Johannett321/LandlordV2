@@ -1,5 +1,7 @@
 package com.johansvartdal.landlord;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.json.simple.JSONObject;
 
 import java.io.Serializable;
@@ -16,7 +18,12 @@ public class Properties implements Serializable {
     private GameState currentGameState = GameState.NOT_STARTED;
     private long gameInitiallyStartedAt = 0;
 
-    public static final boolean DEV_CHEAT_MODE = false;
+    @Getter
+    @Setter
+    private double chunkDiscountPercentPoint = 0;
+
+    public static final boolean DEV_CHEAT_MODE = true;
+    public static final boolean DEV_UNLOCK_ALL = true;
     public static final boolean DEBUG_LOGGING = true;
 
     public Properties() {
@@ -76,6 +83,7 @@ public class Properties implements Serializable {
         JSONObject properties = new JSONObject();
         properties.put("currentGameState", currentGameState.toString());
         properties.put("gameInitiallyStartedAt", gameInitiallyStartedAt);
+        properties.put("chunkDiscountPercentPoint", chunkDiscountPercentPoint);
         Tools.saveJsonToFile("Properties.json", properties);
     }
 
@@ -89,6 +97,10 @@ public class Properties implements Serializable {
                 gameInitiallyStartedAt = (long) properties.get("gameInitiallyStartedAt");
             }else if (currentGameState != GameState.NOT_STARTED) {
                 gameInitiallyStartedAt = System.currentTimeMillis();
+            }
+
+            if (properties.containsKey("chunkDiscountPercentPoint")) {
+                chunkDiscountPercentPoint = (double) properties.get("chunkDiscountPercentPoint");
             }
         }
     }

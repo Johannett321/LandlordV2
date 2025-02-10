@@ -15,4 +15,10 @@ public class StaticValues {
     public static final int MINING_PRICE = 9990;
     public static final int FLYING_PRICE_PER_MINUTE = 1690;
     public static final int PLAYERS_STARTING_BALANCE = 500;
+
+    public static final int TREASURY_HASTE_PRICE = 15000;
+    public static final int TREASURY_WITHDRAW_PRICE = 10000;
+    public static final int TREASURY_CHUNK_DISCOUNT_PRICE = 100000;
+    public static final int TREASURY_DONATIONS_BASE_PRICE = 15000;
+    public static final int TREASURY_DONATIONS_PRICE_PER_UNIT = 32;
 }

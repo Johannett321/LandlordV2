@@ -78,10 +78,14 @@ public class Donate implements CommandExecutor {
 			donateAll(player);
 			return true;
 		}else if (args[0].equals("info")) {
-			//sellInfo(player);
+			donateInfo(player);
 			return true;
 		}
 		return false;
+	}
+
+	private void donateInfo(Player player) {
+		Tools.tellPlayer(new InfoChat(), player, LangDict.getString("commandResponses.neutralMessages.noInfo"));
 	}
 
 	/**
@@ -94,6 +98,11 @@ public class Donate implements CommandExecutor {
 
 		// do prechecks
 		if (donationIsABadIdea(player)) {
+			return;
+		}
+
+		if (itemInMainHand.getType().equals(Material.AIR)) {
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("upgrade.holdItemInMainHand"));
 			return;
 		}
 
@@ -126,6 +135,8 @@ public class Donate implements CommandExecutor {
 
 		// give feedback
 		feedbackPlayer(player, process);
+
+		LevelManager.attemptUpgrade(player);
 	}
 
 	/**
@@ -206,7 +217,7 @@ public class Donate implements CommandExecutor {
 		// Return if it's AIR
 		if (itemStack == null || itemStack.getType().equals(Material.AIR)) {
 			donateItemProcess.errorOccurred = true;
-			donateItemProcess.errorMessage = "Please hold the item you would like to donate in your main hand";
+			donateItemProcess.errorMessage = LangDict.getString("upgrade.holdItemInMainHand");
 			System.out.println("IT IS AIR: " + itemStack.getType().name());
 			return;
 		}

@@ -94,7 +94,7 @@ public class RandomHint {
         }
 
         if (LevelManager.featureUnlocked("visit")) {
-            hints.add("The command /visit allows you to visit other players for a visit fee of " + StaticValues.VISIT_PRICE + LangDict.getString(LangDict.CURRENCY));
+            hints.add("The command /visit allows you to visit other players for a visit fee of " + Tools.formatCurrency(StaticValues.VISIT_PRICE));
             hints.add("Someone not following your rules while visiting you? Send them home with '/sendhome [ USERNAME ]'");
         }
 
@@ -123,7 +123,7 @@ public class RandomHint {
         }
 
         if (LevelManager.featureUnlocked("wildmining")) {
-            hints.add("A great way to mine, is doing '/wilderness mine'. It will give you 45 minutes of non-stop mining for only " + StaticValues.MINING_PRICE + LangDict.getString(LangDict.CURRENCY));
+            hints.add("A great way to mine, is doing '/wilderness mine'. It will give you 45 minutes of non-stop mining for only " + Tools.formatCurrency(StaticValues.MINING_PRICE));
         }
 
         if (LevelManager.featureUnlocked("capture")) {

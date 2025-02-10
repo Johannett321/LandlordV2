@@ -9,8 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public abstract class ArenaFightEvent extends LandlordEvent {
 
@@ -42,10 +41,20 @@ public abstract class ArenaFightEvent extends LandlordEvent {
         // teleport all players to event
         saveAllPrevLocs();
         teleportAllPlayersToEventLocation();
+        storePlayersPreviousSpawnLocations();
+        updateSpawnLocationOfPlayers(arenaSpawnLoc);
         updateAllPlayerStatuses();
 
         // start waves
         runWaveLoop();
+    }
+
+    HashMap<UUID, Location> previousSpawnLocations = new HashMap<>();
+
+    private void storePlayersPreviousSpawnLocations() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            previousSpawnLocations.put(player.getUniqueId(), player.getRespawnLocation());
+        }
     }
 
     private void updateAllPlayerStatuses() {
@@ -68,6 +77,19 @@ public abstract class ArenaFightEvent extends LandlordEvent {
         }
 
         super.lockPlayersAtLocation(arenaSpawnLoc, 200);
+    }
+
+    private void updateSpawnLocationOfPlayers(Location location) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.setRespawnLocation(location, true);
+        }
+    }
+
+    private void resetPlayerRespawnLocationsBackToPrevious() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            Location previousSpawnLocation = previousSpawnLocations.get(player.getUniqueId());
+            player.setRespawnLocation(previousSpawnLocation);
+        }
     }
 
     private void keepNight() {
@@ -134,7 +156,7 @@ public abstract class ArenaFightEvent extends LandlordEvent {
         // kill all mobs
         Tools.killAllMobsInWorld(Bukkit.getWorld("lladv"));
 
-        //TODO: Sett respawn location til players igjen til HOME location. Playersa har jo sovet i ArenaFighten.
+        resetPlayerRespawnLocationsBackToPrevious();
 
         Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART), ChatColor.RED);
         endEvent(true);

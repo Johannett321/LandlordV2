@@ -66,7 +66,7 @@ public class Fly implements CommandExecutor {
 
 	private void showInfoMenu(Player player) {
 		Tools.printMenuHeader(player, "FLY INFO");
-		Tools.printMenuOption(player, LangDict.getString("playerEvents.fly.pricePerMin"), StaticValues.FLYING_PRICE_PER_MINUTE + LangDict.getString(LangDict.CURRENCY));
+		Tools.printMenuOption(player, LangDict.getString("playerEvents.fly.pricePerMin"), Tools.formatCurrency(StaticValues.FLYING_PRICE_PER_MINUTE));
 	}
 
 	private void attemptFlying(Player player) {

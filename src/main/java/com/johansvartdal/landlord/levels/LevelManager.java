@@ -185,18 +185,23 @@ public class LevelManager {
     }
 
     public static void playerAcceptsUpgrade(Player playerThatAccepted) {
-        UpgradeDecision upgradeDecision = getUpgradeStatus();
-        switch (upgradeDecision) {
-            case NOT_EVERYONE_HAS_ACCEPTED, NOT_ENOUGH_ITEMS -> informAboutAcceptanceFromPlayer(playerThatAccepted);
-            case UPGRADE -> proceedToNextLevelAndInformAbout(playerThatAccepted);
-            case PLAYER_IN_EVENT -> Tools.tellPlayer(new ErrorChat(), playerThatAccepted, LangDict.getString("commandResponses.errorMessages.upgradePlayerInEvent"));
-            case GAME_STATE_NOT_NORMAL -> Tools.tellPlayer(new ErrorChat(), playerThatAccepted, LangDict.getString(LangDict.CMD_NOT_NOW));
+        UpgradeDecision upgradeDecision = attemptUpgrade(playerThatAccepted);
+        if (upgradeDecision == UpgradeDecision.NOT_EVERYONE_HAS_ACCEPTED || upgradeDecision == UpgradeDecision.NOT_ENOUGH_ITEMS || upgradeDecision == UpgradeDecision.UPGRADE) {
+            informAboutAcceptanceFromPlayer(playerThatAccepted);
         }
     }
 
-    private static void proceedToNextLevelAndInformAbout(Player acceptingPlayer) {
-        informAboutAcceptanceFromPlayer(acceptingPlayer);
-        proceedToNextLevel();
+    public static UpgradeDecision attemptUpgrade(Player executingPlayer) {
+        UpgradeDecision upgradeDecision = getUpgradeStatus();
+        switch (upgradeDecision) {
+            case NOT_EVERYONE_HAS_ACCEPTED, NOT_ENOUGH_ITEMS -> {
+                return upgradeDecision;
+            }
+            case UPGRADE -> proceedToNextLevel();
+            case PLAYER_IN_EVENT -> Tools.tellPlayer(new ErrorChat(), executingPlayer, LangDict.getString("commandResponses.errorMessages.upgradePlayerInEvent"));
+            case GAME_STATE_NOT_NORMAL -> Tools.tellPlayer(new ErrorChat(), executingPlayer, LangDict.getString(LangDict.CMD_NOT_NOW));
+        }
+        return upgradeDecision;
     }
 
     private static void informAboutAcceptanceFromPlayer(Player player) {
@@ -226,6 +231,15 @@ public class LevelManager {
         save();
     }
 
+    public static int getNumberOfRemainingItemsTotal() {
+        int remaingItemsTotal = 0;
+        for (ItemStack itemStack : currentLevel.getRemainingItemsForNextLevel()) {
+            remaingItemsTotal += itemStack.getAmount();
+        }
+        return remaingItemsTotal;
+    }
+
+
     public enum UpgradeDecision {
         PLAYER_IN_EVENT,
         GAME_STATE_NOT_NORMAL,
@@ -236,12 +250,15 @@ public class LevelManager {
 
     public static UpgradeDecision getUpgradeStatus() {
         // make sure no items remain
-        if (currentLevel.getRemainingItemsForNextLevel().size() > 0) {
+        if (!currentLevel.getRemainingItemsForNextLevel().isEmpty()) {
             return UpgradeDecision.NOT_ENOUGH_ITEMS;
         }
 
         // make sure everyone has accepted
-        if (acceptedPlayers.size() < Main.playerDataManager.getPlayerDataList().size()-1) {
+        int numberOfPlayers = Main.playerDataManager.getPlayerDataList().size();
+        int numberOfApprovingPlayers = acceptedPlayers.size() +1;
+        double approvalPercent = numberOfApprovingPlayers / (double) numberOfPlayers;
+        if (approvalPercent < 0.48) {
             return UpgradeDecision.NOT_EVERYONE_HAS_ACCEPTED;
         }
 
@@ -417,7 +434,7 @@ public class LevelManager {
 
     public static boolean featureUnlocked(String featureName) {
         // always allow while in DEBUG MODE
-        if (Properties.DEV_CHEAT_MODE) {
+        if (Properties.DEV_UNLOCK_ALL) {
             return true;
         }
 

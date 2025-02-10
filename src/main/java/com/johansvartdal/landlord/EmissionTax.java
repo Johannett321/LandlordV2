@@ -35,7 +35,7 @@ public class EmissionTax implements Listener {
 
             // actually withdraw
             Bank.withdrawPlayerWithoutTax(player, StaticValues.EMISSION_TAX);
-            Tools.tellPlayer(player, LangDict.getString("banking.youJustPaid") + StaticValues.EMISSION_TAX + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.inEmissionTax"), ChatColor.GRAY);
+            Tools.tellPlayer(player, LangDict.getString("banking.youJustPaid") + Tools.formatCurrency(StaticValues.EMISSION_TAX) + LangDict.getString("banking.inEmissionTax"), ChatColor.GRAY);
         }
     }
 }

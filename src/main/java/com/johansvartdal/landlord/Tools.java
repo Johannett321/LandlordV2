@@ -4,6 +4,7 @@ import com.johansvartdal.landlord.chatentities.ChatEntity;
 import com.johansvartdal.landlord.chatentities.InfoChat;
 import com.johansvartdal.landlord.chatentities.WarningChat;
 import org.bukkit.*;
+import org.bukkit.block.Chest;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Mob;
@@ -16,7 +17,9 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class Tools {
@@ -248,16 +251,6 @@ public class Tools {
         return stack.getType().name().toLowerCase();
     }
 
-    public static String formatNumberToMoney(int number) {
-        DecimalFormat formatter = new DecimalFormat("#.000");
-
-        if (number >= 1000) {
-            return formatter.format((double) number / 1000) + LangDict.getString(LangDict.CURRENCY);
-        } else {
-            return number + LangDict.getString(LangDict.CURRENCY);
-        }
-    }
-
     public static Location middlePointBlock(Location location) {
         location.setX(location.getX() + 0.5);
         location.setZ(location.getZ() + 0.5);
@@ -467,4 +460,17 @@ public class Tools {
         message = message.toUpperCase();
         System.out.println("[LANDLORD] FATAL ERROR: " + message);
     }
+
+    public static void putItemsInChest(Location location, ItemStack[] itemStacks) {
+        Chest chest = (Chest) location.getBlock().getState();
+        for (ItemStack itemStack : itemStacks) {
+            chest.getBlockInventory().addItem(itemStack);
+        }
+    }
+
+    public static String formatCurrency(double amount) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.GERMANY); // Uses comma as thousand separator
+        return numberFormat.format(amount) + " " + LangDict.getString(LangDict.CURRENCY);
+    }
+
 }

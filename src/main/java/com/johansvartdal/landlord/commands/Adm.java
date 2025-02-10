@@ -14,6 +14,7 @@ import lombok.Setter;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.Chest;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Directional;
@@ -69,6 +70,8 @@ public class Adm implements CommandExecutor {
             Tools.printMenuOption(player, "/adm", "testlangfallback");
             Tools.printMenuOption(player, "/adm", "roulettechat");
             Tools.printMenuOption(player, "/adm", "age");
+            Tools.printMenuOption(player, "/adm", "itemsforlevel");
+            Tools.printMenuOption(player, "/adm", "fillchest");
             return true;
         }
 
@@ -81,6 +84,7 @@ public class Adm implements CommandExecutor {
             player.setGameMode(GameMode.CREATIVE);
         }else if (strings[0].equals("motherload")) {
             Bank.depositPlayerWithoutTax(player, 20000);
+            Bank.depositTreasury(100000);
             Tools.tellPlayer(player, "Money reloaded!", ChatColor.GREEN);
         }else if (strings[0].equals("forceup")) {
             Tools.tellPlayer(player, "Forcing upgrade!", ChatColor.YELLOW);
@@ -129,8 +133,32 @@ public class Adm implements CommandExecutor {
             }, Tools.secToTicks(3));
         }else if (strings[0].equalsIgnoreCase("age")) {
             Main.chunkGuardManager.attemptGrow(player.getLocation().add(0,-1,0).getBlock());
+        }else if (strings[0].equalsIgnoreCase("itemsforlevel")) {
+            givePlayerRemainingItems(player);
+        }else if (strings[0].equalsIgnoreCase("fillchest")) {
+            // -183.5, 81.8, 143.56;
+            // -185.5, 81.8, 143.56;
+            // -186.5, 81.8, 143.56;
+            World world = Bukkit.getWorld("world");
+            Chest chest1 = (Chest) new Location(world, -183.5, 81.8, 143.56).getBlock().getState();
+            Chest chest2 = (Chest) new Location(world, -185.5, 81.8, 143.56).getBlock().getState();
+            Chest chest3 = (Chest) new Location(world, -186.5, 81.8, 143.56).getBlock().getState();
+
+            chest1.getBlockInventory().addItem(new ItemStack(Material.WHEAT, 64));
+            chest2.getBlockInventory().addItem(new ItemStack(Material.IRON_INGOT, 3));
+            chest3.getBlockInventory().addItem(new ItemStack(Material.IRON_AXE, 5));
+
+            // world
+
         }
         return true;
+    }
+
+    private void givePlayerRemainingItems(Player player) {
+        ArrayList<ItemStack> requiredItemsForNextLevel = LevelManager.getRequiredItemsForNextLevel();
+        for (ItemStack item : requiredItemsForNextLevel) {
+            player.getWorld().dropItem(player.getLocation(), item);
+        }
     }
 
     private void copyBook(Player player) {

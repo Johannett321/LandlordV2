@@ -9,16 +9,16 @@ import java.util.ArrayList;
 
 public abstract class LandlordEvent implements LandlordEventInterface {
 
-    private class PlayerPrevLoc {
+    private class PlayerLocationRelation {
         Player player;
         Location location;
-        public PlayerPrevLoc(Player player, Location location) {
+        public PlayerLocationRelation(Player player, Location location) {
             this.player = player;
             this.location = location;
         }
     }
 
-    private final ArrayList<PlayerPrevLoc> previousLocations = new ArrayList<>();
+    private final ArrayList<PlayerLocationRelation> previousLocations = new ArrayList<>();
 
     private OnLandlordEventEndListener onLandlordEventEndListener;
     private BukkitTask exitLocationChecker = null;
@@ -38,8 +38,8 @@ public abstract class LandlordEvent implements LandlordEventInterface {
 
     public void saveAllPrevLocs() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            PlayerPrevLoc playerPrevLoc = new PlayerPrevLoc(player, player.getLocation());
-            previousLocations.add(playerPrevLoc);
+            PlayerLocationRelation playerLocationRelation = new PlayerLocationRelation(player, player.getLocation());
+            previousLocations.add(playerLocationRelation);
         }
     }
 
@@ -79,8 +79,8 @@ public abstract class LandlordEvent implements LandlordEventInterface {
         }
 
         // teleport players back
-        for (PlayerPrevLoc playerPrevLoc : previousLocations) {
-            playerPrevLoc.player.teleport(playerPrevLoc.location);
+        for (PlayerLocationRelation playerLocationRelation : previousLocations) {
+            playerLocationRelation.player.teleport(playerLocationRelation.location);
         }
     }
 

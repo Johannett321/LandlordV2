@@ -39,7 +39,7 @@ public class GameJustStarted {
 
         // teleport players home
         player.teleport(location);
-        player.setBedSpawnLocation(location, true);
+        player.setRespawnLocation(location, true);
         Main.playerDataManager.getPlayerData((Player) player).setHomeLocation(location);
 
         // show title

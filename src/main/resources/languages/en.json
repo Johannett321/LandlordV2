@@ -33,6 +33,9 @@
             "langChangedTo": "The language was changed to ",
             "onlyEnglish": "Language fallback is working correctly!",
             "playerAdded": " can now join the game to claim a chunk!"
+        },
+        "neutralMessages": {
+            "noInfo": "There isn't much to say about this command!"
         }
     },
     "info": {
@@ -71,7 +74,8 @@
         "amountTooLow": "Amount too low: ",
         "moneyTransferServices": "Money transfer services",
         "justTransferred": " just transferred ",
-        "toYourAccount": " to your account"
+        "toYourAccount": " to your account",
+        "highEndStatus": "You have HIGH END status!"
     },
     "joinMessages": {
         "newCitizen": "A new citizen has arrived! Please welcome ",
@@ -132,7 +136,12 @@
         "votedFor": "You voted for ",
         "cannotFindVoluntary": "Cannot find voluntary player with username: ",
         "treasuryCannotAffordHaste": "The Treasury cannot afford haste for ",
-        "treasuryCannotAffordWithdrawal": "Treasury cannot afford a withdrawal. It costs ",
+        "treasuryCannotAffordWithdrawal": "Treasury cannot afford a withdrawal for ",
+        "treasuryCannotAffordChunkDiscount": "Treasury cannot afford chunk discount for ",
+        "treasuryCannotAffordDonations": "Treasury cannot afford donations for ",
+        "noMoreChunkDiscount": "You have reached maximum chunk discount",
+        "broadcastChunkDiscount": "Citizens! The treasury chancellor have granted a national chunk discount. All chunks are now sold at a discount of ",
+        "broadcastBoughtDonations": "The Treasury has just halved the required items for upgrading to the next level!",
         "treasuryOrderedWithdrawal": "The Treasury has ordered a withdrawal! You have all received ",
         "treasuryWithdrawalUnfortunately": ". Unfortunately ",
         "lostDuringWithdrawal": " was lost during the withdrawal",
@@ -154,7 +163,8 @@
         "cannotForceUpWithoutAllItems": "You cannot force upgrade without all items being collected",
         "notRequiredForUpgrade": "This item is not required for upgrade",
         "scoreboardSeason": "Season ",
-        "scoreboardLevel": "Level "
+        "scoreboardLevel": "Level ",
+        "holdItemInMainHand": "Please hold the item you would like to donate in your main hand"
     },
     "visit": {
         "toVisit": "to visit someone",

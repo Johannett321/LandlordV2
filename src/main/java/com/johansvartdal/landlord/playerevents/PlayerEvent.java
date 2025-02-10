@@ -65,6 +65,7 @@ public abstract class PlayerEvent {
         }
 
         long timeLeftSeconds = (scheduledEndTime-current)/1000;
+        timeLeftSeconds = timeLeftSeconds + 60; // adding 60 seconds, as there are 60 seconds warning before ending the event
         return Tools.getTextTimeSeconds((int) timeLeftSeconds);
     }
 

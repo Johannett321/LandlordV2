@@ -65,7 +65,7 @@ public class Stocks implements CommandExecutor {
     private void showList(Player player) {
         Tools.printMenuHeader(player, LangDict.getString("stocks.stocksTitle"));
         for (Stock stock : StockManager.getAllStocks()) {
-            Tools.printMenuOption(player, stock.getDisplayName() + " (" + stock.getID() + "):", stock.getCurrentPrice() + LangDict.getString(LangDict.CURRENCY));
+            Tools.printMenuOption(player, stock.getDisplayName() + " (" + stock.getID() + "):", Tools.formatCurrency(stock.getCurrentPrice()));
         }
     }
 
@@ -97,7 +97,7 @@ public class Stocks implements CommandExecutor {
 
         // Can player afford it
         if (!Bank.playerCanAffordTaxFree(player, totalPrice)) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.inclPlatform"), ChatColor.RED);
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + Tools.formatCurrency(totalPrice) + LangDict.getString("stocks.inclPlatform"), ChatColor.RED);
             return;
         }
 
@@ -112,7 +112,7 @@ public class Stocks implements CommandExecutor {
         meta.setDisplayName(stockName);
         itemStack.setItemMeta(meta);
 
-        Tools.tellPlayer(player, LangDict.getString("justBought") + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + totalPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.inclPlatform"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("justBought") + amount + " " + stockName + LangDict.getString("stocks.stocksFor") + Tools.formatCurrency(totalPrice) + LangDict.getString("stocks.inclPlatform"), ChatColor.GREEN);
 
         // Give the stock item to the player
         Tools.givePlayerItemOrDrop(player, itemStack, true);
@@ -140,7 +140,7 @@ public class Stocks implements CommandExecutor {
         Bank.depositPlayerWithoutTax(player, sellPrice);
         Bank.withdrawPlayerWithoutTax(player, platformFee);
 
-        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + sellAmount + " " + displayName + LangDict.getString("sellItem.for") + sellPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.andPaid") + platformFee + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.inPlatformFee"), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + sellAmount + " " + displayName + LangDict.getString("sellItem.for") + Tools.formatCurrency(sellPrice) + LangDict.getString("stocks.andPaid") + Tools.formatCurrency(platformFee) + LangDict.getString("stocks.inPlatformFee"), ChatColor.GREEN);
         player.getInventory().getItemInMainHand().setAmount(0);
     }
 
@@ -193,7 +193,7 @@ public class Stocks implements CommandExecutor {
         Tools.printMenuHeader(player, "INFO");
         Tools.printMenuOption(player, LangDict.getString("stocks.stock"), stock.getDisplayName() + " (" + stock.getID() + ")");
         Tools.printMenuOption(player, LangDict.getString("generalSentenceParts.description"), stock.getDescription());
-        Tools.printMenuOption(player, LangDict.getString("sellItem.currentValue"), price + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("stocks.perStock"));
+        Tools.printMenuOption(player, LangDict.getString("sellItem.currentValue"), Tools.formatCurrency(price) + LangDict.getString("stocks.perStock"));
 
         int worthAt1 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60));
         int worthAt2 = stock.getPriceAtMillis(System.currentTimeMillis()-(1000*60*2));

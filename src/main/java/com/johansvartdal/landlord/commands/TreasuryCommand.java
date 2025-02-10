@@ -3,7 +3,6 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
-import com.johansvartdal.landlord.events.taxevents.HasteEvent;
 import com.johansvartdal.landlord.levels.LevelManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 public class TreasuryCommand implements CommandExecutor {
 
     private Main plugin;
+    TreasuryChancellorCommandHandler treasuryChancellorCommandHandler;
 
     @RequiredArgsConstructor
     @Getter
@@ -31,12 +31,11 @@ public class TreasuryCommand implements CommandExecutor {
     }
 
     public static ArrayList<VoteHolder> treasuryPlayers = new ArrayList<>();
-    private final int hastePrice = 15000;
-    private final int withdrawPrice = 10000;
     ArrayList<Player> playersVotedForResign = new ArrayList<>();
 
     public TreasuryCommand(Main plugin) {
         this.plugin = plugin;
+        this.treasuryChancellorCommandHandler = new TreasuryChancellorCommandHandler(plugin);
         plugin.getCommand("treasury").setExecutor(this);
     }
 
@@ -54,9 +53,12 @@ public class TreasuryCommand implements CommandExecutor {
         if (args.length == 0) {
             // thise player is chancellor
             if (Bank.playerIsTreasuryChancellor(player)) {
+                int donationsPrice = StaticValues.TREASURY_DONATIONS_BASE_PRICE + LevelManager.getNumberOfRemainingItemsTotal() * StaticValues.TREASURY_DONATIONS_PRICE_PER_UNIT;
                 Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
-                Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + hastePrice + LangDict.getString(LangDict.CURRENCY) + ")");
-                Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + withdrawPrice + LangDict.getString(LangDict.CURRENCY) + ")");
+                Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_HASTE_PRICE) + ")");
+                Tools.printMenuOption(player, "/treasury", "buy chunkdiscount " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_CHUNK_DISCOUNT_PRICE) + ")");
+                Tools.printMenuOption(player, "/treasury", "buy donations " + ChatColor.GOLD + "(" + Tools.formatCurrency(donationsPrice) + ")");
+                Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_WITHDRAW_PRICE) + ")");
                 return true;
             }
 
@@ -88,7 +90,7 @@ public class TreasuryCommand implements CommandExecutor {
         }
 
         if (Bank.playerIsTreasuryChancellor(player)) {
-            return chancellorCommand(player, args);
+            return treasuryChancellorCommandHandler.executeChancellorCommand(player, args);
         }else {
             return normalCommand(player, args);
         }
@@ -168,51 +170,5 @@ public class TreasuryCommand implements CommandExecutor {
         }
 
         Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.cannotFindVoluntary") + voteUsername, ChatColor.RED);
-    }
-
-    /*
-    ------------------------------------------------------ CHANCELLOR COMMANDS ------------------------------------------------------
-     */
-
-    private Boolean chancellorCommand(Player player, String[] args) {
-        if (!Main.properties.gameStateIsNormal()) {
-            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW), ChatColor.RED);
-            return true;
-        }
-
-        if (args.length == 2 && args[0].equalsIgnoreCase("buy") && args[1].equalsIgnoreCase("haste")) {
-            // make sure the treasury can afford
-            if (!Bank.treasuryCanAfford(hastePrice)) {
-                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.treasuryCannotAffordHaste") + hastePrice + LangDict.getString(LangDict.CURRENCY));
-                return true;
-            }
-
-            Bank.withdrawTreasury(hastePrice);
-
-            LandlordEventManager.startEvent(new HasteEvent(plugin));
-            return true;
-        }else if (args[0].equalsIgnoreCase("withdraw")) {
-            int withdrawalAmountPerPlayer = 4000;
-            int fee = 10000;
-            int price = Main.properties.getNumberOfPlayers() * withdrawalAmountPerPlayer + fee;
-
-            // can treasury afford it?
-            if (!Bank.treasuryCanAfford(price)) {
-                Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("treasury.treasuryCannotAffordWithdrawal") + price + LangDict.getString(LangDict.CURRENCY));
-                return true;
-            }
-
-            // deposit players
-            for (PlayerData playerData : Main.playerDataManager.getPlayerDataList()) {
-                playerData.depositBalance(withdrawalAmountPerPlayer);
-            }
-
-            // tell players
-            God.speak(LangDict.getString("treasury.treasuryOrderedWithdrawal") + withdrawalAmountPerPlayer +
-                    LangDict.getString(LangDict.CURRENCY) + LangDict.getString("treasury.treasuryWithdrawalUnfortunately") + fee + LangDict.getString(LangDict.CURRENCY) +
-                    LangDict.getString("treasury.lostDuringWithdrawal"));
-            return true;
-        }
-        return false;
     }
 }

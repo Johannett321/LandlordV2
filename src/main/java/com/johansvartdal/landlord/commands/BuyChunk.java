@@ -28,7 +28,10 @@ public class BuyChunk implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
-		int chunkPurchasePrice = Main.playerDataManager.getPlayerData(player).getChunkPurchasePrice();
+		int baseChunkPrice = Main.playerDataManager.getPlayerData(player).getChunkPurchasePrice();
+		double discountMultiplier = 1 - Main.properties.getChunkDiscountPercentPoint();
+
+		int finalChunkPrice = (int) (baseChunkPrice * discountMultiplier);
 
 
 		// check if player is flying
@@ -48,7 +51,7 @@ public class BuyChunk implements CommandExecutor {
 		if (args[0].equals("info")) {
 			Tools.printMenuHeader(player, LangDict.getString("chunks.chunkInfo"));
 			Tools.printMenuOption(player, LangDict.getString("chunks.chunkPoints"), String.valueOf(Main.playerDataManager.getPlayerData(player).getChunkPoints()));
-			Tools.printMenuOption(player, LangDict.getString("chunks.priceOfNextChunk"), chunkPurchasePrice + LangDict.getString(LangDict.CURRENCY) + " + tax");
+			Tools.printMenuOption(player, LangDict.getString("chunks.priceOfNextChunk"), Tools.formatCurrency(finalChunkPrice) + LangDict.getString("banking.plusTax"));
 			Tools.printMenuOption(player, LangDict.getString("chunks.currentlyOwned"), Main.playerDataManager.getPlayerData(player).getOwnedChunks().size() + " chunks");
 			return true;
 		}
@@ -75,8 +78,8 @@ public class BuyChunk implements CommandExecutor {
 		}
 
 		// Make sure player can afford it
-		if (!Bank.playerCanAfford(player, chunkPurchasePrice)) {
-			Bank.tellPlayerTheyNeed(player, chunkPurchasePrice, LangDict.getString("chunks.toPurchaseAChunk"));
+		if (!Bank.playerCanAfford(player, finalChunkPrice)) {
+			Bank.tellPlayerTheyNeed(player, finalChunkPrice, LangDict.getString("chunks.toPurchaseAChunk"));
 			return true;
 		}
 
@@ -95,7 +98,7 @@ public class BuyChunk implements CommandExecutor {
 		 */
 
 		// Withdraw player
-		Bank.withdrawPlayer(LangDict.getString("chunks.aChunk"), player, chunkPurchasePrice);  // money
+		Bank.withdrawPlayer(LangDict.getString("chunks.aChunk"), player, finalChunkPrice);  // money
 		Main.playerDataManager.getPlayerData(player).withdrawChunkPoint();  // chunk points
 
 		// Unlock chunk using the animation

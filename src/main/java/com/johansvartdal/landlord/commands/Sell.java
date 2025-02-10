@@ -92,7 +92,7 @@ public class Sell implements CommandExecutor {
         player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount()-amountWorth.getAmountNeeded());
         Bank.depositPlayer(player, amountWorth.getWorth());
 
-        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.for") + amountWorth.getWorth() + LangDict.getString(LangDict.CURRENCY));
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + amountWorth.getAmountNeeded() + " " + itemType.name() + LangDict.getString("sellItem.for") + Tools.formatCurrency(amountWorth.getWorth()));
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 
@@ -128,7 +128,7 @@ public class Sell implements CommandExecutor {
 
         // TELL PLAYER
         Bank.depositPlayer(player, amountToDeposit);
-        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + LangDict.getString("sellItem.for") + (amountSold * amountWorth.getWorth()) + LangDict.getString(LangDict.CURRENCY), ChatColor.GREEN);
+        Tools.tellPlayer(player, LangDict.getString("sellItem.youJustSold") + (amountSold * amountWorth.getAmountNeeded()) + " " + itemType.name() + LangDict.getString("sellItem.for") + Tools.formatCurrency((amountSold * amountWorth.getWorth())), ChatColor.GREEN);
         player.playSound(player.getLocation(), Sound.BLOCK_LEVER_CLICK,1, 0);
     }
 }

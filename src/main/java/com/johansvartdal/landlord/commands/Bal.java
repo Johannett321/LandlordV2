@@ -38,13 +38,19 @@ public class Bal implements CommandExecutor {
 
 		// Print high end info if relevant
 		if (Main.playerDataManager.getPlayerData(player).isHighEnd()) {
-			Tools.printMenuOption(player, "VIP", "You are seen as HIGH END");
+			Tools.printMenuOption(player, "VIP", LangDict.getString("banking.highEndStatus"));
 		}
-		Tools.printMenuOption(player, LangDict.getString("banking.currentBalance"), Main.playerDataManager.getPlayerData(player).getBalance() + LangDict.getString(LangDict.CURRENCY));
-		Tools.printMenuOption(player, LangDict.getString("banking.currentIncomeTax"), Bank.getDepositTaxPercentDisplayForPlayer(player) + "%");
-		Tools.printMenuOption(player, LangDict.getString("banking.currentVAT"), Bank.getWithdrawTaxPercentDisplay() + "%");
-		Tools.printMenuOption(player, LangDict.getString("banking.currentWealthTax"), Bank.getWealthTaxPercentDisplayForPlayer(player) + "%");
-		Tools.printMenuOption(player, LangDict.getString("banking.currentPropertyTax"), Bank.getPropertyTaxForPlayer(player)+ LangDict.getString(LangDict.CURRENCY));
+		Tools.printMenuOption(player, LangDict.getString("banking.currentBalance"), Tools.formatCurrency(round(Main.playerDataManager.getPlayerData(player).getBalance(), 2)));
+		Tools.printMenuOption(player, LangDict.getString("banking.currentIncomeTax"), round(Bank.getDepositTaxPercentDisplayForPlayer(player), 2) + "%");
+		Tools.printMenuOption(player, LangDict.getString("banking.currentVAT"), round(Bank.getWithdrawTaxPercentDisplay(), 2) + "%");
+		Tools.printMenuOption(player, LangDict.getString("banking.currentWealthTax"), round(Bank.getWealthTaxPercentDisplayForPlayer(player), 2) + "%");
+		Tools.printMenuOption(player, LangDict.getString("banking.currentPropertyTax"), Tools.formatCurrency(round(Bank.getPropertyTaxForPlayer(player), 2)));
 		return true;
+	}
+
+	double round(double value, int places) {
+		if (places < 0) throw new IllegalArgumentException();
+
+		return (double) Math.round(value * places) / places;
 	}
 }

@@ -101,9 +101,9 @@ public class ChunkGuard implements CommandExecutor {
 		Tools.printMenuHeader(player, "CHUNKGUARD INFO");
 		Tools.printMenuOption(player, "This chunk:", protectionStatus); // either UNPROTECTED or protected
 		Tools.printMenuOption(player, "Protected chunks:", String.valueOf(numOfGuardedChunks));
-		Tools.printMenuOption(player, "Price per chunk:", singleChunkPrice + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("generalSentenceParts.perHour")); // self explaining
-		Tools.printMenuOption(player, "Current amount per hour:", amountPerHour + LangDict.getString(LangDict.CURRENCY)); // current cost per hour
-		Tools.printMenuOption(player, "Balance:", currentBalance + LangDict.getString(LangDict.CURRENCY)); // how much money is set in
+		Tools.printMenuOption(player, "Price per chunk:", Tools.formatCurrency(singleChunkPrice) + LangDict.getString("generalSentenceParts.perHour")); // self explaining
+		Tools.printMenuOption(player, "Current amount per hour:", Tools.formatCurrency(amountPerHour)); // current cost per hour
+		Tools.printMenuOption(player, "Balance:", Tools.formatCurrency(currentBalance)); // how much money is set in
 		Tools.printMenuOption(player, "Remaining protection:", (remainingProtection) + LangDict.getString("generalSentenceParts.hours")); // how many hours
 	}
 
@@ -133,7 +133,7 @@ public class ChunkGuard implements CommandExecutor {
 
 	private void refillPlayer(Player player, int amount) {
 		if (amount < 50) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("banking.amountTooLow") + amount + LangDict.getString(LangDict.CURRENCY));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("banking.amountTooLow") + Tools.formatCurrency(amount));
 			return;
 		}
 

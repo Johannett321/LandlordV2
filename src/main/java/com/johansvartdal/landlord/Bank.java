@@ -42,11 +42,9 @@ public class Bank {
         Tools.tellPlayer(new ErrorChat(), player,
                 LangDict.getString(LangDict.YOU_CANNOT_AFFORD_)
                         + theProduct + LangDict.getString("sellItem.for")
-                        + price
-                        + LangDict.getString(LangDict.CURRENCY)
+                        + Tools.formatCurrency(price)
                         + " + "
-                        + vatAmount
-                        + LangDict.getString(LangDict.CURRENCY)
+                        + Tools.formatCurrency(vatAmount)
                         + LangDict.getString(LangDict._IN_VAT),
                 ChatColor.RED);
         return "";
@@ -55,12 +53,9 @@ public class Bank {
     public static String tellPlayerTheyNeed(Player player, int price, String forWhat) {
         int vatAmount = getTaxForPrice(price);
         Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_NEED_) +
-                price +
-                LangDict.getString(LangDict.CURRENCY) +
+                Tools.formatCurrency(price) +
                 " + " +
-                vatAmount +
-                LangDict.getString(LangDict.CURRENCY) +
-                LangDict.getString(LangDict.CURRENCY) +
+                Tools.formatCurrency(vatAmount) +
                 LangDict.getString("banking.inVat") + " " +
                 forWhat, ChatColor.RED);
         return "";
@@ -77,9 +72,8 @@ public class Bank {
     public static void withdrawPlayer(String youJustPaidFor, Player player, int amount) {
         int tax = calculateWithdrawTaxAmount(amount);
         // inform player
-        Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + amount +
-                LangDict.getString(LangDict.CURRENCY) + LangDict.getString("sellItem.for") + youJustPaidFor + " + " +
-                tax + LangDict.getString(LangDict.CURRENCY) + " (" + getWithdrawTaxPercentDisplay()
+        Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + Tools.formatCurrency(amount) + LangDict.getString("sellItem.for") + youJustPaidFor + " + " +
+                Tools.formatCurrency(tax) + " (" + getWithdrawTaxPercentDisplay()
                 + "%)"+ LangDict.getString("banking.inVat"), ChatColor.GRAY);
         withdrawPlayer(Main.playerDataManager.getPlayerData(player), amount);
     }
@@ -120,8 +114,7 @@ public class Bank {
 
         // inform player
         Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") +
-                tax +
-                LangDict.getString(LangDict.CURRENCY) +
+                Tools.formatCurrency(tax) +
                 " (" + getDepositTaxPercentDisplayForPlayer(player) +
                 "%)" + LangDict.getString("banking.inTax"), ChatColor.GRAY);
 
@@ -285,7 +278,7 @@ public class Bank {
         int tax = (int) (balance * getWealthTaxPercentForPlayer(player));
 
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.inWealthTax"));
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + Tools.formatCurrency(tax) + LangDict.getString("banking.inWealthTax"));
         }
     }
 
@@ -295,7 +288,7 @@ public class Bank {
 
         // pay it
         if (payTax(plugin, player, tax)) {
-            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + tax + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.inPropertyTax") + StaticValues.CHUNK_TAX + ")");
+            Tools.tellPlayer(new BankChat(), player, LangDict.getString("banking.youJustPaid") + Tools.formatCurrency(tax) + LangDict.getString("banking.inPropertyTax") + StaticValues.CHUNK_TAX + ")");
         }
     }
 
@@ -365,6 +358,11 @@ public class Bank {
 
     public static void withdrawTreasury(int amount) {
         taxBank -= amount;
+        save();
+    }
+
+    public static void depositTreasury(int amount) {
+        taxBank += amount;
         save();
     }
 

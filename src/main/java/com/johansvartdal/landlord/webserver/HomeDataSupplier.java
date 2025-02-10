@@ -84,7 +84,7 @@ public class HomeDataSupplier extends HttpServlet {
         for (PlayerData playerData: listOfPlayerData) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("key", playerData.getUsername());
-            jsonObject.put("value", Tools.formatNumberToMoney(playerData.getBalance()));
+            jsonObject.put("value", Tools.formatCurrency(playerData.getBalance()));
             array.add(jsonObject);
         }
         return array;

@@ -1,0 +1,65 @@
+Level 1:
+/home
+[] Preparation event
+
+Level 2:
+/Roulette
+/Renting
+
+Level 3:
+/pay
+
+Level 4:
+/wilderness world
+
+Level 5
+/capture
+
+Level 6:
+/chunkguard
+
+Level 7
+/visit
+
+Level 8:
+/wilderness mining
+
+Level 9:
+/wilderness nether
+
+----------------------------- Season 2 -----------------------------
+
+Level 1:
+/rent diamond
+/treasury
+
+Level 2:
+/stocks
+
+Level 3:
+
+Level 4:
+/rent turtle shell
+
+Level 5:
+/rent elytra
+
+Level 6:
+
+Level 7:
+/fly
+
+Level 9:
+/day
+
+----------------------------- Season 3 -----------------------------
+
+Level 1:
+
+Level 2:
+
+Level 3:
+
+Level 4:
+
+Level 5:

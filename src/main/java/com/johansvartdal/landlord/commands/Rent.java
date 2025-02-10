@@ -81,8 +81,7 @@ public class Rent implements CommandExecutor {
 				return;
 			}
 		}
-		Tools.printMenuOption(player, "/rent " + rentableItem.getItemName() + ":", rentableItem.getItemRentPrice() +
-				LangDict.getString(LangDict.CURRENCY) + LangDict.getString("itemRent.everyTwoMinutes"));
+		Tools.printMenuOption(player, "/rent " + rentableItem.getItemName() + ":", Tools.formatCurrency(rentableItem.getItemRentPrice()) + LangDict.getString("itemRent.everyTwoMinutes"));
 	}
 
 	private void attemptEndRent(Player player) {

@@ -56,21 +56,27 @@ public class Pay implements CommandExecutor {
 
 		// make sure amount is higher than 50
 		if (amount <= 50) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("banking.amountTooLow") + amount + LangDict.getString(LangDict.CURRENCY));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("banking.amountTooLow") + Tools.formatCurrency(amount));
 			return true;
 		}
 
 		// check if player can afford
 		if (!Bank.playerCanAfford(player, amount)) {
-			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + amount + LangDict.getString(LangDict.CURRENCY) + LangDict.getString(LangDict._PLUS_TAX));
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.YOU_CANNOT_AFFORD_) + Tools.formatCurrency(amount) + LangDict.getString(LangDict._PLUS_TAX));
 			return true;
 		}
 
-		// actually transfer
 		Player receivingPlayer = Bukkit.getPlayer(username);
+		if (receivingPlayer == player) {
+			Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("commandResponses.errorMessages.cannotUseOnYourself"));
+			return true;
+		}
+
+
+		// actually transfer
 		Bank.withdrawPlayer(LangDict.getString("banking.moneyTransferServices"), player, amount);
 		Bank.depositPlayerWithoutTax(receivingPlayer, Main.playerDataManager.getPlayerData(username), amount);
-		Tools.tellPlayer(new BankChat(), receivingPlayer, player.getDisplayName() + LangDict.getString("banking.justTransferred") + amount + LangDict.getString(LangDict.CURRENCY) + LangDict.getString("banking.toYourAccount"));
+		Tools.tellPlayer(new BankChat(), receivingPlayer, player.getDisplayName() + LangDict.getString("banking.justTransferred") + Tools.formatCurrency(amount) + LangDict.getString("banking.toYourAccount"));
 		return true;
 	}
 }
