@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.business.BusinessManager;
 import com.johansvartdal.landlord.chatentities.InfoChat;
 import com.johansvartdal.landlord.chatentities.WarningChat;
 import com.johansvartdal.landlord.commands.*;
@@ -29,6 +30,7 @@ import static com.johansvartdal.landlord.Tools.debugLog;
 @Slf4j
 public class Main extends JavaPlugin implements Listener {
 
+	public static BusinessManager businessManager;
 	public static ScoreboardHelper scoreboardHelper;
 	public static Properties properties;
 	public static Configurator configurator;
@@ -103,6 +105,7 @@ public class Main extends JavaPlugin implements Listener {
 		new ChunkGuard(this);
 
 		chunkGuardManager = new ChunkGuardManager(this);
+		businessManager = new BusinessManager(this);
 
 		Bank.startTaxCollector(this);
 

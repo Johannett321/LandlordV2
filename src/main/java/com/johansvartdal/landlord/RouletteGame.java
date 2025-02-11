@@ -22,7 +22,7 @@ import static com.johansvartdal.landlord.Tools.enchantItem;
 
 public class RouletteGame {
 
-    private Main plugin;
+    private final Main plugin;
     private static ArrayList<Player> rouletteGamePlayers;
     public static boolean openForJoin = false;
     ItemStack itemStack = null;

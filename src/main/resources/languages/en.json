@@ -415,5 +415,15 @@
         "arena": "Fighting in arena",
         "mystery": "Solving mysteries",
         "treasuryVoting": "Voting"
+    },
+    "business": {
+        "toStartABusiness": "to start a business",
+        "startingABusiness": "starting a business",
+        "justFoundedANewBusiness": " just founded a new business: ",
+        "ceo": "CEO: ",
+        "newExportJob": "A new export job is available: ",
+        "acceptTheJobBy": ". Accept the job by typing /business accept",
+        "jobRejected": "The job was rejected",
+        "jobAccepted": "The job was accepted"
     }
 }
