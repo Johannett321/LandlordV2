@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.events.taxevents.HasteEvent;
+import com.johansvartdal.landlord.levels.Level;
 import com.johansvartdal.landlord.levels.LevelManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -30,20 +31,20 @@ public class TreasuryChancellorCommandHandler {
 
         if (args.length == 2 && args[0].equalsIgnoreCase("buy")) {
             return buyCommand(args, player);
-        }else if (args[0].equalsIgnoreCase("withdraw")) {
+        }else if (args[0].equalsIgnoreCase("withdraw") && LevelManager.featureUnlocked("treasurywithdraw")) {
             return withdrawCommand(args, player);
         }
         return false;
     }
 
     private boolean buyCommand(String[] args, Player player) {
-        if (args[1].equalsIgnoreCase("haste")) {
+        if (args[1].equalsIgnoreCase("haste") && LevelManager.featureUnlocked("treasuryhaste")) {
             return buyHaste(player);
-        }else if (args[1].equalsIgnoreCase("chunkdiscount")) {
+        }else if (args[1].equalsIgnoreCase("chunkdiscount") && LevelManager.featureUnlocked("treasurychunkdiscount")) {
             return buyChunkDiscount(player);
-        }else if (args[1].equalsIgnoreCase("donations")) {
+        }else if (args[1].equalsIgnoreCase("donations") && LevelManager.featureUnlocked("treasurydonations")) {
             return buyDonations(player);
-        }else if (args[1].equalsIgnoreCase("mysterychest")) {
+        }else if (args[1].equalsIgnoreCase("mysterychest") && LevelManager.featureUnlocked("treasurymysterychest")) {
             return buyMysteryChest(player);
         }
 
@@ -144,10 +145,24 @@ public class TreasuryChancellorCommandHandler {
         int donationsPrice = StaticValues.TREASURY_DONATIONS_BASE_PRICE + LevelManager.getNumberOfRemainingItemsTotal() * StaticValues.TREASURY_DONATIONS_PRICE_PER_UNIT;
 
         Tools.printMenuHeader(player, LangDict.getString("generalSentenceParts.commands"));
-        Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_HASTE_PRICE) + ")");
-        Tools.printMenuOption(player, "/treasury", "buy chunkdiscount " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_CHUNK_DISCOUNT_PRICE) + ")");
-        Tools.printMenuOption(player, "/treasury", "buy donations " + ChatColor.GOLD + "(" + Tools.formatCurrency(donationsPrice) + ")");
-        Tools.printMenuOption(player, "/treasury", "buy mysterychest " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_MYSTERY_CHEST_PRICE) + ")");
-        Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_WITHDRAW_PRICE) + ")");
+        if (LevelManager.featureUnlocked("treasuryhaste")) {
+            Tools.printMenuOption(player, "/treasury", "buy haste " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_HASTE_PRICE) + ")");
+        }
+
+        if (LevelManager.featureUnlocked("treasurychunkdiscount")) {
+            Tools.printMenuOption(player, "/treasury", "buy chunkdiscount " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_CHUNK_DISCOUNT_PRICE) + ")");
+        }
+
+        if (LevelManager.featureUnlocked("treasurydonations")) {
+            Tools.printMenuOption(player, "/treasury", "buy donations " + ChatColor.GOLD + "(" + Tools.formatCurrency(donationsPrice) + ")");
+        }
+
+        if (LevelManager.featureUnlocked("treasurymysterychest")) {
+            Tools.printMenuOption(player, "/treasury", "buy mysterychest " + ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_MYSTERY_CHEST_PRICE) + ")");
+        }
+
+        if (LevelManager.featureUnlocked("treasurywithdraw")) {
+            Tools.printMenuOption(player, "/treasury", "withdraw "+ ChatColor.GOLD + "(" + Tools.formatCurrency(StaticValues.TREASURY_WITHDRAW_PRICE) + ")");
+        }
     }
 }

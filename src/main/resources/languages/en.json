@@ -417,7 +417,10 @@
         "treasuryVoting": "Voting"
     },
     "business": {
+        "name": "Name: ",
         "businessCommands": "Business commands",
+        "deleteConfirmUsage": "Do '/business delete confirm' to delete the business. This cannot be undone",
+        "businessLists": "Businesses",
         "toStartABusiness": "to start a business",
         "startingABusiness": "starting a business",
         "justFoundedANewBusiness": " just founded a new business: ",
@@ -430,6 +433,9 @@
         "wrongItemsInChest": "The chest should only contain: ",
         "justShipped": "You just shipped ",
         "andGotPaid": " and got paid ",
-        "taxfree":
+        "taxFree": " (taxfree)",
+        "toStartThisBusiness": "to start this business",
+        "registrationFee": "business registration fee",
+        "totalRevenue": "Total revenue: "
     }
 }

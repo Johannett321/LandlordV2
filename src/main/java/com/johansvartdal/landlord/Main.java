@@ -103,6 +103,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Status(this);
 		new Pay(this);
 		new ChunkGuard(this);
+		new BusinessCommand(this);
 
 		chunkGuardManager = new ChunkGuardManager(this);
 		businessManager = new BusinessManager(this);

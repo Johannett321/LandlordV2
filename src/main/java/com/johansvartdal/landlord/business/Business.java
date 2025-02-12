@@ -15,6 +15,7 @@ public abstract class Business {
     private BusinessChat businessChatEntity;
 
     private String name;
+    private int bankAccount = 0;
     private Double revenue = 0.0;
     private String ownerUUID;
     private BusinessType type;
@@ -22,7 +23,8 @@ public abstract class Business {
     protected abstract int getRegistrationFee();
     protected abstract BusinessType getType();
     protected abstract void onBusinessRegistered();
-    protected abstract void handleCommand(Player player, String[] args);
+    protected abstract void onBusinessUnregistered();
+    protected abstract boolean handleCommand(Player player, String[] args);
 
     public Business(Main plugin, Player player, String name) {
         this.plugin = plugin;
@@ -54,5 +56,14 @@ public abstract class Business {
             case "EXPORT": return BusinessType.EXPORT;
         }
         return null;
+    }
+
+    public void withdrawBank(int amount) {
+        bankAccount -= amount;
+    }
+
+    public void depositBank(int amount) {
+        revenue += amount;
+        bankAccount += amount;
     }
 }

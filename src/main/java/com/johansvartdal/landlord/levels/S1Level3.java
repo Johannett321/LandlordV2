@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -37,7 +38,7 @@ public class S1Level3 extends Level{
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
-        return null;
+        return new ChooseTreasuryEvent(plugin);
     }
 
     @Override
