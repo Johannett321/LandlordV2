@@ -417,6 +417,7 @@
         "treasuryVoting": "Voting"
     },
     "business": {
+        "businessCommands": "Business commands",
         "toStartABusiness": "to start a business",
         "startingABusiness": "starting a business",
         "justFoundedANewBusiness": " just founded a new business: ",
@@ -424,6 +425,11 @@
         "newExportJob": "A new export job is available: ",
         "acceptTheJobBy": ". Accept the job by typing /business accept",
         "jobRejected": "The job was rejected",
-        "jobAccepted": "The job was accepted"
+        "jobAccepted": "The job was accepted",
+        "cannotFindChest": "You must stand in front of the chest",
+        "wrongItemsInChest": "The chest should only contain: ",
+        "justShipped": "You just shipped ",
+        "andGotPaid": " and got paid ",
+        "taxfree":
     }
 }

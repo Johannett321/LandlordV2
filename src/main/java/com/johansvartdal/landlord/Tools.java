@@ -488,4 +488,25 @@ public class Tools {
         item.setItemMeta(testEnchantMeta);
         return item;
     }
+
+    public static String getPlayerFacingDirection(Player player) {
+        int yaw = (int) player.getLocation().getYaw();
+
+        // normalize the angle to be between 0 and 359
+        yaw = yaw % 360;
+        if (yaw < 0) {
+            yaw += 360;
+        }
+
+        // determine the direction based on the angle
+        if (yaw >= 45 && yaw < 135) {
+            return "west"; // west
+        } else if (yaw >= 135 && yaw < 225) {
+            return "north";  // north
+        } else if (yaw >= 225 && yaw < 315) {
+            return "east";  // east
+        } else {
+            return "south";  // south
+        }
+    }
 }

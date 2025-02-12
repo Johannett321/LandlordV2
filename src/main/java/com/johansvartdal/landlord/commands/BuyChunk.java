@@ -84,7 +84,7 @@ public class BuyChunk implements CommandExecutor {
 		}
 
 		// Get direction of chunk
-		String direction = getPlayerFacingDirection(player);
+		String direction = Tools.getPlayerFacingDirection(player);
 		Chunk chunkAtDirection = getChunkAtDirection(player, direction);
 
 		// Make sure the chunk is available for purchase
@@ -150,27 +150,6 @@ public class BuyChunk implements CommandExecutor {
 			}, Tools.secToTicks(3));
 
 		}, Tools.secToTicks(5));
-	}
-
-	public String getPlayerFacingDirection(Player player) {
-		int yaw = (int) player.getLocation().getYaw();
-
-		// normalize the angle to be between 0 and 359
-		yaw = yaw % 360;
-		if (yaw < 0) {
-			yaw += 360;
-		}
-
-		// determine the direction based on the angle
-		if (yaw >= 45 && yaw < 135) {
-			return "west"; // west
-		} else if (yaw >= 135 && yaw < 225) {
-			return "north";  // north
-		} else if (yaw >= 225 && yaw < 315) {
-			return "east";  // east
-		} else {
-			return "south";  // south
-		}
 	}
 
 	public Chunk getChunkAtDirection(Player player, String direction) {
