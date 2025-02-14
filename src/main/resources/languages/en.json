@@ -418,6 +418,8 @@
     },
     "business": {
         "name": "Name: ",
+        "bankruptWarning": " just went bankrupt!",
+        "cannotAfford": "Your business cannot afford ",
         "businessCommands": "Business commands",
         "deleteConfirmUsage": "Do '/business delete confirm' to delete the business. This cannot be undone",
         "businessLists": "Businesses",
@@ -436,6 +438,43 @@
         "taxFree": " (taxfree)",
         "toStartThisBusiness": "to start this business",
         "registrationFee": "business registration fee",
-        "totalRevenue": "Total revenue: "
+        "totalRevenue": "Total revenue: ",
+        "deposit": "You just deposited: ",
+        "withdraw": "You just withdrew: ",
+        "info": "Business info",
+        "deleteSuccess": "The business was deleted and it's balance was paid to your account",
+        "insurance": {
+            "noActivePlans": "No insurances was found",
+            "created": "Created insurance ",
+            "activePlansHeader": "Active insurances",
+            "accidentOccurred": "An accident occured on insurance: ",
+            "paidOut": "Paid Out: ",
+            "summary": " insurance just made ",
+            "andPaid": " and paid registration fee of ",
+            "invalidPrice": "Insurance price invalid. Must be between 100 and 600",
+            "invalidPlan": "Cannot find insurance ",
+            "deleteSuccess": "Deleted insurance ",
+            "customers": "Customers: ",
+            "toCreateANewInsurance": "to create a new insurance"
+        },
+        "bank": {
+            "loanHeader": "Active loans",
+            "loanRequestsHeader": "Loan applications",
+            "amount": "Amount: ",
+            "duration": "Duration: ",
+            "remaining": "Outstanding loan balance: ",
+            "principal": "Principal: ",
+            "interest": "Interest: ",
+            "totalDue": "Total due: ",
+            "preNewLoanRequest": "Received a new loan application from ",
+            "postNewLoanRequest": ". Do '/business application list' for more information",
+            "invalidLoanID": "Invalid loan id",
+            "preLoanRejected": "You rejected the loan to ",
+            "preLoanApproved": "You approved the loan to ",
+            "midLoanApproved": " and paid them ",
+            "midPaidPrincipal": " just paid a loan installment of ",
+            "loanDefaulted": " just defaulted their loan with a remaining balance of ",
+            "midLoanPayOff": " just paid off their loan"
+        }
     }
 }

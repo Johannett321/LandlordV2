@@ -59,7 +59,7 @@ Level 6:
 /business
 
 Level 7:
-[ OLE'S CAMP IN FOREST ADVENTURE ]
+[ OLE'S LUMBER MINE FOREST ADVENTURE ]
 /fly
 
 Level 8:
@@ -72,6 +72,7 @@ Level 9:
 ----------------------------- Season 3 -----------------------------
 
 Level 1:
+[ Muromtsevo Coast ADVENTURE (Sibirian Cottage Village) ]
 
 Level 2:
 

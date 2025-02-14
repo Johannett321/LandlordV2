@@ -1,11 +1,14 @@
 package com.johansvartdal.landlord.events.adventure;
 
 import com.johansvartdal.landlord.*;
+import lombok.extern.slf4j.Slf4j;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
+@Slf4j
 public abstract class AdventureEvent extends LandlordEvent {
 
     public AdventureEvent(Main plugin) {
@@ -21,6 +24,7 @@ public abstract class AdventureEvent extends LandlordEvent {
     public void startEvent() {
         God.speak(LangDict.getString("events.excursion.getReadyExcursion"));
         scheduleExcursionStart();
+        prepareChests();
     }
 
     private void scheduleExcursionStart() {
@@ -44,6 +48,13 @@ public abstract class AdventureEvent extends LandlordEvent {
         showWelcomeMessage();
         showTitle();
         scheduleEndEvent(getExcursionMinutes());
+    }
+
+    private void prepareChests() {
+        for (Location location : getChestLocation()) {
+            System.out.println("Filling adventure chest at location: " + location.getX() + ", " + location.getY() + ", " + location.getZ());
+            Main.chestManager.fillAdventureChest(location);
+        }
     }
 
     private void updateAllPlayerStatuses() {
@@ -86,4 +97,5 @@ public abstract class AdventureEvent extends LandlordEvent {
     protected abstract int getExcursionMinutes();
     protected abstract String getWelcomeTitle();
     protected abstract String getWelcomeSubtitle();
+    protected abstract Location[] getChestLocation();
 }

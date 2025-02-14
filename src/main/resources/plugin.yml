@@ -86,3 +86,6 @@ commands:
   chunkguard:
     description: Keeps your chunks loaded for you
     usage: /chunkguard
+  business:
+    description: Execute business commands
+    usage: /business <command>

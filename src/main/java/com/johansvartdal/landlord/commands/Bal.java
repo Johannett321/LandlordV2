@@ -12,6 +12,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static com.johansvartdal.landlord.Tools.round;
+
 public class Bal implements CommandExecutor {
 	
 	private final Main plugin;
@@ -46,11 +48,5 @@ public class Bal implements CommandExecutor {
 		Tools.printMenuOption(player, LangDict.getString("banking.currentWealthTax"), round(Bank.getWealthTaxPercentDisplayForPlayer(player), 2) + "%");
 		Tools.printMenuOption(player, LangDict.getString("banking.currentPropertyTax"), Tools.formatCurrency(round(Bank.getPropertyTaxForPlayer(player), 2)));
 		return true;
-	}
-
-	double round(double value, int places) {
-		if (places < 0) throw new IllegalArgumentException();
-
-		return (double) Math.round(value * places) / places;
 	}
 }

@@ -1,11 +1,13 @@
 package com.johansvartdal.landlord.business;
 
-import com.johansvartdal.landlord.Bank;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.Properties;
 import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
@@ -23,7 +25,8 @@ public class BankBusiness extends Business {
     private static final String[] BUSINESS_NAMES = {
             "SteelCorp", "Quantum Solutions", "Blue Horizon Ventures",
             "Evergreen Industries", "Titan Enterprises", "NovaTech",
-            "Skyline Investments", "Omega Holdings", "Solaris Tech"
+            "Skyline Investments", "Omega Holdings", "Solaris Tech",
+            "BlockBnB inc", "CakeFarm inc", "ElCarts inc"
     };
 
     public BankBusiness(Main plugin, Player player, String name) {
@@ -46,6 +49,23 @@ public class BankBusiness extends Business {
         }
         startLoanRequestScheduler();
         startLoanRepaymentScheduler();
+    }
+
+    @Override
+    public JSONObject getJson() {
+        JSONObject json = super.getJson();
+        List<JSONObject> loansJson = new ArrayList<>();
+        for (Loan loan : activeLoans) {
+            loansJson.add(loan.toJson());
+        }
+        json.put("activeLoans", loansJson);
+
+        List<JSONObject> applicationsJson = new ArrayList<>();
+        for (LoanApplication application : pendingApplications) {
+            applicationsJson.add(application.toJson());
+        }
+        json.put("pendingApplications", applicationsJson);
+        return json;
     }
 
     @Override
@@ -72,98 +92,107 @@ public class BankBusiness extends Business {
 
     @Override
     protected boolean handleCommand(Player player, String[] args) {
-        if (args.length < 1) {
-            Tools.tellPlayer(player, LangDict.getString("bank.usage"));
-            return false;
+        if (args.length == 0) {
+            Tools.printMenuOption(player, "/business", "application list");
+            Tools.printMenuOption(player, "/business", "application approve <NUMBER>");
+            Tools.printMenuOption(player, "/business", "application reject <NUMBER>");
+            Tools.printMenuOption(player, "/business", "loan list");
+            return true;
         }
 
-        switch (args[0]) {
-            case "viewrequests":
-                viewLoanRequests(player);
-                break;
-            case "approveloan":
-                if (args.length < 2) {
-                    Tools.tellPlayer(player, LangDict.getString("bank.specifyLoanID"));
-                    return false;
+        if (args[0].equals("application")) {
+            return switch (args[1]) {
+                case "list" -> viewLoanRequests(player);
+                case "approve" -> {
+                    if (args.length < 3) {
+                        yield false;
+                    }
+                    yield approveLoan(player, Integer.parseInt(args[2]));
                 }
-                approveLoan(player, Integer.parseInt(args[1]));
-                break;
-            case "rejectloan":
-                if (args.length < 2) {
-                    Tools.tellPlayer(player, LangDict.getString("bank.specifyLoanID"));
-                    return false;
+                case "reject" -> {
+                    if (args.length < 3) {
+                        yield false;
+                    }
+                    yield rejectLoan(player, Integer.parseInt(args[2]));
                 }
-                rejectLoan(player, Integer.parseInt(args[1]));
-                break;
-            case "viewloans":
-                viewLoans(player);
-                break;
-            default:
-                Tools.tellPlayer(player, LangDict.getString("bank.invalidCommand"));
+                default -> false;
+            };
+        }else if(args[0].equals("loan")) {
+            return switch (args[1]) {
+                case "list" -> viewLoans(player);
+                default -> false;
+            };
         }
+
         return false;
     }
 
-    private void viewLoanRequests(Player player) {
-        if (pendingApplications.isEmpty()) {
-            Tools.tellPlayer(player, LangDict.getString("bank.noLoanRequests"));
-            return;
-        }
+    @Override
+    protected BusinessType getBusinessType() {
+        return BusinessType.BANK;
+    }
 
-        Tools.tellPlayer(player, LangDict.getString("bank.loanRequestsHeader"));
+    private boolean viewLoanRequests(Player player) {
+        Tools.printMenuHeader(player, LangDict.getString("business.bank.loanRequestsHeader"));
         for (int i = 0; i < pendingApplications.size(); i++) {
             LoanApplication app = pendingApplications.get(i);
-            Tools.tellPlayer(player, i + ": " + app.getBusinessName() +
-                    " | Amount: " + Tools.formatCurrency(app.getAmount()) +
-                    " | Interest: " + app.getInterestRate() + "%" +
-                    " | Duration: " + app.getDurationHours() + "h");
+            Tools.printMenuOption(player,i + ":",
+                    app.getBusinessName() +
+                    " | " + LangDict.getString("business.bank.amount") + Tools.formatCurrency(app.getAmount()) +
+                    " | " + LangDict.getString("business.bank.interest") + app.getInterestRate() + "%" +
+                    " | " + LangDict.getString("business.bank.duration") + app.getDurationHours() + "h");
         }
+        return true;
     }
 
-    private void viewLoans(Player player) {
-        if (activeLoans.isEmpty()) {
-            Tools.tellPlayer(player, LangDict.getString("bank.noActiveLoans"));
-            return;
-        }
-
-        Tools.tellPlayer(player, LangDict.getString("bank.activeLoansHeader"));
+    private boolean viewLoans(Player player) {
+        Tools.printMenuHeader(player, LangDict.getString("business.bank.loanHeader"));
         for (int i = 0; i < activeLoans.size(); i++) {
             Loan loan = activeLoans.get(i);
-            Tools.tellPlayer(player, i + ": " + loan.getBusinessName() +
-                    " | Principal: " + Tools.formatCurrency(loan.getPrincipal()) +
-                    " | Interest: " + loan.getInterestRate() + "%" +
-                    " | Total Due: " + Tools.formatCurrency(loan.getTotalDue()));
+            Tools.printMenuOption(player, i + ":",
+                    loan.getBusinessName() +
+                    " | " + LangDict.getString("business.bank.remaining") + Tools.formatCurrency(loan.getRemainingAmount()) +
+                    " | " + LangDict.getString("business.bank.principal") + Tools.formatCurrency(loan.getPrincipal()) +
+                    " | " + LangDict.getString("business.bank.interest") + loan.getInterestRate() + "%" +
+                    " | " + LangDict.getString("business.bank.totalDue") + Tools.formatCurrency(loan.getTotalDue()));
         }
+        return true;
     }
 
-    private void approveLoan(Player player, int loanIndex) {
+    private boolean approveLoan(Player player, int loanIndex) {
         if (loanIndex < 0 || loanIndex >= pendingApplications.size()) {
-            Tools.tellPlayer(player, LangDict.getString("bank.invalidLoanID"));
-            return;
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("business.bank.invalidLoanID"));
+            return true;
         }
 
-        LoanApplication app = pendingApplications.remove(loanIndex);
+        LoanApplication app = pendingApplications.get(loanIndex);
 
-        if (!Bank.playerCanAfford(player, (int) app.getAmount())) {
-            Tools.tellPlayer(player, LangDict.getString("bank.notEnoughFunds"));
-            return;
+        if (!canAfford(app.getAmount())) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("business.cannotAfford") + Tools.formatCurrency(app.getAmount()));
+            return true;
         }
+
+        pendingApplications.remove(app);
 
         withdrawBank(app.getAmount());
 
-        activeLoans.add(new Loan(app.getBusinessName(), app.getAmount(), app.getInterestRate()));
+        activeLoans.add(new Loan(app.getBusinessName(), app.getAmount(), app.getInterestRate(), app.getDurationHours()));
 
-        Tools.tellPlayer(player, LangDict.getString("bank.loanApproved") + app.getBusinessName());
+        Tools.tellPlayer(getBusinessChatEntity(), player, LangDict.getString("business.bank.preLoanApproved") + app.getBusinessName() + LangDict.getString("business.bank.midLoanApproved") + Tools.formatCurrency(app.getAmount()), ChatColor.GREEN);
+        return true;
     }
 
-    private void rejectLoan(Player player, int loanIndex) {
+    private boolean rejectLoan(Player player, int loanIndex) {
         if (loanIndex < 0 || loanIndex >= pendingApplications.size()) {
-            Tools.tellPlayer(player, LangDict.getString("bank.invalidLoanID"));
-            return;
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("business.bank.invalidLoanID"));
+            return true;
         }
 
+        Tools.tellPlayer(getBusinessChatEntity(), player, LangDict.getString("business.bank.preLoanRejected") + pendingApplications.get(loanIndex).getBusinessName(), ChatColor.RED);
         pendingApplications.remove(loanIndex);
-        Tools.tellPlayer(player, LangDict.getString("bank.loanRejected"));
+
+        Main.businessManager.saveBusinesses();
+        return true;
     }
 
     private void startLoanRequestScheduler() {
@@ -195,15 +224,20 @@ public class BankBusiness extends Business {
 
         loanRequestSchedulerTaskId = Bukkit.getScheduler().runTaskLater(this.getPlugin(), () -> {
             String businessName = BUSINESS_NAMES[random.nextInt(BUSINESS_NAMES.length)];
-            int amount = random.nextInt() * 50000 + 50000; // 50,000 - 100,000
-            double interestRate = random.nextDouble() * 5 + 5; // 5% - 10%
-            int durationHours = 24; // Always 24 hours
+            int amount = (int) (random.nextDouble() * 50000 + 50000); // 50,000 - 100,000
+            double interestRate = Tools.round(random.nextDouble() * 5 + 5, 2); // 5% - 10%
+            int durationHours = random.nextInt(26) + 10; // 10-36 hours
 
+            if (pendingApplications.size() >= 3) {
+                pendingApplications.remove(0);
+            }
             pendingApplications.add(new LoanApplication(businessName, amount, interestRate, durationHours));
+
+            Main.businessManager.saveBusinesses();
 
             Player owner = Bukkit.getPlayer(UUID.fromString(getOwnerUUID()));
             if (owner != null) {
-                Tools.tellPlayer(owner, LangDict.getString("bank.newLoanRequest") + businessName);
+                Tools.tellPlayer(getBusinessChatEntity(), owner, LangDict.getString("business.bank.preNewLoanRequest") + businessName + LangDict.getString("business.bank.postNewLoanRequest"), ChatColor.GRAY);
             }
 
             scheduleNextLoanRequest();
@@ -215,23 +249,34 @@ public class BankBusiness extends Business {
             Bukkit.getScheduler().cancelTask(loanRepaymentSchedulerTaskId);
         }
 
+        long interval = Tools.secToTicks(60*60); // every hour
+
         loanRepaymentSchedulerTaskId = Bukkit.getScheduler().runTaskLater(this.getPlugin(), () -> {
             for (Iterator<Loan> iterator = activeLoans.iterator(); iterator.hasNext(); ) {
                 Loan loan = iterator.next();
-                double totalDue = loan.getTotalDue();
+                int totalDue = (int) loan.getTotalDue();
+                Player player = Bukkit.getPlayer(UUID.fromString(getOwnerUUID()));
 
-                if (random.nextDouble() > 0.1) { // 90% chance of repayment
-                    depositBank((int) totalDue);
-                    Tools.tellPlayer(Bukkit.getPlayer(UUID.fromString(getOwnerUUID())), LangDict.getString("bank.loanRepaid") + loan.getBusinessName());
+                if (random.nextDouble() > 0.02) { // 98% chance of repayment
+                    depositBank(totalDue);
+                    loan.payPrincipal();
+
+                    if (loan.getRemainingAmount() <= 0 || loan.getRemainingHours() <= 0) {
+                        Tools.tellPlayer(getBusinessChatEntity(), player, loan.getBusinessName() + LangDict.getString("business.bank.midLoanPayOff"), ChatColor.GREEN);
+                        iterator.remove();
+                    }else {
+                        Tools.tellPlayer(getBusinessChatEntity(), player, loan.getBusinessName() + LangDict.getString("business.bank.midPaidPrincipal") + Tools.formatCurrency(totalDue), ChatColor.GRAY);
+                    }
                 } else {
-                    Tools.tellPlayer(Bukkit.getPlayer(UUID.fromString(getOwnerUUID())), LangDict.getString("bank.loanDefaulted") + loan.getBusinessName());
+                    Tools.tellPlayer(getBusinessChatEntity(), player, loan.getBusinessName() + LangDict.getString("business.bank.loanDefaulted") + Tools.formatCurrency(loan.getRemainingAmount()), ChatColor.RED);
+                    iterator.remove();
                 }
-
-                iterator.remove();
             }
 
+            Main.businessManager.saveBusinesses();
+
             startLoanRepaymentScheduler();
-        }, Tools.secToTicks(86400)).getTaskId(); // Runs every 24 real-life hours
+        }, interval).getTaskId();
     }
 
 
@@ -239,34 +284,47 @@ public class BankBusiness extends Business {
     @Getter
     public class Loan {
         private final String businessName;
-        private final int principal;
+        private int remainingAmount;
+        private int remainingHours;
         private final double interestRate;
 
-        public Loan(String businessName, int principal, double interestRate) {
+        public Loan(String businessName, int remainingAmount, double interestRate, int remainingHours) {
             this.businessName = businessName;
-            this.principal = principal;
+            this.remainingAmount = remainingAmount;
             this.interestRate = interestRate;
+            this.remainingHours = remainingHours;
         }
 
         public Loan(JSONObject json) {
             this.businessName = json.get("businessName").toString();
-            this.principal = (int) json.get("principal");
+            this.remainingAmount = ((Long) json.get("remainingAmount")).intValue();
             this.interestRate = (double) json.get("interestRate");
+            this.remainingHours = ((Long) json.get("remainingHours")).intValue();
+        }
+
+        public double getPrincipal() {
+            return ((double) remainingAmount / remainingHours);
         }
 
         /**
          * Calculates the total repayment amount.
          */
         public double getTotalDue() {
-            return principal + (principal * (interestRate / 100));
+            return getPrincipal() + (remainingAmount * (interestRate / 100));
         }
 
         public JSONObject toJson() {
             JSONObject json = new JSONObject();
             json.put("businessName", businessName);
-            json.put("principal", principal);
+            json.put("remainingAmount", remainingAmount);
             json.put("interestRate", interestRate);
+            json.put("remainingHours", remainingHours);
             return json;
+        }
+
+        public void payPrincipal() {
+            remainingAmount -= (int) getPrincipal();
+            remainingHours -= 1;
         }
     }
 
@@ -286,7 +344,7 @@ public class BankBusiness extends Business {
 
         public LoanApplication(JSONObject json) {
             this.businessName = json.get("businessName").toString();
-            this.amount = (int) json.get("amount");
+            this.amount = ((Long) json.get("amount")).intValue();
             this.interestRate = (double) json.get("interestRate");
             this.durationHours = ((Long) json.get("durationHours")).intValue();
         }

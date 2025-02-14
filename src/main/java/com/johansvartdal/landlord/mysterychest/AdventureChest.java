@@ -77,6 +77,22 @@ public class AdventureChest extends MysteryChest {
         items.add(new ItemStack(Material.STONE_PICKAXE));
         items.add(new ItemStack(Material.STONE_AXE));
         items.add(new ItemStack(Material.STONE_SHOVEL));
+        items.add(new ItemStack(Material.IRON_CHESTPLATE, 1));
+        items.add(new ItemStack(Material.IRON_HELMET, 1));
+        items.add(new ItemStack(Material.IRON_BOOTS, 1));
+
+        items.add(new ItemStack(Material.IRON_SWORD, 1));
+        items.add(new ItemStack(Material.IRON_AXE, 1));
+        items.add(new ItemStack(Material.IRON_SHOVEL, 1));
+
+        ItemStack ironPickaxe = new ItemStack(Material.IRON_PICKAXE, 1);
+        enchantItem(ironPickaxe, Enchantment.EFFICIENCY, 2);
+        enchantItem(ironPickaxe, Enchantment.UNBREAKING, 2);
+        items.add(ironPickaxe);
+
+        ItemStack bow = new ItemStack(Material.BOW, 1);
+        enchantItem(bow, Enchantment.POWER, 2);
+        items.add(bow);
 
         // Food & Cooking Ingredients
         items.add(new ItemStack(Material.BEEF, 8));
@@ -104,6 +120,11 @@ public class AdventureChest extends MysteryChest {
 
         items.add(new ItemStack(Material.GLOWSTONE_DUST, 8));
 
+        // Special Food & Potions
+        items.add(new ItemStack(Material.GOLDEN_APPLE, 1));
+
+
+
         return items.toArray(ItemStack[]::new);
     }
 
@@ -112,25 +133,9 @@ public class AdventureChest extends MysteryChest {
         ArrayList<ItemStack> items = new ArrayList<>();
 
         // Tools & Weapons
-        ItemStack ironPickaxe = new ItemStack(Material.IRON_PICKAXE, 1);
-        enchantItem(ironPickaxe, Enchantment.EFFICIENCY, 2);
-        enchantItem(ironPickaxe, Enchantment.UNBREAKING, 2);
-        items.add(ironPickaxe);
-
-        items.add(new ItemStack(Material.IRON_SWORD, 1));
-
-        ItemStack bow = new ItemStack(Material.BOW, 1);
-        enchantItem(bow, Enchantment.POWER, 2);
-        items.add(bow);
-
         ItemStack crossbow = new ItemStack(Material.CROSSBOW, 1);
         enchantItem(crossbow, Enchantment.QUICK_CHARGE, 1);
         items.add(crossbow);
-
-        // Armor
-        items.add(new ItemStack(Material.IRON_CHESTPLATE, 1));
-        items.add(new ItemStack(Material.IRON_HELMET, 1));
-        items.add(new ItemStack(Material.IRON_BOOTS, 1));
 
         ItemStack goldenHelmet = new ItemStack(Material.GOLDEN_HELMET, 1);
         enchantItem(goldenHelmet, Enchantment.PROTECTION, 2);
@@ -138,6 +143,9 @@ public class AdventureChest extends MysteryChest {
 
         // Valuable Materials
         items.add(new ItemStack(Material.EMERALD, 6));
+        items.add(new ItemStack(Material.DIAMOND, 4));
+        items.add(new ItemStack(Material.DIAMOND, 4));
+        items.add(new ItemStack(Material.DIAMOND, 4));
         items.add(new ItemStack(Material.DIAMOND, 4));
         items.add(new ItemStack(Material.GOLD_INGOT, 5));
         items.add(new ItemStack(Material.LAPIS_LAZULI, 10));
@@ -152,9 +160,6 @@ public class AdventureChest extends MysteryChest {
         enchantItem(fishingRod, Enchantment.LUCK_OF_THE_SEA, 2);
         enchantItem(fishingRod, Enchantment.UNBREAKING, 2);
         items.add(fishingRod);
-
-        // Special Food & Potions
-        items.add(new ItemStack(Material.GOLDEN_APPLE, 1));
 
         // Extra Survival Items
         items.add(new ItemStack(Material.SHIELD, 1));

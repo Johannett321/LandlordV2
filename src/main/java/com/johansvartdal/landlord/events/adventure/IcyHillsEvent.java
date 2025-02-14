@@ -47,6 +47,11 @@ public class IcyHillsEvent extends AdventureEvent{
     }
 
     @Override
+    protected Location[] getChestLocation() {
+        return new Location[]{};
+    }
+
+    @Override
     protected void showWelcomeMessage() {
         God.speak(LangDict.getString("events.icyHills.welcomeStart") + excursionMinutes + LangDict.getString("events.icyHills.welcomeEnd"));
     }

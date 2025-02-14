@@ -107,6 +107,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		chunkGuardManager = new ChunkGuardManager(this);
 		businessManager = new BusinessManager(this);
+		chestManager = new ChestManager(this);
 
 		Bank.startTaxCollector(this);
 

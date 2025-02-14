@@ -40,4 +40,9 @@ public class SibirianCottageWinterAdventure extends AdventureEvent {
     protected String getWelcomeSubtitle() {
         return null;
     }
+
+    @Override
+    protected Location[] getChestLocation() {
+        return new Location[]{};
+    }
 }

@@ -2,18 +2,21 @@ package com.johansvartdal.landlord.business;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.InfoChat;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class BusinessManager {
 
     private Main plugin;
-    List<Business> businesses = new ArrayList<>();
+    private List<Business> businesses = new ArrayList<>();
 
     public BusinessManager(Main plugin) {
         this.plugin = plugin;
@@ -118,6 +121,8 @@ public class BusinessManager {
         businesses.remove(business);
         saveBusinesses();
 
+        Tools.tellPlayer(business.getBusinessChatEntity(), player, LangDict.getString("business.deleteSuccess"));
+
         return true;
     }
 
@@ -137,9 +142,9 @@ public class BusinessManager {
             business.depositBank(amount);
             saveBusinesses();
 
-            Tools.tellPlayer(business.getBusinessChatEntity(), player, LangDict.getString("business.deposit") + amount);
+            Tools.tellPlayer(business.getBusinessChatEntity(), player, LangDict.getString("business.deposit") + Tools.formatCurrency(amount), ChatColor.GREEN);
         } catch (NumberFormatException e) {
-            Tools.tellPlayer(player, LangDict.getString("business.invalidAmount"));
+            Tools.tellPlayer(player, LangDict.getString("business.invalidAmount"), ChatColor.RED);
             return true;
         }
         return true;
@@ -161,9 +166,9 @@ public class BusinessManager {
             business.withdrawBank(amount);
             saveBusinesses();
 
-            Tools.tellPlayer(business.getBusinessChatEntity(), player, LangDict.getString("business.withdraw") + amount);
+            Tools.tellPlayer(business.getBusinessChatEntity(), player, LangDict.getString("business.withdraw") + Tools.formatCurrency(amount), ChatColor.GREEN);
         } catch (NumberFormatException e) {
-            Tools.tellPlayer(player, LangDict.getString("business.invalidAmount"));
+            Tools.tellPlayer(player, LangDict.getString("business.invalidAmount"), ChatColor.RED);
             return true;
         }
         return true;
@@ -193,6 +198,16 @@ public class BusinessManager {
 
         // Notify business registered
         business.onBusinessRegistered();
+    }
+
+    public void unregisterBusiness(Business business) {
+        business.onBusinessUnregistered();
+
+        Tools.broadcastMessage(new InfoChat(), business.getName() + LangDict.getString("business.bankruptWarning"));
+        Tools.playSoundForEveryone(Sound.ENTITY_LIGHTNING_BOLT_THUNDER);
+
+        businesses.remove(business);
+        saveBusinesses();
     }
 
     public Business getPlayerBusiness(Player player) {
@@ -227,9 +242,9 @@ public class BusinessManager {
             return;
         }
 
-        businessesJsonArray.forEach(businessObject -> {
+        businessesJsonArray.stream().forEach(businessObject -> {
             JSONObject businessJsonObject = (JSONObject) businessObject;
-            String type = businessJsonObject.get("type").toString();
+            String type = businessJsonObject.get("type").toString().toLowerCase();
 
             Business business = switch (type) {
                 case "export" -> new ExportBusiness(plugin, businessJsonObject);

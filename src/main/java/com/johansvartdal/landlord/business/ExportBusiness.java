@@ -1,10 +1,7 @@
 package com.johansvartdal.landlord.business;
 
 
-import com.johansvartdal.landlord.Bank;
-import com.johansvartdal.landlord.LangDict;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.levels.LevelManager;
 import lombok.Getter;
@@ -16,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONObject;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class ExportBusiness extends Business {
 
@@ -64,18 +62,28 @@ public class ExportBusiness extends Business {
             if (exportJob != null) {
                 Tools.printMenuOption(player, "/business", "accept");
                 Tools.printMenuOption(player, "/business", "reject");
-                Tools.printMenuOption(player, "/business", "shipgoods");
+                if (exportJob.getStatus() == ExportJobStatus.ACCEPTED) {
+                    Tools.printMenuOption(player, "/business", "shipgoods");
+                }
             }
             return true;
         }
         if (args[0].equals("accept")) {
             acceptJobOffer(player);
+            return true;
         }else if (args[0].equals("reject")) {
             rejectJobOffer(player);
+            return true;
         }else if (args[0].equals("shipgoods")) {
             shipGoods(player);
+            return true;
         }
         return false;
+    }
+
+    @Override
+    protected BusinessType getBusinessType() {
+        return BusinessType.EXPORT;
     }
 
     private void shipGoods(Player player) {
@@ -128,7 +136,7 @@ public class ExportBusiness extends Business {
                         Tools.formatCurrency(exportJob.getPay()) +
                         LangDict.getString("business.taxFree")
         );
-        Bank.depositPlayerWithoutTax(player, exportJob.getPay());
+        depositBank(exportJob.getPay());
 
         // reset the exportJob
         exportJob = null;
@@ -185,10 +193,14 @@ public class ExportBusiness extends Business {
             }
 
             if (exportJob == null || exportJob.status == ExportJobStatus.PROPOSED) {
-                generateJobOffer();
-                proposeJob();
+                createJob();
             }
         }, intervalTicks, intervalTicks).getTaskId();
+    }
+
+    public void createJob() {
+        generateJobOffer();
+        proposeJob();
     }
 
     private void generateJobOffer() {
@@ -207,12 +219,15 @@ public class ExportBusiness extends Business {
     }
 
     private void proposeJob() {
-        Player businessOwner = Bukkit.getPlayer(this.getOwnerUUID());
+        Player businessOwner = Bukkit.getPlayer(UUID.fromString(this.getOwnerUUID()));
         if (businessOwner == null) return; // Player is offline, don't send the message
+
+        businessOwner.playSound(businessOwner.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1, 0);
 
         Tools.tellPlayer(this.getBusinessChatEntity(), businessOwner,
                 LangDict.getString("business.newExportJob") +
                         exportJob.getItems().getAmount() +
+                        " " +
                         exportJob.getItems().getType() + " (" +
                         Tools.formatCurrency(exportJob.getPay()) + ")" +
                         LangDict.getString("business.acceptTheJobBy")
@@ -220,7 +235,7 @@ public class ExportBusiness extends Business {
     }
 
     private void acceptJobOffer(Player player) {
-        if (exportJob == null || Tools.stateNotNormal(player)) {
+        if (exportJob == null || Tools.stateNotNormal(player) || exportJob.getStatus() == ExportJobStatus.ACCEPTED) {
             Tools.tellPlayer(new ErrorChat(), player, LangDict.getString(LangDict.CMD_NOT_NOW));
             return;
         }
@@ -261,9 +276,9 @@ public class ExportBusiness extends Business {
             try {
                 Material material = Material.valueOf(json.get("material").toString());
                 ItemStack itemStack = new ItemStack(material);
-                itemStack.setAmount((int) json.get("amount"));
+                itemStack.setAmount(((Long) json.get("amount")).intValue());
                 this.items = itemStack;
-                this.pay = (int) json.get("pay");
+                this.pay = ((Long) json.get("pay")).intValue();
                 this.status = ExportJobStatus.valueOf(json.get("status").toString());
             } catch (IllegalArgumentException | NullPointerException e) {
                 Bukkit.getLogger().warning("Invalid material found in ExportJob JSON: " + json);

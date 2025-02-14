@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.mysterychest;
 
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
+import lombok.extern.slf4j.Slf4j;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -10,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
+@Slf4j
 public abstract class MysteryChest {
 
     private final Random random = new Random();
@@ -35,8 +37,11 @@ public abstract class MysteryChest {
         int randomZOffset = random.nextInt(16);
 
         int x = (tradeChunk.getX() * 16) + randomXOffset;
-        int z = (tradeChunk.getX() * 16) + randomZOffset;
-        return Tools.highestStandingPoint(new Location(tradeChunk.getWorld(), x, 0, z));
+        int z = (tradeChunk.getZ() * 16) + randomZOffset;
+        log.info("Spawned mystery chest at {}, {}", x, z);
+        Location location = Tools.highestStandingPoint(new Location(tradeChunk.getWorld(), x, 0, z));
+        location.setY(location.getY() - 1);
+        return location;
     }
 
     public void fillChest() {

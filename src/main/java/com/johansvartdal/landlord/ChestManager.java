@@ -50,7 +50,7 @@ public class ChestManager {
         }
         if (mysteryChest instanceof PlatinumMysteryChest) {
             Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_BELL);
-            SpecialEffects.blastOneFireWork(Main.tradeCenter.getLocation(), Color.BLUE);
+            SpecialEffects.blastFireworks(0);
         }
         if (mysteryChest instanceof DiamondMysteryChest) {
             Tools.playSoundForEveryone(Sound.BLOCK_NOTE_BLOCK_CHIME);

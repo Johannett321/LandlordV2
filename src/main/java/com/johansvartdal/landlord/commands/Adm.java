@@ -2,22 +2,13 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
-import com.johansvartdal.landlord.chatentities.InfoChat;
 import com.johansvartdal.landlord.chatentities.RouletteChat;
+import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
-import com.johansvartdal.landlord.levels.S1Level3;
 import com.johansvartdal.landlord.levels.LevelManager;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import com.johansvartdal.landlord.levels.S1Level3;
 import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Chest;
-import org.bukkit.block.data.Ageable;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.block.data.Directional;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,8 +20,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
 import static com.johansvartdal.landlord.Tools.debugLog;
 
@@ -90,7 +79,7 @@ public class Adm implements CommandExecutor {
             Tools.tellPlayer(player, "Forcing upgrade!", ChatColor.YELLOW);
             LevelManager.forceProceedToNextLevel();
         }else if (strings[0].equals("testevent")) {
-            LandlordEventManager.startEvent(new ChooseTreasuryEvent(plugin));
+            LandlordEventManager.startEvent(new ValleyVillageAdventure(plugin));
         }else if (strings[0].equals("testarena")) {
             ArenaFight1 arenaFight1 = new ArenaFight1(plugin);
             LandlordEventManager.startEvent(arenaFight1);

@@ -1,10 +1,11 @@
 package com.johansvartdal.landlord.business;
 
-import com.johansvartdal.landlord.LangDict;
-import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.Tools;
+import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.Properties;
+import com.johansvartdal.landlord.chatentities.ErrorChat;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
@@ -58,52 +59,88 @@ public class InsuranceBusiness extends Business {
 
     @Override
     protected boolean handleCommand(Player player, String[] args) {
-        if (args.length < 1) {
-            Tools.tellPlayer(player, LangDict.getString("insurance.usage"));
+        if (args.length == 0) {
+            Tools.printMenuOption(player, "/business", "insurance create <NAME> <MONTHLY_COST>");
+            Tools.printMenuOption(player, "/business", "insurance delete <NAME>");
+            Tools.printMenuOption(player, "/business", "insurance list");
+            return true;
+        }
+
+        if (!args[0].equals("insurance") || args.length == 1) {
             return false;
         }
 
-        switch (args[0]) {
+        switch (args[1]) {
             case "create":
-                if (args.length < 3) {
-                    Tools.tellPlayer(player, LangDict.getString("insurance.createUsage"));
+                if (args.length < 4) {
                     return false;
                 }
-                createInsurance(player, args[1], Integer.parseInt(args[2]));
-                break;
-            case "view":
+                createInsurance(player, args[2], Integer.parseInt(args[3]));
+                return true;
+            case "delete":
+                if (args.length < 3) {
+                    return false;
+                }
+                deleteInsurance(player, args[2]);
+                return true;
+            case "list":
+                if (args.length != 2) {
+                    return false;
+                }
                 viewInsurances(player);
-                break;
+                return true;
             default:
-                Tools.tellPlayer(player, LangDict.getString("insurance.invalidCommand"));
         }
         return false;
     }
 
-    private void createInsurance(Player player, String name, int monthlyPrice) {
-        if (monthlyPrice < 50 || monthlyPrice > 10000) {
-            Tools.tellPlayer(player, LangDict.getString("insurance.invalidPrice"));
+    private void deleteInsurance(Player player, String insuranceName) {
+        InsurancePlan insurancePlan = insurancePlans.stream().filter(ip -> ip.getName().equals(insuranceName)).findFirst().orElse(null);
+        if (insurancePlan == null) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("business.insurance.invalidPlan") + insuranceName);
             return;
         }
 
+        insurancePlans.remove(insurancePlan);
+        Main.businessManager.saveBusinesses();
+        Tools.tellPlayer(getBusinessChatEntity(), player, LangDict.getString("business.insurance.deleteSuccess") + insuranceName);
+    }
+
+    @Override
+    protected BusinessType getBusinessType() {
+        return BusinessType.INSURANCE;
+    }
+
+    private void createInsurance(Player player, String name, int monthlyPrice) {
+        if (monthlyPrice < 100 || monthlyPrice > 600) {
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("business.insurance.invalidPrice"));
+            return;
+        }
+
+        if (!canAfford(StaticValues.BUSINESS_INSURANCE_NEW_INSURANCE_PRICE)) {
+            tellCannotAfford(LangDict.getString("business.insurance.toCreateANewInsurance"), StaticValues.BUSINESS_INSURANCE_NEW_INSURANCE_PRICE);
+            return;
+        }
+
+        withdrawBank(StaticValues.BUSINESS_INSURANCE_NEW_INSURANCE_PRICE);
+
         // Calculate max customers based on price using a logarithmic function
-        int maxCustomers = (int) (5000 / Math.log(monthlyPrice + 10)); // Adjust scaling factor
+        int maxCustomers = (int) (2500 / Math.log(monthlyPrice + 10)); // Adjust scaling factor
 
         insurancePlans.add(new InsurancePlan(name, monthlyPrice, maxCustomers));
-        Tools.tellPlayer(player, LangDict.getString("insurance.created") + name);
+        Tools.tellPlayer(getBusinessChatEntity(), player, LangDict.getString("business.insurance.created") + name + LangDict.getString("business.insurance.andPaid") + Tools.formatCurrency(StaticValues.BUSINESS_INSURANCE_NEW_INSURANCE_PRICE));
     }
 
     private void viewInsurances(Player player) {
         if (insurancePlans.isEmpty()) {
-            Tools.tellPlayer(player, LangDict.getString("insurance.noActivePlans"));
+            Tools.tellPlayer(new ErrorChat(), player, LangDict.getString("business.insurance.noActivePlans"));
             return;
         }
 
-        Tools.tellPlayer(player, LangDict.getString("insurance.activePlansHeader"));
+        Tools.printMenuHeader(player, LangDict.getString("business.insurance.activePlansHeader"));
         for (InsurancePlan plan : insurancePlans) {
-            Tools.tellPlayer(player, plan.getName() +
-                    " | Monthly Price: " + Tools.formatCurrency(plan.getMonthlyPrice()) +
-                    " | Customers: " + plan.getCurrentCustomers() + "/" + plan.getMaxCustomers());
+            Tools.printMenuOption(player, plan.getName(), "Monthly Price: " + Tools.formatCurrency(plan.getMonthlyPrice()) +
+            " | " + LangDict.getString("business.insurance.customers") + plan.getCurrentCustomers());
         }
     }
 
@@ -112,13 +149,27 @@ public class InsuranceBusiness extends Business {
             Bukkit.getScheduler().cancelTask(revenueSchedulerTaskId);
         }
 
+        int interval = (int) Tools.secToTicks(3600);
+
         revenueSchedulerTaskId = Bukkit.getScheduler().runTaskTimer(this.getPlugin(), () -> {
+            int totalRevenue = 0;
             for (InsurancePlan plan : insurancePlans) {
                 int revenue = plan.getCurrentCustomers() * plan.getMonthlyPrice();
                 depositBank(revenue);
+                totalRevenue += revenue;
                 plan.increaseCustomers();
+
+                if (revenue > 0) {
+                    Player player = Bukkit.getPlayer(UUID.fromString(getOwnerUUID()));
+                    if (player != null) {
+                        Tools.tellPlayer(getBusinessChatEntity(), player, plan.getName() + LangDict.getString("business.insurance.summary") + Tools.formatCurrency(revenue), ChatColor.GRAY);
+                    }
+                }
             }
-        }, Tools.secToTicks(3600), Tools.secToTicks(3600)).getTaskId(); // Runs every hour
+            if (totalRevenue > 0) {
+                Main.businessManager.saveBusinesses();
+            }
+        }, interval, interval).getTaskId(); // Runs every hour
     }
 
     private void startAccidentScheduler() {
@@ -126,21 +177,27 @@ public class InsuranceBusiness extends Business {
             Bukkit.getScheduler().cancelTask(accidentSchedulerTaskId);
         }
 
+        int interval = (int) Tools.secToTicks(6900); // Runs every 2 hours
+
         accidentSchedulerTaskId = Bukkit.getScheduler().runTaskTimer(this.getPlugin(), () -> {
             if (insurancePlans.isEmpty()) return;
 
             InsurancePlan randomPlan = insurancePlans.get(random.nextInt(insurancePlans.size()));
-            int payout = (int) (randomPlan.getMonthlyPrice() * (random.nextDouble() * 10 + 5)); // 5x to 15x payout
+            int payout = (int) (randomPlan.getMonthlyPrice() * (random.nextDouble()*10*10*5 + 500));
 
             if (getBankAccount() >= payout) {
                 withdrawBank(payout);
-                Tools.tellPlayer(Bukkit.getPlayer(UUID.fromString(getOwnerUUID())), LangDict.getString("insurance.accidentOccurred")
-                        + randomPlan.getName() + " | Paid Out: " + Tools.formatCurrency(payout));
+                Player player = Bukkit.getPlayer(UUID.fromString(getOwnerUUID()));
+                if (player != null) {
+                    Tools.tellPlayer(getBusinessChatEntity(), player, LangDict.getString("business.insurance.accidentOccurred")
+                            + randomPlan.getName() + " | " + LangDict.getString("business.insurance.paidOut") + Tools.formatCurrency(payout), ChatColor.RED);
+                }
+                Main.businessManager.saveBusinesses();
             } else {
-                Tools.tellPlayer(Bukkit.getPlayer(UUID.fromString(getOwnerUUID())), LangDict.getString("insurance.bankruptWarning"));
+                Main.businessManager.unregisterBusiness(this);
             }
 
-        }, Tools.secToTicks(7200), Tools.secToTicks(7200)).getTaskId(); // Runs every 2 hours
+        }, interval, interval).getTaskId();
     }
 
     private void stopRevenueScheduler() {

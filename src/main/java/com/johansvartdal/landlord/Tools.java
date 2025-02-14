@@ -349,6 +349,9 @@ public class Tools {
         if (chatColor == null) {
             chatColor = chatEntity.getMessageColor();
         }
+        if (player == null) {
+            return;
+        }
         player.sendMessage(chatEntity.getChatColor() + "[" + chatEntity.getDisplayName() + "] " + chatColor + message);
     }
 
@@ -508,5 +511,11 @@ public class Tools {
         } else {
             return "south";  // south
         }
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        return (double) Math.round(value * places) / places;
     }
 }
