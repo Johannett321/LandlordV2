@@ -413,7 +413,7 @@ public class LevelManager {
         featureLevels.put("roulette", new LvlSeasonRelation(1,2));
         featureLevels.put("rent_basic_tool", new LvlSeasonRelation(1,2));
         featureLevels.put("pay", new LvlSeasonRelation(1,3));
-        featureLevels.put("treasury", new LvlSeasonRelation(2,3));
+        featureLevels.put("treasury", new LvlSeasonRelation(1,3));
         featureLevels.put("wildworld", new LvlSeasonRelation(1,4));
         featureLevels.put("capture", new LvlSeasonRelation(1,5));
         featureLevels.put("chunkguard", new LvlSeasonRelation(1,6));

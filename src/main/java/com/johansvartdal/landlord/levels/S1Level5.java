@@ -48,6 +48,8 @@ public class S1Level5 extends Level{
     @Override
     public Book getBook() {
         Book book = new Book("S1L5");
+        book.addPage(LangDict.getString("levelBooks.season1.level5.page1"));
+        book.addPage(LangDict.getString("levelBooks.season1.level5.page2"));
         book.addPage(LangDict.getString("levelBooks.endSignature"));
         return book;
     }

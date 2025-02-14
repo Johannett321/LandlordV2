@@ -28,7 +28,7 @@ public class S1Level3 extends Level{
 
     @Override
     public void justUpgraded() {
-        God.speak(LangDict.getString("levelBooks.level3.godSpeak"));
+        God.speak(LangDict.getString("levelBooks.season1.level3.godSpeak"));
     }
 
     @Override
@@ -44,9 +44,10 @@ public class S1Level3 extends Level{
     @Override
     public Book getBook() {
         Book book = new Book("S1L3");
-        book.addPage(LangDict.getString("levelBooks.level3.page1"));
-        book.addPage(LangDict.getString("levelBooks.level3.page2"));
-        book.addPage(LangDict.getString("levelBooks.level3.page3"));
+        book.addPage(LangDict.getString("levelBooks.season1.level3.page1"));
+        book.addPage(LangDict.getString("levelBooks.season1.level3.page2"));
+        book.addPage(LangDict.getString("levelBooks.season1.level3.page3"));
+        book.addPage(LangDict.getString("levelBooks.season1.level3.page4"));
         book.addPage(LangDict.getString("levelBooks.endSignature"));
         return book;
     }

@@ -7,8 +7,11 @@
         "village": "landsby",
         "none": "Ingen",
         "commands": "KOMMANDOER",
+        "days": " dag(er)",
+        "hours": " time(r)",
         "minutes": " minutt(er)",
         "seconds": " sekund(er)",
+        "perHour": " per time",
         "warningChat": "ADVARSEL",
         "itemDroppedWarning": "En gjenstand ble forsøkt gitt til deg, men på grunn av utilstrekkelig plass i inventaret ditt, måtte det kastes på bakken"
     },
@@ -23,11 +26,15 @@
             "cannotFindLanguage": "Finner ikke språk med språk-kode: ",
             "tooPoorForCommand": "Du er dessverre ikke rik nok for denne kommandoen",
             "cmdOnlyInWilderness": "Denne kommandoen kan bare brukes i villmarken",
+            "onlyWithinOwnChunk": "Denne kommandoen kan kun brukes innenfor en av dine egne chunks",
             "upgradePlayerInEvent": "En spiller er for øyeblikket i et event som må avsluttes før oppgradering kan fortsette. Vennligst sørg for at alle spillere er hjemme og inaktive før du forsøker å utstede kommandoen på nytt."
         },
         "successMessages": {
             "langChangedTo": "Språket ble endret til ",
             "playerAdded": " kan nå joine spillet!"
+        },
+        "neutralMessages": {
+            "noInfo": "Det er ikke mye å si om denne kommandoen!"
         }
     },
     "info": {
@@ -51,6 +58,7 @@
         "currentWealthTax": "Nåværende formuesskatt:",
         "currentBalance": "Nåværende saldo:",
         "cannotAfford": "Du har ikke råd til ",
+        "currentPropertyTax": "Gjeldende eiendomsskatt:",
         "plusTax": " + skatt",
         "justBought": "Du kjøpte nettopp ",
         "youJustPaid": "Du betalte nettopp ",
@@ -61,7 +69,12 @@
         "inWealthTax": " i formuesskatt",
         "forCapturing": "for å fange et dyr",
         "inEmissionTax": " i miljøskatt",
-        "aRouletteTicket": "en roulett-billett"
+        "aRouletteTicket": "en roulett-billett",
+        "amountTooLow": "Beløpet er for lavt: ",
+        "moneyTransferServices": "Tjenester for pengeoverføring",
+        "justTransferred": " overførte nettopp ",
+        "toYourAccount": " til din konto",
+        "highEndStatus": "Du har HIGH END-status!"
     },
     "joinMessages": {
         "newCitizen": "En ny borger har ankommet! Gi en varm velkomst til ",
@@ -82,6 +95,10 @@
         "cannotPurchaseThisChunk": "Du kan ikke kjøpe denne chunken",
         "aChunk": "en chunk",
         "justBoughtAChunk": " kjøpte akkurat en ny chunk!"
+    },
+    "chunkGuard": {
+        "iWillProtect": "Jeg vil beskytte chunken din, sir!",
+        "noLongerProtect": "Jeg vil slutte å beskytte chunken din, sir!"
     },
     "capture": {
         "toCapture": "for å fange et dyr",
@@ -119,9 +136,17 @@
         "cannotFindVoluntary": "Kan ikke finne frivillig spiller med brukernavn: ",
         "treasuryCannotAffordHaste": "Statskassen har ikke råd til haste for ",
         "treasuryCannotAffordWithdrawal": "Statskassen har ikke råd til et uttak. Det koster ",
+        "treasuryCannotAffordChunkDiscount": "Statskassen har ikke råd til chunk-rabatt for ",
+        "treasuryCannotAffordDonations": "Statskassen har ikke råd til donasjoner for ",
+        "noMoreChunkDiscount": "Du har nådd maks chunk-rabatt",
+        "broadcastChunkDiscount": "Borgere! Statskansleren har gitt en nasjonal chunk-rabatt. Alle chunks selges nå med en rabatt på ",
+        "broadcastBoughtDonations": "Statskassen har nettopp halvert antall nødvendige gjenstander for oppgradering til neste nivå!",
         "treasuryOrderedWithdrawal": "Statsforvalteren har beordret et uttak! Dere har alle mottatt ",
         "treasuryWithdrawalUnfortunately": ". Dessverre gikk ",
         "lostDuringWithdrawal": " tapt under uttaket",
+        "treasuryOrderedMysteryChest": "Statskassen har bestilt en mysterie­kiste! Tilgjengelige nivåer: [BASIC, GOLD, PLATINUM, DIAMOND]. Nivået er... (trommevirvel)",
+        "mysteryChestTier": "Mysterie­kiste nivå: ",
+        "mysteryChestSpawned": "Mysterie­kisten har dukket opp i handelen!",
         "treasuryDecidingIn": "Statsforvalteren vil bli bestemt om",
         "treasuryIsChosen": "En statsforvalter er valgt",
         "playerHasBeenChosen": " er valgt for statsforvalter-rollen!",
@@ -140,7 +165,8 @@
         "cannotForceUpWithoutAllItems": "Du kan ikke tvinge oppgradering uten at alle gjenstandene er samlet",
         "notRequiredForUpgrade": "Denne gjenstanden er ikke nødvendig for oppgradering",
         "scoreboardSeason": "Sesong ",
-        "scoreboardLevel": "Level "
+        "scoreboardLevel": "Level ",
+        "holdItemInMainHand": "Vennligst hold gjenstanden du ønsker å donere i hovedhånden din"
     },
     "visit": {
         "toVisit": "for å besøke noen",
@@ -268,14 +294,22 @@
         "noRouletteEnd": " minutter"
     },
     "levelBooks": {
-        "level2": {
-            "godSpeak": "Gratulerer, innbyggere! Jeg har skrevet en kort bok om denne levelen. Vennligst les boken \"S1L2\" i inventoryen deres"
+        "season1": {
+            "level2": {
+                "godSpeak": "Gratulerer, innbyggere! Jeg har skrevet en kort bok om denne levelen. Vennligst les boken \"S1L2\" i inventoryen deres"
+            },
+            "level3": {
+                "godSpeak": "Gratulerer! Et nytt nivå er en ny bok, vennligst les boken i inventoryen deres."
+            },
+            "level4": {
+                "godSpeak": "Gratulerer! Vennligst les boken jeg skrev om dette nivået. Jeg har store nyheter!"
+            }
         },
-        "level3": {
-            "godSpeak": "Gratulerer! Et nytt nivå er en ny bok, vennligst les boken i inventoryen deres."
+        "season2": {
+
         },
-        "level4": {
-            "godSpeak": "Gratulerer! Vennligst les boken jeg skrev om dette nivået. Jeg har store nyheter!"
+        "season3": {
+
         }
     },
     "events": {
@@ -371,5 +405,67 @@
         "arena": "Kjemper i arenaen",
         "mystery": "Løser mysterier",
         "treasuryVoting": "Stemmer"
+    },
+    "business": {
+        "name": "Navn: ",
+        "bankruptWarning": " gikk nettopp konkurs!",
+        "cannotAfford": "Bedriften din har ikke råd til ",
+        "businessCommands": "Forretningskommandoer",
+        "deleteConfirmUsage": "Skriv '/business delete confirm' for å slette bedriften. Dette kan ikke angres",
+        "businessLists": "Bedrifter",
+        "toStartABusiness": "for å starte en bedrift",
+        "startingABusiness": "starter en bedrift",
+        "justFoundedANewBusiness": " har nettopp startet en ny bedrift: ",
+        "ceo": "CEO: ",
+        "newExportJob": "En ny eksportjobb er tilgjengelig: ",
+        "acceptTheJobBy": ". Godta jobben ved å skrive /business accept",
+        "jobRejected": "Jobben ble avvist",
+        "jobAccepted": "Jobben ble akseptert",
+        "cannotFindChest": "Du må stå foran kisten",
+        "wrongItemsInChest": "Kisten skal kun inneholde: ",
+        "justShipped": "Du har nettopp sendt ",
+        "andGotPaid": " og fikk betalt ",
+        "taxFree": " (skattefritt)",
+        "toStartThisBusiness": "for å starte denne bedriften",
+        "registrationFee": "registreringsavgift for bedrift",
+        "totalRevenue": "Total omsetning: ",
+        "deposit": "Du har nettopp satt inn: ",
+        "withdraw": "Du har nettopp tatt ut: ",
+        "info": "Bedriftsinformasjon",
+        "deleteSuccess": "Bedriften ble slettet, og saldoen ble overført til kontoen din",
+        "insurance": {
+            "noActivePlans": "Ingen forsikringer ble funnet",
+            "created": "Opprettet forsikring ",
+            "activePlansHeader": "Aktive forsikringer",
+            "accidentOccurred": "En ulykke skjedde på forsikringen: ",
+            "paidOut": "Utbetalt: ",
+            "summary": " forsikring genererte nettopp ",
+            "andPaid": " og betalte registreringsavgift på ",
+            "invalidPrice": "Ugyldig forsikringspris. Må være mellom 100 og 600",
+            "invalidPlan": "Kan ikke finne forsikring ",
+            "deleteSuccess": "Slettet forsikring ",
+            "customers": "Kunder: ",
+            "toCreateANewInsurance": "for å opprette en ny forsikring"
+        },
+        "bank": {
+            "loanHeader": "Aktive lån",
+            "loanRequestsHeader": "Lånesøknader",
+            "amount": "Beløp: ",
+            "duration": "Varighet: ",
+            "remaining": "Utestående lånesaldo: ",
+            "principal": "Avdrag: ",
+            "interest": "Renter: ",
+            "totalDue": "Total skyldig: ",
+            "preNewLoanRequest": "Mottok en ny lånesøknad fra ",
+            "postNewLoanRequest": ". Skriv '/business application list' for mer informasjon",
+            "invalidLoanID": "Ugyldig låne-ID",
+            "preLoanRejected": "Du avslo lånet til ",
+            "preLoanApproved": "Du godkjente lånet til ",
+            "midLoanApproved": " og betalte dem ",
+            "midPaidPrincipal": " betalte nettopp et låneavdrag på ",
+            "loanDefaulted": " misligholdt nettopp lånet sitt med en gjenværende saldo på ",
+            "midLoanPayOff": " betalte nettopp ned lånet sitt"
+        }
     }
+
 }
