@@ -2,7 +2,6 @@ package com.johansvartdal.landlord.playerevents;
 
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.PlayerEventManager;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

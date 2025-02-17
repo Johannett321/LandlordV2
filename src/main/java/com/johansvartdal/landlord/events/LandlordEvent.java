@@ -1,5 +1,6 @@
-package com.johansvartdal.landlord;
+package com.johansvartdal.landlord.events;
 
+import com.johansvartdal.landlord.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -141,5 +142,18 @@ public abstract class LandlordEvent implements LandlordEventInterface {
         }
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> lockPlayersAtLocation(location, radius), Tools.secToTicks(3));
+    }
+
+    protected int getPreparationTimeSeconds() {
+        return 0;
+    }
+
+    protected String getPreparationCountdownMessagePrefix() {
+        return LangDict.getString("info.eventAboutToStart");
+    }
+
+    @Override
+    public void prepareEvent() {
+
     }
 }

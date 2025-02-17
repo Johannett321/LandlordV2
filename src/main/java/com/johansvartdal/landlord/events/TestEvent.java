@@ -1,7 +1,6 @@
 package com.johansvartdal.landlord.events;
 
 import com.johansvartdal.landlord.God;
-import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.Tools;
 import org.bukkit.Bukkit;

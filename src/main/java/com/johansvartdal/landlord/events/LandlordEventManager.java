@@ -1,7 +1,9 @@
-package com.johansvartdal.landlord;
+package com.johansvartdal.landlord.events;
 
-import com.johansvartdal.landlord.events.Preparations;
-import com.johansvartdal.landlord.events.TestEvent;
+import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
+import com.johansvartdal.landlord.Properties;
+import com.johansvartdal.landlord.Tools;
 import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
 import com.johansvartdal.landlord.events.mystery.Mystery1;
@@ -10,7 +12,6 @@ import com.johansvartdal.landlord.events.taxevents.HasteEvent;
 import com.johansvartdal.landlord.levels.Level;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.bukkit.Bukkit;
 
 @Slf4j
 public class LandlordEventManager {
@@ -56,8 +57,17 @@ public class LandlordEventManager {
         // cancel all player events
         PlayerEventManager.forceEndAllEvents();
 
-        // start event
-        event.startEvent();
+        // start preparation or start event
+        event.prepareEvent();
+        if (event.getPreparationTimeSeconds() > 0) {
+            Tools.performTaskAfterCountdown(
+                    () -> startEvent(event),
+                    event.getPreparationCountdownMessagePrefix(),
+                    event.getPreparationTimeSeconds()
+            );
+        }else {
+            event.startEvent();
+        }
     }
 
     public static void resumeEvent(LandlordEvent event) {
@@ -86,7 +96,13 @@ public class LandlordEventManager {
     public static void notifyLevelReached(Level newLevel) {
         LandlordEvent newLevelEvent = newLevel.getEventToStartBeforeLevel();
         if (newLevelEvent != null) {
-            startEvent(newLevelEvent);
+            newLevelEvent.prepareEvent();
+
+            Tools.performTaskAfterCountdown(
+                    () -> startEvent(newLevelEvent),
+                    newLevelEvent.getPreparationCountdownMessagePrefix(),
+                    newLevelEvent.getPreparationTimeSeconds()
+            );
         }
     }
 }

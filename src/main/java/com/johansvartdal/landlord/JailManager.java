@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord;
 
 import com.johansvartdal.landlord.playerevents.JailEvent;
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
 import org.bukkit.entity.Player;
 
 import static com.johansvartdal.landlord.Tools.debugLog;

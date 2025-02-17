@@ -1,13 +1,9 @@
-package com.johansvartdal.landlord;
+package com.johansvartdal.landlord.playerevents;
 
-import com.johansvartdal.landlord.playerevents.FlyingEvent;
-import com.johansvartdal.landlord.playerevents.PlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-
-import static com.johansvartdal.landlord.Tools.debugLog;
 
 public class PlayerEventManager {
 

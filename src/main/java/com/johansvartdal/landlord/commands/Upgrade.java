@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.commands;
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

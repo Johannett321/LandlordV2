@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.events.mystery;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.events.LandlordEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;

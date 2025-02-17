@@ -1,4 +1,4 @@
-package com.johansvartdal.landlord;
+package com.johansvartdal.landlord.events;
 
 public interface LandlordEventInterface {
 
@@ -7,5 +7,6 @@ public interface LandlordEventInterface {
     String getEventType();
 
     void resumeEvent();
+    void prepareEvent();
 
 }

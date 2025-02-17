@@ -1,12 +1,11 @@
 package com.johansvartdal.landlord.events.arenafight;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.events.LandlordEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -160,5 +159,21 @@ public abstract class ArenaFightEvent extends LandlordEvent {
 
         Tools.broadcastMessage(LangDict.getString(LangDict.EVENT_CANCELLED_SERVER_RESTART), ChatColor.RED);
         endEvent(true);
+    }
+
+    @Override
+    public void prepareEvent() {
+        super.prepareEvent();
+        God.speak(LangDict.getString("info.arenaFightAnnouncementPrefix") + getPreparationTimeSeconds() + Tools.getTextTimeSeconds(getPreparationTimeSeconds()));
+    }
+
+    @Override
+    protected String getPreparationCountdownMessagePrefix() {
+        return LangDict.getString("info.arenaFightCountdownPrefix");
+    }
+
+    @Override
+    protected int getPreparationTimeSeconds() {
+        return 60*5;
     }
 }

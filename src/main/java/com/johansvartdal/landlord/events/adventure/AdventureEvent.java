@@ -1,12 +1,12 @@
 package com.johansvartdal.landlord.events.adventure;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.events.LandlordEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 @Slf4j
 public abstract class AdventureEvent extends LandlordEvent {
@@ -98,4 +98,20 @@ public abstract class AdventureEvent extends LandlordEvent {
     protected abstract String getWelcomeTitle();
     protected abstract String getWelcomeSubtitle();
     protected abstract Location[] getChestLocation();
+
+    @Override
+    public void prepareEvent() {
+        super.prepareEvent();
+        God.speak(LangDict.getString("info.excursionAnnouncementPrefix") + getPreparationTimeSeconds() + Tools.getTextTimeSeconds(getPreparationTimeSeconds()));
+    }
+
+    @Override
+    protected String getPreparationCountdownMessagePrefix() {
+        return LangDict.getString("info.excursionCountdownPrefix");
+    }
+
+    @Override
+    protected int getPreparationTimeSeconds() {
+        return 60*5;
+    }
 }

@@ -2,6 +2,7 @@ package com.johansvartdal.landlord.events.taxevents;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.commands.TreasuryCommand;
+import com.johansvartdal.landlord.events.LandlordEvent;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -152,5 +153,10 @@ public class ChooseTreasuryEvent extends LandlordEvent {
     @Override
     public void resumeEvent() {
         resumeFromHere();
+    }
+
+    @Override
+    protected int getPreparationTimeSeconds() {
+        return 30;
     }
 }
