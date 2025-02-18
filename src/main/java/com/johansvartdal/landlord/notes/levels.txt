@@ -66,13 +66,12 @@ Level 8:
 [ ARENA FIGHT 4 ]
 
 Level 9:
-[ OLE'S SISTE MAP ]
+[ Muromtsevo Coast ADVENTURE (Sibirian Cottage Village) ]
 /day
 
 ----------------------------- Season 3 -----------------------------
 
 Level 1:
-[ Muromtsevo Coast ADVENTURE (Sibirian Cottage Village) ]
 
 Level 2:
 
