@@ -72,7 +72,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version> <!-- Replace with the latest version -->
                 <configuration>
-                    <outputDirectory>C:\Users\johan\Developer\projects\Landlord DEV server\plugins</outputDirectory>
+                    <outputDirectory>/Users/johansvartdal/Developer/Projects/Landlord DEV Server/plugins</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>
