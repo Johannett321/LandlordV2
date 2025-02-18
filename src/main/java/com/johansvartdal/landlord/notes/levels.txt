@@ -52,7 +52,7 @@ Level 4:
 /rent turtle shell
 
 Level 5:
-[ OLE'S HILLSIDE ADVENTURE ]
+[ OLE'S HILLSIDE MESA ADVENTURE ]
 /rent elytra
 
 Level 6:
@@ -64,16 +64,15 @@ Level 7:
 /fly
 
 Level 8:
-[ HUGE CAVE ADVENTURE ]
+[ ARENA FIGHT 4 ]
 
 Level 9:
-[ OLE'S SISTE MAP ]
+[ Muromtsevo Coast ADVENTURE (Sibirian Cottage Village) ]
 /day
 
 ----------------------------- Season 3 -----------------------------
 
 Level 1:
-[ Muromtsevo Coast ADVENTURE (Sibirian Cottage Village) ]
 
 Level 2:
 

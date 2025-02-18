@@ -3,6 +3,7 @@ package com.johansvartdal.landlord.levels;
 import com.johansvartdal.landlord.Book;
 import com.johansvartdal.landlord.LandlordEvent;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.events.arenafight.ArenaFight2;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -135,7 +136,7 @@ public class S2Level4 extends Level{
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
-        return null;
+        return new ArenaFight2(plugin);
     }
 
     @Override
