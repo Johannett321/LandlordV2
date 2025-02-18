@@ -1,5 +1,6 @@
 package com.johansvartdal.landlord;
 
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

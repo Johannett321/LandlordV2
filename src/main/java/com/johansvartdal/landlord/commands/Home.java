@@ -2,7 +2,10 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
+import com.johansvartdal.landlord.events.LandlordEvent;
+import com.johansvartdal.landlord.events.LandlordEventManager;
 import com.johansvartdal.landlord.events.adventure.AdventureEvent;
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

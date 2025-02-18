@@ -2,11 +2,10 @@ package com.johansvartdal.landlord.commands;
 
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
-import com.johansvartdal.landlord.PlayerEventManager;
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
 import com.johansvartdal.landlord.Tools;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

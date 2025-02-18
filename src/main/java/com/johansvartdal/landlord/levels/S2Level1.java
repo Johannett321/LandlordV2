@@ -1,7 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Book;
-import com.johansvartdal.landlord.LandlordEvent;
+import com.johansvartdal.landlord.events.LandlordEvent;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Material;

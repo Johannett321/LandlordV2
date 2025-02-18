@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.events.LandlordEvent;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

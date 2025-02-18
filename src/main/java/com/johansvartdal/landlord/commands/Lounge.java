@@ -4,6 +4,7 @@ import com.johansvartdal.landlord.*;
 import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.playerevents.LoungeEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
 import lombok.AllArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

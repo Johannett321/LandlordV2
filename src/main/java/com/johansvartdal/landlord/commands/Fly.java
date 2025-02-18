@@ -5,6 +5,7 @@ import com.johansvartdal.landlord.chatentities.ErrorChat;
 import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.playerevents.FlyingEvent;
 import com.johansvartdal.landlord.playerevents.PlayerEvent;
+import com.johansvartdal.landlord.playerevents.PlayerEventManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

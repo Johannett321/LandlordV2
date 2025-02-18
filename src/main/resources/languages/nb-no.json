@@ -38,6 +38,11 @@
         }
     },
     "info": {
+        "eventAboutToStart": "Et event starter om: ",
+        "excursionAnnouncementPrefix": "Borgere! Gjør dere klare! En utflukt begynner om ",
+        "excursionCountdownPrefix": "Utflukten begynner om ",
+        "arenaFightAnnouncementPrefix": "Borgere! Gjør dere klare! En arenakamp begynner om ",
+        "arenaFightCountdownPrefix": "Arenakampen begynner om ",
         "devCheatWarning": "ADVARSEL: DEV-CHEAT MODUS AKTIVERT!",
         "serverRestarted": "Serveren restartet nettop!",
         "playersAreSleeping": " spiller(e) sover",
