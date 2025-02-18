@@ -314,7 +314,7 @@
         "godSpeak": "Congratzzz! A new level is a new book, read the book in your inventory please",
         "page1": "Sweet! You've made it to level 3. That means you're rewarded your second chunk point! Just remember that you pay tax for every chunk you own. You don't have to use the chunk point. However, if you decide to use it. Build something clever on it. Something that can make you even more money.",
         "page2": "--------Pay--------\nYou now have the ability to pay another player. This can be achieved by executing the command\n/pay <username> <amount>\n\n Keep in mind that you pay tax for this as well!",
-        "page3": "-----Treasury Chancellor-----\nYour town now has an important role: the 'Treasury Chancellor'. This is a powerful position that helps manage the town's economy and financial decisions. While their full abilities are not unlocked yet, this role will be crucial as your town levels up!",
+        "page3": "-----Treasury-----\nYour town now has an important role: the 'Treasury Chancellor'. This is a powerful position that helps manage the town's economy and financial decisions. While their full abilities are not unlocked yet, this role will be crucial as your town levels up!",
         "page4": "Other than that, there's not much more to level 3. No more features or anything. Sounds quite boring, doesn't it? Well, the next one will be big. I promise!"
       },
       "level4": {
@@ -331,17 +331,52 @@
       "level6": {
         "godSpeak": "Incredible progress! A new level means a new book. Check your inventory for all the details!",
         "page1": "Level 6 is here, and with it comes two powerful new features that will change how your town operates. First, you now have access to the '/chunkguard' command, which allows crops and plants to grow even when no one is online.",
-        "page2": "-----Chunk Guard-----\nWith '/chunkguard', your land stays alive even when you log out. Crops will keep growing and nature won’t wait for you to return. Just keep in mind that it comes at a price — 2000 per chunk per hour. Use it wisely!",
-        "page3": "-----Treasury Donations-----\nYour town’s treasury chancellor now has access to a command: '/treasury buy donations'. This command will halve the amount of resources needed for your next level-up. If your treasury is looking strong, this might be a worthy investment!"
+        "page2": "----Chunk Guard----\nWith '/chunkguard', your land stays alive even when you log out. Crops will keep growing and nature won’t wait for you to return. Just keep in mind that it comes at a price — 2000 per chunk per hour. Use it wisely!",
+        "page3": "-----Donations-----\nYour town’s treasury chancellor now has access to a command: '/treasury buy donations'. This command will halve the amount of resources needed for your next level-up. If your treasury is looking strong, this might be a worthy investment!"
       },
       "level7": {
         "godSpeak": "You just reached level 7! Check your inventory for an exciting update on what’s new.",
         "page1": "Your town is getting more connected! With level 7, you’ve unlocked a brand-new ability that makes visiting other players easier than ever before.",
         "page2": "------Visiting------\nYou can now visit other players' chunks using the command: '/visit <playername>' This will teleport you directly to their chunk — if they accept your request.",
         "page3": "------Consent------\nOf course, no one wants uninvited guests! The player you want to visit must approve your request before you can teleport to their chunk. This makes trading, collaborating, and checking out other chunks much easier!"
+      },
+      "level8": {
+        "godSpeak": "Another level, another big step for your town! Check your inventory for details on what’s new.",
+        "page1": "Level 8 brings an opportunity: underground mining. If you’ve been struggling to find resources in your chunk, this new command will let you dig deeper — literally!",
+        "page2": "------Mining------\nWith '/wilderness mining', you will be teleported to an underground mining zone where you can strip mine for resources. You’ll have 45 minutes before being teleported back to your chunk. Keep in mind that you must stay below height level 16 at all time.",
+        "page3": "--Chunk Discounts--\nThe Treasury Chancellor now has access to the command '/treasury buy chunkdiscount'. This command permanently reduces the cost of buying chunks for all players. The town must use tax money wisely, but a discount like this can help expand faster!"
+      },
+      "level9": {
+        "godSpeak": "Level 9 has arrived, and with it, new opportunities! Check your inventory for all the details.",
+        "page1": "Your town just unlocked access to the Nether! This dangerous yet resource-rich dimension is now within your reach, giving you access to materials you couldn’t find before.",
+        "page2": "------Nether------\nUsing the command: '/wilderness nether', you will be teleported out of your chunk and into the Nether. Be prepared—the Nether is unforgiving, but the rewards are worth the risk!",
+        "page3": "-----Refunds-----\nThe Treasury Chancellor now has the ability to give money back to the people! With the command '/treasury withdraw', every player will receive 4000 from the town’s tax money. However, there’s a catch! There’s also an extra fee of 10,000"
       }
     },
     "season2": {
+      "level1": {
+        "godSpeak": "A new season has begun! Season 2 is here, bringing fresh challenges and exciting new opportunities. Check your inventory for all the details!",
+        "page1": "Welcome to Season 2! You’ve worked hard to build your town, and don’t worry — you’re not starting over. Your chunk, your progress, and everything you’ve built remains intact. But things are about to get even more interesting!",
+        "page2": "---New Wilderness---\nWith the start of the new season, the '/wilderness world' command now takes you to a brand new spawn location. That means fresh lands, new terrain, and untouched resources waiting to be claimed.",
+        "page3": "----Better Tools----\nThe rental system has been upgraded! From now on, when you rent tools, you’ll be getting diamond tools instead of iron. This will make gathering materials easier and more efficient.",
+        "page4": "-------Events-------\nSeason 2 introduces a new concept: events. These events fall into two categories: excursions and arena fights.",
+        "page5": "----Excursions----\nYou’ll be taken to unique locations full of loot—abandoned towns, hidden caves, and mysterious ruins.",
+        "page6": "----Arena Fights----\n A battle against waves of monsters! These fights will get tougher as the season progresses, so prepare yourself.",
+        "page7": "---Price Changes---\nTimes are changing, and so are the prices. Things are a bit more expensive now, so managing your resources wisely will be more important than ever.",
+        "page8": "---Mystery Chests---\nThe Treasury Chancellor has a powerful new ability! With the command: '/treasury buy mysterychest', A mystery chest will spawn in the trade chunk. These chests come in four tiers: BASIC, GOLD, PLATINUM, and DIAMOND.",
+        "page9": "Season 2 is here, and it’s only going to get more intense from here. With new events, tougher challenges, and better rewards, the adventure is just beginning!"
+      },
+      "level2": {
+        "godSpeak": "The economy is evolving! You now have access to a brand-new way to grow your wealth. Check your inventory for details!",
+        "page1": "Congratulations on reaching Level 2! This upgrade brings a major financial opportunity - the stock market. Now, you can invest your money and watch it grow (or disappear)!",
+        "page2": "-----Stocks-----\nWith the command: '/stocks', you can buy and sell stocks. Stock prices fluctuate over time — some will rise, some will fall, and some might even go bankrupt. Choose wisely! And by the way, unlike your cash holdings, stocks are exempt from wealth tax.",
+        "page3": "The stock market is unpredictable, but those who play it right can become incredibly wealthy. Just remember: with great risk comes great reward!"
+      },
+      "level3": {
+        "godSpeak": "Speed and efficiency are key! Your town just unlocked a powerful way to work faster. Check your inventory for details!",
+        "page1": "Welcome to Level 3! This upgrade brings a new ability to your town’s leadership. The Treasury Chancellor now has access to a powerful buff that can boost everyone's productivity.",
+        "page2": "---Haste Boost---\nWith the command: '/treasury buy haste', every player in the town will receive the Haste effect for 3 minutes, allowing you to mine and gather resources much faster!"
+      }
     },
     "season3": {
     },

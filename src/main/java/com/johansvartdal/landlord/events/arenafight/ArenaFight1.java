@@ -15,14 +15,13 @@ public class ArenaFight1 extends ArenaFightEvent {
 
     @Override
     public Wave[] getWaves() {
-        int mult = Bukkit.getOnlinePlayers().size();
+        int multiplier = Bukkit.getOnlinePlayers().size();
         Wave wave1 = new Wave(1, 5);
-        wave1.addWaveStep(new WaveStep(EntityType.ZOMBIE, 10*mult, Tools.secToTicks(2), new Location[]{Ports.PORT_1}));
-        wave1.addWaveStep(new WaveStep(EntityType.SKELETON, 3*mult, 5, new Location[]{Ports.PORT_1}));
+        wave1.addWaveStep(new WaveStep(EntityType.ZOMBIE, 10*multiplier, Tools.secToTicks(2), new Location[]{Ports.PORT_1}));
 
         Wave wave2 = new Wave(2, 2);
-        wave2.addWaveStep(new WaveStep(EntityType.ZOMBIE, 10*mult, 20, new Location[]{Ports.PORT_1, Ports.PORT_2, Ports.PORT_3}));
-        wave2.addWaveStep(new WaveStep(EntityType.SKELETON, 4*mult, 5, new Location[]{Ports.PORT_1}));
+        wave2.addWaveStep(new WaveStep(EntityType.ZOMBIE, 10*multiplier, Tools.secToTicks(1), new Location[]{Ports.PORT_1, Ports.PORT_2, Ports.PORT_3}));
+        wave2.addWaveStep(new WaveStep(EntityType.SKELETON, 4*multiplier, Tools.secToTicks(1), new Location[]{Ports.PORT_1}));
 
         return new Wave[]{wave1, wave2};
     }

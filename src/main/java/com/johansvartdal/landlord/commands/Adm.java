@@ -6,6 +6,9 @@ import com.johansvartdal.landlord.chatentities.RouletteChat;
 import com.johansvartdal.landlord.events.LandlordEventManager;
 import com.johansvartdal.landlord.events.adventure.ValleyVillageAdventure;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
+import com.johansvartdal.landlord.events.arenafight.ArenaFight2;
+import com.johansvartdal.landlord.events.arenafight.ArenaFight3;
+import com.johansvartdal.landlord.events.arenafight.ArenaFight4;
 import com.johansvartdal.landlord.events.taxevents.ChooseTreasuryEvent;
 import com.johansvartdal.landlord.levels.LevelManager;
 import com.johansvartdal.landlord.levels.S1Level3;
@@ -82,8 +85,27 @@ public class Adm implements CommandExecutor {
         }else if (strings[0].equals("testevent")) {
             LandlordEventManager.startEvent(new ValleyVillageAdventure(plugin));
         }else if (strings[0].equals("testarena")) {
-            ArenaFight1 arenaFight1 = new ArenaFight1(plugin);
-            LandlordEventManager.startEvent(arenaFight1);
+            String whichOne =  strings[1];
+            switch (whichOne) {
+                case "1":
+                    ArenaFight1 arenaFight1 = new ArenaFight1(plugin);
+                    LandlordEventManager.startEvent(arenaFight1);
+                    break;
+                case "2":
+                    ArenaFight2 arenaFight2 = new ArenaFight2(plugin);
+                    LandlordEventManager.startEvent(arenaFight2);
+                    break;
+                case "3":
+                    ArenaFight3 arenaFight3 = new ArenaFight3(plugin);
+                    LandlordEventManager.startEvent(arenaFight3);
+                    break;
+                case "4":
+                    ArenaFight4 arenaFight4 = new ArenaFight4(plugin);
+                    LandlordEventManager.startEvent(arenaFight4);
+                    break;
+                default:
+                    Tools.tellPlayer(player, "Usage: '/adm testarena <arena_number>'. Arenanumber is 1-4)");
+            }
         }else if (strings[0].equals("testeffect")) {
             testEffectUnlockChunk(player);
         }else if (strings[0].equals("countdown")) {

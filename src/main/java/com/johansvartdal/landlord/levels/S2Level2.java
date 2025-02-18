@@ -2,7 +2,9 @@ package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Book;
 import com.johansvartdal.landlord.events.LandlordEvent;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.events.arenafight.ArenaFight1;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -44,11 +46,16 @@ public class S2Level2 extends Level{
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
-        return null;
+        return new ArenaFight1(plugin);
     }
 
     @Override
     public Book getBook() {
-        return null;
+        Book book = new Book("S2L2");
+        book.addPage(LangDict.getString("levelBooks.season2.level2.page1"));
+        book.addPage(LangDict.getString("levelBooks.season2.level2.page2"));
+        book.addPage(LangDict.getString("levelBooks.season2.level2.page3"));
+        book.addPage(LangDict.getString("levelBooks.endSignature"));
+        return book;
     }
 }
