@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Book;
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.events.LandlordEvent;
 import com.johansvartdal.landlord.Main;
 import com.johansvartdal.landlord.events.arenafight.ArenaFight2;
@@ -141,6 +142,9 @@ public class S2Level4 extends Level{
 
     @Override
     public Book getBook() {
-        return null;
+        Book book = new Book("S2L4");
+        book.addPage(LangDict.getString("levelBooks.season2.level4.page1"));
+        book.addPage(LangDict.getString("levelBooks.endSignature"));
+        return book;
     }
 }

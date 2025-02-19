@@ -376,9 +376,60 @@
         "godSpeak": "Speed and efficiency are key! Your town just unlocked a powerful way to work faster. Check your inventory for details!",
         "page1": "Welcome to Level 3! This upgrade brings a new ability to your town’s leadership. The Treasury Chancellor now has access to a powerful buff that can boost everyone's productivity.",
         "page2": "---Haste Boost---\nWith the command: '/treasury buy haste', every player in the town will receive the Haste effect for 3 minutes, allowing you to mine and gather resources much faster!"
+      },
+      "level4": {
+        "godSpeak": "New gear is now available for rent! Check your inventory for details!",
+        "page1": "You've reached Level 4, and with it comes a new rental option! The /rent command has been expanded to include Turtle Shells, allowing you to breathe longer underwater."
+      },
+      "level5": {
+        "godSpeak": "Take to the skies! A new rental option has arrived. Check your inventory for details!",
+        "page1": "You've reached Level 5. You can now rent an Elytra! With the command: '/rent elytra', you can temporarily soar through the skies and explore the world from above.",
+      },
+      "level6": {
+        "godSpeak": "Entrepreneurs, it’s your time to shine! Your town just unlocked the ability to start businesses. Check your inventory for details!",
+        "page1": "Welcome to Level 6! You now have access to the '/business command, allowing you to start and manage your own business. Whether you want to run a bank, an insurance company, or an export business, the choice is yours!",
+        "page2": "-----Starting a Business-----\nTo start a business, use the command: '/business start'. Each business type has a startup fee. Choose wisely, because you can only operate one business at a time. However, you can shut down your business and start a new one whenever you like.",
+        "page3": "-----Business Bank Account-----\nEach business has its own bank account, where you can deposit and withdraw money. Depositing is tax-free, but withdrawing money comes with tax. Profits made inside the business stay tax-free until withdrawn.",
+        "page4": "-----Export Business-----\nThe cheapest business to start. Here, you'll receive export missions, where they must collect specific items, put them in a chest, and ship them. Once shipped, you receive a payment!",
+        "page5": "-----Insurance Business-----\nHere you can create insurance plans and set their monthly price. If priced correctly, customers will subscribe, generating passive income. However, accidents can happen, forcing payouts to cover claims!",
+        "page6": "-----Bank Business-----\nThis is the most expensive business to start. You'll receive loan applications and can choose to approve or reject them. If approved, you'll pay out the loan and earn interest as customers repay. But beware — some loans might default!",
+        "page7": "Becoming a business owner is risky, but it can also be incredibly profitable if managed well. Choose your path wisely and build your fortune!"
+      },
+      "level7": {
+        "godSpeak": "Gravity? That’s old news. Your town just unlocked the ability to fly! Check your inventory for details!",
+        "page1": "Welcome to Level 7! With this upgrade, you now have access to the '/fly' command, allowing you to take to the skies just like in creative mode!"
+      },
+      "level8": {
+        "godSpeak": "Sometimes, progress is its own reward. Check your inventory for details!",
+        "page1": "You've reached Level 8! No new features this time, but that doesn't mean your town isn't growing stronger."
+      },
+      "level9": {
+        "godSpeak": "Tired of the dark? Your town just unlocked the power to control time! Check your inventory for details!",
+        "page1": "You've reached Level 9, and with it comes a powerful new ability — the '/day' command. No more waiting for sunrise. Now, you can instantly turn night into day! It doesn't come for free though. The price? 14990..."
       }
     },
     "season3": {
+      "level1": {
+        "godSpeak": "A new season begins! Something feels... different. Check your inventory for details!",
+        "page1": "Welcome to Season 3! You’ve kept your chunk, your progress, and your hard work. But there’s an energy in the air — a feeling that change is coming."
+      },
+      "level2": {
+        "godSpeak": "Progress marches forward, but what are we marching toward? Check your inventory for details!",
+        "page1": "You’ve reached Level 2! Everything seems normal, yet… something is shifting. The world feels a little different, don’t you think?"
+      },
+      "level3": {
+        "godSpeak": "Have you noticed it? The feeling that something big is on the horizon? Check your inventory for details!",
+        "page1": "Level 3 is here. And by now, you must have sensed it too. The world feels less... confined. As if the walls around us are growing weaker."
+      },
+      "level4": {
+        "godSpeak": "Almost there. Almost time. Can you feel it? Check your inventory for details!",
+        "page1": "Level 4! The whispers of change are no longer whispers. Something is about to happen. Something that will alter everything you know."
+      },
+      "level5": {
+        "godSpeak": "The time has come. Everything is about to change. Check your inventory for details!",
+        "page1": "You did it. Level 5. The moment you’ve been waiting for is here. The world has been holding you back, but not anymore.",
+        "page2": "The borders will fall! The walls that once contained you will be gone. The world is about to open. No more limits. No more restrictions. Go forth and claim it!"
+      }
     },
     "endSignature": "\n\n\n\n\n\n\n\n\n\n\n\n# Signature #\n- The Landlord"
   },
