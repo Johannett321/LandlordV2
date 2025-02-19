@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.levels;
 
 import com.johansvartdal.landlord.Book;
+import com.johansvartdal.landlord.God;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.events.LandlordEvent;
 import com.johansvartdal.landlord.Main;
@@ -37,7 +38,7 @@ public class S2Level5 extends Level{
 
     @Override
     public void justUpgraded() {
-
+        God.speak(LangDict.getString("levelBooks.season2.level5.godSpeak"));
     }
 
     @Override
