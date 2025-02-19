@@ -301,21 +301,136 @@
     "levelBooks": {
         "season1": {
             "level2": {
-                "godSpeak": "Gratulerer, innbyggere! Jeg har skrevet en kort bok om denne levelen. Vennligst les boken \"S1L2\" i inventoryen deres"
+                "godSpeak": "Gratulerer borgere! Jeg har skrevet en kort bok om dette nivået til dere. Les boken i inventaret ditt kalt S1L2",
+                "page1": "Gratulerer! Du har nettopp oppgradert byen din til nivå 2. Dette er stort! Hver gang du går opp i nivå, skjer det flere ting. Denne gangen har du låst opp et spill kalt \"roulette\". Mer om det på side fire. I tillegg til å låse opp nye funksjoner, mottar du også chunk-poeng.",
+                "page2": "----Chunk-poeng----\nHver gang du går opp i nivå, mottar du et chunk-poeng. Med dette poenget kan du kjøpe en nærliggende chunk. Dette lar deg utvide tomten din. For å låse opp din andre chunk, still deg ved grensen til chunken du ønsker å låse opp, og se inn i den. Deretter skriv inn...",
+                "page3": "følgende kommando:\n/buychunk now\n\nDu kan se informasjon om chunk-poengene dine og prisen for å kjøpe en chunk ved å skrive kommandoen:\n/buychunk info\n\nHusk at du må betale skatt for hver chunk du eier.",
+                "page4": "------Roulette------\nRoulette er et spill som kjøres én gang i timen. Du vil bli varslet i chatten når spillet starter. Spillet fungerer som et lotteri, hvor du kan betale for en sjanse til å vinne verdifulle gjenstander.",
+                "page5": "----Leie verktøy----\nEn annen funksjon du har låst opp, er muligheten til å leie verktøy. Ved å skrive /rent info kan du se hvilke verktøy du kan leie. Verktøyene blir bedre etter hvert som byen din går opp i nivå. Foreløpig har du tilgang til ganske gode jernverktøy. De har til og med fortryllelser. Bare pass på at du ikke...",
+                "page6": "stjeler verktøyene. De skal alltid oppbevares i inventaret ditt. Hvis du mister dem, må du betale... Mye!\n\nNår du er ferdig med å leie et verktøy, hold det i hovedhånden din og skriv:\n/rent end"
             },
             "level3": {
-                "godSpeak": "Gratulerer! Et nytt nivå er en ny bok, vennligst les boken i inventoryen deres."
+                "godSpeak": "Gratzzz! Et nytt nivå betyr en ny bok. Les boken i inventaret ditt.",
+                "page1": "Kult! Du har nådd nivå 3. Det betyr at du har fått ditt andre chunk-poeng! Husk at du må betale skatt for hver chunk du eier. Du trenger ikke bruke chunk-poenget, men hvis du bestemmer deg for å bruke det, bygg noe smart på det – noe som kan gi deg enda mer penger.",
+                "page2": "--------Betaling--------\nDu har nå muligheten til å betale en annen spiller. Dette kan gjøres ved å bruke kommandoen\n/pay <brukernavn> <beløp>\n\nHusk at du også må betale skatt for dette!",
+                "page3": "-----Statskassen-----\nByen din har nå fått en viktig rolle: 'Statskansler'. Dette er en mektig posisjon som hjelper til med å styre byens økonomi og finansielle beslutninger. Selv om alle deres evner ikke er låst opp ennå, vil denne rollen bli avgjørende etter hvert som byen din vokser!",
+                "page4": "Utenom dette er det ikke så mye mer på nivå 3. Ingen flere funksjoner eller noe. Høres ganske kjedelig ut, ikke sant? Vel, det neste nivået blir stort. Jeg lover!"
             },
             "level4": {
-                "godSpeak": "Gratulerer! Vennligst les boken jeg skrev om dette nivået. Jeg har store nyheter!"
+                "godSpeak": "Gratulerer! Les boken jeg har skrevet om dette nivået. Jeg har store nyheter!",
+                "page1": "Wow! Byen din har nå nådd nivå 4. Dette er fantastisk! Jeg lovet deg noe stort for denne oppgraderingen, og jeg løy ikke. Du har nå låst opp en funksjon kalt \"villmarken\". Denne funksjonen lar deg forlate byen din i en kort periode. I løpet av den tiden er du ikke begrenset av...",
+                "page2": "størrelsen på din egen chunk og kan utforske villmarken.",
+                "page3": "---- Villmarken ----\nVillmarken lar deg bli teleportert utenfor din chunk til den åpne verden for en kort periode. Det er imidlertid ikke gratis. For å se tilgjengelige kommandoer, skriv /wilderness."
+            },
+            "level5": {
+                "godSpeak": "Fantastisk arbeid! Byen din har nettopp nådd nivå 5. Det er en bok i beholdningen din med alle de saftige detaljene!",
+                "page1": "Nivå 5! Nå snakker vi. Med denne oppgraderingen blir byen din sterkere, og du får mer kontroll over verden din. Du har tjent et nytt chunk-poeng, noe som betyr at du kan utvide territoriet ditt igjen. Men det er ikke alt! Dette nivået introduserer en helt ny evne: fangst.",
+                "page2": "-----Fangst-----\nDu kan nå fange dyr og innbyggere og ta dem med inn i chunken din. Ikke mer venting på at de skal vandre inn tilfeldig! For å fange en skapning, stå ved siden av den og skriv '/capture'."
+            },
+            "level6": {
+                "godSpeak": "Utrolig fremgang! Et nytt nivå betyr en ny bok. Sjekk beholdningen din for alle detaljene!",
+                "page1": "Nivå 6 er her, og med det kommer to kraftige nye funksjoner som vil endre hvordan byen din fungerer. Først har du nå tilgang til kommandoen '/chunkguard', som lar avlinger og planter vokse selv når ingen er pålogget.",
+                "page2": "----Chunk Guard----\nMed '/chunkguard' holder landet ditt seg i live selv når du logger ut. Avlinger vil fortsette å vokse, og naturen venter ikke på at du skal komme tilbake. Husk bare at det koster — 2000 per chunk per time. Bruk det klokt!",
+                "page3": "-----Donasjoner-----\nByens finansminister har nå tilgang til en kommando: '/treasury buy donations'. Denne kommandoen vil halvere mengden ressurser som trengs for neste nivåoppgradering. Hvis statskassen ser sterk ut, kan dette være en verdig investering!"
+            },
+            "level7": {
+                "godSpeak": "Du har akkurat nådd nivå 7! Sjekk beholdningen din for en spennende oppdatering om hva som er nytt.",
+                "page1": "Byen din blir mer tilkoblet! Med nivå 7 har du låst opp en helt ny evne som gjør det lettere å besøke andre spillere enn noensinne.",
+                "page2": "------Besøk------\nDu kan nå besøke andre spilleres chunker ved å bruke kommandoen: '/visit <spillernavn>' Dette vil teleportere deg direkte til deres chunk — hvis de godtar forespørselen din.",
+                "page3": "------Samtykke------\nSelvfølgelig vil ingen ha uønskede gjester! Spilleren du ønsker å besøke må godkjenne forespørselen din før du kan teleportere til deres chunk. Dette gjør handel, samarbeid og utforsking av andre chunker mye enklere!"
+            },
+            "level8": {
+                "godSpeak": "Et nytt nivå, et stort skritt for byen din! Sjekk beholdningen din for detaljer om hva som er nytt.",
+                "page1": "Nivå 8 gir en mulighet: underjordisk gruvedrift. Hvis du har slitt med å finne ressurser i chunken din, vil denne nye kommandoen la deg grave dypere – bokstavelig talt!",
+                "page2": "------Gruvedrift------\nMed '/wilderness mining' vil du bli teleportert til en underjordisk gruvesone hvor du kan strippe gruveressurser. Du har 45 minutter før du blir teleportert tilbake til chunken din. Husk at du må holde deg under høydenivå 16 hele tiden.",
+                "page3": "--Chunk Rabatter--\nFinansministeren har nå tilgang til kommandoen '/treasury buy chunkdiscount'. Denne kommandoen reduserer permanent kostnaden for å kjøpe chunker for alle spillere. Byen må bruke skattepengene klokt, men en rabatt som dette kan hjelpe til med å utvide raskere!"
+            },
+            "level9": {
+                "godSpeak": "Nivå 9 har kommet, og med det nye muligheter! Sjekk beholdningen din for alle detaljene.",
+                "page1": "Byen din har nettopp låst opp tilgang til Nether! Denne farlige, men ressursrike dimensjonen er nå innen rekkevidde og gir deg tilgang til materialer du ikke kunne finne før.",
+                "page2": "------Nether------\nVed bruk av kommandoen: '/wilderness nether', vil du bli teleportert ut av chunken din og inn i Nether. Vær forberedt - Nether er nådeløs, men belønningene er verdt risikoen!",
+                "page3": "-----Refusjoner-----\nFinansministeren har nå muligheten til å gi penger tilbake til folket! Med kommandoen '/treasury withdraw', vil hver spiller motta 4000 fra byens skattepenger. Men det er en hake! Det er også en ekstra avgift på 10.000"
             }
         },
         "season2": {
-
+            "level1": {
+                "godSpeak": "En ny sesong har begynt! Sesong 2 er her og bringer friske utfordringer og spennende nye muligheter. Sjekk beholdningen din for alle detaljene!",
+                "page1": "Velkommen til Sesong 2! Du har jobbet hardt med å bygge byen din, og ikke bekymre deg - du begynner ikke på nytt. Din chunk, din fremgang og alt du har bygget forblir intakt. Men ting kommer til å bli enda mer interessante!",
+                "page2": "---Nytt Villmark--- \nMed starten av den nye sesongen tar nå kommandoen '/wilderness world' deg til en helt ny spawn-lokasjon. Det betyr nye landområder, nytt terreng og uutforskede ressurser som venter på å bli erobret.",
+                "page3": "----Bedre Verktøy---- \nLeiesystemet har blitt oppgradert! Fra nå av, når du leier verktøy, får du diamanthverktøy i stedet for jern. Dette vil gjøre innsamling av materialer enklere og mer effektivt.",
+                "page4": "-------Arrangementer------- \nSesong 2 introduserer et nytt konsept: arrangementer. Disse arrangementene faller i to kategorier: utflukter og arena-kamper.",
+                "page5": "----Utflukter---- \nDu vil bli tatt med til unike steder fullpakket med skatt - forlatte byer, skjulte huler og mystiske ruiner.",
+                "page6": "----Arena Kamper---- \nEn kamp mot bølger med monstre! Disse kampene blir hardere etter hvert som sesongen skrider frem, så forbered deg.",
+                "page7": "---Prisendringer--- \nTiden endrer seg, og det samme gjør prisene. Ting er litt dyrere nå, så det å håndtere ressursene dine klokt blir viktigere enn noensinne.",
+                "page8": "---Mysteriekister--- \nFinansministeren har fått en kraftig ny evne! Med kommandoen: '/treasury buy mysterychest', vil en mysteriekiste dukke opp i handelschunken. Disse kistene kommer i fire nivåer: BASIC, GOLD, PLATINUM og DIAMOND.",
+                "page9": "Sesong 2 er her, og det kommer bare til å bli mer intensivt fra nå av. Med nye arrangementer, tøffere utfordringer og bedre belønninger, er eventyret bare i starten!"
+            },
+            "level2": {
+                "godSpeak": "Økonomien utvikler seg! Du har nå tilgang til en helt ny måte å øke formuen din på. Sjekk beholdningen din for detaljer!",
+                "page1": "Gratulerer med å nå Nivå 2! Denne oppgraderingen bringer en stor finansiell mulighet - aksjemarkedet. Nå kan du investere pengene dine og se dem vokse (eller forsvinne)!",
+                "page2": "-----Aksjer-----\nMed kommandoen: '/stocks', kan du kjøpe og selge aksjer. Aksjepriser svinger over tid - noen vil stige, noen vil falle, og noen kan til og med gå konkurs. Velg klokt! For øvrig, i motsetning til dine kontantbeholdninger, er aksjer unntatt fra formueskatt.",
+                "page3": "Aksjemarkedet er uforutsigbart, men de som spiller smart kan bli utrolig rike. Husk bare: med stor risiko følger stor belønning!"
+            },
+            "level3": {
+                "godSpeak": "Fart og effektivitet er nøkkelen! Byen din har nettopp låst opp en kraftig måte å jobbe raskere på. Sjekk beholdningen din for detaljer!",
+                "page1": "Velkommen til Nivå 3! Denne oppgraderingen bringer en ny evne til byens ledelse. Finansministeren har nå tilgang til en kraftig forsterkning som kan øke produktiviteten til alle.",
+                "page2": "---Haste Boost--- \nMed kommandoen: '/treasury buy haste', vil hver spiller i byen motta Hastighetseffekten i 3 minutter, noe som lar deg grave og samle ressurser mye raskere!"
+            },
+            "level4": {
+                "godSpeak": "Nytt utstyr er nå tilgjengelig for leie! Sjekk beholdningen din for detaljer!",
+                "page1": "Du har nådd Nivå 4, og med det kommer en ny leiemulighet! /rent-kommandoen har blitt utvidet til å inkludere Skilpadde Skall, som lar deg puste lenger under vann."
+            },
+            "level5": {
+                "godSpeak": "Ta til himmelen! En ny leiemulighet har ankommet. Sjekk inventaret ditt for detaljer!",
+                "page1": "Du har nådd Nivå 5. Du kan nå leie en Elytra! Med kommandoen /rent elytra kan du midlertidig sveve gjennom luften og utforske verden ovenfra."
+            },
+            "level6": {
+                "godSpeak": "Gründere, det er deres tid til å skinne! Byen din har nettopp låst opp muligheten til å starte bedrifter. Sjekk inventaret ditt for detaljer!",
+                "page1": "Velkommen til Nivå 6! Du har nå tilgang til kommandoen '/business', som lar deg starte og administrere din egen bedrift. Enten du vil drive en bank, et forsikringsselskap eller en eksportvirksomhet, er valget ditt!",
+                "page2": "-----Starte en bedrift-----\nFor å starte en bedrift, bruk kommandoen:\n\n/business start\n\nHver bedriftstype har en oppstartskostnad. Velg klokt, for du kan kun drive én bedrift om gangen. Men du kan når som helst legge ned bedriften og starte en ny.",
+                "page3": "-----Bedriftens bankkonto-----\nHver bedrift har sin egen bankkonto, hvor du kan sette inn og ta ut penger. Å sette inn penger er skattefritt, men å ta ut penger medfører skatt. Penger tjent i bedriften forblir skattefrie inntil de tas ut.",
+                "page4": "-----Eksportbedrift-----\nDen billigste bedriften å starte. Her mottar du eksportoppdrag, hvor du må samle spesifikke gjenstander, legge dem i en kiste og sende dem. Når de er sendt, mottar du betaling!",
+                "page5": "-----Forsikringsbedrift-----\nHer kan du opprette forsikringsavtaler og sette en månedlig pris. Hvis prisen er riktig, vil kundene abonnere, og du får passiv inntekt. Men uhell kan skje, noe som betyr at bedriften må betale ut erstatninger!",
+                "page6": "-----Bankbedrift-----\nDen dyreste bedriften å starte. Som bankeier vil du motta lånesøknader, som du kan godkjenne eller avslå. Hvis godkjent, betaler bedriften ut lånet, og kunden begynner å betale det tilbake med renter. Men vær forsiktig – noen lån kan misligholdes!",
+                "page7": "Å drive en bedrift er risikabelt, men det kan også være ekstremt lønnsomt hvis det håndteres riktig. Velg din vei med omhu og bygg din formue!"
+            },
+            "level7": {
+                "godSpeak": "Tyngdekraft? Det er gammelt nytt. Byen din har nettopp låst opp evnen til å fly! Sjekk inventaret ditt for detaljer!",
+                "page1": "Velkommen til Nivå 7! Med denne oppgraderingen har du nå tilgang til kommandoen /fly, som lar deg sveve gjennom luften akkurat som i kreativ modus!"
+            },
+            "level8": {
+                "godSpeak": "Noen ganger er fremgang sin egen belønning. Sjekk beholdningen din for detaljer!",
+                "page1": "Du har nådd Nivå 8! Ingen nye funksjoner denne gangen, men det betyr ikke at byen din ikke blir sterkere."
+            },
+            "level9": {
+                "godSpeak": "Lei av mørket? Byen din har nettopp låst opp makten til å styre tiden! Sjekk beholdningen din for detaljer!",
+                "page1": "Du har nådd Nivå 9, og med det kommer en kraftig ny evne - kommandoen '/day'. Ikke mer venting på soloppgang. Nå kan du øyeblikkelig gjøre natt til dag! Men det koster ikke noe. Prisen? 14990..."
+            }
         },
         "season3": {
-
-        }
+            "level1": {
+                "godSpeak": "En ny sesong begynner! Noe føles... annerledes. Sjekk inventaret ditt for detaljer!",
+                "page1": "Velkommen til Sesong 3! Du har beholdt chunken din, fremgangen din og alt du har jobbet for. Men det er en energi i luften – en følelse av at forandring er på vei."
+            },
+            "level2": {
+                "godSpeak": "Fremgangen fortsetter, men hvor fører den oss? Sjekk inventaret ditt for detaljer!",
+                "page1": "Du har nådd Nivå 2! Alt virker normalt, men… noe er i ferd med å endre seg. Verden føles litt annerledes, ikke sant?"
+            },
+            "level3": {
+                "godSpeak": "Har du merket det? Følelsen av at noe stort er på vei? Sjekk inventaret ditt for detaljer!",
+                "page1": "Nivå 3 er her. Og nå må du ha kjent det selv. Verden føles mindre... begrenset. Som om veggene rundt oss begynner å svekkes."
+            },
+            "level4": {
+                "godSpeak": "Nesten der. Nesten tid. Kan du føle det? Sjekk inventaret ditt for detaljer!",
+                "page1": "Nivå 4! Hviskingen om forandring er ikke lenger hvisking. Noe stort er i ferd med å skje. Noe som vil forandre alt du kjenner til."
+            },
+            "level5": {
+                "godSpeak": "Tiden er inne. Alt kommer til å endre seg. Sjekk inventaret ditt for detaljer!",
+                "page1": "Du har gjort det. Nivå 5. Øyeblikket du har ventet på er her. Verden har holdt deg tilbake, men ikke lenger.",
+                "page2": "Grensene faller! Veggene som en gang holdt deg innesperret er borte. Verden åpner seg. Ingen flere begrensninger. Ingen flere grenser. Gå ut og gjør den til din!"
+            }
+        },
+        "endSignature": "\n\n\n\n\n\n\n\n\n\n\n\n# Signatur #\n- The Landlord"
     },
     "events": {
         "preparations": {
