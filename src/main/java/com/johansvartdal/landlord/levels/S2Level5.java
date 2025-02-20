@@ -5,6 +5,7 @@ import com.johansvartdal.landlord.God;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.events.LandlordEvent;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.events.adventure.MesaHillsideAdventure;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -43,12 +44,12 @@ public class S2Level5 extends Level{
 
     @Override
     public int getRouletteGamePrice() {
-        return 800;
+        return 1000;
     }
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
-        return null;
+        return new MesaHillsideAdventure(plugin);
     }
 
     @Override

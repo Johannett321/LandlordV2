@@ -42,7 +42,7 @@ public class S3Level1 extends Level{
 
     @Override
     public int getRouletteGamePrice() {
-        return 800;
+        return 1200;
     }
 
     @Override
