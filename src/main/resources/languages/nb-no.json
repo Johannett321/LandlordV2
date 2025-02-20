@@ -453,11 +453,15 @@
             "risingBorders": "ADVARSEL: Stå stille! Veggene heves!"
         },
         "icyHills": {
-            "welcomeStart": "Vær hilset, og velkommen til Frostgardes fjell! Det er noen skjulte skatter spredt over hele fjellet. Finn dem før din ",
+            "welcomeStart": "Vær hilset, og velkommen til Frostgardes fjellene! Det er noen skjulte skatter spredt over hele fjellet. Finn dem før din ",
             "welcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?"
         },
         "solvheim": {
             "welcomeStart": "Vær hilset, og velkommen til Solvheim landsby! Det er noen skjulte skatter spredt over hele landsbyen. Finn dem før din ",
+            "welcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?"
+        },
+        "VaelTorrah": {
+            "welcomeStart": "Vær hilset, og velkommen til Vael'Torrah! Det er noen skjulte skatter spredt over hele fjellet. Finn dem før din ",
             "welcomeEnd": " minutters utflukt er over. Kanskje du avdekker en verdifull bok med mending?"
         },
         "cakeWorld": {

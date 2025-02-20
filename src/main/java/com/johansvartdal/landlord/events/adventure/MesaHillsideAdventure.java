@@ -10,6 +10,8 @@ import org.bukkit.World;
 
 public class MesaHillsideAdventure extends AdventureEvent{
 
+    private final int excursionMinutes = 5;
+
     public MesaHillsideAdventure(Main plugin) {
         super(plugin);
     }
@@ -21,7 +23,7 @@ public class MesaHillsideAdventure extends AdventureEvent{
 
     @Override
     protected void showWelcomeMessage() {
-        return;
+        God.speak(LangDict.getString("events.VaelTorrah.welcomeStart") + excursionMinutes + LangDict.getString("events.VaelTorrah.welcomeEnd"));
     }
 
     @Override
@@ -31,7 +33,7 @@ public class MesaHillsideAdventure extends AdventureEvent{
 
     @Override
     protected String getWelcomeTitle() {
-        return null;
+        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Vael'Torrah";
     }
 
     @Override

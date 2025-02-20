@@ -1,7 +1,9 @@
 package com.johansvartdal.landlord.events.adventure;
 
+import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 
 public class LumberMineForestAdventure extends AdventureEvent {
@@ -31,7 +33,7 @@ public class LumberMineForestAdventure extends AdventureEvent {
 
     @Override
     protected String getWelcomeTitle() {
-        return null;
+        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Týrvangr";
     }
 
     @Override

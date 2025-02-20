@@ -453,7 +453,7 @@
             "risingBorders": "ADVARSEL: Stå stille! Veggane hevast!"
         },
         "icyHills": {
-            "welcomeStart": "Vær helsa, og velkommen til Frostgardes fjell! Det er nokre skjulte skattar spreidd over heile fjellet. Finn dei før din ",
+            "welcomeStart": "Vær helsa, og velkommen til Frostgardes fjellene! Det er nokre skjulte skattar spreidd over heile fjellet. Finn dei før din ",
             "welcomeEnd": " minuttars utflukt er over. Kanskje du avdekkjer ein verdifull bok med mending?"
         },
         "solvheim": {
@@ -462,6 +462,10 @@
         },
         "cakeWorld": {
             "welcomeStart": "Vær helsa, modige reisande, til det gåtefulle riket CakeWorld! Her ligg eit mysterium og ventar på din intelligens til å avdekke dets gåtefulle hemmelegheiter. Torer du nøste opp trådane i dette forbløffande mysteriet som mange før deg har forsøkt? Ta utfordringa, og må mystikken til CakeWorld leie deg på søken etter svar."
+        },
+        "VaelTorrah": {
+            "welcomeStart": "Vær helsa, og velkommen til Vael'Torrah! Det er nokre skjulte skattar spreidd over heile landsbyen. Finn dei før din ",
+            "welcomeEnd": " minuttars utflukt er over. Kanskje du avdekkjer ein verdifull bok med mending?"
         },
         "arenaFight": {
             "nextWave30Sec": "Bra jobba! Hald fram sånn! Neste bølge startar om 30 sekund",

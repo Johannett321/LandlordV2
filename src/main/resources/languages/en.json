@@ -461,6 +461,10 @@
       "welcomeStart": "Greetings and welcome to Solvheim village! There are some hidden treasures scattered throughout the village. Find them before your ",
       "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
     },
+    "VaelTorrah": {
+      "welcomeStart": "Greetings and welcome to Vael'Torrah! There are some hidden treasures scattered throughout the hills. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
+    },
     "cakeWorld": {
       "welcomeStart": "Greetings, intrepid travelers, to the enigmatic realm of CakeWorld! Herein lies a mystery, awaiting your intellect to decipher its enigmatic secrets. Dare you unravel the threads of this baffling enigma that has eluded many before you? Embrace the challenge, and may the mystique of CakeWorld guide you on your quest for answers."
     },

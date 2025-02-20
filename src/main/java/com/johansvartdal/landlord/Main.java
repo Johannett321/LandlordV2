@@ -307,11 +307,8 @@ public class Main extends JavaPlugin implements Listener {
 		playguide.addPage("Once five minutes have past, you will be teleported into your 16x16 block chunk. At a later level, you will be able to get out of your chunk for 5 minutes at a time, by using the command '&3/wilderness&0'");
 		playguide.addPage("&2How to play - Setting home&0 \nInside your chunk, you can perform the command '&3/sethome&0', to change the home location in your chunk. You can then teleport to that location by typing '&3/home&0'");
 		playguide.addPage("&2How to play - Leveling&0 \nDo '&3/upgrade info&0' to see what items you need to collect to level up. When you get an item you want to donate to the vault, do '&3/donte&0'. Every time you level up, you will be rewarded a chunk that you can claim.");
-		playguide.addPage("&2How to play - Claiming chunks&0 \nTo claim a chunk, do '&3/buychunk&0' while looking towards the chunk you'd like to claim. A new chunk will be unlocked in the preferred direction. The borders will then fall between you and that chunk");
-		playguide.addPage("&2How to play - Capturing animals&0 \nAt at later lever, you will unlock the command '&3/capture&0', which captures the closest animal to you.");
 		playguide.addPage("&2How to play - Trade&0 \nIf you want to trade with another player, type the command '&3/trade&0' to get to the middle chunk where you can meet. All players are free to build inside that chunk");
 		playguide.addPage("&2How to play - Selling items&0 \nThe command '&3/sell now&0' allow you to sell the current item in your hand. Do '&3/sell info&0' to check the item's current value. The value will change over time, so one may wait selling till the item has a greater value.");
-		playguide.addPage("&2How to play - Roulette game&0 \nOnce every hour, a new game of Roulette will start. To join the game, type '&3/joinroulette&0' before the time limit. The roulette is not activated before getting to a certain level.");
 
 		Tools.givePlayerItemOrDrop(player, playguide.produceAndGetBook(), true);
 	}

@@ -33,7 +33,7 @@ public class SibirianCottageWinterAdventure extends AdventureEvent {
 
     @Override
     protected String getWelcomeTitle() {
-        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Muromtsevo Coast";
+        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Morozvetskiy Bereg";
     }
 
     @Override
