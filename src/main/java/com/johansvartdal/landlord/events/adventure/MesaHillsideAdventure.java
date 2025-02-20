@@ -1,39 +1,39 @@
 package com.johansvartdal.landlord.events.adventure;
 
+import com.johansvartdal.landlord.God;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 
-public class LumberMineForestAdventure extends AdventureEvent {
+public class MesaHillsideAdventure extends AdventureEvent{
 
-    private final Location advLocation = new Location(Bukkit.getWorld("lladv"), -1106, 70, -2745);
+    private final int excursionMinutes = 5;
 
-    public LumberMineForestAdventure(Main plugin) {
+    public MesaHillsideAdventure(Main plugin) {
         super(plugin);
-        advLocation.setYaw(-180);
-        advLocation.setPitch(0);
     }
 
     @Override
     protected Location getEventSpawnLocation() {
-        return advLocation;
+        return null;
     }
 
     @Override
     protected void showWelcomeMessage() {
-
+        God.speak(LangDict.getString("events.VaelTorrah.welcomeStart") + excursionMinutes + LangDict.getString("events.VaelTorrah.welcomeEnd"));
     }
 
     @Override
     protected int getExcursionMinutes() {
-        return 60;
+        return -1;
     }
 
     @Override
     protected String getWelcomeTitle() {
-        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Týrvangr";
+        return LangDict.getString(LangDict.WELCOME_TITLE) + ChatColor.BLUE +  "Vael'Torrah";
     }
 
     @Override
@@ -43,6 +43,6 @@ public class LumberMineForestAdventure extends AdventureEvent {
 
     @Override
     protected Location[] getChestLocation() {
-        return new Location[]{};
+        return null;
     }
 }

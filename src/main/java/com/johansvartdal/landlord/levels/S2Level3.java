@@ -45,7 +45,7 @@ public class S2Level3 extends Level{
 
     @Override
     public int getRouletteGamePrice() {
-        return 800;
+        return 900;
     }
 
     @Override

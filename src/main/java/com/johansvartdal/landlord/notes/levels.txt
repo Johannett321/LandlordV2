@@ -35,7 +35,7 @@ Level 9:
 
 Level 1:
 <new wilderness spawn location>
-[ VALLEY VILLAGE ADVENTURE ]
+[ VALLEY VILLAGE ADVENTURE: Solvheim Village ]
 ////MysteryChest
 /rent diamond
 
@@ -44,7 +44,7 @@ Level 2:
 /stocks
 
 Level 3:
-[ ICY VILLAGE ADVENTURE ]
+[ ICY VILLAGE ADVENTURE: Frostgarde ]
 ////Haste
 
 Level 4:
@@ -52,7 +52,7 @@ Level 4:
 /rent turtle shell
 
 Level 5:
-[ OLE'S HILLSIDE MESA ADVENTURE ]
+[ MESA HILLSIDE ADVENTURE: Vael'Torrah ]
 /rent elytra
 
 Level 6:
@@ -60,14 +60,14 @@ Level 6:
 /business
 
 Level 7:
-[ OLE'S LUMBER MINE FOREST ADVENTURE ]
+[ LUMBER MINE FOREST ADVENTURE: Týrvangr ]
 /fly
 
 Level 8:
 [ ARENA FIGHT 4 ]
 
 Level 9:
-[ Muromtsevo Coast ADVENTURE (Sibirian Cottage Village) ]
+[ SIBIRIAN COTTAGE WINTER ADVENTURE: Morozvetskiy Bereg ]
 /day
 
 ----------------------------- Season 3 -----------------------------

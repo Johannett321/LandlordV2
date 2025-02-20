@@ -299,6 +299,19 @@
     "noRouletteStart": "There is no game running at the time. Next game will be in ",
     "noRouletteEnd": " minutes"
   },
+  "playguide": {
+    "page1": "Welcome to Landlord!\nThis is a unique game mode where you build and expand your own land. Type '/help landlord' for a list of commands.",
+    "page2": "How to Play - Preparations\nOnce the admin starts the game, you have 5 minutes to collect any items you wish to bring into your chunk. The chat will inform you of required items.",
+    "page3": "After 5 minutes, you will be teleported into your 16x16 block chunk. You must make the best use of your space and resources to progress.",
+    "page4": "How to Play - Setting Home\nInside your chunk, use '/sethome' to set a home location. You can teleport to this location anytime using '/home'.",
+    "page5": "How to Play - Leveling\nUse '/upgrade info' to check what items are needed to level up. Donate required items using '/donate'. Each level-up rewards you in different ways.",
+    "page6": "How to Play - Claiming Chunks\nEach level-up grants chunk points, which you can use to expand your territory. To claim a chunk, look at an adjacent chunk and use '/buychunk'. The borders between you and the new chunk will disappear.",
+    "page7": "How to Play - Trading\nTo trade with another player, use '/trade' to teleport to the central trade chunk where all players can build and interact.",
+    "page8": "How to Play - Selling Items\nUse '/sell now' to sell the item in your hand. Check item value with '/sell info'. Prices fluctuate, so selling at the right time is key.",
+    "page11": "Taxes\nYou must pay tax for every chunk you own, everytime you make any money or spend any money. Check your tax using '/bal'.",
+    "page12": "Renting Tools\nSome tools can be rented to help you progress. Use '/rent info' to see available tools. Returning rented tools is required, or heavy fines apply.",
+    "page13": "Seasonal Changes\nEach season and level introduces new features and challenges. Stay updated on new commands and mechanics."
+  },
   "levelBooks": {
     "season1": {
       "level2": {
@@ -379,7 +392,7 @@
       },
       "level4": {
         "godSpeak": "New gear is now available for rent! Check your inventory for details!",
-        "page1": "You've reached Level 4, and with it comes a new rental option! The /rent command has been expanded to include Turtle Shells, allowing you to breathe longer underwater."
+        "page1": "You've reached Level 4, and with it comes a new rental option! The '/rent' command has been expanded to include Turtle Shells, allowing you to breathe longer underwater."
       },
       "level5": {
         "godSpeak": "Take to the skies! A new rental option has arrived. Check your inventory for details!",
@@ -387,7 +400,7 @@
       },
       "level6": {
         "godSpeak": "Entrepreneurs, it’s your time to shine! Your town just unlocked the ability to start businesses. Check your inventory for details!",
-        "page1": "Welcome to Level 6! You now have access to the '/business command, allowing you to start and manage your own business. Whether you want to run a bank, an insurance company, or an export business, the choice is yours!",
+        "page1": "Welcome to Level 6! You now have access to the '/business' command, allowing you to start and manage your own business. Whether you want to run a bank, an insurance company, or an export business, the choice is yours!",
         "page2": "-----Starting a Business-----\nTo start a business, use the command: '/business start'. Each business type has a startup fee. Choose wisely, because you can only operate one business at a time. However, you can shut down your business and start a new one whenever you like.",
         "page3": "-----Business Bank Account-----\nEach business has its own bank account, where you can deposit and withdraw money. Depositing is tax-free, but withdrawing money comes with tax. Profits made inside the business stay tax-free until withdrawn.",
         "page4": "-----Export Business-----\nThe cheapest business to start. Here, you'll receive export missions, where they must collect specific items, put them in a chest, and ship them. Once shipped, you receive a payment!",
@@ -459,6 +472,10 @@
     },
     "solvheim": {
       "welcomeStart": "Greetings and welcome to Solvheim village! There are some hidden treasures scattered throughout the village. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
+    },
+    "VaelTorrah": {
+      "welcomeStart": "Greetings and welcome to Vael'Torrah! There are some hidden treasures scattered throughout the hills. Find them before your ",
       "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
     },
     "cakeWorld": {
