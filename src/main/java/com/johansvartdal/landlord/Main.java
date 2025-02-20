@@ -302,13 +302,20 @@ public class Main extends JavaPlugin implements Listener {
 	private void givePlayGuide(Player player) {
 		Book playguide = new Book("Playguide");
 
-		playguide.addPage("&2Welcome to Landlord!&0 \nType '&3/help landlord&0' for a list of commands.");
-		playguide.addPage("&2How to play - preparations&0 \nOnce the admin initiates the game, you will have 5 minutes to collect all the items you want to bring into your chunk. The chat will tell you what items you are required to collect.");
-		playguide.addPage("Once five minutes have past, you will be teleported into your 16x16 block chunk. At a later level, you will be able to get out of your chunk for 5 minutes at a time, by using the command '&3/wilderness&0'");
-		playguide.addPage("&2How to play - Setting home&0 \nInside your chunk, you can perform the command '&3/sethome&0', to change the home location in your chunk. You can then teleport to that location by typing '&3/home&0'");
-		playguide.addPage("&2How to play - Leveling&0 \nDo '&3/upgrade info&0' to see what items you need to collect to level up. When you get an item you want to donate to the vault, do '&3/donte&0'. Every time you level up, you will be rewarded a chunk that you can claim.");
-		playguide.addPage("&2How to play - Trade&0 \nIf you want to trade with another player, type the command '&3/trade&0' to get to the middle chunk where you can meet. All players are free to build inside that chunk");
-		playguide.addPage("&2How to play - Selling items&0 \nThe command '&3/sell now&0' allow you to sell the current item in your hand. Do '&3/sell info&0' to check the item's current value. The value will change over time, so one may wait selling till the item has a greater value.");
+		playguide.addPage(LangDict.getString("playguide.page1"));
+		playguide.addPage(LangDict.getString("playguide.page2"));
+		playguide.addPage(LangDict.getString("playguide.page3"));
+		playguide.addPage(LangDict.getString("playguide.page4"));
+		playguide.addPage(LangDict.getString("playguide.page5"));
+		playguide.addPage(LangDict.getString("playguide.page6"));
+		playguide.addPage(LangDict.getString("playguide.page7"));
+		playguide.addPage(LangDict.getString("playguide.page8"));
+		playguide.addPage(LangDict.getString("playguide.page9"));
+		playguide.addPage(LangDict.getString("playguide.page10"));
+		playguide.addPage(LangDict.getString("playguide.page11"));
+		playguide.addPage(LangDict.getString("playguide.page12"));
+		playguide.addPage(LangDict.getString("playguide.page13"));
+		playguide.addPage(LangDict.getString("levelBooks.endSignature"));
 
 		Tools.givePlayerItemOrDrop(player, playguide.produceAndGetBook(), true);
 	}

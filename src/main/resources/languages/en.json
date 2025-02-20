@@ -299,6 +299,19 @@
     "noRouletteStart": "There is no game running at the time. Next game will be in ",
     "noRouletteEnd": " minutes"
   },
+  "playguide": {
+    "page1": "Welcome to Landlord!\nThis is a unique game mode where you build and expand your own land. Type '/help landlord' for a list of commands.",
+    "page2": "How to Play - Preparations\nOnce the admin starts the game, you have 5 minutes to collect any items you wish to bring into your chunk. The chat will inform you of required items.",
+    "page3": "After 5 minutes, you will be teleported into your 16x16 block chunk. You must make the best use of your space and resources to progress.",
+    "page4": "How to Play - Setting Home\nInside your chunk, use '/sethome' to set a home location. You can teleport to this location anytime using '/home'.",
+    "page5": "How to Play - Leveling\nUse '/upgrade info' to check what items are needed to level up. Donate required items using '/donate'. Each level-up rewards you in different ways.",
+    "page6": "How to Play - Claiming Chunks\nEach level-up grants chunk points, which you can use to expand your territory. To claim a chunk, look at an adjacent chunk and use '/buychunk'. The borders between you and the new chunk will disappear.",
+    "page7": "How to Play - Trading\nTo trade with another player, use '/trade' to teleport to the central trade chunk where all players can build and interact.",
+    "page8": "How to Play - Selling Items\nUse '/sell now' to sell the item in your hand. Check item value with '/sell info'. Prices fluctuate, so selling at the right time is key.",
+    "page11": "Taxes\nYou must pay tax for every chunk you own, everytime you make any money or spend any money. Check your tax using '/bal'.",
+    "page12": "Renting Tools\nSome tools can be rented to help you progress. Use '/rent info' to see available tools. Returning rented tools is required, or heavy fines apply.",
+    "page13": "Seasonal Changes\nEach season and level introduces new features and challenges. Stay updated on new commands and mechanics."
+  },
   "levelBooks": {
     "season1": {
       "level2": {

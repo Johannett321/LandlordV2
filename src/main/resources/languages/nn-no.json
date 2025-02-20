@@ -298,6 +298,19 @@
         "noRouletteStart": "Det er ingen spel som går for augneblinken. Neste roulette vil vere om ",
         "noRouletteEnd": " minutt"
     },
+    "playguide": {
+        "page1": "Velkomen til Landlord! Dette er ein unik spelmodus der du byggjer og utvidar ditt eige landområde. Skriv '/help landlord' for ei liste over kommandoar.",
+        "page2": "Korleis spele - Førebuingar\nNår admin startar spelet, har du 5 minutt til å samle alle gjenstandane du vil ta med inn i din chunk. Chatten vil informere deg om nødvendige gjenstandar.",
+        "page3": "Etter 5 minutt vert du teleportert inn i din 16x16 blokk store chunk. Du må nytte plassen og ressursane dine på best mogleg måte for å utvikle deg.",
+        "page4": "Korleis spele - Setje heim\nInne i din chunk kan du bruke '/sethome' for å setje ein heimstad. Du kan teleportere til denne staden når som helst ved å bruke '/home'.",
+        "page5": "Korleis spele - Oppgradering\nBruk '/upgrade info' for å sjå kva gjenstandar du treng for å oppgradere. Donér nødvendige gjenstandar ved å bruke '/donate'. Kvar oppgradering gjev deg ulike belønningar.",
+        "page6": "Korleis spele - Krav på chunks\nKvar oppgradering gjev deg chunk-poeng, som du kan bruke til å utvide territoriet ditt. For å krevje ein chunk, sjå mot ein tilstøytande chunk og bruk '/buychunk'. Grensene mellom din noverande og den nye chunken vil forsvinne.",
+        "page7": "Korleis spele - Handel\nFor å handle med ein annan spelar, bruk '/trade' for å teleportere til den sentrale handels-chunken der alle spelarar kan byggje og samhandle.",
+        "page8": "Korleis spele - Selje gjenstandar\nBruk '/sell now' for å selje gjenstanden i handa di. Sjekk verdien av gjenstanden med '/sell info'. Prisane endrar seg over tid, så å selje på rett tidspunkt er viktig.",
+        "page11": "Skatt\nDu må betale skatt for kvar chunk du eig, kvar gong du tener eller brukar pengar. Sjekk skatten din ved å bruke '/bal'.",
+        "page12": "Leige verktøy\nNokre verktøy kan leigast for å hjelpe deg med framgangen. Bruk '/rent info' for å sjå kva verktøy som er tilgjengelege. Det er obligatorisk å returnere leigde verktøy, elles vert du ilagd store bøter.",
+        "page13": "Sesongbaserte endringar\nKvar sesong og nivå introduserer nye funksjonar og utfordringar. Hald deg oppdatert på nye kommandoar og mekanikkar."
+    },
     "levelBooks": {
         "season1": {
             "level2": {
