@@ -22,9 +22,9 @@ public class Properties implements Serializable {
     @Setter
     private double chunkDiscountPercentPoint = 0;
 
-    public static final boolean DEV_CHEAT_MODE = false;
-    public static final boolean DEV_UNLOCK_ALL = false;
-    public static final boolean DEBUG_LOGGING = false;
+    public static final boolean DEV_CHEAT_MODE = true;
+    public static final boolean DEV_UNLOCK_ALL = true;
+    public static final boolean DEBUG_LOGGING = true;
 
     public Properties() {
         if (!Tools.fileExists("Properties.json")) {

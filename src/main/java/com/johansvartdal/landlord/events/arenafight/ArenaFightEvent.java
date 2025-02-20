@@ -1,6 +1,7 @@
 package com.johansvartdal.landlord.events.arenafight;
 
 import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.Properties;
 import com.johansvartdal.landlord.events.LandlordEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -164,7 +165,7 @@ public abstract class ArenaFightEvent extends LandlordEvent {
     @Override
     public void prepareEvent() {
         super.prepareEvent();
-        God.speak(LangDict.getString("info.arenaFightAnnouncementPrefix") + getPreparationTimeSeconds() + Tools.getTextTimeSeconds(getPreparationTimeSeconds()));
+        God.speak(LangDict.getString("info.arenaFightAnnouncementPrefix") + Tools.getTextTimeSeconds(getPreparationTimeSeconds()));
     }
 
     @Override
@@ -174,6 +175,9 @@ public abstract class ArenaFightEvent extends LandlordEvent {
 
     @Override
     protected int getPreparationTimeSeconds() {
+        if (Properties.DEV_CHEAT_MODE) {
+            return 30;
+        }
         return 60*5;
     }
 }

@@ -39,7 +39,7 @@
     }
   },
   "info": {
-    "eventAboutToStart": "An event is starting in: ",
+    "eventAboutToStart": "An event is starting in:",
     "excursionAnnouncementPrefix": "Citizens! Get ready! You'll be going on an excursion in ",
     "excursionCountdownPrefix": "The excursion starts in ",
     "arenaFightAnnouncementPrefix": "Citizens! Get ready! An arena fight will begin in ",

@@ -93,7 +93,7 @@ public class LevelManager {
         }
 
         // get new level
-        currentLevel = getLevel(currentLevel.getLevelNumber()+1);
+        currentLevel = getLevel(getLevelId(currentLevel)+1);
         acceptedPlayers.clear();
 
         // run upgrade and inform
@@ -289,7 +289,7 @@ public class LevelManager {
 
     public static void save() {
         JSONObject lvlInfo = new JSONObject();
-        lvlInfo.put("currentLevel", currentLevel.getLevelNumber());
+        lvlInfo.put("currentLevel", getLevelId(currentLevel));
         lvlInfo.put("remainingItems", remainingItemsToJsonArr());
         Tools.saveJsonToFile("Level.json", lvlInfo);
     }
@@ -462,5 +462,14 @@ public class LevelManager {
 
         // is the level of the featureName lower or equals than the current display level num?
         return lvlSeasonRelation.levelNum <= getCurrentDisplayLevelNum();
+    }
+
+    private static int getLevelId(Level level) {
+        for (int i = 0; i < allLevels.length; i++) {
+            if (allLevels[i] == level) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

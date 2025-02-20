@@ -23,16 +23,8 @@ public abstract class AdventureEvent extends LandlordEvent {
     @Override
     public void startEvent() {
         God.speak(LangDict.getString("events.excursion.getReadyExcursion"));
-        scheduleExcursionStart();
+        startExcursion();
         prepareChests();
-    }
-
-    private void scheduleExcursionStart() {
-        int startEventInSeconds = 60*5;
-        if (Properties.DEV_CHEAT_MODE) {
-            startEventInSeconds = 35;
-        }
-        Tools.performTaskAfterCountdown(this::startExcursion, LangDict.getString("events.excursion.excursionIn"), startEventInSeconds);
     }
 
     @Override
@@ -102,7 +94,7 @@ public abstract class AdventureEvent extends LandlordEvent {
     @Override
     public void prepareEvent() {
         super.prepareEvent();
-        God.speak(LangDict.getString("info.excursionAnnouncementPrefix") + getPreparationTimeSeconds() + Tools.getTextTimeSeconds(getPreparationTimeSeconds()));
+        God.speak(LangDict.getString("info.excursionAnnouncementPrefix") + Tools.getTextTimeSeconds(getPreparationTimeSeconds()));
     }
 
     @Override
@@ -112,6 +104,9 @@ public abstract class AdventureEvent extends LandlordEvent {
 
     @Override
     protected int getPreparationTimeSeconds() {
+        if (Properties.DEV_CHEAT_MODE) {
+            return 30;
+        }
         return 60*5;
     }
 }

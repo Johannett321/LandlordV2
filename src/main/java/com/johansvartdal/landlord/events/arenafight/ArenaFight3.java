@@ -37,7 +37,7 @@ public class ArenaFight3 extends ArenaFightEvent {
         wave4.addWaveStep(new WaveStep(EntityType.ENDERMITE, 4*mult, 2, new Location[]{Ports.PORT_1, Ports.PORT_2, Ports.PORT_3, Ports.PORT_4}));
         wave4.addWaveStep(new WaveStep(EntityType.BLAZE, 4*mult, Tools.secToTicks(2), new Location[]{Ports.PORT_2, Ports.PORT_3}));
         wave4.addWaveStep(new WaveStep(EntityType.CAVE_SPIDER, 7*mult, Tools.secToTicks(1), new Location[]{Ports.PORT_1, Ports.PORT_3}));
-        wave4.addWaveStep(new WaveStep(EntityType.WITHER, mult, 5, new Location[]{Ports.PORT_4}));
+        wave4.addWaveStep(new WaveStep(EntityType.WITHER_SKELETON, mult, 5, new Location[]{Ports.PORT_4}));
 
         // arena fight 4, wither
 

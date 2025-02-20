@@ -38,7 +38,7 @@
         }
     },
     "info": {
-        "eventAboutToStart": "Eit event starter om: ",
+        "eventAboutToStart": "Eit event starter om:",
         "excursionAnnouncementPrefix": "Borgarar! Gjer dykk klare! Ei utflukt startar om ",
         "excursionCountdownPrefix": "Utflukta startar om ",
         "arenaFightAnnouncementPrefix": "Borgarar! Gjer dykk klare! Ei arenakamp startar om ",

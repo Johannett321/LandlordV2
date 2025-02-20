@@ -5,6 +5,7 @@ import com.johansvartdal.landlord.God;
 import com.johansvartdal.landlord.LangDict;
 import com.johansvartdal.landlord.events.LandlordEvent;
 import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.events.adventure.IcyHillsEvent;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -49,7 +50,7 @@ public class S2Level3 extends Level{
 
     @Override
     public LandlordEvent getEventToStartBeforeLevel() {
-        return null;
+        return new IcyHillsEvent(plugin);
     }
 
     @Override

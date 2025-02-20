@@ -61,7 +61,7 @@ public class LandlordEventManager {
         event.prepareEvent();
         if (event.getPreparationTimeSeconds() > 0) {
             Tools.performTaskAfterCountdown(
-                    () -> startEvent(event),
+                    event::startEvent,
                     event.getPreparationCountdownMessagePrefix(),
                     event.getPreparationTimeSeconds()
             );
@@ -97,12 +97,7 @@ public class LandlordEventManager {
         LandlordEvent newLevelEvent = newLevel.getEventToStartBeforeLevel();
         if (newLevelEvent != null) {
             newLevelEvent.prepareEvent();
-
-            Tools.performTaskAfterCountdown(
-                    () -> startEvent(newLevelEvent),
-                    newLevelEvent.getPreparationCountdownMessagePrefix(),
-                    newLevelEvent.getPreparationTimeSeconds()
-            );
+            startEvent(newLevelEvent);
         }
     }
 }
