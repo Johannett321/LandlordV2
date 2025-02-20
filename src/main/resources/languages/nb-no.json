@@ -378,16 +378,16 @@
             },
             "level4": {
                 "godSpeak": "Nytt utstyr er nå tilgjengelig for leie! Sjekk beholdningen din for detaljer!",
-                "page1": "Du har nådd Nivå 4, og med det kommer en ny leiemulighet! /rent-kommandoen har blitt utvidet til å inkludere Skilpadde Skall, som lar deg puste lenger under vann."
+                "page1": "Du har nådd Nivå 4, og med det kommer en ny leiemulighet! '/rent' kommandoen har blitt utvidet til å inkludere Skilpadde Skall, som lar deg puste lenger under vann."
             },
             "level5": {
                 "godSpeak": "Ta til himmelen! En ny leiemulighet har ankommet. Sjekk inventaret ditt for detaljer!",
-                "page1": "Du har nådd Nivå 5. Du kan nå leie en Elytra! Med kommandoen /rent elytra kan du midlertidig sveve gjennom luften og utforske verden ovenfra."
+                "page1": "Du har nådd Nivå 5. Du kan nå leie en Elytra! Med kommandoen '/rent elytra' kan du midlertidig sveve gjennom luften og utforske verden ovenfra."
             },
             "level6": {
                 "godSpeak": "Gründere, det er deres tid til å skinne! Byen din har nettopp låst opp muligheten til å starte bedrifter. Sjekk inventaret ditt for detaljer!",
                 "page1": "Velkommen til Nivå 6! Du har nå tilgang til kommandoen '/business', som lar deg starte og administrere din egen bedrift. Enten du vil drive en bank, et forsikringsselskap eller en eksportvirksomhet, er valget ditt!",
-                "page2": "-----Starte en bedrift-----\nFor å starte en bedrift, bruk kommandoen:\n\n/business start\n\nHver bedriftstype har en oppstartskostnad. Velg klokt, for du kan kun drive én bedrift om gangen. Men du kan når som helst legge ned bedriften og starte en ny.",
+                "page2": "-----Starte en bedrift-----\nFor å starte en bedrift, bruk kommandoen '/business start'. Hver bedriftstype har en oppstartskostnad. Velg klokt, for du kan kun drive én bedrift om gangen. Men du kan når som helst legge ned bedriften og starte en ny.",
                 "page3": "-----Bedriftens bankkonto-----\nHver bedrift har sin egen bankkonto, hvor du kan sette inn og ta ut penger. Å sette inn penger er skattefritt, men å ta ut penger medfører skatt. Penger tjent i bedriften forblir skattefrie inntil de tas ut.",
                 "page4": "-----Eksportbedrift-----\nDen billigste bedriften å starte. Her mottar du eksportoppdrag, hvor du må samle spesifikke gjenstander, legge dem i en kiste og sende dem. Når de er sendt, mottar du betaling!",
                 "page5": "-----Forsikringsbedrift-----\nHer kan du opprette forsikringsavtaler og sette en månedlig pris. Hvis prisen er riktig, vil kundene abonnere, og du får passiv inntekt. Men uhell kan skje, noe som betyr at bedriften må betale ut erstatninger!",
@@ -396,7 +396,7 @@
             },
             "level7": {
                 "godSpeak": "Tyngdekraft? Det er gammelt nytt. Byen din har nettopp låst opp evnen til å fly! Sjekk inventaret ditt for detaljer!",
-                "page1": "Velkommen til Nivå 7! Med denne oppgraderingen har du nå tilgang til kommandoen /fly, som lar deg sveve gjennom luften akkurat som i kreativ modus!"
+                "page1": "Velkommen til Nivå 7! Med denne oppgraderingen har du nå tilgang til kommandoen '/fly', som lar deg sveve gjennom luften akkurat som i kreativ modus!"
             },
             "level8": {
                 "godSpeak": "Noen ganger er fremgang sin egen belønning. Sjekk beholdningen din for detaljer!",

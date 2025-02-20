@@ -379,7 +379,7 @@
       },
       "level4": {
         "godSpeak": "New gear is now available for rent! Check your inventory for details!",
-        "page1": "You've reached Level 4, and with it comes a new rental option! The /rent command has been expanded to include Turtle Shells, allowing you to breathe longer underwater."
+        "page1": "You've reached Level 4, and with it comes a new rental option! The '/rent' command has been expanded to include Turtle Shells, allowing you to breathe longer underwater."
       },
       "level5": {
         "godSpeak": "Take to the skies! A new rental option has arrived. Check your inventory for details!",
@@ -387,7 +387,7 @@
       },
       "level6": {
         "godSpeak": "Entrepreneurs, it’s your time to shine! Your town just unlocked the ability to start businesses. Check your inventory for details!",
-        "page1": "Welcome to Level 6! You now have access to the '/business command, allowing you to start and manage your own business. Whether you want to run a bank, an insurance company, or an export business, the choice is yours!",
+        "page1": "Welcome to Level 6! You now have access to the '/business' command, allowing you to start and manage your own business. Whether you want to run a bank, an insurance company, or an export business, the choice is yours!",
         "page2": "-----Starting a Business-----\nTo start a business, use the command: '/business start'. Each business type has a startup fee. Choose wisely, because you can only operate one business at a time. However, you can shut down your business and start a new one whenever you like.",
         "page3": "-----Business Bank Account-----\nEach business has its own bank account, where you can deposit and withdraw money. Depositing is tax-free, but withdrawing money comes with tax. Profits made inside the business stay tax-free until withdrawn.",
         "page4": "-----Export Business-----\nThe cheapest business to start. Here, you'll receive export missions, where they must collect specific items, put them in a chest, and ship them. Once shipped, you receive a payment!",
