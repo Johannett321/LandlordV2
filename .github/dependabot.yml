@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    ignore:
+      # Tied to the Minecraft version the plugin targets, not something to bump casually.
+      - dependency-name: org.spigotmc:spigot-api
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

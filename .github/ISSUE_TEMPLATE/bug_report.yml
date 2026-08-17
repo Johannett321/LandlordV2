@@ -1,0 +1,64 @@
+name: Bug report
+description: Something in the plugin does not work the way it should
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. The server log is usually the most useful part — if
+        something threw an exception, please include the whole stack trace.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what did the plugin do instead of what you expected?
+      placeholder: |
+        I ran /buychunk while looking at the chunk north of mine, and ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start a game with /landlord
+        2. Level up to S1L3
+        3. Run /rent pickaxe
+    validations:
+      required: true
+
+  - type: input
+    id: server
+    attributes:
+      label: Server software and version
+      placeholder: "Paper 1.21.4-232"
+    validations:
+      required: true
+
+  - type: input
+    id: landlord-version
+    attributes:
+      label: Landlord version
+      description: The version in plugin.yml, or the commit you built from.
+      placeholder: "2.0 / commit abc1234"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: setup
+    attributes:
+      label: How are you running it?
+      options:
+        - The bundled Docker dev server (make dev)
+        - My own Paper/Spigot server
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Paste the server log around the problem. This is automatically formatted as code.
+      render: shell

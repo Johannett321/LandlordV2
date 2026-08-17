@@ -7,6 +7,7 @@
 You start with a single 16×16 chunk. Everything else — more land, better tools,
 a business, a cabin — has to be earned, bought, and taxed.
 
+[![Build](https://github.com/Johannett321/LandlordV2/actions/workflows/build.yml/badge.svg)](https://github.com/Johannett321/LandlordV2/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Java 17+](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://adoptium.net/)
 [![Paper / Spigot 1.21](https://img.shields.io/badge/Paper%20%7C%20Spigot-1.21-brightgreen.svg)](https://papermc.io/)
@@ -176,6 +177,8 @@ Most commands are locked until you reach the level that unlocks them.
 * **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — how the codebase is laid out
 * **[docs/WORLD.md](docs/WORLD.md)** — the `lladv` world and its fixed coordinates
 * **[CONTRIBUTING.md](CONTRIBUTING.md)** — how to build, test and submit changes
+* **[SECURITY.md](SECURITY.md)** — reporting exploits and economy bypasses
+* **[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)** — community expectations
 
 ---
 
@@ -183,7 +186,11 @@ Most commands are locked until you reach the level that unlocks them.
 
 Contributions are welcome. Bug reports, translations, balance tweaks and new
 levels or events are all useful. Start with
-[CONTRIBUTING.md](CONTRIBUTING.md).
+[CONTRIBUTING.md](CONTRIBUTING.md), and please follow the
+[Code of Conduct](CODE_OF_CONDUCT.md).
+
+Questions and ideas are welcome in
+[Discussions](https://github.com/Johannett321/LandlordV2/discussions).
 
 ## License
 

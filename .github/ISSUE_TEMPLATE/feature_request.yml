@@ -1,0 +1,40 @@
+name: Feature or balance suggestion
+description: A new mechanic, event, level, or a change to how the game plays
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to see?
+      description: Describe the mechanic or change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it improve the game?
+      description: |
+        Landlord is a balance-sensitive economy game — a change that makes money
+        easier to earn affects taxes, stocks and businesses too. What problem does
+        this solve, and what might it knock off balance?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of the game?
+      options:
+        - Chunks and land
+        - Leveling and progression
+        - Economy, tax or treasury
+        - Stocks
+        - Businesses
+        - Renting
+        - Events (arena, adventure, mystery)
+        - Live dashboard
+        - Translations
+        - Something else
+    validations:
+      required: true
