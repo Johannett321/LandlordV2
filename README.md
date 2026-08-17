@@ -7,7 +7,6 @@
 You start with a single 16×16 chunk. Everything else — more land, better tools,
 a business, a cabin — has to be earned, bought, and taxed.
 
-[![Build](https://github.com/Johannett321/LandlordV2/actions/workflows/build.yml/badge.svg)](https://github.com/Johannett321/LandlordV2/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Java 17+](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://adoptium.net/)
 [![Paper / Spigot 1.21](https://img.shields.io/badge/Paper%20%7C%20Spigot-1.21-brightgreen.svg)](https://papermc.io/)
