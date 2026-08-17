@@ -1,0 +1,759 @@
+{
+  "language": "English",
+  "god": "[The Landlord]",
+  "generalSentenceParts": {
+    "youNeed": "You need ",
+    "description": "Description:",
+    "village": "village",
+    "none": "None",
+    "commands": "COMMANDS",
+    "days": " day(s)",
+    "hours": " hour(s)",
+    "minutes": " minute(s)",
+    "seconds": " second(s)",
+    "perHour": " per hour",
+    "warningChat": "WARNING",
+    "itemDroppedWarning": "An attempt was made to give you an item, but due to insufficient space in your inventory, it had to be dropped on the ground."
+  },
+  "commandResponses": {
+    "errorMessages": {
+      "cmdNotNow": "You cannot execute this command at the moment",
+      "cmdNotUnlocked": "This command has not been unlocked yet",
+      "youAreNotAllowed": "You are not allowed to use this command",
+      "invalidCommandUse": "Invalid use of command",
+      "cannotUseOnYourself": "You cannot use this command on yourself",
+      "notAvailableRN": "Not available at the moment",
+      "cannotFindLanguage": "Cannot find language with code: ",
+      "tooPoorForCommand": "You are too poor for this command",
+      "cmdOnlyInWilderness": "This command can only be used in wilderness",
+      "onlyWithinOwnChunk": "This command can only be used within one of your own chunks",
+      "upgradePlayerInEvent": "A player is currently engaged in an event that must conclude before upgrading can proceed. Please ensure that all players are at home and idle before attempting to reissue the command.",
+      "commandOnlyWhileRenting": "This command should only be used while renting an item"
+    },
+    "successMessages": {
+      "langChangedTo": "The language was changed to ",
+      "onlyEnglish": "Language fallback is working correctly!",
+      "playerAdded": " can now join the game to claim a chunk!"
+    },
+    "neutralMessages": {
+      "noInfo": "There isn't much to say about this command!"
+    }
+  },
+  "info": {
+    "eventAboutToStart": "An event is starting in:",
+    "excursionAnnouncementPrefix": "Citizens! Get ready! You'll be going on an excursion in ",
+    "excursionCountdownPrefix": "The excursion starts in ",
+    "arenaFightAnnouncementPrefix": "Citizens! Get ready! An arena fight will begin in ",
+    "arenaFightCountdownPrefix": "The arena fight starts in ",
+    "devCheatWarning": "WARNING: DEV CHEAT MODE ENABLED!",
+    "serverRestarted": "Server just restarted!",
+    "playersAreSleeping": " player(s) are sleeping",
+    "welcomeHome": "Welcome home",
+    "teleportedBackToEvent": "You have been teleported back to the event",
+    "alphaBuild": "You are currently using an early access version of Landlord V2, which is in its alpha stage. Please bear in mind that you may encounter bugs or other issues that we intend to fix prior to the official release. We highly encourage you to report any bugs you come across.",
+    "prePaybackTax": "Dear ",
+    "midPaybackTax": ", you have paid too much tax. I have deposited ",
+    "postPaybackTax": " back into your account!"
+  },
+  "cheatProtection": {
+    "cheatProtectionOutsideChunk": "You were sent home as it was detected that you were outside your own chunks",
+    "cheatProtectionEnterNether": "Use '/wilderness nether' to enter nether"
+  },
+  "banking": {
+    "governmentBank": "The bank",
+    "currency": "USD",
+    "balance": "Balance",
+    "currentIncomeTax": "Current income tax:",
+    "currentVAT": "Current VAT:",
+    "currentWealthTax": "Current wealth tax:",
+    "currentBalance": "Current balance:",
+    "cannotAfford": "You cannot afford ",
+    "currentPropertyTax": "Current property tax:",
+    "plusTax": " + tax",
+    "justBought": "You just bought ",
+    "youJustPaid": "You just paid ",
+    "forThisCommand": "for this command",
+    "inPropertyTax": " in property tax (number of owned chunks * ",
+    "inTax": " in tax",
+    "inVat": " in VAT",
+    "inWealthTax": " in wealth tax",
+    "forCapturing": "capturing an animal",
+    "inEmissionTax": " in emission tax",
+    "aRouletteTicket": "a roulette ticket",
+    "amountTooLow": "Amount too low: ",
+    "moneyTransferServices": "Money transfer services",
+    "justTransferred": " just transferred ",
+    "toYourAccount": " to your account",
+    "highEndStatus": "You have HIGH END status!",
+    "millionaireEndStatus": "You are a MILLIONAIRE!"
+  },
+  "joinMessages": {
+    "newCitizen": "A new citizen has arrived! Please welcome ",
+    "citizenJoinStart": "A citizen by the name of ",
+    "citizenJoinEnd": " has made his return!",
+    "citizenLeaveStart": "Oh no! A citizen by the name of ",
+    "citizenLeaveEnd": " have left us!",
+    "gameAlreadyRunningJoinMessage": "You are not allowed to join. The game is already running",
+    "gameFull": "Sorry, the game is full"
+  },
+  "chunks": {
+    "chunkInfo": "CHUNK INFO",
+    "chunkPoints": "Chunk points:",
+    "priceOfNextChunk": "Price of next chunk:",
+    "currentlyOwned": "Currently own:",
+    "noChunkPointsLeft": "You don't have any chunk points left",
+    "toPurchaseAChunk": "to purchase a new chunk",
+    "cannotPurchaseThisChunk": "You cannot purchase this chunk",
+    "aChunk": "a chunk",
+    "justBoughtAChunk": " just bought a new chunk!"
+  },
+  "millionaire":{
+    "millionaireTitle": "Millionaire",
+    "supplyCrateTimer": "You have ordered a supply crate. It will be delivered within five minutes!",
+    "supplyCrateSpawned": "Your supply crate is ready! Go open the crate!"
+  },
+  "villagerRent": {
+    "preMessage": "Your villagers just paid their monthly rent. You collected: ",
+    "midMessage1": ". However, you paid electricity, drainage and internet of: ",
+    "midMessage2": ". Your profit was therefore: "
+  },
+  "chunkGuard": {
+    "iWillProtect": "I will protect your chunk sir!",
+    "noLongerProtect": "I will stop protecting your chunk sir!"
+  },
+  "capture": {
+    "infoHeader": "Capture",
+    "animalPrice": "Animal price:",
+    "villagerPrice": "Villager price:",
+    "toCapture": "to capture an animal",
+    "toCaptureVillager": "to capture a villager",
+    "captureGetCloser": "You have to get closer to the animal",
+    "cannotCaptureAnimal": "This animal cannot be captured"
+  },
+  "bonus": {
+    "bonusCollectedAlready": "You have already collected your bonus today",
+    "lostBonus": "Oh no! You've just lost your bonus of ",
+    "justCollectedBonus": "You just collected you daily bonus of "
+  },
+  "home": {
+    "teleportedHome": "You have magically been teleported home!",
+    "onlySetHomeInHomeChunk": "You can only set your home inside a chunk you own",
+    "homeUpdated": "Your home was updated",
+    "obstructedHome": "Your home address is obstructed, please set a new one with '/sethome'"
+  },
+  "trade": {
+    "tradeCommandOnlyInTrade": "The trade location must be set within the trade chunk",
+    "tradeUpdated": "Trade center location updated!",
+    "teleportTrade": "You have magically been teleported to the trading station"
+  },
+  "treasury": {
+    "treasurySentinel": "The Treasury",
+    "treasuryVotingHall": "Treasury Voting Hall",
+    "treasuryWelcome": "Greetings, and welcome to the Treasury voting hall. We need someone to take care of The Treasury Chancellor role",
+    "cannotVoteTwice": "You cannot vote twice",
+    "treasuryResigned": "The Treasury Chancellor has been resigned! A new one must be chosen",
+    "someoneVotedResignation": "A player has voted for resignation of the Treasury Chancellor! Do '/treasury voteresign' if you would like to vote for resignation of the Treasury Chancellor as well",
+    "alreadyApplied": "You have already applied for this role",
+    "appliedForTreasury": "You applied for the treasury role",
+    "alreadyVoted": "You have already voted!",
+    "votedFor": "You voted for ",
+    "cannotFindVoluntary": "Cannot find voluntary player with username: ",
+    "treasuryCannotAffordHaste": "The Treasury cannot afford haste for ",
+    "treasuryCannotAffordWithdrawal": "Treasury cannot afford a withdrawal for ",
+    "treasuryCannotAffordChunkDiscount": "Treasury cannot afford chunk discount for ",
+    "treasuryCannotAffordDonations": "Treasury cannot afford donations for ",
+    "noMoreChunkDiscount": "You have reached maximum chunk discount",
+    "broadcastChunkDiscount": "Citizens! The treasury chancellor have granted a national chunk discount. All chunks are now sold at a discount of ",
+    "broadcastBoughtDonations": "The Treasury has just halved the required items for upgrading to the next level!",
+    "treasuryOrderedWithdrawal": "The Treasury has ordered a withdrawal! You have all received ",
+    "treasuryWithdrawalUnfortunately": ". Unfortunately ",
+    "lostDuringWithdrawal": " was lost during the withdrawal",
+    "treasuryOrderedMysteryChest": "The Treasury has ordered a mystery chest! Available tiers: [BASIC, GOLD, PLATINUM, DIAMOND]. The tier is... (drumroll)",
+    "mysteryChestTier": "Mystery Chest tier: ",
+    "mysteryChestSpawned": "The mystery chest has spawned in trade!",
+    "treasuryDecidingIn": "The Treasury Chancellor will be decided in",
+    "treasuryIsChosen": "A Treasury Chancellor has been chosen",
+    "playerHasBeenChosen": " has been chosen for The Treasury Chancellor role!",
+    "treasuryApplyInfo": "If you want to apply for the role, please type /treasury apply",
+    "treasuryVoteInfo": "If you want to make a vote, please type /treasury vote [username]",
+    "roleDecidingSoon": "The treasury role will be decided in 2 minutes!"
+  },
+  "upgrade": {
+    "upgradeInfo": "UPGRADE INFO",
+    "currentLevel": "Current level: ",
+    "donationsRemaining": "Donations remaining: ",
+    "playersAccepted": "Players accepted: ",
+    "alreadyAccepted": "You have already accepted",
+    "citizens": "Citizens, ",
+    "justAcceptedUp": " just accepted the upgrade!",
+    "cannotForceUpWithoutAllItems": "You cannot force upgrade without all items being collected",
+    "notRequiredForUpgrade": "This item is not required for upgrade",
+    "scoreboardSeason": "Season ",
+    "scoreboardLevel": "Level ",
+    "holdItemInMainHand": "Please hold the item you would like to donate in your main hand"
+  },
+  "visit": {
+    "toVisit": "to visit someone",
+    "waitingForReply": "You are now waiting for ",
+    "toReply": " to reply.",
+    "newVisitRequest": "You have a new visit request from ",
+    "visitReqInstructions": "! Type '/visit [accept | reject]' to answer",
+    "isNowVisiting": " is now visiting you! The visitor paid you ",
+    "asAVisitFee": " as a visit fee",
+    "youAreNowVisiting": "You are now visiting ",
+    "youPaidTheHost": ". You paid the host ",
+    "noVisitRequests": "You have no visit requests",
+    "willNotBeVisiting": " will not be visiting you!",
+    "notAllowedToVisit": "You were not allowed to visit ",
+    "playerNotInChunk": "The player is not within one of your chunks",
+    "playerSentHome": "Player was sent home",
+    "sentHomeByOwner": "You were sent home by the owner",
+    "couldNotFindPlayer": "Could not find the player: "
+  },
+  "playerEvents": {
+    "jail": {
+      "jailTitle": "jail",
+      "youHaveBeenSentToJailBecause": "You have been sent to jail because ",
+      "sentenceTime": " Sentence time: ",
+      "jailReasonTax": "you could not afford to pay your tax!",
+      "jailReasonRent": "you could not afford to pay for your villagers needs!",
+      "jailOutTax": "You're out! Make sure to have enough money next time!",
+      "jailReasonEmissionTax": "you could not afford to pay emission tax while mining coal!",
+      "jailOutReasonEmissionTax": "You're out! Make sure to have enough money next time you're mining!"
+    },
+    "fly": {
+      "flying": "flying",
+      "flyCommand": "FLY COMMAND",
+      "paidForFlying": "flying abilities",
+      "endFlightFirst": "Please do '/fly end' first",
+      "extendingFlight": "extending your flight",
+      "pricePerMin": "Price per minute:",
+      "whoahFlying": "Whoah! You can fly!",
+      "turnOffFlightInstructions": "Do '/fly end' to end your flight",
+      "cannotAffordExtendFlight": "Flying was disabled as you could not afford to extend it",
+      "landBeforeEndFlight": "Please land before you attempt this command!",
+      "flightTurnedOff": "Your flight effect was turned off"
+    },
+    "wilderness": {
+      "title": "wilderness",
+      "price": "Price:",
+      "every": "every ",
+      "toAccessWilderness": "to access wilderness",
+      "welcomeToWild": "Welcome to the wilderness. You have 7 minutes before your ",
+      "expires": " expires!",
+      "toExtendThisJourney": "to extend this journey",
+      "wildernessMine": "wilderness (mine)",
+      "welcomeToWildMine": "Welcome to the mine. You have 45 minutes before your ",
+      "wildernessNether": "wilderness (nether)",
+      "welcomeWildNether": "Welcome to nether. You have 7 minutes before your ",
+      "wildernessExtension": "wilderness (extension)",
+      "extended": "Extended ",
+      "youHave": "You have ",
+      "leftOfWildTime": " left of your wilderness time",
+      "wildEndingIn": "Wilderness will end in "
+    },
+    "mining": {
+      "title": "mining",
+      "heightLimitTooMuch": "That's it. You exceeded the height limit three times! You were therefore sent home!",
+      "mineGetDown": "GET FURTHER DOWN IMMEDIATELY! You're exceeding the height limit! (warning "
+    },
+    "day": {
+      "aMagicSpell": "a magic spell",
+      "playerPaidForSpell": " has paid for a magic spell!"
+    },
+    "lounge": {
+      "title": "lounge",
+      "loungeCommand": "LOUNGE COMMANDS",
+      "whatIsIt": "What is it?",
+      "description": "The lounge is a place where VIP / HIGH END people can relax. There is free entrance, no poor people, free drinks and food",
+      "cooldown": "Sorry, the lounge has a cooldown of 20 minutes after each use",
+      "welcomeToLounge": "Welcome to the lounge. Take a drink, have som snacks and chill!"
+    }
+  },
+  "itemRent": {
+    "rentableItems": "RENTABLE ITEMS",
+    "everyTwoMinutes": " (every 2. minute)",
+    "pleaseHoldMainHand": "Please hold the rented item in your main hand",
+    "cannotRentTwice": "You're already renting this item!'",
+    "rentingA": "renting a ",
+    "stolenItemFound": "A stolen item was found! The item was removed from the container!",
+    "rentedPrefix": "[RENTED] ",
+    "attemptingToStealA": "attempting to steal a ",
+    "theRented": "The rented ",
+    "itemNotFoundInInv": " was not found in your inventory, and you had to pay the full price of the item!",
+    "paidFullPrice": "the full price of the rented ",
+    "gaveBackStart": "You gave back the ",
+    "gaveBackEnd": ", as you could not afford to use it anymore",
+    "renewingRented": "renewing the rented ",
+    "deliveredBackRented": "You delivered back the rented ",
+    "autoEndEnabled": "Autoend enabled! The item will automatically be delivered back once the rent time has expired!",
+    "autoEndDisabled": "Autoend disabled!"
+  },
+  "sellItem": {
+    "itemCannotBeSold": "Item cannot be sold",
+    "cannotSellStock": "You cannot sell this item. If it is a stock, use /stocks sell [stockname]",
+    "item": "Item:",
+    "currentValue": "Current value:",
+    "requiredAmount": "Required amount:",
+    "toSell": " to sell.",
+    "youJustSold": "You just sold ",
+    "for": " for ",
+    "with": " with "
+  },
+  "donate": {
+    "justDonated": " just donated the last ",
+    "youJustDonated": "You just donated ",
+    "onDonation": " just donated ",
+    "toCommunity": " to the community!",
+    "itemDonationsComplete": "Very well! You have completed all the items for this level. Do '/upgrade accept' to proceed to the next level",
+    "townJustUpgraded": "Congratulations! The town was just upgraded to level "
+  },
+  "roulette": {
+    "rouletteBegin": "It's time for a new roulette! Do '/joinroulette' for a chance of winning ",
+    "rouletteEnding30": "The roulette game will soon end. The winner will be announced in 30 seconds!",
+    "rouletteEnding5": "The roulette game is about to end. The winner will be announced in 5 seconds!",
+    "rouletteWinner": "The winner of the roulette game is ",
+    "rouletteNoWinner": "No one won the roulette game!",
+    "rouletteJoinMessage": "You are now added to the game!",
+    "rouletteJoinTwice": "You're in! Again... Don't do that twice...",
+    "justJoinedRoulette": " just joined the roulette!",
+    "noRouletteStart": "There is no game running at the time. Next game will be in ",
+    "noRouletteEnd": " minutes"
+  },
+  "playguide": {
+    "page1": "Welcome to Landlord!\nThis is a unique game mode where you build and expand your own land. Type '/help landlord' for a list of commands.",
+    "page2": "How to Play - Preparations\nOnce the admin starts the game, you have 5 minutes to collect any items you wish to bring into your chunk. The chat will inform you of required items.",
+    "page3": "After 5 minutes, you will be teleported into your 16x16 block chunk. You must make the best use of your space and resources to progress.",
+    "page4": "How to Play - Setting Home\nInside your chunk, use '/sethome' to set a home location. You can teleport to this location anytime using '/home'.",
+    "page5": "How to Play - Leveling\nUse '/upgrade info' to check what items are needed to level up. Donate required items using '/donate'. Each level-up rewards you in different ways.",
+    "page6": "How to Play - Claiming Chunks\nEach level-up grants chunk points, which you can use to expand your territory. To claim a chunk, look at an adjacent chunk and use '/buychunk'. The borders between you and the new chunk will disappear.",
+    "page7": "How to Play - Trading\nTo trade with another player, use '/trade' to teleport to the central trade chunk where all players can build and interact.",
+    "page8": "How to Play - Selling Items\nUse '/sell now' to sell the item in your hand. Check item value with '/sell info'. Prices fluctuate, so selling at the right time is key.",
+    "page9": "Taxes\nYou must pay tax for every chunk you own, everytime you make any money or spend any money. Check your tax using '/bal'.",
+    "page10": "Renting Tools\nSome tools can be rented to help you progress. Use '/rent info' to see available tools. Returning rented tools is required, or heavy fines apply.",
+    "page11": "Seasonal Changes\nEach season and level introduces new features and challenges. Stay updated on new commands and mechanics."
+  },
+  "levelBooks": {
+    "season1": {
+      "level2": {
+        "godSpeak": "Congratulations citizens! I wrote you a short book about this level. Please read the book in your inventory called S1L2",
+        "page1": "Congratulations! You just upgraded your town to level 2. This is big! There's a few things happening each time you level up. This time you unlocked a game called \"roulette\". More on that on the fourth page. In addition to unlocking new features, you also receive chunk points.",
+        "page2": "----Chunk points----\nEach time you level up, you receive a chunk point. With the chunk point, you can purchase a nearby chunk. This allows you to extend your plot. To unlock your second chunk. Stand next to the borders of the chunk you want to unlock, and look into it. Then type the...",
+        "page3": "following command:\n/buychunk now\n\nYou can see information about your chunk points and the price of purchasing a chunk by typing the command:\n/buychunk info\n\nKeep in mind that you have to pay tax for each chunk you own.",
+        "page4": "------Roulette------\nRoulette is a game that runs once an hour. You will be notified in the chat when the game is running. The game functions like a lottery, and allows you to pay for a chance of winning precious items.",
+        "page5": "----Renting tools----\nAnother feature you unlocked, was the ability to rent tools. By typing /rent info, you can see what tools you can rent. The tools will become better as your town levels up. For now it's quite good iron tools. They even have enchantments. Just make sure not to...",
+        "page6": "steal the tools. The tools should be kept in your inventory at all time. If you loose it, you will have to pay... A lot!\n\nWhen done renting the item, hold it in your main hand, and type:\n/rent end"
+      },
+      "level3": {
+        "godSpeak": "Congratzzz! A new level is a new book, read the book in your inventory please",
+        "page1": "Sweet! You've made it to level 3. That means you're rewarded your second chunk point! Just remember that you pay tax for every chunk you own. You don't have to use the chunk point. However, if you decide to use it. Build something clever on it. Something that can make you even more money.",
+        "page2": "--------Pay--------\nYou now have the ability to pay another player. This can be achieved by executing the command\n/pay <username> <amount>\n\n Keep in mind that you pay tax for this as well!",
+        "page3": "-----Treasury-----\nYour town now has an important role: the 'Treasury Chancellor'. This is a powerful position that helps manage the town's economy and financial decisions. While their full abilities are not unlocked yet, this role will be crucial as your town levels up!",
+        "page4": "Other than that, there's not much more to level 3. No more features or anything. Sounds quite boring, doesn't it? Well, the next one will be big. I promise!"
+      },
+      "level4": {
+        "godSpeak": "Congratulations! Please read the book i wrote about this level. I got big news!",
+        "page1": "Oh wow! Your town is rocking level 4. This is amazing! I promised you something big for this town upgrade. I wasn't lying. You unlocked a feature called \"wilderness\". This feature allows you to get out of your town for a short period of time. During that time, you are not restricted by the...",
+        "page2": "size of your own chunk, and can explore the wilderness.",
+        "page3": "---- Wilderness ----\nWilderness allows you to be teleported outside your chunk to the free open world for a short period of time. It is not free however. To see the available commands, do /wilderness"
+      },
+      "level5": {
+        "godSpeak": "Fantastic work! Your town just hit level 5. There's a book in your inventory with all the juicy details!",
+        "page1": "Level 5! Now we're talking. With this upgrade, your town is getting stronger, and you're gaining more control over your world. You've earned another chunk point, meaning you can expand your territory again. But that’s not all! This level introduces a brand-new ability: capturing.",
+        "page2": "-----Capturing-----\nYou can now capture animals and villagers and bring them into your chunk. No more waiting for them to wander in randomly! To capture a creature, stand next to it and type '/capture'."
+      },
+      "level6": {
+        "godSpeak": "Incredible progress! A new level means a new book. Check your inventory for all the details!",
+        "page1": "Level 6 is here, and with it comes two powerful new features that will change how your town operates. First, you now have access to the '/chunkguard' command, which allows crops and plants to grow even when no one is online.",
+        "page2": "----Chunk Guard----\nWith '/chunkguard', your land stays alive even when you log out. Crops will keep growing and nature won’t wait for you to return. Just keep in mind that it comes at a price — 2000 per chunk per hour. Use it wisely!",
+        "page3": "-----Donations-----\nYour town’s treasury chancellor now has access to a command: '/treasury buy donations'. This command will halve the amount of resources needed for your next level-up. If your treasury is looking strong, this might be a worthy investment!"
+      },
+      "level7": {
+        "godSpeak": "You just reached level 7! Check your inventory for an exciting update on what’s new.",
+        "page1": "Your town is getting more connected! With level 7, you’ve unlocked a brand-new ability that makes visiting other players easier than ever before.",
+        "page2": "------Visiting------\nYou can now visit other players' chunks using the command: '/visit <playername>' This will teleport you directly to their chunk — if they accept your request.",
+        "page3": "------Consent------\nOf course, no one wants uninvited guests! The player you want to visit must approve your request before you can teleport to their chunk. This makes trading, collaborating, and checking out other chunks much easier!"
+      },
+      "level8": {
+        "godSpeak": "Another level, another big step for your town! Check your inventory for details on what’s new.",
+        "page1": "Level 8 brings an opportunity: underground mining. If you’ve been struggling to find resources in your chunk, this new command will let you dig deeper — literally!",
+        "page2": "------Mining------\nWith '/wilderness mining', you will be teleported to an underground mining zone where you can strip mine for resources. You’ll have 45 minutes before being teleported back to your chunk. Keep in mind that you must stay below height level 16 at all time.",
+        "page3": "--Chunk Discounts--\nThe Treasury Chancellor now has access to the command '/treasury buy chunkdiscount'. This command permanently reduces the cost of buying chunks for all players. The town must use tax money wisely, but a discount like this can help expand faster!"
+      },
+      "level9": {
+        "godSpeak": "Level 9 has arrived, and with it, new opportunities! Check your inventory for all the details.",
+        "page1": "Your town just unlocked access to the Nether! This dangerous yet resource-rich dimension is now within your reach, giving you access to materials you couldn’t find before.",
+        "page2": "------Nether------\nUsing the command: '/wilderness nether', you will be teleported out of your chunk and into the Nether. Be prepared—the Nether is unforgiving, but the rewards are worth the risk!",
+        "page3": "-----Refunds-----\nThe Treasury Chancellor now has the ability to give money back to the people! With the command '/treasury withdraw', every player will receive 4000 from the town’s tax money. However, there’s a catch! There’s also an extra fee of 10,000"
+      }
+    },
+    "season2": {
+      "level1": {
+        "godSpeak": "A new season has begun! Season 2 is here, bringing fresh challenges and exciting new opportunities. Check your inventory for all the details!",
+        "page1": "Welcome to Season 2! You’ve worked hard to build your town, and don’t worry — you’re not starting over. Your chunk, your progress, and everything you’ve built remains intact. But things are about to get even more interesting!",
+        "page2": "---New Wilderness---\nWith the start of the new season, the '/wilderness world' command now takes you to a brand new spawn location. That means fresh lands, new terrain, and untouched resources waiting to be claimed.",
+        "page3": "----Better Tools----\nThe rental system has been upgraded! From now on, when you rent tools, you’ll be getting diamond tools instead of iron. This will make gathering materials easier and more efficient.",
+        "page4": "-------Events-------\nSeason 2 introduces a new concept: events. These events fall into two categories: excursions and arena fights.",
+        "page5": "----Excursions----\nYou’ll be taken to unique locations full of loot—abandoned towns, hidden caves, and mysterious ruins.",
+        "page6": "----Arena Fights----\n A battle against waves of monsters! These fights will get tougher as the season progresses, so prepare yourself.",
+        "page7": "---Price Changes---\nTimes are changing, and so are the prices. Things are a bit more expensive now, so managing your resources wisely will be more important than ever.",
+        "page8": "---Mystery Chests---\nThe Treasury Chancellor has a powerful new ability! With the command: '/treasury buy mysterychest', A mystery chest will spawn in the trade chunk. These chests come in four tiers: BASIC, GOLD, PLATINUM, and DIAMOND.",
+        "page9": "Season 2 is here, and it’s only going to get more intense from here. With new events, tougher challenges, and better rewards, the adventure is just beginning!"
+      },
+      "level2": {
+        "godSpeak": "The economy is evolving! You now have access to a brand-new way to grow your wealth. Check your inventory for details!",
+        "page1": "Congratulations on reaching Level 2! This upgrade brings a major financial opportunity - the stock market. Now, you can invest your money and watch it grow (or disappear)!",
+        "page2": "-----Stocks-----\nWith the command: '/stocks', you can buy and sell stocks. Stock prices fluctuate over time — some will rise, some will fall, and some might even go bankrupt. Choose wisely! And by the way, unlike your cash holdings, stocks are exempt from wealth tax.",
+        "page3": "The stock market is unpredictable, but those who play it right can become incredibly wealthy. Just remember: with great risk comes great reward!"
+      },
+      "level3": {
+        "godSpeak": "Speed and efficiency are key! Your town just unlocked a powerful way to work faster. Check your inventory for details!",
+        "page1": "Welcome to Level 3! This upgrade brings a new ability to your town’s leadership. The Treasury Chancellor now has access to a powerful buff that can boost everyone's productivity.",
+        "page2": "---Haste Boost---\nWith the command: '/treasury buy haste', every player in the town will receive the Haste effect for 3 minutes, allowing you to mine and gather resources much faster!"
+      },
+      "level4": {
+        "godSpeak": "New gear is now available for rent! Check your inventory for details!",
+        "page1": "You've reached Level 4, and with it comes a new rental option! The '/rent' command has been expanded to include Turtle Shells, allowing you to breathe longer underwater."
+      },
+      "level5": {
+        "godSpeak": "Take to the skies! A new rental option has arrived. Check your inventory for details!",
+        "page1": "You've reached Level 5. You can now rent an Elytra! With the command: '/rent elytra', you can temporarily soar through the skies and explore the world from above."
+      },
+      "level6": {
+        "godSpeak": "Entrepreneurs, it’s your time to shine! Your town just unlocked the ability to start businesses. Check your inventory for details!",
+        "page1": "Welcome to Level 6! You now have access to the '/business' command, allowing you to start and manage your own business. Whether you want to run a bank, an insurance company, or an export business, the choice is yours!",
+        "page2": "-----Starting a Business-----\nTo start a business, use the command: '/business start'. Each business type has a startup fee. Choose wisely, because you can only operate one business at a time. However, you can shut down your business and start a new one whenever you like.",
+        "page3": "-----Business Bank Account-----\nEach business has its own bank account, where you can deposit and withdraw money. Depositing is tax-free, but withdrawing money comes with tax. Profits made inside the business stay tax-free until withdrawn.",
+        "page4": "-----Export Business-----\nThe cheapest business to start. Here, you'll receive export missions, where they must collect specific items, put them in a chest, and ship them. Once shipped, you receive a payment!",
+        "page5": "-----Insurance Business-----\nHere you can create insurance plans and set their monthly price. If priced correctly, customers will subscribe, generating passive income. However, accidents can happen, forcing payouts to cover claims!",
+        "page6": "-----Bank Business-----\nThis is the most expensive business to start. You'll receive loan applications and can choose to approve or reject them. If approved, you'll pay out the loan and earn interest as customers repay. But beware — some loans might default!",
+        "page7": "Becoming a business owner is risky, but it can also be incredibly profitable if managed well. Choose your path wisely and build your fortune!"
+      },
+      "level7": {
+        "godSpeak": "Gravity? That’s old news. Your town just unlocked the ability to fly! Check your inventory for details!",
+        "page1": "Welcome to Level 7! With this upgrade, you now have access to the '/fly' command, allowing you to take to the skies just like in creative mode!"
+      },
+      "level8": {
+        "godSpeak": "Sometimes, progress is its own reward. Check your inventory for details!",
+        "page1": "You've reached Level 8! No new features this time, but that doesn't mean your town isn't growing stronger."
+      },
+      "level9": {
+        "godSpeak": "Tired of the dark? Your town just unlocked the power to control time! Check your inventory for details!",
+        "page1": "You've reached Level 9, and with it comes a powerful new ability — the '/day' command. No more waiting for sunrise. Now, you can instantly turn night into day! It doesn't come for free though. The price? 14990..."
+      }
+    },
+    "season3": {
+      "level1": {
+        "godSpeak": "A new season begins! Something feels... different. Check your inventory for details!",
+        "page1": "Welcome to Season 3! You’ve kept your chunk, your progress, and your hard work. But there’s an energy in the air — a feeling that change is coming."
+      },
+      "level2": {
+        "godSpeak": "Progress marches forward, but what are we marching toward? Check your inventory for details!",
+        "page1": "You’ve reached Level 2! Everything seems normal, yet… something is shifting. The world feels a little different, don’t you think?"
+      },
+      "level3": {
+        "godSpeak": "Have you noticed it? The feeling that something big is on the horizon? Check your inventory for details!",
+        "page1": "Level 3 is here. And by now, you must have sensed it too. The world feels less... confined. As if the walls around us are growing weaker."
+      },
+      "level4": {
+        "godSpeak": "Almost there. Almost time. Can you feel it? Check your inventory for details!",
+        "page1": "Level 4! The whispers of change are no longer whispers. Something is about to happen. Something that will alter everything you know."
+      },
+      "level5": {
+        "godSpeak": "The time has come. Everything is about to change. Check your inventory for details!",
+        "page1": "You did it. Level 5. The moment you’ve been waiting for is here. The world has been holding you back, but not anymore.",
+        "page2": "The borders will fall! The walls that once contained you will be gone. The world is about to open. No more limits. No more restrictions. Go forth and claim it!"
+      }
+    },
+    "endSignature": "\n\n\n\n\n\n\n\n\n\n\n\n# Signature #\n- The Landlord"
+  },
+  "events": {
+    "preparations": {
+      "gameAlreadyRunning": "The game is already running!",
+      "runLandlordConfigCmd": "When everyone has joined, run the command '/landlord config' to find a suitable location to start the game",
+      "youMustConfigFirst": "You must run '/landlord config' before you can run this command",
+      "isNowLookingForLoc": " is now looking for a suitable location for the game. Please be patient!",
+      "pleaseFindLoc": "You are now in spectator mode. Please find a location you would like to start the game",
+      "runLandlordStart": "When you are ready, run '/landlord start'",
+      "welcomeMessage": "Welcome to Landlord, citizens! You'll have 5 minutes till you'll all be locked up in your chunks, spend the time wisely!",
+      "welcomeTitle": "Welcome to ",
+      "preparations": "PREPARATIONS",
+      "prepInFiveMin": "Preparations will start in 5 seconds. Get ready!",
+      "listOfHelpful": "Items you must gather in the preparation to be able to level up: Saplings from oak trees, sugar canes, seeds",
+      "goodLuck": "Good luck, the time is ticking!",
+      "minutesRemaining": "minute(s) remaining till the borders will rise!",
+      "secondsRemaining": "seconds remaining till the borders will rise!",
+      "about0Sec": "about 0 seconds",
+      "secondListOfHelpful": "By the way, sorry. I forgot to mention that you should also remember to get some food, and also sand for making glass. Actually, maybe coal wouldn't be a bad idea either?",
+      "risingBorders": "WARNING: Please stand still! Borders are rising!"
+    },
+    "icyHills": {
+      "welcomeStart": "Greetings and welcome to Frostgarde's mountains! There are some hidden treasures scattered throughout the mountain. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
+    },
+    "solvheim": {
+      "welcomeStart": "Greetings and welcome to Solvheim village! There are some hidden treasures scattered throughout the village. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
+    },
+    "tyrvangr": {
+      "welcomeStart": "Greetings and welcome to Týrvangr! There are some hidden treasures scattered throughout this place. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover something great?"
+    },
+    "MorozvetskiyBereg": {
+      "welcomeStart": "Greetings and welcome to Morozvetskiy Bereg! There are some hidden treasures scattered throughout this place. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover something great?"
+    },
+    "VaelTorrah": {
+      "welcomeStart": "Greetings and welcome to Vael'Torrah! There are some hidden treasures scattered throughout the hills. Find them before your ",
+      "welcomeEnd": " minute excursion ends. Perhaps you'll uncover a valuable book of mending?"
+    },
+    "cakeWorld": {
+      "welcomeStart": "Greetings, intrepid travelers, to the enigmatic realm of CakeWorld! Herein lies a mystery, awaiting your intellect to decipher its enigmatic secrets. Dare you unravel the threads of this baffling enigma that has eluded many before you? Embrace the challenge, and may the mystique of CakeWorld guide you on your quest for answers."
+    },
+    "arenaFight": {
+      "nextWave30Sec": "Good job! Keep it going! Next wave starting in 30 seconds",
+      "firstWave30Sec": "The first wave is starting in 30 seconds! Please sleep in a bed before the battle begins",
+      "wellDoneArena": "Well done! You have completed the ArenaFight!",
+      "hasBegun": " has begun!",
+      "wave_": "Wave "
+    },
+    "excursion": {
+      "getReadyExcursion": "Get ready, an excursion will begin in 5 minutes!",
+      "excursionIn": "The excursion starts in",
+      "excursionEnd": "Unfortunately, your excursion has come to an end. Welcome back home",
+      "excursionEndIn": "Excursion ending in",
+      "eventCancelledServerRestart": "The event was cancelled due to a server restart"
+    },
+    "haste": {
+      "hasteInOneMinute": "An order has placed from the Treasury Chancellor! Everyone shall receive haste in 1 minute.",
+      "lotOfProgress": "Phew! I saw a lot of progress there",
+      "hasteBegin": "Let the haste begin! You have 3 minutes",
+      "effectWillEndIn": "The haste effect will end in"
+    }
+  },
+  "stocks": {
+    "stocksTitle": "STOCKS",
+    "stock": "Stock:",
+    "handValue": "Hand value:",
+    "stocksFor": " stocks for ",
+    "couldNotFindStockWithName": "Could not find stock with name ",
+    "justPaidPlatformFee": "You just paid a platform fee of ",
+    "stocksInvalid": "These stocks are invalid!",
+    "perStock": " per stock",
+    "values1To4Mins": "Values (1, 2, 3, 4) mins:",
+    "values15To60Mins": "Values (15, 30, 45, 60) mins:",
+    "platformFee": "Platform-fee:",
+    "inclPlatform": " (incl. platform fee of 3%)",
+    "andPaid": " and paid ",
+    "inPlatformFee": " in platform fee (3%)",
+    "blockbnb": "A rental service where you can pay to stay for the night. They are known for their small space, as every apartment is only one block.",
+    "cakefarm": "The CakeFarm inc plant seeds in a hope that they one day will grow into a cake. They currently possess thousands of seeds, which they are eagerly waiting to transform into cakes.",
+    "elcarts": "El-carts is a car manufacturer. Their cars require powered rails every three blocks which they call the super-rails network. They are known for sending a minecart to space",
+    "golddiggers": "GoldDiggers is a gold mining company that only hire women for working in their mines. They are known for just walking past all diamonds they find, as they only mine gold.",
+    "minedonalds": "A fast food restaurant for miners who have spent a long day in the deep dark. They are most famous for their 'Creeper Crunch Burgers', 'Ender Fries' and 'Lava Shakes'",
+    "netherexpress": "A business known for a much faster delivery time due to their use of nether portals. As each step in the Nether equaling 16 steps in the Overworld, their delivery times are practically unbeatable."
+  },
+  "webserver": {
+    "players": "Players",
+    "remainingItems": "Remaining items:",
+    "preparationsPageNotAvailable": "This page is not available during preparations"
+  },
+  "playerStatus": {
+    "status": "Player status",
+    "home": "At home",
+    "offline": "Offline",
+    "inJail": "In jail",
+    "inLounge": "In lounge",
+    "mining": "Mining",
+    "inNether": "Exploring nether",
+    "inWild": "Exploring the wild",
+    "inTrade": "Trading",
+    "visiting": "Visiting ",
+    "excursion": "On an excursion",
+    "arena": "Fighting in arena",
+    "mystery": "Solving mysteries",
+    "treasuryVoting": "Voting"
+  },
+  "business": {
+    "name": "Name: ",
+    "bankruptWarning": " just went bankrupt!",
+    "cannotAfford": "Your business cannot afford ",
+    "businessCommands": "Business commands",
+    "deleteConfirmUsage": "Do '/business delete confirm' to delete the business. This cannot be undone",
+    "businessLists": "Businesses",
+    "toStartABusiness": "to start a business",
+    "startingABusiness": "starting a business",
+    "justFoundedANewBusiness": " just founded a new business: ",
+    "ceo": "CEO: ",
+    "newExportJob": "A new export job is available: ",
+    "acceptTheJobBy": ". Accept the job by typing /business accept",
+    "jobRejected": "The job was rejected",
+    "jobAccepted": "The job was accepted",
+    "cannotFindChest": "You must stand in front of the chest",
+    "wrongItemsInChest": "The chest should only contain: ",
+    "justShipped": "You just shipped ",
+    "andGotPaid": " and got paid ",
+    "taxFree": " (taxfree)",
+    "toStartThisBusiness": "to start this business",
+    "registrationFee": "business registration fee",
+    "totalRevenue": "Total revenue: ",
+    "deposit": "You just deposited: ",
+    "withdraw": "You just withdrew: ",
+    "info": "Business info",
+    "deleteSuccess": "The business was deleted and it's balance was paid to your account",
+    "insurance": {
+      "noActivePlans": "No insurances was found",
+      "created": "Created insurance ",
+      "activePlansHeader": "Active insurances",
+      "accidentOccurred": "An accident occured on insurance: ",
+      "paidOut": "Paid Out: ",
+      "summary": " insurance just made ",
+      "andPaid": " and paid registration fee of ",
+      "invalidPrice": "Insurance price invalid. Must be between 100 and 600",
+      "invalidPlan": "Cannot find insurance ",
+      "deleteSuccess": "Deleted insurance ",
+      "customers": "Customers: ",
+      "toCreateANewInsurance": "to create a new insurance"
+    },
+    "bank": {
+      "loanHeader": "Active loans",
+      "loanRequestsHeader": "Loan applications",
+      "amount": "Amount: ",
+      "duration": "Duration: ",
+      "remaining": "Outstanding loan balance: ",
+      "principal": "Principal: ",
+      "interest": "Interest: ",
+      "totalDue": "Total due: ",
+      "preNewLoanRequest": "Received a new loan application from ",
+      "postNewLoanRequest": ". Do '/business application list' for more information",
+      "invalidLoanID": "Invalid loan id",
+      "preLoanRejected": "You rejected the loan to ",
+      "preLoanApproved": "You approved the loan to ",
+      "midLoanApproved": " and paid them ",
+      "midPaidPrincipal": " just paid a loan installment of ",
+      "loanDefaulted": " just defaulted their loan with a remaining balance of ",
+      "midLoanPayOff": " just paid off their loan"
+    }
+  },
+  "hints": {
+    "standardHints": {
+      "1": "You can sell various items for profit. Some of the most valuable ones include: ",
+      "2": "Planning to upgrade your town? You'll need plenty of sugar canes and cobblestone!",
+      "3": "Want to know how many chunks you can claim? Type '/buychunk info' for details.",
+      "4": "Check your current balance, tax, and fortune with '/bal'. Stay on top of your finances!",
+      "5": "Item prices fluctuate throughout the day! Use '/sell info' to track the best time to sell.",
+      "6": "Don't forget your daily bonus! Claim it now with '/claimbonus'.",
+      "7": "Need the game in a different language? Use '/changelang [LANG_CODE]' to switch the language of Landlord.",
+      "8": "Your home is just a command away! Type '/home'... unless something unexpected happens.",
+      "9": "Looking to build something epic or trade with others? Use '/trade' to make deals.",
+      "10": "Found a better location for your home? Set a new one with '/sethome' inside your chunk.",
+      "11": "Earn enough money, and you'll gain VIP status—granting access to the exclusive VIP lounge!",
+      "12": "Each chunk you own is taxed. Use your land wisely to maximize profits!",
+      "13": "Keep an eye on your property tax! Failing to pay might have... unfortunate consequences.",
+      "14": "Cactus farms can be fully automated—and they generate a steady income. A smart investment!",
+      "15": "Leveling up unlocks new commands! Some levels even bring special events—stay ready!",
+      "16": "Focusing on a single resource can be efficient, but diversifying helps you benefit from changing prices.",
+      "17": "Sometimes, it's wiser to store items instead of selling them immediately. Prices change, and excessive wealth can even lead to a wealth tax!",
+      "18": "Landlord supports up to 8 players. Gather your friends and expand your territory!",
+      "19": "Fun fact: The Landlord plugin was created by Johan Svartdal!",
+      "20": "Did you know? The Landlord adventures were built by Johan Svartdal and Ole-Erik Schrumpf!"
+    },
+    "seasonHints": {
+      "season2": {
+        "1": "Season 2 introduces arena battles—prepare to face off against waves of dangerous monsters!",
+        "2": "Exciting adventures await! Join hosted excursions to mysterious and perilous locations this season.",
+        "3": "Something massive is coming in Season 3… Stay alert and be ready for the unexpected!",
+        "4": "A new season brings a new wilderness! Both the Nether and the Overworld have changed. Before venturing out, store your valuables safely in a chest!"
+      },
+      "season3": {
+        "1": "Something huge is about to unfold in Season 3… Reach level 5 to experience it firsthand!"
+      }
+    },
+    "featureSpecificHints":{
+      "wildworld": {
+        "1": "Curious how much time you have left in the wilderness? Type '/wilderness time' to check your remaining adventure time.",
+        "2": "Before entering the wilderness for the first time, store your valuables in a chest. You never know… you might spawn in lava!",
+        "3": "Each season brings a new wilderness! Prepare for a fresh challenge in both the Overworld and the Nether."
+      },
+      "wildnether": {
+        "1": "Good news! Using '/wilderness nether' guarantees you won’t spawn in lava. Stay safe out there!",
+        "2": "Nether portals won’t take you to the Nether… but don’t lose hope. Perhaps another way exists? Keep leveling up and you might find out."
+      },
+      "roulette": {
+        "1": "Want to test your luck? Type '/joinroulette' to check the time left before the next round!",
+        "2": "Every full hour, a game of roulette begins! Join with '/joinroulette' for a chance to win amazing items.",
+        "3": "Some roulette prizes come with powerful enchantments. Will you be lucky enough to get one?"
+      },
+      "rent_basic_tool": {
+        "1": "Tired of mining slowly? Rent a powerful pickaxe with '/rent pickaxe' and watch the diamonds roll in!",
+        "2": "Need wood fast? Use '/rent axe' before chopping your next tree for maximum efficiency.",
+        "3": "Investing in a rented pickaxe can quickly pay off—especially when expanding farms for long-term profit.",
+        "4": "Spotted diamonds? Rent a pickaxe first! Rented pickaxes come with Fortune enchantments for extra rewards."
+      },
+      "visit": {
+        "1": "Explore other players’ lands using '/visit' for a small fee of ",
+        "2": "Having an unwanted guest? Send them packing with '/sendhome [USERNAME]'."
+      },
+      "fly": {
+        "1": "Building just got easier! Use '/fly' to soar through the sky like in creative mode."
+      },
+      "day": {
+        "1": "Tired of rain and darkness? Use '/day' to clear the weather and bring back the sun!"
+      },
+      "stocks": {
+        "1": "Want to get rich? Investing in stocks is one of the best ways! No wealth tax, and prices can soar over time.",
+        "2": "Protect your stocks! Store them in a secure location—your inventory is the worst place. One creeper explosion, and they're gone forever.",
+        "3": "Curious about stock values? Use '/stocks list' to see all available stocks and their current prices.",
+        "4": "Want detailed insights? Type '/stocks info [STOCKNAME]' to check how a stock's value has changed over the last hour.",
+        "5": "Ready to invest? Buy stocks with '/stocks buy [STOCKNAME] [AMOUNT]'. Make smart moves and watch your wealth grow!"
+      },
+      "rent_diamond_tools": {
+        "1": "Diamond tools are now available for rent! Use '/rent info' to check what's up for grabs."
+      },
+      "rent_elytra": {
+        "1": "Time for an adventure? First, go to '/wilderness world', then rent an elytra with '/rent elytra'. Don't forget to bring rockets!"
+      },
+      "wildmining": {
+        "1": "Need ores? '/wilderness mine' gives you 45 minutes of non-stop mining for just ",
+        "2": "Good news! The '/wilderness mine' command ensures you won’t spawn in lava—so dig with confidence!"
+      },
+      "capture": {
+        "1": "Most friendly mobs can be captured. Ever wanted a panda as a pet?",
+        "2": "The '/capture' command captures the nearest animal—choose wisely!",
+        "3": "Have you caught your own pet yet? Try '/capture' and start your collection!"
+      },
+      "pay": {
+        "1": "Need to settle a debt? Use '/pay <username> <amount>' to transfer money easily."
+      },
+      "treasury": {
+        "1": "Think the Treasury Chancellor isn’t doing a good job? Fire them! Use '/treasury voteresign' to vote for a new one.",
+        "2": "The Treasury Chancellor holds incredible power! As you level up, you’ll gradually uncover their full potential.",
+        "haste": {
+          "1": "Need a productivity boost? The Treasury Chancellor can activate 'haste' for all players for three minutes with '/treasury buy haste'."
+        },
+        "donations": {
+          "1": "Short on time? The Treasury Chancellor can halve the remaining required items with '/treasury buy donations'!"
+        },
+        "chunkdiscount": {
+          "1": "Want cheaper land? The Treasury Chancellor can grant a permanent discount on chunk prices for all players with '/treasury buy chunkdiscount'."
+        },
+        "mysterychest": {
+          "1": "Feeling lucky? The Treasury Chancellor can spawn a mystery chest in the trade chunk with '/treasury buy mysterychest'. Take the risk!",
+          "2": "There are four tiers of mystery chests. Will yours hold riches or disappointment? Try '/treasury buy mysterychest' and find out!"
+        },
+        "withdraw": {
+          "1": "The Treasury Chancellor can distribute wealth! By using '/treasury withdraw', every player receives 4000. Time to cash in!"
+        }
+      },
+      "chunkguard":{
+        "1": "With a Chunk Guard, your crops will keep growing—even when you're offline!",
+        "2": "Farming with a Chunk Guard can be highly profitable. More crops, more income!"
+      },
+      "business": {
+        "1": "Starting a business is a great way to generate tax-free income!",
+        "2": "Passive income? Yes, please! A well-managed business can earn you money while you focus on other things.",
+        "3": "Thinking of starting a business? Make sure you have enough capital—unexpected events can happen!"
+      }
+    }
+  }
+}

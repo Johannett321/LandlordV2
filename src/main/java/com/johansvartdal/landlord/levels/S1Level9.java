@@ -1,0 +1,63 @@
+package com.johansvartdal.landlord.levels;
+
+import com.johansvartdal.landlord.Book;
+import com.johansvartdal.landlord.God;
+import com.johansvartdal.landlord.events.LandlordEvent;
+import com.johansvartdal.landlord.LangDict;
+import com.johansvartdal.landlord.Main;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+
+public class S1Level9 extends Level{
+
+    public S1Level9(Main plugin) {
+        super(plugin, 1, 9);
+    }
+
+    @Override
+    public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
+        ArrayList<ItemStack> requiredItems = new ArrayList<>();
+        
+        requiredItems.add(new ItemStack(Material.COBBLESTONE, 300 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.GRANITE, 100 * Main.properties.getNumberOfPlayers()));
+
+        requiredItems.add(new ItemStack(Material.SUGAR_CANE, 240 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.CACTUS, 128 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.KELP, 64 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.MILK_BUCKET, 4 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.COCOA_BEANS, 256 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.WHITE_WOOL, 100 * Main.properties.getNumberOfPlayers()));
+
+        requiredItems.add(new ItemStack(Material.WARPED_WART_BLOCK, 19 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.SHROOMLIGHT, 4 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.WEEPING_VINES, 20 * Main.properties.getNumberOfPlayers()));
+        return requiredItems;
+    }
+
+    @Override
+    public void justUpgraded() {
+        God.speak(LangDict.getString("levelBooks.season1.level9.godSpeak"));
+    }
+
+    @Override
+    public int getRouletteGamePrice() {
+        return 700;
+    }
+
+    @Override
+    public LandlordEvent getEventToStartBeforeLevel() {
+        return null;
+    }
+
+    @Override
+    public Book getBook() {
+        Book book = new Book("S1L9");
+        book.addPage(LangDict.getString("levelBooks.season1.level9.page1"));
+        book.addPage(LangDict.getString("levelBooks.season1.level9.page2"));
+        book.addPage(LangDict.getString("levelBooks.season1.level9.page3"));
+        book.addPage(LangDict.getString("levelBooks.endSignature"));
+        return book;
+    }
+}

@@ -1,0 +1,48 @@
+package com.johansvartdal.landlord.renting;
+
+import com.johansvartdal.landlord.levels.LevelManager;
+import com.johansvartdal.landlord.Main;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemStack;
+
+public class RentableAxe extends RentableItem {
+
+    public RentableAxe(Main plugin) {
+        super(plugin);
+    }
+
+    @Override
+    public String getItemName() {
+        return "axe";
+    }
+
+    @Override
+    public ItemStack craftItem() {
+        // create itemStack
+        ItemStack itemStack = new ItemStack(Material.IRON_AXE);
+        itemStack.addEnchantment(Enchantment.EFFICIENCY, 3);
+
+        if (LevelManager.featureUnlocked("rent_diamond_tools")) {
+            itemStack = new ItemStack(Material.DIAMOND_AXE);
+            itemStack.addEnchantment(Enchantment.EFFICIENCY, 4);
+        }
+        return itemStack;
+    }
+
+    @Override
+    public int getItemRentPrice() {
+        if (LevelManager.featureUnlocked("rent_diamond_tools")) {
+            return 3990;
+        }
+        return 1390;
+    }
+
+    @Override
+    protected int getItemPurchaseFullPrice() {
+        if (LevelManager.featureUnlocked("rent_diamond_tools")) {
+            return 30000;
+        }
+        return 10000;
+    }
+}

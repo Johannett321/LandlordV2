@@ -1,0 +1,192 @@
+package com.johansvartdal.landlord.events;
+
+import com.johansvartdal.landlord.*;
+import com.johansvartdal.landlord.lan.AudioLayer;
+import com.johansvartdal.landlord.lan.LanController;
+import com.johansvartdal.landlord.levels.LevelManager;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+
+public class Preparations extends LandlordEvent {
+
+    private World mainWorld;
+
+    public Preparations(Main plugin) {
+        super(plugin);
+    }
+
+    @Override
+    public void startEvent() {
+        if (Properties.DEV_CHEAT_MODE) {
+            Bukkit.getScheduler().runTaskLater(plugin, this::startPrep, Tools.secToTicks(5));
+            return;
+        }
+
+        // play welcome audio
+        LanController.getLanMusicController().playAudioFile("countdown.wav", AudioLayer.BACKGROUND);
+
+        God.speak(LangDict.getString("events.preparations.prepInFiveMin"));
+        Bukkit.getScheduler().runTaskLater(plugin, this::startPrep, Tools.secToTicks(5));
+    }
+
+    @Override
+    public String getEventType() {
+        return "Preparations";
+    }
+
+    @Override
+    public void resumeEvent() {
+        System.out.println("######################################################################################################");
+        System.out.println("WARNING: SERVER WAS SHUT DOWN DURING PREPARATIONS. THE GAME CANNOT CONTINUE! PLEASE REINSTALL LANDLORD");
+        System.out.println("######################################################################################################");
+        Bukkit.shutdown();
+    }
+
+    public void startPrep() {
+        //teleport everyone to world
+        teleportEveryoneToWorld();
+
+        //change the weather and make sure the time is day
+        changeWeatherGood();
+
+        God.speak(LangDict.getString("events.preparations.welcomeMessage"));
+        new BukkitRunnable() {
+            public void run() {
+                God.speak(LangDict.getString("events.preparations.listOfHelpful"));
+                God.speak(LangDict.getString("events.preparations.goodLuck"));
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(1));
+
+        int timeBeforeNextMessage = 2*60; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                threeMinutesLeft();
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
+    }
+
+    private void changeWeatherGood() {
+        World world = Bukkit.getWorld("world");
+        world.setTime(0);
+        world.setStorm(false);
+    }
+
+    private void teleportEveryoneToWorld() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.teleport(Main.tradeCenter.getLocation());
+            player.setGameMode(GameMode.SURVIVAL);
+        }
+    }
+
+    public void setMainWorld(World mainWorld) {
+        this.mainWorld = mainWorld;
+    }
+
+    private void threeMinutesLeft() {
+        God.speak("3 " + LangDict.getString("events.preparations.minutesRemaining"));
+        God.speak(LangDict.getString("events.preparations.secondListOfHelpful"));
+
+        int timeBeforeNextMessage = 60; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                twoMinutesLeft();
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
+    }
+
+    private void twoMinutesLeft() {
+        int timeBeforeNextMessage = 60; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
+        God.speak("2 " + LangDict.getString("events.preparations.minutesRemaining"));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                oneMinuteLeft();
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
+    }
+
+    private void oneMinuteLeft() {
+        int timeBeforeNextMessage = 30; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
+        God.speak("1 " + LangDict.getString("events.preparations.minutesRemaining"));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                thirtySecondsLeft();
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
+    }
+
+    private void thirtySecondsLeft() {
+        int timeBeforeNextMessage = 15; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
+        God.speak("30 " + LangDict.getString("events.preparations.secondsRemaining"));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                fifteenSecondsLeft();
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
+    }
+
+    private void fifteenSecondsLeft() {
+        int timeBeforeNextMessage = 5; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
+        God.speak("15 " + LangDict.getString("events.preparations.secondsRemaining"));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                tenSecondsLeft();
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
+    }
+
+    private void tenSecondsLeft() {
+        int timeBeforeNextMessage = 5; // three minutes
+        if (Properties.DEV_CHEAT_MODE) timeBeforeNextMessage = 1;
+
+        God.speak("10 " + LangDict.getString("events.preparations.secondsRemaining"));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                countdown(5);
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(timeBeforeNextMessage));
+    }
+
+    private void countdown(int count) {
+        if (count <= 0) {
+            God.speak(LangDict.getString("events.preparations.risingBorders"));
+            riseBorders();
+            return;
+        }
+
+        God.speak(String.valueOf(count));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                countdown(count-1);
+            }
+        }.runTaskLater(plugin, Tools.secToTicks(1));
+    }
+
+    private void riseBorders() {
+        new GameJustStarted(plugin, mainWorld).doStart();
+        LevelManager.startLevel1();
+        endEvent(false);
+    }
+}

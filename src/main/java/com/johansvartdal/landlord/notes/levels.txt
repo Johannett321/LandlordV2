@@ -1,0 +1,94 @@
+Level 1:
+/home
+[] Preparation event
+
+Level 2:
+/Roulette
+/Renting
+
+Level 3:
+/treasury
+/pay
+
+Level 4:
+/wilderness world
+
+Level 5
+/capture
+
+Level 6:
+////Donations
+/chunkguard
+
+Level 7
+/visit
+
+Level 8:
+////ChunkDiscount
+/wilderness mining
+
+Level 9:
+////Withdraw
+/wilderness nether
+
+----------------------------- Season 2 -----------------------------
+
+Level 1:
+<new wilderness spawn location>
+[ VALLEY VILLAGE ADVENTURE: Solvheim Village ]
+////MysteryChest
+/rent diamond
+[ TAX PAYBACK ]
+
+Level 2:
+[ ARENA FIGHT 1 ]
+/stocks
+
+Level 3:
+[ ICY VILLAGE ADVENTURE: Frostgarde ]
+////Haste
+
+Level 4:
+[ ARENA FIGHT 2 ]
+/rent turtle shell
+/shop
+
+Level 5:
+[ MESA HILLSIDE ADVENTURE: Vael'Torrah ]
+/rent elytra
+
+Level 6:
+[ ARENA FIGHT 3 ]
+/business
+
+Level 7:
+[ LUMBER MINE FOREST ADVENTURE: Týrvangr ]
+/fly
+
+Level 8:
+[ ARENA FIGHT 4 ]
+
+Level 9:
+[ SIBIRIAN COTTAGE WINTER ADVENTURE: Morozvetskiy Bereg ]
+/day && /night
+/cabin
+
+----------------------------- Season 3 -----------------------------
+
+Level 1:
+????[ KILL DRAGON EVENT ]
+
+Level 2:
+
+
+Level 3:
+????[ KILL WITHER EVENT ]
+
+Level 4:
+????[ KILL WARDEN EVENT ]
+
+Level 5:
+????[ WALLS FALL EVENT ]
+
+
+--------------------------- IKKE TILDELT ---------------------------

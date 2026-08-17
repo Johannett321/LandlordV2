@@ -1,0 +1,108 @@
+name: Landlord
+version: 2.0
+author: Johan Svartdal
+main: com.johansvartdal.landlord.Main
+description: Landlord plugin.
+api-version: '1.20'
+
+# Bank.setupEconomy() hard-fails without Vault, so make Bukkit enforce the load order
+# rather than relying on alphabetical luck. Essentials supplies the Vault economy
+# provider and Multiverse-Core loads the lladv world; both must be up before us.
+depend: [Vault]
+softdepend: [Essentials, Multiverse-Core]
+
+commands:
+  buychunk:
+    description: Buy a chunk
+    usage: /buychunk [ now | info ]
+  day:
+    description: removes rain, and forces day
+  night:
+    description: removes rain, and forces night
+  bal:
+    description: See information about balance and tax.
+    usage: /bal
+  claimbonus:
+    description: Claim your daily reward
+    usage: /claimbonus
+  landlord:
+    description: Start the game
+    usage: /landlord <command>
+  trade:
+    description: Teleports to the trading area
+    usage: /trade
+  settrade:
+    description: Defines a new trade location
+    usage: /settrade
+  home:
+    description: Teleports you home
+    usage: /home
+  sethome:
+    description: Defines a new home
+    usage: /sethome
+  donate:
+    description: Donates the current item in hand to the Landlord
+    usage: /donate
+  upgrade:
+    description: Progress to the next level
+    usage: /upgrade [ info | accept ]
+  sell:
+    description: Sells the item in your hand
+    usage: /sell [ all | info ]
+  stocks:
+    description: Buy or sell stocks
+    usage: /stocks [ buy | sell | info ]
+  joinroulette:
+    description: Joins the roulette
+    usage: /joinroulette
+  capture:
+    description: Capture an animal close to you
+    usage: /capture
+  wilderness:
+    description: Teleport to wilderness
+    usage: /wilderness
+  visit:
+    description: Visit another player
+    usage: /visit [ accept | reject | [username] ]
+  sendhome:
+    description: Send a player home from your chunk
+    usage: /sendhome [username]
+  adm:
+    description: Admin commands
+    usage: /adm
+  treasury:
+    description: Commands regarding treasury
+    usage: /treasury
+  changelang:
+    description: Change the language of Landlord
+    usage: /changelang [ language_code ]
+  fly:
+    description: Enables you to fly
+    usage: /fly [ now | end | info ]
+  rent:
+    description: Allows you to rent something
+    usage: /rent [ name ]
+  lounge:
+    description: If you are a VIP, you already know what this command is about.
+    usage: /lounge [ now | info ]
+  status:
+    description: See the current status of all players
+    usage: /status
+  pay:
+    description: Pay another player
+    usage: /pay <username> <amount>
+  chunkguard:
+    description: Keeps your chunks loaded for you
+    usage: /chunkguard
+  business:
+    description: Execute business commands
+    usage: /business <command>
+  millionaire:
+    description: Execute millionaire commands
+    usage: /millionaire <command>
+  cabin:
+    description: Execute cabin commands
+    usage: /cabin <command>
+  shop:
+    description: Execute shop commands
+    usage: /shop <command>

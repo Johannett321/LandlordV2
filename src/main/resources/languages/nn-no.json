@@ -1,0 +1,742 @@
+{
+    "language": "Norsk (Nynorsk)",
+    "god": "[The Landlord]",
+    "generalSentenceParts": {
+        "youNeed": "Du treng ",
+        "description": "Skildring:",
+        "village": "landsby",
+        "none": "Ingen",
+        "commands": "KOMMANDOAR",
+        "days": " dag(er)",
+        "hours": " time(r)",
+        "minutes": " minutt(er)",
+        "seconds": " sekund(er)",
+        "perHour": " per time",
+        "warningChat": "ADVARSEL",
+        "itemDroppedWarning": "Ein gjenstand blei forsøkt gjeve til deg, men på grunn av utilstrekkeleg plass i inventaret ditt, måtte det kastast på bakken."
+    },
+    "commandResponses": {
+        "errorMessages": {
+            "cmdNotNow": "Du kan ikkje utføre denne kommandoen no",
+            "cmdNotUnlocked": "Denne kommandoen er ikkje låst opp enno",
+            "youAreNotAllowed": "Du har ikkje tilgang til denne kommandoen",
+            "invalidCommandUse": "Ugyldig bruk av kommando",
+            "cannotUseOnYourself": "Du kan ikkje bruke denne kommandoen på deg sjølv",
+            "notAvailableRN": "Ikkje tilgjengeleg akkurat no",
+            "cannotFindLanguage": "Finn ikkje språk med språkkode: ",
+            "tooPoorForCommand": "Du er dessverre ikkje rik nok for denne kommandoen",
+            "cmdOnlyInWilderness": "Denne kommandoen kan berre brukast i villmarka",
+            "onlyWithinOwnChunk": "Denne kommandoen kan berre brukast innanfor ein av dine eigne chunks",
+            "upgradePlayerInEvent": "Ein spelar er for tida i eit event som må avsluttast før oppgraderinga kan fortsetje. Sørg for at alle spelarane er heime og uvirksame før du prøver å gi kommandoen på nytt.",
+            "commandOnlyWhileRenting": "Denne kommandoen kan berre brukast medan du leiger noko"
+        },
+        "successMessages": {
+            "langChangedTo": "Språket vart endra til ",
+            "playerAdded": " kan nå bli med i spelet!"
+        },
+        "neutralMessages": {
+            "noInfo": "Det er ikkje mykje å seie om denne kommandoen!"
+        }
+    },
+    "info": {
+        "eventAboutToStart": "Eit event starter om:",
+        "excursionAnnouncementPrefix": "Borgarar! Gjer dykk klare! Ei utflukt startar om ",
+        "excursionCountdownPrefix": "Utflukta startar om ",
+        "arenaFightAnnouncementPrefix": "Borgarar! Gjer dykk klare! Ei arenakamp startar om ",
+        "arenaFightCountdownPrefix": "Arenakampen startar om ",
+        "devCheatWarning": "ÅTVARING: DEV-CHEAT MODUS AKTIVERT!",
+        "serverRestarted": "Serveren vart nyleg restarta!",
+        "playersAreSleeping": " spelar(ar) søv",
+        "welcomeHome": "Velkommen heim",
+        "teleportedBackToEvent": "Du er blitt teleportert tilbake til eventet",
+        "alphaBuild": "Du brukar no ein tidleg tilgangsversjon av Landlord V2, som er i alfastadiet. Ver venleg å ha i tankane at du kan støyta på feil eller andre problem som vi har til hensikt å fikse før den offisielle lanseringa. Vi oppfordrar deg sterkt til å rapportere eventuelle feil du kjem over."
+    },
+    "cheatProtection": {
+        "cheatProtectionOutsideChunk": "Du blei sendt heim fordi det blei oppdaga at du var utanfor dine eigne chunks",
+        "cheatProtectionEnterNether": "Bruk '/wilderness nether' for å kome deg til nether"
+    },
+    "banking": {
+        "governmentBank": "Statskassen",
+        "currency": "kr",
+        "balance": "Saldo",
+        "currentIncomeTax": "Noverande inntektsskatt:",
+        "currentVAT": "Noverande MVA:",
+        "currentWealthTax": "Noverande formuesskatt:",
+        "currentBalance": "Noverande saldo:",
+        "cannotAfford": "Du har ikkje råd til ",
+        "currentPropertyTax": "Gjeldande eigedomsskatt:",
+        "plusTax": " + skatt",
+        "justBought": "Du kjøpte nettopp ",
+        "youJustPaid": "Du betalte nettopp ",
+        "forThisCommand": "for denne kommandoen",
+        "inPropertyTax": " i eigedomsskatt (antal eigde chunks * ",
+        "inTax": " i skatt",
+        "inVat": " MVA",
+        "inWealthTax": " i formuesskatt",
+        "forCapturing": "for å fange eit dyr",
+        "inEmissionTax": " i miljøskatt",
+        "aRouletteTicket": "ein roulette-billett",
+        "amountTooLow": "Beløpet er for lågt: ",
+        "moneyTransferServices": "Tenester for pengeoverføring",
+        "justTransferred": " overførte nettopp ",
+        "toYourAccount": " til kontoen din",
+        "highEndStatus": "Du har HIGH END-status!"
+    },
+    "joinMessages": {
+        "newCitizen": "Ein ny borgar har kome! Gi ein varm velkomst til ",
+        "citizenJoinStart": "Ein borgar ved namn ",
+        "citizenJoinEnd": " har komme tilbake!",
+        "citizenLeaveStart": "Ånei! Ein borgar med namn ",
+        "citizenLeaveEnd": " har nyleg forlate oss!",
+        "gameAlreadyRunningJoinMessage": "Du kan ikkje bli med. Spelet er allereie i gang",
+        "gameFull": "Beklagar, maks antall spelarar er nådd"
+    },
+    "chunks": {
+        "chunkInfo": "CHUNK INFORMASJON",
+        "chunkPoints": "Chunk-poeng:",
+        "priceOfNextChunk": "Pris på neste chunk:",
+        "currentlyOwned": "Du eier:",
+        "noChunkPointsLeft": "Du har ikkje fleire chunk-poeng att",
+        "toPurchaseAChunk": "for å kjøpe ein ny chunk",
+        "cannotPurchaseThisChunk": "Du kan ikkje kjøpe denne chunken",
+        "aChunk": "ein chunk",
+        "justBoughtAChunk": " kjøpte akkurat ein ny chunk!"
+    },
+    "chunkGuard": {
+        "iWillProtect": "Eg vil verne om chunken din, sir!",
+        "noLongerProtect": "Eg vil slutte å verne om chunken din, sir!"
+    },
+    "capture": {
+        "infoHeader": "Capture",
+        "animalPrice": "Pris for dyr:",
+        "villagerPrice": "Pris for villager:",
+        "toCapture": "for å fange eit dyr",
+        "toCaptureVillager": "for å fange ein villager",
+        "captureGetCloser": "Du må kome nærare dyret",
+        "cannotCaptureAnimal": "Dette dyret kan ikkje bli fanga"
+    },
+    "bonus": {
+        "bonusCollectedAlready": "Du har allereie samla inn bonusen din i dag",
+        "lostBonus": "Å nei! Du mista nettopp bonusen din på ",
+        "justCollectedBonus": "Du samla nettopp inn den daglege bonusen på "
+    },
+    "home": {
+        "teleportedHome": "Du har på magisk vis blitt teleportert heim!",
+        "onlySetHomeInHomeChunk": "Du kan berre setje heime-posisjonen din i ein chunk du eig",
+        "homeUpdated": "Heime-posisjonen din vart oppdatert!",
+        "obstructedHome": "Heimeadressa di er blokkert av eit objekt, vennligst sett ei ny med '/sethome'."
+    },
+    "trade": {
+        "tradeCommandOnlyInTrade": "Trade-posisjonen må vere innanfor trade-chunken",
+        "tradeUpdated": "Trade-posisjonen vart oppdatert!",
+        "teleportTrade": "Du vart på magisk vis teleportert til trade"
+    },
+    "treasury": {
+        "treasurySentinel": "Statsforvaltaren",
+        "treasuryVotingHall": "Statsforvaltinga si Stemmehall",
+        "treasuryWelcome": "Ver helsa, og velkommen til Statsforvaltinga si Stemmehall. Vi treng nokon til å utøve Statsforvaltar-rolla",
+        "cannotVoteTwice": "Du kan ikkje stemme to gonger",
+        "treasuryResigned": "Statsforvaltaren har trekt seg! Ein ny må veljast",
+        "someoneVotedResignation": "Ein spelar har stemt for at Statsforvaltaren trer av! Kjør kommandoen '/treasury voteresign' viss du òg vil stemme for det same",
+        "alreadyApplied": "Du har allereie søkt om denne rolla",
+        "appliedForTreasury": "Du søkte om statsforvaltar-rolla",
+        "alreadyVoted": "Du har allereie stemt!",
+        "votedFor": "Du stemte for ",
+        "cannotFindVoluntary": "Kan ikkje finne frivillig spelar med brukarnamn: ",
+        "treasuryCannotAffordHaste": "Statskassa har ikkje råd til haste for ",
+        "treasuryCannotAffordWithdrawal": "Statskassa har ikkje råd til eit uttak. Det kostar ",
+        "treasuryCannotAffordChunkDiscount": "Statkassa har ikkje råd til chunk-rabatt for ",
+        "treasuryCannotAffordDonations": "Statkassa har ikkje råd til donasjonar for ",
+        "noMoreChunkDiscount": "Du har nådd maks chunk-rabatt",
+        "broadcastChunkDiscount": "Borgarar! Statskanslaren har gitt ein nasjonal chunk-rabatt. Alle chunks blir no selde med ein rabatt på ",
+        "broadcastBoughtDonations": "Statkassa har nettopp halvert mengda nødvendige gjenstandar for oppgradering til neste nivå!",
+        "treasuryOrderedWithdrawal": "Statsforvaltaren har beordra eit uttak! De har alle motteke ",
+        "treasuryWithdrawalUnfortunately": ". Dessverre gjekk ",
+        "lostDuringWithdrawal": " tapt under uttaket",
+        "treasuryOrderedMysteryChest": "Statkassa har bestilt ei mysterie­kiste! Tilgjengelege nivå: [BASIC, GOLD, PLATINUM, DIAMOND]. Nivået er... (trommevirvel)",
+        "mysteryChestTier": "Mysterie­kiste nivå: ",
+        "mysteryChestSpawned": "Mysterie­kista har dukka opp i handelen!",
+        "treasuryDecidingIn": "Statsforvaltaren vil bli bestemt om",
+        "treasuryIsChosen": "Ein statsforvaltar er vald",
+        "playerHasBeenChosen": " er vald for statsforvaltar-rolla!",
+        "treasuryApplyInfo": "Viss du vil søkje om rolla, vennleg skriv '/treasury apply'",
+        "treasuryVoteInfo": "Hvis du vil avgi en stemme, vennligst skriv '/treasury vote [brukernavn]'",
+        "roleDecidingSoon": "Rollen vil snart bli bestemt!"
+    },
+    "upgrade": {
+        "upgradeInfo": "OPPGRADERINGSINFO",
+        "currentLevel": "Noverande level: ",
+        "donationsRemaining": "Gjenståande donasjonar: ",
+        "playersAccepted": "Spelarar som har akseptert: ",
+        "alreadyAccepted": "Du har allereie akseptert",
+        "citizens": "Borgarar, ",
+        "justAcceptedUp": " aksepterte nettopp oppgraderinga!",
+        "cannotForceUpWithoutAllItems": "Du kan ikkje tvinge oppgradering utan at alle gjenstandane er samla",
+        "notRequiredForUpgrade": "Denne gjenstanden er ikkje nødvendig for oppgradering",
+        "scoreboardSeason": "Sesong ",
+        "scoreboardLevel": "Level ",
+        "holdItemInMainHand": "Ver så snill og hald gjenstanden du vil donere i hovudhanda di"
+    },
+    "visit": {
+        "toVisit": "for å besøke nokon",
+        "waitingForReply": "Du ventar no på at ",
+        "toReply": " svarar.",
+        "newVisitRequest": "Du har ein ny besøksførespurnad frå ",
+        "visitReqInstructions": "! Skriv '/visit [accept | reject]' for å svare",
+        "isNowVisiting": " er no på besøk hjå deg! Besøkjande betalte deg ",
+        "asAVisitFee": " i besøksavgift",
+        "youAreNowVisiting": "Du besøker no ",
+        "youPaidTheHost": ". Du betalte verten ",
+        "noVisitRequests": "Du har ingen besøksførespurnadar",
+        "willNotBeVisiting": " kjem ikkje til å besøke deg!",
+        "notAllowedToVisit": "Du fekk ikkje lov til å besøke ",
+        "playerNotInChunk": "Spelaren er ikkje innanfor ein av dine chunks",
+        "playerSentHome": "Spelaren blei sendt heim",
+        "sentHomeByOwner": "Du blei sendt heim av verten",
+        "couldNotFindPlayer": "Kunne ikkje finne spelaren: "
+    },
+    "playerEvents": {
+        "jail": {
+            "jailTitle": "fengsel",
+            "youHaveBeenSentToJailBecause": "Du er blitt sendt til fengsel fordi ",
+            "sentenceTime": " Straffelengda: ",
+            "jailReasonTax": "du ikkje hadde råd til å betale skatten din!",
+            "jailOutTax": "Du er ute! Pass på å ha nok pengar neste gong!",
+            "jailReasonEmissionTax": "du ikkje hadde råd til å betale miljøskatten medan du utvinna kol!",
+            "jailOutReasonEmissionTax": "Du er ute! Pass på å ha nok pengar neste gong du utvinn mineraler!"
+        },
+        "fly": {
+            "flying": "flyeffekten",
+            "flyCommand": "FLY KOMMANDOER",
+            "paidForFlying": "fly-engeinkaper",
+            "endFlightFirst": "Skriv '/fly end' først",
+            "extendingFlight": "å utvida flyeffekten",
+            "pricePerMin": "Pris per minutt:",
+            "whoahFlying": "WOW! Du kan flyga jo!",
+            "turnOffFlightInstructions": "Køyr '/fly end' for å avslutta flyturen",
+            "cannotAffordExtendFlight": "Du vart nøydd til å landa, då du ikkje hadde råd til å flyga meir",
+            "landBeforeEndFlight": "Vennlegast land før du skriv denne kommandoen!",
+            "flightTurnedOff": "Flyeffekten vart skrudd av"
+        },
+        "wilderness": {
+            "title": "eit eventyr",
+            "price": "Pris:",
+            "every": "kvart ",
+            "toAccessWilderness": "for å dra på eventyr",
+            "welcomeToWild": "Velkommen til villmarka. Du har 7 minutt før dine ",
+            "expires": " går ut!",
+            "toExtendThisJourney": "for å forlenge eventyret",
+            "wildernessMine": "eit gruveeventyr",
+            "welcomeToWildMine": "Velkommen til gruva. Du har 45 minutt før dine ",
+            "wildernessNether": "eit nethereventyr",
+            "welcomeWildNether": "Velkommen til nether. Du har 7 minutt før dine ",
+            "wildernessExtension": "utviding av eventyr",
+            "extended": "Forlenga ",
+            "youHave": "Du har ",
+            "leftOfWildTime": " att av ditt eventyr",
+            "wildEndingIn": "Ditt villmarkseventyr avsluttast om "
+        },
+        "mining": {
+            "title": "gruve-eventyret",
+            "heightLimitTooMuch": "Det held! Du overskred høgdegrensen tre gonger! Du blei difor sendt heim!",
+            "mineGetDown": "KOM DEG NED UMIDDELBART! Du overskrid høgdegrensa! (åtvaring "
+        },
+        "day": {
+            "aMagicSpell": "svart magi",
+            "playerPaidForSpell": " har betalt for svart magi!"
+        },
+        "lounge": {
+            "title": "lounge",
+            "loungeCommand": "LOUNGE KOMMANDOAR",
+            "whatIsIt": "Kva er det?",
+            "description": "Loungen er eit sted der VIP / HIGH END-personar kan slappe av. Det er gratis inngang, ingen fattige menneske, gratis drikke og mat",
+            "cooldown": "Beklager, loungen har ei cooldown på 20 minutt etter kvar bruk",
+            "welcomeToLounge": "Velkommen til loungen. Ta ein drink, et litt snacks og slapp av!"
+        }
+    },
+    "itemRent": {
+        "rentableItems": "LEIE-MENY",
+        "everyTwoMinutes": " (kvart 2. minutt)",
+        "pleaseHoldMainHand": "Vennlegast hald den leigde tingen i handa",
+        "cannotRentTwice": "Du leiger allereie denne tingen!",
+        "rentingA": "å leiga ein ",
+        "stolenItemFound": "Ein stolen gjenstand vart funnen! Den vart fjerna frå behaldaren",
+        "rentedPrefix": "[LEID] ",
+        "attemptingToStealA": "du prøvde å stela ein ",
+        "theRented": "Klarte ikkje å finna ein ",
+        "itemNotFoundInInv": " i din inventory, og du vart nøydd til å betala erstatning!",
+        "paidFullPrice": "erstatning av ein leid ",
+        "gaveBackStart": "Du gav tilbake ein leid ",
+        "gaveBackEnd": ", fordi du ikkje hadde råd til å bruka den meir",
+        "renewingRented": "fornying av ein leid ",
+        "deliveredBackRented": "Du leverte tilbake ein leid ",
+        "autoEndEnabled": "Autoavslutning aktivert! Gjenstanden blir automatisk levert tilbake når leigetida har gått ut!",
+        "autoEndDisabled": "Autoavslutning deaktivert!"
+    },
+    "sellItem": {
+        "itemCannotBeSold": "Gjenstanden kan ikkje seljast",
+        "cannotSellStock": "Du kan ikkje selje denne gjenstanden. Om det er ein aksje, bruk '/stocks sell [stockname]'",
+        "item": "Gjenstand:",
+        "currentValue": "Noverande verdi:",
+        "requiredAmount": "For tal:",
+        "toSell": " for å selje.",
+        "youJustSold": "Du har nettopp selt ",
+        "for": " for ",
+        "with": " med "
+    },
+    "donate": {
+        "justDonated": " har nettopp donert dei siste ",
+        "youJustDonated": "Du donerte nettop ",
+        "onDonation": " donerte nettop ",
+        "toCommunity": " til samfunnet!",
+        "itemDonationsComplete": "Svært bra! Du har fullført alle gjenstandane for dette nivået. Køyr '/upgrade accept' for å gå vidare til neste nivå",
+        "townJustUpgraded": "Gratulerer! Byen blei nettopp oppgradert til nivå "
+    },
+    "roulette": {
+        "rouletteBegin": "Det er tid for ein ny roulette! Køyr '/joinroulette' for ein sjanse til å vinne ",
+        "rouletteEnding30": "Rouletten vil snart avsluttast. Vinnaren blir kunngjort om 30 sekund!",
+        "rouletteEnding5": "Rouletten er i ferd med å avsluttast. Vinnaren blir kunngjort om 5 sekund!",
+        "rouletteWinner": "Vinnaren av rouletten er ",
+        "rouletteNoWinner": "Ingen vann rouletten!",
+        "rouletteJoinMessage": "Du er no lagt til i rouletten!",
+        "rouletteJoinTwice": "Du er med! Igjen ... Ikkje gjer det der to ganger ...",
+        "justJoinedRoulette": " har nettopp blitt med i rouletten!",
+        "noRouletteStart": "Det er ingen spel som går for augneblinken. Neste roulette vil vere om ",
+        "noRouletteEnd": " minutt"
+    },
+    "playguide": {
+        "page1": "Velkomen til Landlord! Dette er ein unik spelmodus der du byggjer og utvidar ditt eige landområde. Skriv '/help landlord' for ei liste over kommandoar.",
+        "page2": "Korleis spele - Førebuingar\nNår admin startar spelet, har du 5 minutt til å samle alle gjenstandane du vil ta med inn i din chunk. Chatten vil informere deg om nødvendige gjenstandar.",
+        "page3": "Etter 5 minutt vert du teleportert inn i din 16x16 blokk store chunk. Du må nytte plassen og ressursane dine på best mogleg måte for å utvikle deg.",
+        "page4": "Korleis spele - Setje heim\nInne i din chunk kan du bruke '/sethome' for å setje ein heimstad. Du kan teleportere til denne staden når som helst ved å bruke '/home'.",
+        "page5": "Korleis spele - Oppgradering\nBruk '/upgrade info' for å sjå kva gjenstandar du treng for å oppgradere. Donér nødvendige gjenstandar ved å bruke '/donate'. Kvar oppgradering gjev deg ulike belønningar.",
+        "page6": "Korleis spele - Krav på chunks\nKvar oppgradering gjev deg chunk-poeng, som du kan bruke til å utvide territoriet ditt. For å krevje ein chunk, sjå mot ein tilstøytande chunk og bruk '/buychunk'. Grensene mellom din noverande og den nye chunken vil forsvinne.",
+        "page7": "Korleis spele - Handel\nFor å handle med ein annan spelar, bruk '/trade' for å teleportere til den sentrale handels-chunken der alle spelarar kan byggje og samhandle.",
+        "page8": "Korleis spele - Selje gjenstandar\nBruk '/sell now' for å selje gjenstanden i handa di. Sjekk verdien av gjenstanden med '/sell info'. Prisane endrar seg over tid, så å selje på rett tidspunkt er viktig.",
+        "page9": "Skatt\nDu må betale skatt for kvar chunk du eig, kvar gong du tener eller brukar pengar. Sjekk skatten din ved å bruke '/bal'.",
+        "page10": "Leige verktøy\nNokre verktøy kan leigast for å hjelpe deg med framgangen. Bruk '/rent info' for å sjå kva verktøy som er tilgjengelege. Det er obligatorisk å returnere leigde verktøy, elles vert du ilagd store bøter.",
+        "page11": "Sesongbaserte endringar\nKvar sesong og nivå introduserer nye funksjonar og utfordringar. Hald deg oppdatert på nye kommandoar og mekanikkar."
+    },
+    "levelBooks": {
+        "season1": {
+            "level2": {
+                "godSpeak": "Gratulerer, borgarar! Eg har skrive ei kort bok om dette nivået til dykk. Les boka i inventaret dykkar kalla S1L2.",
+                "page1": "Gratulerer! Du har nettopp oppgradert byen din til nivå 2. Dette er stort! Nokre ting skjer kvar gong du går opp eit nivå. Denne gongen har du låst opp eit spel kalla \"rulett\". Meir om det på fjerde sida. I tillegg til å låse opp nye funksjonar, får du også chunk-poeng.",
+                "page2": "----Chunk-poeng----\nKvar gong du går opp eit nivå, får du eit chunk-poeng. Med chunk-poenget kan du kjøpe ein nærliggande chunk. Dette gjer at du kan utvide tomta di. For å låse opp din andre chunk, still deg ved grensa til chunken du vil låse opp, og sjå inn i han. Skriv deretter...",
+                "page3": "denne kommandoen:\n/buychunk now\n\nDu kan sjå informasjon om chunk-poenga dine og prisen på ein chunk ved å skrive kommandoen:\n/buychunk info\n\nHugs at du må betale skatt for kvar chunk du eig.",
+                "page4": "------Rulett------\nRulett er eit spel som køyrer éin gong i timen. Du vil få eit varsel i chatten når spelet startar. Spelet fungerer som eit lotteri og lar deg betale for ein sjanse til å vinne verdifulle gjenstandar.",
+                "page5": "----Leige verktøy----\nEin annan funksjon du har låst opp, er moglegheita til å leige verktøy. Ved å skrive /rent info, kan du sjå kva verktøy du kan leige. Verktøya blir betre etter kvart som byen din går opp i nivå. For no er det ganske gode jernverktøy. Dei har til og med fortryllingar. Berre pass på at du ikkje...",
+                "page6": "stel verktøya. Dei skal haldast i inventaret ditt til ei kvar tid. Viss du mistar dei, må du betale... Mykje!\n\nNår du er ferdig med å leige gjenstanden, hald han i hovudhanda di og skriv:\n/rent end"
+            },
+            "level3": {
+                "godSpeak": "Gratisszz! Eit nytt nivå betyr ei ny bok, les boka i inventaret ditt.",
+                "page1": "Supert! Du har nådd nivå 3. Det betyr at du blir belønna med ditt andre chunk-poeng! Hugs at du må betale skatt for kvar chunk du eig. Du treng ikkje bruke chunk-poenget, men viss du bestemmer deg for det, bygg noko smart på det. Noko som kan tene deg endå meir pengar.",
+                "page2": "------Betaling------\nDu har no moglegheita til å betale ein annan spelar. Dette kan gjerast ved å skrive kommandoen:\n/pay <brukarnamn> <beløp>\n\n Hugs at du betaler skatt for dette òg!",
+                "page3": "---Skattkammer---\nByen din har no fått ein viktig posisjon: 'Skattkammerkanslar'. Dette er ei mektig rolle som hjelper til med å styre økonomien og finansielle avgjerder i byen. Sjølv om ikkje alle eigenskapane er tilgjengelege enno, vil denne rolla bli avgjerande etter kvart som byen din veks!",
+                "page4": "Bortsett frå det, er det ikkje så mykje meir på nivå 3. Ingen nye funksjonar eller noko. Høyrest ganske kjedeleg ut, gjer det ikkje? Vel, det neste nivået blir stort. Eg lovar!"
+            },
+            "level4": {
+                "godSpeak": "Gratulerer! Les boka eg skreiv om dette nivået. Eg har store nyheiter!",
+                "page1": "Oj, wow! Byen din har nådd nivå 4. Dette er fantastisk! Eg lova deg noko stort for denne byoppgraderinga. Eg løyg ikkje. Du har låst opp ein funksjon som heiter «villmark». Denne funksjonen lar deg kome deg ut av byen din for ein kort periode. I denne tida er du ikkje avgrensa av...",
+                "page2": "storleiken på din eigen tomt, og kan utforske villmarka.",
+                "page3": "---- Villmark ----\nVillmarka lar deg bli teleportert utanfor tomta di til den frie, opne verda for ein kort periode. Det er likevel ikkje gratis. For å sjå dei tilgjengelege kommandoane, skriv /wilderness"
+            },
+            "level5": {
+                "godSpeak": "Fantastisk jobb! Byen din har nettopp nådd nivå 5. Det ligg ei bok i inventaret ditt med alle dei spennande detaljane!",
+                "page1": "Nivå 5! No snakkar vi. Med denne oppgraderinga blir byen din sterkare, og du får meir kontroll over verda di. Du har tjent eit nytt tomtpoeng, som betyr at du kan utvide territoriet ditt igjen. Men det er ikkje alt! Dette nivået introduserer ei heilt ny evne: fangst.",
+                "page2": "-----Fangst-----\nDu kan no fange dyr og landsbyfolk og ta dei med inn på tomta di. Du treng ikkje lenger vente på at dei skal vandre inn tilfeldig! For å fange eit vesen, stå ved sida av det og skriv '/capture'."
+            },
+            "level6": {
+                "godSpeak": "Utruleg framgang! Eit nytt nivå betyr ei ny bok. Sjekk inventaret ditt for alle detaljane!",
+                "page1": "Nivå 6 er her, og med det kjem to kraftige nye funksjonar som vil endre korleis byen din fungerer. Først har du no tilgang til kommandoen '/chunkguard', som gjer at avlingar og planter kan vokse sjølv når ingen er pålogga.",
+                "page2": "----Tomtvakt----\nMed '/chunkguard' held landet ditt seg levande sjølv når du loggar ut. Avlingar vil fortsetje å vokse, og naturen ventar ikkje på at du skal kome tilbake. Berre ha i tankane at det kostar — 2000 per tomt per time. Bruk det med omtanke!",
+                "page3": "-----Donasjonar-----\nSkattekanslaren i byen din har no tilgang til ein kommando: '/treasury buy donations'. Denne kommandoen halverer mengda ressursar som trengs for neste nivåoppgradering. Dersom skattkammeret ditt ser sterkt ut, kan dette vere ein verdifull investering!"
+            },
+            "level7": {
+                "godSpeak": "Du har nettopp nådd nivå 7! Sjekk inventaret ditt for ei spennande oppdatering om kva som er nytt.",
+                "page1": "Byen din blir meir tilkopla! Med nivå 7 har du låst opp ein heilt ny eigenskap som gjer det enklare enn nokon gong å besøke andre spelarar.",
+                "page2": "------Besøking------\nDu kan no besøke andre spelarar sine chunks ved å bruke kommandoen: '/visit <spelarnamn>'. Dette vil teleportere deg direkte til chunken deira — viss dei godtek førespurnaden din.",
+                "page3": "------Samtykke------\nIngen vil ha uinviterte gjestar! Spelaren du vil besøke, må godkjenne førespurnaden din før du kan teleportere til chunken deira. Dette gjer handel, samarbeid og utforsking av andre chunks mykje lettare!"
+            },
+            "level8": {
+                "godSpeak": "Eit nytt nivå, eit nytt stort steg for byen din! Sjekk inventaret ditt for detaljar om kva som er nytt.",
+                "page1": "Nivå 8 gir deg ei ny moglegheit: underjordisk gruvedrift. Viss du har streva med å finne ressursar i chunken din, vil denne nye kommandoen la deg grave djupare – bokstaveleg talt!",
+                "page2": "------Gruvedrift------\nMed kommandoen '/wilderness mining' vil du bli teleportert til ein underjordisk gruveplass der du kan drive gruvedrift etter ressursar. Du vil ha 45 minutt før du blir teleportert tilbake til chunken din. Hugs at du må halde deg under høgdenivå 16 til ei kvar tid.",
+                "page3": "--Chunk-rabattar--\nSkattkammerkanslaren har no tilgang til kommandoen '/treasury buy chunkdiscount'. Denne kommandoen reduserer permanent kostnaden for å kjøpe chunks for alle spelarar. Byen må bruke skattepengane klokt, men ein rabatt som denne kan hjelpe med å utvide byen raskare!"
+            },
+            "level9": {
+                "godSpeak": "Nivå 9 er her, og med det nye moglegheiter! Sjekk inventaret ditt for alle detaljane.",
+                "page1": "Byen din har nettopp fått tilgang til Nether! Denne farlege, men ressursrike dimensjonen er no innan rekkevidde, noko som gir deg tilgang til materialar du ikkje kunne finne før.",
+                "page2": "------Nether------\nVed å bruke kommandoen '/wilderness nether' vil du bli teleportert ut av chunken din og inn i Nether. Ver førebudd—Nether er nådelaus, men belønningane er verdt risikoen!",
+                "page3": "-----Refusjonar-----\nSkattkammerkanslaren har no moglegheita til å gi pengar tilbake til folket! Med kommandoen '/treasury withdraw' vil kvar spelar få 4000 frå byens skattepengar. Men det er ein hake! Det kjem også ei ekstra avgift på 10 000."
+            }
+        },
+        "season2": {
+            "level1": {
+                "godSpeak": "Ein ny sesong har starta! Sesong 2 er her, og han bringer med seg ferske utfordringar og spennande nye moglegheiter. Sjekk inventaret ditt for alle detaljane!",
+                "page1": "Velkomen til Sesong 2! Du har jobba hardt for å bygge byen din, og fortvil ikkje — du startar ikkje på nytt. Tomta di, framgangen din og alt du har bygd, står fortsatt. Men no blir det endå meir spennande!",
+                "page2": "---Ny Villmark---\nMed starten på den nye sesongen tek kommandoen '/wilderness world' deg no til ein heilt ny startplass. Det betyr ferske landområde, nytt terreng og urørte ressursar som ventar på å bli kravde.",
+                "page3": "----Betre Verktøy----\nUtleiesystemet har blitt oppgradert! Frå no av får du diamantverktøy i staden for jern når du leiger verktøy. Dette vil gjere det enklare og meir effektivt å samle materialar.",
+                "page4": "-------Hendingar-------\nSesong 2 introduserer eit nytt konsept: hendingar. Desse hendingane fell inn i to kategoriar: utflukter og arenakampar.",
+                "page5": "----Utflukter----\nDu blir teken med til unike stader fulle av bytte — frå forlatne byar, skjulte grottar og mystiske ruinar.",
+                "page6": "----Arenakampar----\nEin kamp mot bølgjer av monster! Desse kampane blir tøffare etter kvart som sesongen går, so prepp deg godt.",
+                "page7": "---Prisendringar---\nTidene endrar seg, og det gjer prisane òg. Ting er litt dyrare no, so det blir viktigare enn nokon gong å styre ressursane dine med omtanke.",
+                "page8": "---Mysteriekister---\nSkattekanslaren har fått ei kraftig ny evne! Med kommandoen: '/treasury buy mysterychest', vil ei mysteriekiste dukke opp i handelstomta. Desse kistene kjem i fire nivå: GRUNNLEGGJANDE, GULL, PLATINA og DIAMANT.",
+                "page9": "Sesong 2 er her, og det blir berre meir intenst framover. Med nye hendingar, tøffare utfordringar og betre beløningar har eventyret så vidt begynt!"
+            },
+            "level2": {
+                "godSpeak": "Økonomien utviklar seg! Du har no tilgang til ein heilt ny måte å auke rikdommen din på. Sjekk inventaret ditt for detaljar!",
+                "page1": "Gratulerer med å nå nivå 2! Denne oppgraderinga gir deg ein stor økonomisk moglegheit — aksjemarknaden. No kan du investere pengane dine og sjå dei vokse (eller forsvinne)!",
+                "page2": "-----Aksjar-----\nMed kommandoen: '/stocks', kan du kjøpe og selje aksjar. Aksjeprisane svingar over tid — nokre stig, nokre fell, og nokre kan til og med gå konkurs. Velg med omtanke! Og forresten, i motsetnad til kontantane dine, er aksjar fritatt for formuesskatt.",
+                "page3": "Aksjemarknaden er uforutsigbar, men dei som spelar rett, kan bli utruleg rike. Berre hugs: med stor risiko kjem stor beløning!"
+            },
+            "level3": {
+                "godSpeak": "Fart og effektivitet er nøkkelen! Byen din har nettopp låst opp ein kraftig måte å jobbe raskare på. Sjekk inventaret ditt for detaljar!",
+                "page1": "Velkomen til nivå 3! Denne oppgraderinga gir ei ny evne til leiarskapet i byen din. Skattekanslaren har no tilgang til ein kraftig fordel som kan auke produktiviteten til alle.",
+                "page2": "---Fartshøgjar---\nMed kommandoen: '/treasury buy haste', vil alle spelarar i byen få Fart-effekten i 3 minutt, noko som lar deg grave og samle ressursar mykje raskare!"
+            },
+            "level4": {
+                "godSpeak": "Nytt utstyr er no tilgjengeleg for leige! Sjekk inventaret ditt for detaljar!",
+                "page1": "Du har nådd nivå 4, og med det kjem ein ny leigemoglegheit! Kommandoen '/rent' er utvida til å inkludere skilpaddeskal, som lar deg puste lenger under vatn."
+            },
+            "level5": {
+                "godSpeak": "Ta til skyene! Ein ny leigemoglegheit har komt. Sjekk inventaret ditt for detaljar!",
+                "page1": "Du har nådd nivå 5. No kan du leige ein Elytra! Med kommandoen: '/rent elytra', kan du midlertidig sveve gjennom skyene og utforske verda frå høgda."
+            },
+            "level6": {
+                "godSpeak": "Gründerar, no er det di tid til å skinne! Byen din har nettopp låst opp moglegheita til å starte bedrifter. Sjekk inventaret ditt for detaljar!",
+                "page1": "Velkomen til nivå 6! Du har no tilgang til '/business' kommandoen, som lar deg starte og styre din eigen bedrift. Antigen du vil drive ein bank, eit forsikringsselskap eller ein eksportbedrift, er valet ditt!",
+                "page2": "-----Starte ein Bedrift-----\nFor å starte ein bedrift, bruk kommandoen: '/business start'. Kvar bedriftstype har ein oppstartskostnad. Velg med omtanke, for du kan berre drive éin bedrift om gongen. Du kan likevel leggje ned bedrifta di og starte ein ny når du vil.",
+                "page3": "-----Bedriftsbankkonto-----\nKvar bedrift har sin eigen bankkonto, der du kan setje inn og ta ut pengar. Innskot er skattefrie, men uttak kjem med skatt. Profitt laga i bedrifta forblir skattefri til han blir teken ut.",
+                "page4": "-----Eksportbedrift-----\nDen billegaste bedrifta å starte. Her får du eksportoppdrag der du må samle spesifikke ting, putte dei i ei kiste og sende dei av garde. Når dei er sendt, får du ein betaling!",
+                "page5": "-----Forsikringsbedrift-----\nHer kan du lage forsikringsplanar og setje den månedlege prisen deira. Om prisen er rett, vil kundar abonnere, og du får passiv inntekt. Men uhell kan skje, og då må du betale ut for å dekke krava!",
+                "page6": "-----Bankbedrift-----\nDette er den dyraste bedrifta å starte. Du får lånesøknader og kan velje å godkjenne eller avvise dei. Om du godkjenner, betalar du ut lånet og tener renter når kundane betalar tilbake. Men pass på — nokre lån kan mislighaldast!",
+                "page7": "Å bli bedriftseigar er risikabelt, men det kan òg vere utruleg lønsamt om det blir styrt godt. Vel vegen din med omtanke og bygg formuen din!"
+            },
+            "level7": {
+                "godSpeak": "Tyngdekraft? Det er gammalt nytt. Byen din har nettopp låst opp evna til å fly! Sjekk inventaret ditt for detaljar!",
+                "page1": "Velkomen til nivå 7! Med denne oppgraderinga får du no tilgang til kommandoen '/fly', som lar deg sveve i lufta akkurat som i kreativ modus!"
+            },
+            "level8": {
+                "godSpeak": "Av og til er framgang si eiga belønning. Sjekk inventaret ditt for detaljar!",
+                "page1": "Du har nådd nivå 8! Ingen nye funksjonar denne gongen, men det betyr ikkje at byen din ikkje blir sterkare."
+            },
+            "level9": {
+                "godSpeak": "Lei av mørket? Byen din har nettopp låst opp krafta til å kontrollere tida! Sjekk inventaret ditt for detaljar!",
+                "page1": "Du har nådd nivå 9, og med det kjem ei kraftig ny evne — kommandoen '/day'. Ikkje meir venting på soloppgang. No kan du straks gjere natt om til dag! Men det kjem ikkje gratis. Prisen? 14 990..."
+            }
+        },
+        "season3": {
+            "level1": {
+                "godSpeak": "Ein ny sesong startar! Noko kjennest... annleis. Sjekk inventaret ditt for detaljar!",
+                "page1": "Velkomen til Sesong 3! Du har beholdt tomta di, framgangen din og det harde arbeidet ditt. Men det er ei energi i lufta — ei kjensle av at endring er på veg."
+            },
+            "level2": {
+                "godSpeak": "Framgangen går vidare, men kva er det vi går mot? Sjekk inventaret ditt for detaljar!",
+                "page1": "Du har nådd nivå 2! Alt verkar normalt, men likevel… noko er i endring. Verda kjennest litt annleis, synest du ikkje?"
+            },
+            "level3": {
+                "godSpeak": "Har du lagt merke til det? Kjensla av at noko stort er i emning? Sjekk inventaret ditt for detaljar!",
+                "page1": "Nivå 3 er her. Og no må du òg ha merka det. Verda kjennest mindre... innestengd. Som om veggene rundt oss blir svakare."
+            },
+            "level4": {
+                "godSpeak": "Nesten der. Nesten tid. Kan du kjenne det? Sjekk inventaret ditt for detaljar!",
+                "page1": "Nivå 4! Viskingane om endring er ikkje lenger berre viskingar. Noko er i ferd med å skje. Noko som vil endre alt du kjenner til."
+            },
+            "level5": {
+                "godSpeak": "Tida er komen. Alt er i ferd med å endre seg. Sjekk inventaret ditt for detaljar!",
+                "page1": "Du klarte det. Nivå 5. Augneblinken du har venta på, er her. Verda har halde deg tilbake, men ikkje lenger.",
+                "page2": "Grensene vil falle! Murane som ein gong heldt deg inne, vil bli borte. Verda er i ferd med å opne seg. Ingen fleire grenser. Ingen fleire restriksjonar. Gå ut og gjer krav på ho!"
+            }
+        },
+        "endSignature": "\n\n\n\n\n\n\n\n\n\n\n\n# Signatur #\n- The Landlord"
+    },
+    "events": {
+        "preparations": {
+            "gameAlreadyRunning": "Spelet er allereie i gang!",
+            "runLandlordConfigCmd": "Når alle har blitt med, køyr kommandoen '/landlord config' for å finne eit passande stad å starte spelet",
+            "youMustConfigFirst": "Du må køyre '/landlord config' før du kan køyre denne kommandoen",
+            "isNowLookingForLoc": " leitar no etter eit passande stad for spelet. Ver tolmodig!",
+            "pleaseFindLoc": "Du er no i spectator-modus. Ver venleg og finn eit sted du ønskjer å starte spelet",
+            "runLandlordStart": "Når du er klar, køyr '/landlord start'",
+            "welcomeMessage": "Velkommen til Landlord, borgarar! De har 5 minutt før de alle blir låst inne i deira chunks, bruk tida klokt!",
+            "welcomeTitle": "Velkommen til ",
+            "preparations": "FØREBUINGAR",
+            "prepInFiveMin": "Førebuingar vil starte om 5 sekund. Gjer deg klar!",
+            "listOfHelpful": "Gjenstandar de må samla i førebuinga for å kunne kome til neste nivå: Frø til trær, sukkerrør, hvetefrø",
+            "goodLuck": "Lykke til, tida startar no!",
+            "minutesRemaining": "minutt(er) igjen før veggane hevast!",
+            "secondsRemaining": "sekund igjen før veggane hevast!",
+            "about0Sec": "omtrent 0 sekunder",
+            "secondListOfHelpful": "Forresten, unnskyld. Eg gløymde å nemne at du også bør hugse å skaffe nokre mat og også sand for å lage glas. Faktisk, kanskje kol heller ikkje er ein dårleg idé?",
+            "risingBorders": "ADVARSEL: Stå stille! Veggane hevast!"
+        },
+        "icyHills": {
+            "welcomeStart": "Vær helsa, og velkommen til Frostgardes fjellene! Det er nokre skjulte skattar spreidd over heile fjellet. Finn dei før din ",
+            "welcomeEnd": " minuttars utflukt er over. Kanskje du avdekkjer ein verdifull bok med mending?"
+        },
+        "solvheim": {
+            "welcomeStart": "Vær helsa, og velkommen til Solvheim landsby! Det er nokre skjulte skattar spreidd over heile landsbyen. Finn dei før din ",
+            "welcomeEnd": " minuttars utflukt er over. Kanskje du avdekkjer ein verdifull bok med mending?"
+        },
+        "tyrvangr": {
+            "welcomeStart": "Vær helsa, og velkommen til Týrvangr! Det er nokre skjulte skattar spreidd over heile området. Finn dei før din ",
+            "welcomeEnd": " minuttars utflukt er over. Kanskje du avdekkjer nokre kult?"
+        },
+        "MorozvetskiyBereg": {
+            "welcomeStart": "Vær helsa, og velkommen til Morozvetskiy Bereg! Det er nokre skjulte skattar spreidd over heile området. Finn dei før din ",
+            "welcomeEnd": " minuttars utflukt er over. Kanskje du avdekkjer nokre kult?"
+        },
+        "VaelTorrah": {
+            "welcomeStart": "Vær helsa, og velkommen til Vael'Torrah! Det er nokre skjulte skattar spreidd over heile landsbyen. Finn dei før din ",
+            "welcomeEnd": " minuttars utflukt er over. Kanskje du avdekkjer ein verdifull bok med mending?"
+        },
+        "cakeWorld": {
+            "welcomeStart": "Vær helsa, modige reisande, til det gåtefulle riket CakeWorld! Her ligg eit mysterium og ventar på din intelligens til å avdekke dets gåtefulle hemmelegheiter. Torer du nøste opp trådane i dette forbløffande mysteriet som mange før deg har forsøkt? Ta utfordringa, og må mystikken til CakeWorld leie deg på søken etter svar."
+        },
+        "arenaFight": {
+            "nextWave30Sec": "Bra jobba! Hald fram sånn! Neste bølge startar om 30 sekund",
+            "firstWave30Sec": "Den første bølgen startar om 30 sekund! Sov i ei seng før kampen byrjar",
+            "wellDoneArena": "Bra gjort! Du har fullført ein Arenakamp!",
+            "hasBegun": " har begynt!",
+            "wave_": "Bølge "
+        },
+        "excursion": {
+            "getReadyExcursion": "Gjer deg klar, ein utflukt vil byrje om 5 minutt!",
+            "excursionIn": "Utflukten startar om",
+            "excursionEnd": "Dessverre har utflukten kome til ein slutt. Velkommen tilbake heim",
+            "excursionEndIn": "Utflukten sluttar om",
+            "eventCancelledServerRestart": "Eventet blei avbroten på grunn av ein serveromstart"
+        },
+        "haste": {
+            "hasteInOneMinute": "Ein ordre er plassert frå statsforvaltaren! Alle skal motta haste om 1 minutt.",
+            "lotOfProgress": "Phew! Det var mykje framgang på kort tid",
+            "hasteBegin": "La haste byrje! De har 3 minutt",
+            "effectWillEndIn": "Haste-effekten vil slutte om"
+        }
+    },
+    "stocks": {
+        "stocksTitle": "Aksjar",
+        "stock": "Aksje:",
+        "stocksFor": " aksjar for ",
+        "couldNotFindStockWithName": "Kunne ikkje finne aksje med namn ",
+        "justPaidPlatformFee": "Du betalte nettopp ei plattformavgift på ",
+        "stocksInvalid": "Desse aksjane er ugyldige!",
+        "perStock": " per aksje",
+        "values1To4Mins": "Verdiar (1, 2, 3, 4) min:",
+        "values15To60Mins": "Verdiar (15, 30, 45, 60) min:",
+        "platformFee": "Plattformavgift:",
+        "inclPlatform": " (Inkl. plattformavgift på 3%)",
+        "andPaid": " og betalte ",
+        "inPlatformFee": " i plattformavgift (3%)",
+        "blockbnb": "Ein utleigeteneste der du kan betale for å overnatta. Dei er kjende for sine små plassar, ettersom kvar leilegheit er berre ein block stor.",
+        "cakefarm": "CakeFarm inc plantar frø i håp om at dei ein dag vil vekse til ein kake. Dei har for tida tusenvis av frø, som dei ivrig ventar på å forvandle til kaker.",
+        "elcarts": "El-carts er ein bilprodusent. Bilane deira krev elektrifiserte skinner kvar tredje blokk, som dei kallar super-skinnenettverket. Dei er kjende for å ha sendt ei minecart til verdsrommet",
+        "golddiggers": "GoldDiggers er eit gullgruveselskap som berre tilset kvinner for å jobbe i gruvene deira. Dei er kjende for å berre gå forbi alle diamantar dei finn, sidan dei berre treng gull.",
+        "minedonalds": "Ein hurtigmatrestaurant for gruvearbeidarar som har tilbrakt ein lang dag i det djupaste mørkret. Dei er mest kjende for deira 'Creeper Crunch Burgarar', 'Ender Pommes Frites' og 'Lava Shakes'",
+        "netherexpress": "Ei bedrift kjend for mykje raskare leveringstid på grunn av deira bruk av nether-portalane. Med kvart steg i Nether tilsvarar 16 steg i Overworld, er leveringstidene deira praktisk talt uslåelige."
+    },
+    "webserver": {
+        "players": "Spelarar",
+        "remainingItems": "Gjenståande gjenstander:",
+        "preparationsPageNotAvailable": "Denne sida er ikkje tilgjengeleg under førebuingar"
+    },
+    "playerStatus": {
+        "status": "Spelar status",
+        "home": "Heime",
+        "offline": "Fråkopla",
+        "inJail": "I fengsel",
+        "inLounge": "I loungen",
+        "mining": "Gravar",
+        "inNether": "Utforskar nether",
+        "inWild": "Utforskar villmarka",
+        "inTrade": "Trader",
+        "visiting": "På besøk hos ",
+        "excursion": "På ein utflukt",
+        "arena": "Kjempar i arenaen",
+        "mystery": "Løyser mysterium",
+        "treasuryVoting": "Røystar"
+    },
+    "business": {
+        "name": "Namn: ",
+        "bankruptWarning": " gjekk nettopp konkurs!",
+        "cannotAfford": "Bedrifta di har ikkje råd til ",
+        "businessCommands": "Forretningskommandoar",
+        "deleteConfirmUsage": "Skriv '/business delete confirm' for å slette bedrifta. Dette kan ikkje angrast",
+        "businessLists": "Bedrifter",
+        "toStartABusiness": "for å starte ei bedrift",
+        "startingABusiness": "startar ei bedrift",
+        "justFoundedANewBusiness": " har nettopp starta ei ny bedrift: ",
+        "ceo": "CEO: ",
+        "newExportJob": "Ein ny eksportjobb er tilgjengeleg: ",
+        "acceptTheJobBy": ". Godta jobben ved å skrive /business accept",
+        "jobRejected": "Jobben vart avvist",
+        "jobAccepted": "Jobben vart akseptert",
+        "cannotFindChest": "Du må stå framfor kista",
+        "wrongItemsInChest": "Kista skal berre innehalde: ",
+        "justShipped": "Du har nettopp sendt ",
+        "andGotPaid": " og fekk betalt ",
+        "taxFree": " (skattefritt)",
+        "toStartThisBusiness": "for å starte denne bedrifta",
+        "registrationFee": "registreringsavgift for bedrift",
+        "totalRevenue": "Total omsetnad: ",
+        "deposit": "Du har nettopp sett inn: ",
+        "withdraw": "Du har nettopp teke ut: ",
+        "info": "Bedriftsinformasjon",
+        "deleteSuccess": "Bedrifta vart sletta, og saldoen vart overført til kontoen din",
+        "insurance": {
+            "noActivePlans": "Ingen forsikringar vart funne",
+            "created": "Oppretta forsikring ",
+            "activePlansHeader": "Aktive forsikringar",
+            "accidentOccurred": "Ei ulukke skjedde på forsikringa: ",
+            "paidOut": "Utbetalt: ",
+            "summary": " forsikring genererte nettopp ",
+            "andPaid": " og betalte registreringsavgift på ",
+            "invalidPrice": "Ugyldig forsikringspris. Må vere mellom 100 og 600",
+            "invalidPlan": "Kan ikkje finne forsikring ",
+            "deleteSuccess": "Sletta forsikring ",
+            "customers": "Kundar: ",
+            "toCreateANewInsurance": "for å opprette ei ny forsikring"
+        },
+        "bank": {
+            "loanHeader": "Aktive lån",
+            "loanRequestsHeader": "Lånesøknader",
+            "amount": "Beløp: ",
+            "duration": "Varigheit: ",
+            "remaining": "Uteståande lånesaldo: ",
+            "principal": "Avdrag: ",
+            "interest": "Renter: ",
+            "totalDue": "Total skuld: ",
+            "preNewLoanRequest": "Mottok ei ny lånesøknad frå ",
+            "postNewLoanRequest": ". Skriv '/business application list' for meir informasjon",
+            "invalidLoanID": "Ugyldig låne-ID",
+            "preLoanRejected": "Du avslo lånet til ",
+            "preLoanApproved": "Du godkjende lånet til ",
+            "midLoanApproved": " og betalte dei ",
+            "midPaidPrincipal": " betalte nettopp eit låneavdrag på ",
+            "loanDefaulted": " mislighaldt nettopp lånet sitt med ein gjenværande saldo på ",
+            "midLoanPayOff": " betalte nettopp ned lånet sitt"
+        }
+    },
+    "hints":{
+        "standardHints": {
+            "1": "Du kan selje ulike gjenstandar for forteneste. Nokre av dei mest verdifulle inkluderer:",
+            "2": "Planlegg du å oppgradere byen din? Du treng mykje sugar canes og cobblestone!",
+            "3": "Vil du vite kor mange chunks du kan eige? Skriv '/buychunk info' for detaljar.",
+            "4": "Sjekk din noverande saldo, skatt og formue med '/bal'. Hald oversikt over økonomien din!",
+            "5": "Prisar på gjenstandar varierer gjennom dagen! Bruk '/sell info' for å finne det beste tidspunktet å selje.",
+            "6": "Ikkje gløym din daglege bonus! Hent den no med '/claimbonus'.",
+            "7": "Treng du spelet på eit anna språk? Bruk '/changelang [LANG_CODE]' for å bytte språk i Landlord.",
+            "8": "Heimen din er berre ein kommando unna! Skriv '/home'... med mindre noko uventa skjer.",
+            "9": "Vil du bygge noko episk eller handle med andre? Bruk '/trade' for å gjere avtalar.",
+            "10": "Funne ein betre plassering for heimen din? Set eit nytt heim med '/sethome' inne i din chunk.",
+            "11": "Tjen nok pengar, og du får VIP-status—som gir tilgang til den eksklusive VIP-loungen!",
+            "12": "Kvar chunk du eig blir skattlagd. Bruk landområdet ditt klokt for å maksimere fortenesta!",
+            "13": "Hald auge med eigedomsskatten din! Om du ikkje betaler, kan det få... uheldige konsekvensar.",
+            "14": "Kaktusfarmar kan vere fullautomatiske—og dei gir ei jamn inntekt. Ei smart investering!",
+            "15": "Å gå opp i nivå låser opp nye kommandoar! Nokre nivå gir til og med spesielle hendingar—ver klar!",
+            "16": "Å fokusere på éin ressurs kan vere effektivt, men å spreie investeringane lar deg dra nytte av endra prisar.",
+            "17": "Nokre gonger er det smartare å lagre gjenstandar enn å selje dei med ein gong. Prisar varierer, og ekstrem rikdom kan føre til ein formuesskatt!",
+            "18": "Landlord støttar opptil 8 spelarar. Samle venene dine og utvid territoriet!",
+            "19": "Fun fact: Landlord-pluginen vart laga av Johan Svartdal!",
+            "20": "Visste du dette? Landlord-eventyra vart bygde av Johan Svartdal og Ole-Erik Schrumpf!"
+        },
+        "seasonHints": {
+            "season2": {
+                "1": "Sesong 2 introduserer arenakamp—gjør deg klar til å møte bølgjer av farlege monster!",
+                "2": "Spanande eventyr ventar! Bli med på arrangerte ekspedisjonar til mystiske og farlege stader denne sesongen.",
+                "3": "Noko massivt kjem i Sesong 3… Hald deg oppdatert og ver klar for det uventa!",
+                "4": "Ein ny sesong bringer ei ny villmark! Både Nether og Overworld har endra seg. Før du drar ut, lagre verdifulle ting trygt i ei kiste!"
+            },
+            "season3": {
+                "1": "Noko stort er i ferd med å skje i Sesong 3… Nå nivå 5 for å oppleve det sjølv!"
+            }
+        },
+        "featureSpecificHints": {
+            "wildworld": {
+                "1": "Lurar du på kor mykje tid du har igjen i villmarka? Skriv '/wilderness time' for å sjekke gjenståande eventyrtid.",
+                "2": "Før du går inn i villmarka for første gong, lagre verdifulle ting i ei kiste. Du veit aldri… du kan spawne i lava!",
+                "3": "Kvar sesong bringer ei ny villmark! Gjer deg klar for ei ny utfordring i både Overworld og Nether."
+            },
+            "wildnether": {
+                "1": "Gode nyhende! Når du brukar '/wilderness nether' er det garantert at du ikkje spawner i lava. Hald deg trygg!",
+                "2": "Nether-portalar tek deg ikkje til Nether… men ikkje gje opp. Kanskje finst det ein annan måte? Nå eit høgare nivå, så finn du kanskje ut av det."
+            },
+            "roulette": {
+                "1": "Vil du teste flaksen din? Skriv '/joinroulette' for å sjekke tida til neste runde!",
+                "2": "Kvar heile time startar eit nytt roulette-spel! Bli med på '/joinroulette' for ein sjanse til å vinne fantastiske gjenstandar.",
+                "3": "Nokre roulette-premiar har kraftige fortryllingar. Vil du vere heldig nok til å få ein?"
+            },
+            "rent_basic_tool": {
+                "1": "Lei av å mine sakte? Lei ein kraftig pickaxe med '/rent pickaxe' og sjå diamantane rulle inn!",
+                "2": "Treng du tre raskt? Bruk '/rent axe' før du hogger neste tre for maksimal effektivitet.",
+                "3": "Å investere i ein leigd pickaxe kan raskt lønne seg—spesielt når du utvidar farmar for langsiktig profitt.",
+                "4": "Oppdaga diamanter? Lei ein pickaxe først! Leigde pickaxes har Fortune-fortryllingar for ekstra belønningar."
+            },
+            "visit": {
+                "1": "Utforsk andre spelarars land med '/visit' for ein liten avgift på ",
+                "2": "Har du ein uønskt gjest? Send dei heim med '/sendhome [USERNAME]'."
+            },
+            "fly": {
+                "1": "Bygging vart nettopp enklare! Bruk '/fly' for å sveve i lufta som i kreativ modus."
+            },
+            "day": {
+                "1": "Lei av regn og mørke? Bruk '/day' for å rydde opp i vêret og få sola tilbake!"
+            },
+            "stocks": {
+                "1": "Vil du bli rik? Å investere i aksjar er ein av dei beste måtane! Ingen formuesskatt, og prisane kan stige over tid.",
+                "2": "Beskytt aksjane dine! Oppbevar dei på ein sikker stad—lageret ditt er den verste staden. Éi creeper-eksplosjon, og dei er borte for alltid.",
+                "3": "Nysgjerrig på aksjeverdiar? Bruk '/stocks list' for å sjå alle tilgjengelege aksjar og deira noverande prisar.",
+                "4": "Vil du ha detaljert innsikt? Skriv '/stocks info [STOCKNAME]' for å sjekke korleis ein aksjeverdi har endra seg den siste timen.",
+                "5": "Klar til å investere? Kjøp aksjar med '/stocks buy [STOCKNAME] [AMOUNT]'. Ta smarte val og sjå formuen din vekse!"
+            },
+            "rent_diamond_tools": {
+                "1": "Diamantverktøy er no tilgjengelege for utleige! Bruk '/rent info' for å sjekke kva som er tilgjengeleg."
+            },
+            "rent_elytra": {
+                "1": "Klar for eit eventyr? Dra først til '/wilderness world', og lei ei elytra med '/rent elytra'. Ikkje gløym å ta med rakettar!"
+            },
+            "wildmining": {
+                "1": "Treng du malm? '/wilderness mine' gir deg 45 minutt med uavbroten graving for berre ",
+                "2": "Gode nyhende! Kommandoen '/wilderness mine' sørgjer for at du ikkje spawner i lava—så grav i veg med tryggleik!"
+            },
+            "capture": {
+                "1": "Dei fleste vennlege mobs kan fangast. Har du nokon gong ønskja deg ein panda som kjæledyr?",
+                "2": "Bruk '/capture' for å fange det næraste dyret—vel med omhug!",
+                "3": "Har du fanga ditt eige kjæledyr enno? Prøv '/capture' og start samlinga di!"
+            },
+            "pay": {
+                "1": "Treng du å gjere opp gjeld? Bruk '/pay <username> <amount>' for å overføre pengar enkelt."
+            },
+            "treasury": {
+                "1": "Synest du statskanslaren ikkje gjer ein god jobb? Spark dei! Bruk '/treasury voteresign' for å stemme på ein ny.",
+                "2": "Statskanslaren har utruleg makt! Etter kvart som du stig i nivå, vil du gradvis oppdage deira fulle potensial.",
+                "haste": {
+                    "1": "Treng du eit produktivitetsboost? Statskanslaren kan aktivere 'haste' for alle spelarar i tre minutt med '/treasury buy haste'."
+                },
+                "donations": {
+                    "1": "Dårleg tid? Statskanslaren kan halvere dei gjenværande nødvendige gjenstandane med '/treasury buy donations'!"
+                },
+                "chunkdiscount": {
+                    "1": "Vil du ha billegare land? Statskanslaren kan gi ein permanent rabatt på chunk-prisar for alle spelarar med '/treasury buy chunkdiscount'."
+                },
+                "mysterychest": {
+                    "1": "Føl du deg heldig? Statskanslaren kan spawne ei mystisk kiste i handelschunken med '/treasury buy mysterychest'. Ta sjansen!",
+                    "2": "Det finst fire nivå av mystiske kister. Vil di innehalde rikdom eller skuffelse? Prøv '/treasury buy mysterychest' og finn ut!"
+                },
+                "withdraw": {
+                    "1": "Statskanslaren kan dele ut rikdom! Ved å bruke '/treasury withdraw' mottek kvar spelar 4000. Tid for utbetaling!"
+                }
+            },
+            "chunkguard": {
+                "1": "Med ein Chunk Guard vil avlingane dine halde fram med å vekse—sjølv når du er offline!",
+                "2": "Jordbruk med ein Chunk Guard kan vere svært lønsamt. Fleire avlingar, meir inntekt!"
+            },
+            "business": {
+                "1": "Å starte ei bedrift er ein flott måte å generere skattefri inntekt på!",
+                "2": "Passiv inntekt? Ja, takk! Ei godt styrt bedrift kan tene pengar medan du fokuserer på andre ting.",
+                "3": "Vurderer du å starte ei bedrift? Sørg for at du har nok kapital—uventa hendingar kan oppstå!"
+            }
+        }
+    }
+}

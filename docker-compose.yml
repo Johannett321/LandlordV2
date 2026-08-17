@@ -1,0 +1,49 @@
+# One-command Landlord development server.
+#
+#   make dev
+#
+# Boots a Paper server with everything Landlord needs at runtime:
+#   * Vault + EssentialsX  -> the economy API Landlord's Bank is built on
+#   * Multiverse-Core      -> loads the separate `lladv` adventure world
+#   * target/Landlord.jar  -> the plugin you just built
+#
+# Server data (worlds, plugin config, player data) lives in ./run/data so it
+# survives `docker compose down` and is easy to inspect or reset.
+
+services:
+  minecraft:
+    image: itzg/minecraft-server:java21
+    container_name: landlord-dev
+    tty: true
+    stdin_open: true
+    restart: "no"
+    ports:
+      - "25565:25565"   # Minecraft — connect to localhost in the game client
+      - "25566:25566"   # Landlord live dashboard — http://localhost:25566
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      VERSION: "${MINECRAFT_VERSION:-1.21.4}"
+      MEMORY: "${MEMORY:-3G}"
+
+      # Plugin dependencies, auto-downloaded on first boot.
+      # Vault only publishes a direct SpigotMC download (34315); EssentialsX
+      # and Multiverse-Core are pulled from Modrinth.
+      SPIGET_RESOURCES: "34315"
+      MODRINTH_PROJECTS: "essentialsx,multiverse-core"
+
+      # Your Minecraft username, so you get operator and can run /landlord.
+      # Set MINECRAFT_OPS in a .env file next to this one.
+      OPS: "${MINECRAFT_OPS:-}"
+
+      # Landlord shuts the server down ~10s after boot if the `lladv` world is
+      # not loaded, so Multiverse has to import it immediately on first start.
+      # Harmless on later boots — Multiverse ignores an already-imported world.
+      RCON_CMDS_STARTUP: |-
+        mv import lladv normal
+
+    volumes:
+      # The plugin you build locally. Re-run `make build` and restart to reload.
+      - ./target/Landlord.jar:/plugins/Landlord.jar:ro
+      # Persistent server state. The lladv world goes in ./run/data/lladv
+      - ./run/data:/data

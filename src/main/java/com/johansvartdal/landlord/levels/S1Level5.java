@@ -1,0 +1,57 @@
+package com.johansvartdal.landlord.levels;
+
+import com.johansvartdal.landlord.Book;
+import com.johansvartdal.landlord.God;
+import com.johansvartdal.landlord.events.LandlordEvent;
+import com.johansvartdal.landlord.LangDict;
+import com.johansvartdal.landlord.Main;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+
+public class S1Level5 extends Level{
+
+    public S1Level5(Main plugin) {
+        super(plugin, 1, 5);
+    }
+
+    @Override
+    public ArrayList<ItemStack> getRequiredItemsForNextLevel() {
+        ArrayList<ItemStack> requiredItems = new ArrayList<>();
+
+        requiredItems.add(new ItemStack(Material.COBBLESTONE, 128 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.CACTUS, 50 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.WHEAT, 80 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.LAVA_BUCKET, 2));
+        requiredItems.add(new ItemStack(Material.IRON_BLOCK, 2 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.POPPY, 8 * Main.properties.getNumberOfPlayers()));
+        requiredItems.add(new ItemStack(Material.WHITE_WOOL, 50));
+        requiredItems.add(new ItemStack(Material.EGG, 24));
+        return requiredItems;
+    }
+
+    @Override
+    public void justUpgraded() {
+        God.speak(LangDict.getString("levelBooks.season1.level5.godSpeak"));
+    }
+
+    @Override
+    public int getRouletteGamePrice() {
+        return 500;
+    }
+
+    @Override
+    public LandlordEvent getEventToStartBeforeLevel() {
+        return null;
+    }
+
+    @Override
+    public Book getBook() {
+        Book book = new Book("S1L5");
+        book.addPage(LangDict.getString("levelBooks.season1.level5.page1"));
+        book.addPage(LangDict.getString("levelBooks.season1.level5.page2"));
+        book.addPage(LangDict.getString("levelBooks.endSignature"));
+        return book;
+    }
+}

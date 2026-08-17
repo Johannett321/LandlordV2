@@ -1,0 +1,74 @@
+package com.johansvartdal.landlord.events;
+
+import com.johansvartdal.landlord.God;
+import com.johansvartdal.landlord.Main;
+import com.johansvartdal.landlord.Tools;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Player;
+
+public class TestEvent extends LandlordEvent {
+
+    public TestEvent(Main plugin) {
+        super(plugin);
+    }
+
+    @Override
+    public void startEvent() {
+        Tools.broadcastMessage("Eventet starter straks!");
+
+        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+            @Override
+            public void run() {
+                // save all previous locations
+                saveAllPrevLocs();
+
+                // teleport all players
+                teleportAllPlayers();
+
+                // check if player's has succeeded every X seconds
+                startListeningForExitOnCords(plugin,-260, -256,112,115, -99, -96);
+            }
+        }, Tools.secToTicks(10));
+    }
+
+    public void teleportAllPlayers() {
+        // XYZ: -275 / 113 / -91
+
+        // teleport all players
+        Location startLoc = new Location(Bukkit.getWorld("lladv"), -275, 113, -91);
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.teleport(startLoc);
+        }
+
+        super.lockPlayersAtLocation(startLoc, 10);
+    }
+
+    @Override
+    public void endEvent(Boolean cancelled) {
+        super.endEvent(cancelled);
+        teleportAllPlayersBack();
+        God.speak("Amazing! You did it!");
+    }
+
+    @Override
+    public String getEventType() {
+        return "TestEvent";
+    }
+
+    @Override
+    public void resumeEvent() {
+        // kill all mobs
+        for(Entity entity : Bukkit.getWorld("lladv").getEntities()) {
+            if (entity instanceof Mob && !(entity instanceof Player)) {
+                entity.remove();
+            }
+        }
+
+        Tools.broadcastMessage("The event was cancelled due to a server restart", ChatColor.RED);
+        endEvent(true);
+    }
+}
